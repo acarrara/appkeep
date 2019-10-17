@@ -3,6 +3,9 @@ node_js:
   - node
 before_install:
   - npm i -g npm@6.9.0
+script:
+  - npm run lint
+  - npm run test:ci
 deploy:
   provider: heroku
   api_key:

@@ -1,4 +1,15 @@
-<h1>{{title}}</h1>
-<ul>
-  <li *ngFor="let appKeep of appKeeps$ | async">{{format(appKeep)}}</li>
-</ul>
+<div class="ak-layout">
+  <main class="ak-layout__main">
+    <div class="ak-form">
+      <div class="ak-input">
+        <label for="what">What</label>
+        <input id="what">
+      </div>
+      <div class="ak-input  ak-input--amount">
+        <label for="amount">{{value | akAmount}}</label>
+        <input id="amount" type="number" min="0" step="0.01" [(ngModel)]="value">
+      </div>
+      <button class="ak-button">AppKeep!</button>
+    </div>
+  </main>
+</div>

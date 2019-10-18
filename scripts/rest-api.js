@@ -6,7 +6,7 @@ module.exports = function (app) {
 
   const mongoDBUri = process.env.MONGODB_URI;
 
-  mongoose.connect(mongoDBUri, function (err, res) {
+  mongoose.connect(mongoDBUri, { useNewUrlParser: true }, function (err, res) {
     if (err) {
       console.log('Error connecting to MongoDB server.', err);
     } else {

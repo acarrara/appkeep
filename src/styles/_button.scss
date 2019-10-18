@@ -1,0 +1,19 @@
+.ak-button {
+  color: $ak-color-background;
+  background-color: $ak-color-text;
+
+  width: 100%;
+
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+
+  border: 4px solid $ak-color-text;
+
+  text-align: center;
+
+  cursor: pointer;
+}

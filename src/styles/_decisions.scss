@@ -1,0 +1,20 @@
+@import "~sass-planifolia/sass/math";
+@import "~sass-planifolia/sass/color";
+
+$ak-brand-hue: 30;
+$ak-brand-hue: 245;
+
+$ak-standard-lightness: 40;
+$ak-standard-chroma: 70;
+
+$ak-lightest-lightness: 96;
+$ak-lightest-chroma: 20;
+
+$ak-darkest-lightness: 16;
+$ak-darkest-chroma: 90;
+
+$ak-color-text: lch($ak-darkest-lightness, $ak-darkest-chroma, $ak-brand-hue, 'hsluv');
+$ak-color-background: lch($ak-lightest-lightness, $ak-lightest-chroma, $ak-brand-hue, 'hsluv');
+$ak-color-background-form: lch($ak-standard-chroma, $ak-lightest-chroma, $ak-brand-hue, 'hsluv');
+$ak-color-foreground: lch($ak-standard-lightness, $ak-standard-chroma, $ak-brand-hue, 'hsluv');
+$ak-color-canvas: lch(99, 99, $ak-brand-hue, 'hsluv');

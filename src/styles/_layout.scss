@@ -1,0 +1,42 @@
+.ak-layout {
+  width: 100vw;
+  height: 100vh;
+
+  background-color: $ak-color-background;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  & > .ak-layout__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+
+    color: $ak-color-canvas;
+  }
+
+  & > .ak-layout__main {
+    height: 100vh;
+    width: 100vw;
+
+    max-width: 30rem;
+
+
+    color: $ak-color-text;
+    background-color: $ak-color-canvas;
+  }
+}
+
+.ak-form {
+  padding: 1rem;
+
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+
+  background-color: $ak-color-background-form;
+}

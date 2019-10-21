@@ -3,12 +3,12 @@
     <div class="ak-form">
       <div class="ak-input  ak-input--amount">
         <label for="amount" class="visually-hidden">Amount</label>
-        <input #amount id="amount" type="number" min="0" step="0.01" [(ngModel)]="value">
+        <input #amount id="amount" type="number" min="0" step="0.01" [(ngModel)]="value" (keyup.enter)="what.focus()">
         <div class="ak-text-big  ak-amount" (click)="amount.focus()">{{value | akAmount}}</div>
       </div>
       <div class="ak-input">
         <label for="what">What</label>
-        <input id="what">
+        <input id="what" #what>
       </div>
       <button class="ak-button">Add</button>
     </div>

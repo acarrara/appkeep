@@ -11,9 +11,25 @@
   line-height: inherit;
   font-family: inherit;
 
-  border: 4px solid $ak-color-text;
+  border: 1px solid $ak-color-text;
 
   text-align: center;
 
   cursor: pointer;
+
+  margin-top: 1rem;
+
+  box-shadow: 0 2px 2px 0 $ak-color-shadow;
+
+  &:hover {
+    background-color: $ak-color-button-hover;
+    border-color: $ak-color-button-hover;
+  }
+
+  &:active {
+    background-color: $ak-color-button-active;
+    border-color: $ak-color-button-active;
+
+    box-shadow: 0 1px 1px 0 $ak-color-shadow;
+  }
 }

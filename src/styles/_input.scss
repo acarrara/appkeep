@@ -17,7 +17,7 @@
     line-height: inherit;
     color: inherit;
 
-    border: 4px solid $ak-color-background;
+    border: 1px solid $ak-color-border;
 
     border-radius: 0.5rem;
   }
@@ -27,18 +27,18 @@
       opacity: 0;
       height: 0;
       width: 0;
+      padding: 0;
+      border: 0;
     }
-
-    & > label {
-      text-align: right;
-
-      font-size: 4rem;
-      line-height: 6rem;
-    }
-
   }
 
   & + .ak-input {
     margin-top: 0.5rem;
   }
+}
+
+.ak-amount {
+  text-align: right;
+
+  cursor: pointer;
 }

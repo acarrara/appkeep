@@ -28,7 +28,7 @@
 
 
     color: $ak-color-text;
-    background-color: $ak-color-canvas;
+    background-color: $ak-color-background-form;
   }
 }
 
@@ -38,5 +38,7 @@
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
 
-  background-color: $ak-color-background-form;
+  background-color: $ak-color-canvas;
+
+  box-shadow: 0 6px 4px -4px $ak-color-shadow;
 }

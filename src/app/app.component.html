@@ -1,16 +1,28 @@
 <div class="ak-layout">
   <main class="ak-layout__main">
-    <div class="ak-form">
+    <form class="ak-form" #form=ngForm>
       <div class="ak-input  ak-input--amount">
         <label for="amount" class="visually-hidden">Amount</label>
-        <input #amount id="amount" type="number" min="0" step="0.01" [(ngModel)]="value" (keyup.enter)="what.focus()">
-        <div class="ak-text-big  ak-amount" (click)="amount.focus()">{{value | akAmount}}</div>
+        <input name="amount" #amount id="amount"
+               type="number" min="0" step="0.01"
+               [ngModel]="0" (keydown.enter)="$event.preventDefault(); what.focus()">
+        <div class="ak-text-big  ak-amount" (click)="amount.focus()">{{form.value.amount | akAmount}}</div>
       </div>
       <div class="ak-input">
         <label for="what">What</label>
-        <input id="what" #what>
+        <input id="what" #what name="what" ngModel>
       </div>
-      <button class="ak-button">Add</button>
-    </div>
+      <button class="ak-button" type="submit" (click)="add(form.value); form.reset(); amount.focus()">Add</button>
+    </form>
+    <section>
+      <h1 >Today ({{todayTotal() | akAmount}})</h1>
+      <ol class="ak-list">
+        <li *ngFor="let appKeep of appKeeps" class="ak-list__item">
+          <div class="ak-list__what">{{appKeep.what}}</div>
+           <div class="ak-list__amount">{{appKeep.amount | akAmount}}</div>
+           <button class="ak-list__remove" (click)="remove(appKeep)">x</button>
+        </li>
+      </ol>
+    </section>
   </main>
 </div>

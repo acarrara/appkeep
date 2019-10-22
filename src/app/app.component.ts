@@ -10,7 +10,8 @@ import { AppKeep } from './models/AppKeep';
 export class AppComponent implements AfterViewInit {
 
   appKeeps$: Observable<AppKeep[]>;
-  value = 0;
+
+  appKeeps: any[] = [];
 
   @ViewChild('amount', {static: true})
   amount: ElementRef;
@@ -21,5 +22,17 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.amount.nativeElement.focus();
+  }
+
+  add(appKeep: any) {
+    this.appKeeps.unshift(appKeep);
+  }
+
+  remove(appKeep: any) {
+    this.appKeeps.splice(this.appKeeps.indexOf(appKeep), 1);
+  }
+
+  todayTotal() {
+    return this.appKeeps.reduce((previous, current) => previous + current.amount, 0);
   }
 }

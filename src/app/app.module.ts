@@ -21,4 +21,5 @@ import { AmountPipe } from './amount.pipe';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

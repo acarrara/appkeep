@@ -1,21 +1,30 @@
+@mixin ak-button() {
+  padding: 0.5rem;
+
+  border: 0;
+
+  min-height: 2rem;
+  min-width: 2rem;
+
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+
 .ak-button {
   color: $ak-color-background;
   background-color: $ak-color-text;
 
   width: 100%;
 
-  padding: 0.5rem;
   border-radius: 0.5rem;
 
-  font-size: inherit;
-  line-height: inherit;
-  font-family: inherit;
+  @include ak-button();
+
 
   border: 1px solid $ak-color-text;
-
-  text-align: center;
-
-  cursor: pointer;
 
   margin-top: 1rem;
 

@@ -14,13 +14,13 @@
       </div>
       <button class="ak-button" type="submit" (click)="add(form.value); form.reset(); amount.focus()">Add</button>
     </form>
-    <section>
-      <h1 >Today ({{todayTotal() | akAmount}})</h1>
-      <ol class="ak-list">
-        <li *ngFor="let appKeep of appKeeps" class="ak-list__item">
-          <div class="ak-list__what">{{appKeep.what}}</div>
-           <div class="ak-list__amount">{{appKeep.amount | akAmount}}</div>
-           <button class="ak-list__remove" (click)="remove(appKeep)">x</button>
+    <section class="ak-items">
+      <h2>Today ({{todayTotal() | akAmount}})</h2>
+      <ol>
+        <li *ngFor="let appKeep of appKeeps" class="ak-item">
+          <div class="ak-item__what">{{appKeep.what}}</div>
+           <div class="ak-item__amount">{{appKeep.amount | akAmount}}</div>
+           <button class="ak-item__remove" (click)="remove(appKeep)">x</button>
         </li>
       </ol>
     </section>

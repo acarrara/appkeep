@@ -1,0 +1,44 @@
+.ak-items {
+  padding: 1rem;
+}
+
+.ak-item {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem;
+  background-color: $ak-color-canvas;
+  border-radius: 0.5rem;
+
+  box-shadow: 0 2px 2px 0 $ak-color-shadow;
+
+  & + .ak-item {
+    margin-top: 0.5rem;
+  }
+
+  .ak-item__what {
+    flex-grow: 1;
+  }
+
+  .ak-item__remove {
+    @include ak-button();
+
+    background-color: $ak-color-background-form;
+
+    padding: 0.5rem;
+
+    border-radius: 0.25rem;
+
+    width: 2rem;
+    height: 2rem;
+
+    box-shadow: 0 1px 1px 0 $ak-color-shadow;
+  }
+
+  .ak-item__amount, .ak-item__remove {
+    flex-grow: 0;
+    margin-left: 1rem;
+  }
+}

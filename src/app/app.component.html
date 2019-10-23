@@ -9,18 +9,22 @@
         <div class="ak-text-big  ak-amount" (click)="amount.focus()">{{form.value.amount | akAmount}}</div>
       </div>
       <div class="ak-input">
-        <label for="what">What</label>
-        <input id="what" #what name="what" ngModel>
+        <input id="what" #what name="what" ngModel placeholder="Description">
       </div>
       <button class="ak-button" type="submit" (click)="add(form.value); form.reset(); amount.focus()">Add</button>
     </form>
     <section class="ak-items">
-      <h2>Today ({{todayTotal() | akAmount}})</h2>
+      <div class="ak-items__header">
+        <div class="ak-items__title"><h2>Today</h2></div>
+        <div class="ak-items__amount">{{todayTotal() | akAmount}}</div>
+      </div>
       <ol>
         <li *ngFor="let appKeep of appKeeps" class="ak-item">
-          <div class="ak-item__what">{{appKeep.what}}</div>
+          <div class="ak-item__what">
+            <div>{{appKeep.what}}</div>
+            <span class="ak-category">Hello</span>
+          </div>
            <div class="ak-item__amount">{{appKeep.amount | akAmount}}</div>
-           <button class="ak-item__remove" (click)="remove(appKeep)">x</button>
         </li>
       </ol>
     </section>

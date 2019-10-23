@@ -26,16 +26,18 @@
 
     max-width: 30rem;
 
+    padding: 0 0.5rem;
+
     color: $ak-color-text;
     background-color: $ak-color-background-form;
   }
 }
 
 .ak-form {
-  padding: 1rem;
+  padding: 0 1rem 1rem;
 
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 
   background-color: $ak-color-canvas;
 

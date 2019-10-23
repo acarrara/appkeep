@@ -14,15 +14,24 @@
     padding: 0.5rem;
 
     font-size: inherit;
+    font-family: inherit;
     line-height: inherit;
     color: inherit;
+    background-color: inherit;
 
-    border: 1px solid $ak-color-border;
+    border: none;
 
-    border-radius: 0.5rem;
+    border-bottom: 1px solid $ak-color-border;
+
+    //border-radius: 0.5rem;
   }
 
   &.ak-input--amount {
+
+    & > label {
+      margin: 0;
+    }
+
     & > input {
       opacity: 0;
       height: 0;
@@ -39,6 +48,5 @@
 
 .ak-amount {
   text-align: right;
-
   cursor: pointer;
 }

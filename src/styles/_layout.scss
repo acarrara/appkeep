@@ -2,7 +2,7 @@
   width: 100vw;
   height: 100vh;
 
-  background-color: $ak-color-background;
+  background-color: $ak-color-canvas;
 
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@
 
     width: 100vw;
 
-    color: $ak-color-canvas;
+    color: $ak-color-background-form;
   }
 
   & > .ak-layout__main {
@@ -29,17 +29,35 @@
     padding: 0 0.5rem;
 
     color: $ak-color-text;
-    background-color: $ak-color-background-form;
+    background-color: $ak-color-background;
   }
 }
 
 .ak-form {
-  padding: 0 1rem 1rem;
 
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
 
-  background-color: $ak-color-canvas;
+  background-color: $ak-color-background-form;
 
   box-shadow: 0 6px 4px -4px $ak-color-shadow;
+
+  & > .ak-form__buttons {
+    display: flex;
+    & > * {
+      flex-grow: 1;
+    }
+
+    & > *:first-child {
+      border-bottom-left-radius: 0.5rem;
+    }
+
+    & > *:last-child {
+      border-bottom-right-radius: 0.5rem;
+    }
+  }
+
+ & > .ak-form__inputs {
+   padding: 0 1rem 1rem;
+ }
 }

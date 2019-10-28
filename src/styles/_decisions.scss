@@ -13,18 +13,30 @@ $ak-lightest-chroma: 20;
 $ak-darkest-lightness: 16;
 $ak-darkest-chroma: 90;
 
-$ak-color-text: lch($ak-darkest-lightness, $ak-darkest-chroma, $ak-brand-hue, 'hsluv');
-$ak-color-background: lch($ak-lightest-lightness, $ak-lightest-chroma, $ak-brand-hue, 'hsluv');
-$ak-color-background-form: lch($ak-standard-chroma, $ak-lightest-chroma, $ak-brand-hue, 'hsluv');
-$ak-color-foreground: lch($ak-standard-lightness, $ak-standard-chroma, $ak-brand-hue, 'hsluv');
-$ak-color-canvas: lch(99, 99, $ak-brand-hue, 'hsluv');
 
 $ak-color-text: #333;
 $ak-color-shadow: #999;
-$ak-color-background: #f0f0f0;
-$ak-color-background-form: #ddd;
+$ak-color-canvas: #f0f0f0;
+$ak-color-background: #ddd;
 $ak-color-foreground: pink;
-$ak-color-canvas: #fafafa;
+$ak-color-background-form: #fafafa;
 $ak-color-button-hover: #222;
 $ak-color-button-active: #111;
 $ak-color-border: #ccc;
+
+$ak-color-text: lch($ak-darkest-lightness, $ak-darkest-chroma, $ak-brand-hue, 'hsluv');
+$ak-color-canvas: lch($ak-lightest-lightness, $ak-lightest-chroma, $ak-brand-hue, 'hsluv');
+$ak-color-background: lch($ak-standard-chroma, $ak-lightest-chroma, $ak-brand-hue, 'hsluv');
+$ak-color-foreground: lch($ak-standard-lightness, $ak-standard-chroma, $ak-brand-hue, 'hsluv');
+$ak-color-background-form: lch(99, 99, $ak-brand-hue, 'hsluv');
+
+$ak-color-text: lch($ak-darkest-lightness, $ak-darkest-chroma, $ak-brand-hue, 'hsluv');
+$ak-color-shadow: lch(50, 10, $ak-brand-hue, 'hsluv');
+$ak-color-canvas: lch($ak-lightest-lightness, $ak-lightest-chroma, $ak-brand-hue, 'hsluv');
+$ak-color-background: lch(92, $ak-lightest-chroma, $ak-brand-hue, 'hsluv');
+$ak-color-foreground: pink;
+$ak-color-background-form: lch(99, 99, $ak-brand-hue, 'hsluv');
+$ak-color-button-hover: lch(14, 92, $ak-brand-hue, 'hsluv');
+$ak-color-button-active: lch(12, 94, $ak-brand-hue, 'hsluv');
+$ak-color-border: lch(80, $ak-lightest-chroma, $ak-brand-hue, 'hsluv');
+$ak-color-header: lch(70, $ak-darkest-chroma, $ak-brand-hue, 'hsluv');

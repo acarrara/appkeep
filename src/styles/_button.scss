@@ -14,31 +14,46 @@
 }
 
 .ak-button {
-  color: $ak-color-background;
-  background-color: $ak-color-text;
+  color: $ak-color-text;
+  background-color: inherit;
 
   width: 100%;
 
-  border-radius: 0.5rem;
+  //border-radius: 0.5rem;
 
   @include ak-button();
 
+  //border: 1px solid $ak-color-text;
 
-  border: 1px solid $ak-color-text;
+  //margin-top: 1rem;
 
-  margin-top: 1rem;
+  //box-shadow: 0 2px 2px 0 $ak-color-shadow;
 
-  box-shadow: 0 2px 2px 0 $ak-color-shadow;
+  border-top: 1px solid $ak-color-border;
 
   &:hover {
-    background-color: $ak-color-button-hover;
     border-color: $ak-color-button-hover;
   }
 
   &:active {
-    background-color: $ak-color-button-active;
     border-color: $ak-color-button-active;
 
     box-shadow: 0 1px 1px 0 $ak-color-shadow;
   }
+
+  &.ak-button--primary {
+
+    color: $ak-color-canvas;
+    background-color: $ak-color-text;
+
+    &:hover {
+      background-color: $ak-color-button-hover;
+    }
+
+    &:active {
+      background-color: $ak-color-button-active;
+    }
+
+  }
+
 }

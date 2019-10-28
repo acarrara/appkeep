@@ -1,11 +1,9 @@
 .ak-items {
-
   margin-top: 1rem;
 
-  background-color: $ak-color-canvas;
+  background-color: $ak-color-background-form;
   border-radius: 0.5rem;
 
-  padding: 0 1rem 1rem;
   box-shadow: 0 6px 4px -4px $ak-color-shadow;
 }
 
@@ -29,7 +27,7 @@
   //.ak-item__remove {
   //  @include ak-button();
   //
-  //  background-color: $ak-color-canvas;
+  //  background-color: $ak-color-background-form;
   //
   //  padding: 0.5rem;
   //
@@ -47,9 +45,20 @@
   }
 }
 
+.ak-items__list {
+  padding: 0.25rem 1rem;
+}
+
 .ak-items__header {
   display: flex;
   align-items: center;
+  padding: 0.25rem 1rem;
+
+  background-color: $ak-color-header;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+
+  border-bottom: 1px solid $ak-color-border;
 }
 
 .ak-items__title {

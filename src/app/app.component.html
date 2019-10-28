@@ -1,24 +1,30 @@
 <div class="ak-layout">
   <main class="ak-layout__main">
     <form class="ak-form" #form=ngForm>
-      <div class="ak-input  ak-input--amount">
-        <label for="amount" class="visually-hidden">Amount</label>
-        <input name="amount" #amount id="amount"
-               type="number" min="0" step="0.01"
-               [ngModel]="0" (keydown.enter)="$event.preventDefault(); what.focus()">
-        <div class="ak-text-big  ak-amount" (click)="amount.focus()">{{form.value.amount | akAmount}}</div>
+      <div class="ak-form__inputs">
+        <div class="ak-input  ak-input--amount">
+          <label for="amount" class="visually-hidden">Amount</label>
+          <input name="amount" #amount id="amount"
+                 type="number" min="0" step="0.01"
+                 [ngModel]="0" (keydown.enter)="$event.preventDefault(); what.focus()">
+          <div class="ak-text-big  ak-amount" (click)="amount.focus()">{{form.value.amount | akAmount}}</div>
+        </div>
+        <div class="ak-input">
+          <input id="what" #what name="what" ngModel placeholder="Description">
+        </div>
       </div>
-      <div class="ak-input">
-        <input id="what" #what name="what" ngModel placeholder="Description">
+      <div class="ak-form__buttons">
+        <button class="ak-button  ak-button--primary" type="submit"
+                (click)="add(form.value); form.reset(); amount.focus()">Add</button>
+        <button class="ak-button" type="reset" (click)="form.reset(); amount.focus()">Reset</button>
       </div>
-      <button class="ak-button" type="submit" (click)="add(form.value); form.reset(); amount.focus()">Add</button>
     </form>
     <section class="ak-items">
       <div class="ak-items__header">
         <div class="ak-items__title"><h2>Today</h2></div>
         <div class="ak-items__amount">{{todayTotal() | akAmount}}</div>
       </div>
-      <ol>
+      <ol class="ak-items__list">
         <li *ngFor="let appKeep of appKeeps" class="ak-item">
           <div class="ak-item__what">
             <div>{{appKeep.what}}</div>

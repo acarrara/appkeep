@@ -26,7 +26,7 @@
 
     max-width: 30rem;
 
-    padding: 0 0.5rem;
+    padding: 0 $ak-size-m;
 
     color: $ak-color-text;
     background-color: $ak-color-background;
@@ -35,8 +35,8 @@
 
 .ak-form {
 
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: $ak-size-m;
+  border-bottom-right-radius: $ak-size-m;
 
   background-color: $ak-color-background-form;
 
@@ -49,15 +49,15 @@
     }
 
     & > *:first-child {
-      border-bottom-left-radius: 0.5rem;
+      border-bottom-left-radius: $ak-size-m;
     }
 
     & > *:last-child {
-      border-bottom-right-radius: 0.5rem;
+      border-bottom-right-radius: $ak-size-m;
     }
   }
 
  & > .ak-form__inputs {
-   padding: 0 1rem 1rem;
+   padding: 0 $ak-size-l $ak-size-l;
  }
 }

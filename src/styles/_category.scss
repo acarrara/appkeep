@@ -3,12 +3,12 @@
 
   font-size: 0.75rem;
 
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
+  border: 1px solid $ak-color-border;
+  border-radius: $ak-size-s;
 
-  padding: 0.125rem 0.5rem;
+  padding: $ak-size-xs $ak-size-s;
 
   background-color: #ddd;
 
-  margin-top: 0.5rem;
+  margin-top: $ak-size-m;
 }

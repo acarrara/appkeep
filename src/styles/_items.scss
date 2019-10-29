@@ -1,8 +1,12 @@
 .ak-items {
-  margin-top: 1rem;
+  margin-top: $ak-size-l;
+  min-height: 256px;
 
   background-color: $ak-color-background-form;
-  border-radius: 0.5rem;
+  border-radius: $ak-size-m;
+
+  display: flex;
+  flex-direction: column;
 
   box-shadow: 0 6px 4px -4px $ak-color-shadow;
 }
@@ -14,7 +18,7 @@
 
   cursor: pointer;
 
-  padding: 0.5rem 0;
+  padding: $ak-size-m 0;
 
   & + .ak-item {
     border-top: 1px solid $ak-color-border;
@@ -23,40 +27,30 @@
   .ak-item__what {
     flex-grow: 1;
   }
-  //
-  //.ak-item__remove {
-  //  @include ak-button();
-  //
-  //  background-color: $ak-color-background-form;
-  //
-  //  padding: 0.5rem;
-  //
-  //  border-radius: 0.25rem;
-  //
-  //  width: 2rem;
-  //  height: 2rem;
-  //
-  //  box-shadow: 0 1px 1px 0 $ak-color-shadow;
-  //}
 
   .ak-item__amount, .ak-item__remove {
     flex-grow: 0;
-    margin-left: 1rem;
+    margin-left: $ak-size-l;
   }
 }
 
 .ak-items__list {
-  padding: 0.25rem 1rem;
+  padding: $ak-size-s $ak-size-l;
+  flex-grow: 1;
 }
 
 .ak-items__header {
   display: flex;
   align-items: center;
-  padding: 0.25rem 1rem;
+  padding: $ak-size-s $ak-size-l;
+
+  color: $ak-color-background;
+
+  flex-grow: 0;
 
   background-color: $ak-color-header;
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
+  border-top-left-radius: $ak-size-m;
+  border-top-right-radius: $ak-size-m;
 
   border-bottom: 1px solid $ak-color-border;
 }

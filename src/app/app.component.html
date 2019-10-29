@@ -15,7 +15,8 @@
       </div>
       <div class="ak-form__buttons">
         <button class="ak-button  ak-button--primary" type="submit"
-                (click)="add(form.value); form.reset(); amount.focus()">Add</button>
+                (click)="add(form.value); form.reset(); amount.focus()">Add
+        </button>
         <button class="ak-button" type="reset" (click)="form.reset(); amount.focus()">Reset</button>
       </div>
     </form>
@@ -24,15 +25,22 @@
         <div class="ak-items__title"><h2>Today</h2></div>
         <div class="ak-items__amount">{{todayTotal() | akAmount}}</div>
       </div>
-      <ol class="ak-items__list">
-        <li *ngFor="let appKeep of appKeeps" class="ak-item">
-          <div class="ak-item__what">
-            <div>{{appKeep.what}}</div>
-            <span class="ak-category">Hello</span>
-          </div>
-           <div class="ak-item__amount">{{appKeep.amount | akAmount}}</div>
-        </li>
-      </ol>
+      <ng-container *ngIf="appKeeps.length; else noAppkeeps">
+        <ol class="ak-items__list">
+          <li *ngFor="let appKeep of appKeeps" class="ak-item">
+            <div class="ak-item__what">
+              <div>{{appKeep.what}}</div>
+              <span class="ak-category">Hello</span>
+            </div>
+            <div class="ak-item__amount">{{appKeep.amount | akAmount}}</div>
+          </li>
+        </ol>
+      </ng-container>
+      <ng-template #noAppkeeps>
+        <div class="ak-empty">
+          <div class="ak-empty__message">No AppKeeps today!</div>
+        </div>
+      </ng-template>
     </section>
   </main>
 </div>

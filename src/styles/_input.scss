@@ -6,12 +6,12 @@
 
     cursor: pointer;
 
-    margin-bottom: 0.25rem;
+    margin-bottom: $ak-size-s;
   }
 
   & > input {
     width: 100%;
-    padding: 0.5rem;
+    padding: $ak-size-m;
 
     font-size: inherit;
     font-family: inherit;
@@ -23,7 +23,7 @@
 
     border-bottom: 1px solid $ak-color-border;
 
-    //border-radius: 0.5rem;
+    //border-radius: $ak-size-m;
   }
 
   &.ak-input--amount {

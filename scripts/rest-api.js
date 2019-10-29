@@ -6,7 +6,7 @@ module.exports = function (app) {
 
   const mongoDBUri = process.env.MONGODB_URI;
 
-  mongoose.connect(mongoDBUri, { useNewUrlParser: true }, function (err, res) {
+  mongoose.connect(mongoDBUri, {useNewUrlParser: true}, function (err, res) {
     if (err) {
       console.log('Error connecting to MongoDB server.', err);
     } else {
@@ -34,13 +34,56 @@ module.exports = function (app) {
   });
 
   app.get('/api/appkeeps', async (request, response) => {
+    function getMidnight() {
+      const date = new Date();
+      date.setHours(0, 0, 0, 0);
+      return date.getTime();
+    }
+
     try {
-      const appKeeps = await AppKeep.find().exec();
+      const appKeeps = await AppKeep.find({
+        'date': {
+          $gte: getMidnight()
+        }
+      }).sort({date: -1}).exec();
       response.send(appKeeps);
     } catch (error) {
       response.status(500).send(error);
     }
   });
+
+  app.get('/api/appkeeps/statistics', async (request, response) => {
+
+    function getStartOfMonth() {
+      const date = new Date();
+      const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+      firstDay.setUTCHours(0, 0, 0, 0);
+      console.log(date, firstDay);
+      return firstDay.getTime();
+    }
+
+    try {
+      const statistics = await AppKeep.aggregate(
+        [{
+          $match: {
+            'date': {
+              $gte: getStartOfMonth()
+            }
+          }
+        },
+          {
+            $group: {
+              _id: "$thisMonth",
+              total: {$sum: '$amount'}
+            }
+          }]
+      ).exec();
+      response.send(statistics);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
 
   app.get('/api/appkeeps/:id', async (request, response) => {
     try {

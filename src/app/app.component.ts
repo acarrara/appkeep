@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { AppKeep } from './models/AppKeep';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'ak-app',
@@ -9,23 +9,25 @@ import { AppKeep } from './models/AppKeep';
 })
 export class AppComponent implements AfterViewInit {
 
-  appKeeps$: Observable<AppKeep[]>;
-
   appKeeps: any[] = [];
 
   @ViewChild('amount', {static: true})
   amount: ElementRef;
+  monthTotal: number;
 
   constructor(private http: HttpClient) {
-    this.appKeeps$ = this.http.get<AppKeep[]>('/api/appkeeps');
+    this.http.get<AppKeep[]>('/api/appkeeps').pipe(first()).subscribe(appKeeps => this.appKeeps = appKeeps);
+    this.http.get<any>('/api/appkeeps/statistics').pipe(first()).subscribe(statistics => this.monthTotal = statistics[0].total);
   }
 
   ngAfterViewInit(): void {
     this.amount.nativeElement.focus();
   }
 
-  add(appKeep: any) {
-    this.appKeeps.unshift(appKeep);
+  add(appKeep: AppKeep) {
+    appKeep.type = appKeep.title;
+    appKeep.date = Date.now();
+    this.http.post<AppKeep>('/api/appkeeps', appKeep).pipe(first()).subscribe(storedAppKeep => this.appKeeps.unshift(storedAppKeep));
   }
 
   remove(appKeep: any) {

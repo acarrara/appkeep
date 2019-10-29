@@ -24,8 +24,11 @@
     border-top: 1px solid $ak-color-border;
   }
 
-  .ak-item__what {
+  & > .ak-item__what {
     flex-grow: 1;
+    @include ak-button();
+    text-align: left;
+    padding: 0;
   }
 
   .ak-item__amount, .ak-item__remove {

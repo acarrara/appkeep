@@ -45,7 +45,13 @@
     <section class="ak-items">
       <div class="ak-items__header">
         <div class="ak-items__title"><h2>This month</h2></div>
-        <div class="ak-items__amount">{{monthTotal | akAmount}}</div>
+        <div class="ak-items__amount">{{thisMonthTotal$ | async | akAmount}}</div>
+      </div>
+    </section>
+    <section class="ak-items">
+      <div class="ak-items__header">
+        <div class="ak-items__title"><h2>Last month</h2></div>
+        <div class="ak-items__amount">{{lastMonthTotal$ | async | akAmount}}</div>
       </div>
     </section>
   </main>

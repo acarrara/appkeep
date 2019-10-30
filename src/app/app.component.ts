@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppKeep } from './models/AppKeep';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ak-app',
@@ -13,11 +14,14 @@ export class AppComponent implements AfterViewInit {
 
   @ViewChild('amount', {static: true})
   amount: ElementRef;
-  monthTotal: number;
+
+  thisMonthTotal$: Observable<number>;
+  lastMonthTotal$: Observable<number>;
 
   constructor(private http: HttpClient) {
     this.http.get<AppKeep[]>('/api/appkeeps').pipe(first()).subscribe(appKeeps => this.appKeeps = appKeeps);
-    this.http.get<any>('/api/appkeeps/statistics').pipe(first()).subscribe(statistics => this.monthTotal = statistics[0].total);
+    this.thisMonthTotal$ = this.getStatistics('/api/appkeeps/statistics/month/this');
+    this.lastMonthTotal$ = this.getStatistics('/api/appkeeps/statistics/month/last');
   }
 
   ngAfterViewInit(): void {
@@ -36,5 +40,11 @@ export class AppComponent implements AfterViewInit {
 
   todayTotal() {
     return this.appKeeps.reduce((previous, current) => previous + current.amount, 0);
+  }
+
+  private getStatistics(url = '/api/appkeeps/statistics/month/last') {
+    return this.http.get<any>(url).pipe(
+      map(statistics => statistics.length ? statistics[0].total : 0)
+    );
   }
 }

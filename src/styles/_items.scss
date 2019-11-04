@@ -1,5 +1,5 @@
 .ak-items {
-  margin-top: $ak-size-l;
+  margin-bottom: $ak-size-l;
   min-height: 256px;
 
   background-color: $ak-color-background-form;
@@ -29,6 +29,10 @@
     @include ak-button();
     text-align: left;
     padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .ak-item__amount, .ak-item__remove {
@@ -60,8 +64,16 @@
 
 .ak-items__title {
   flex-grow: 1;
+
+  &:first-letter {
+    text-transform: uppercase;
+  }
 }
 
 .ak-items__amount {
   flex-grow: 0;
+}
+
+.ak-items__remove {
+  @include ak-button();
 }

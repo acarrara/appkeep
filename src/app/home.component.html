@@ -1,0 +1,15 @@
+<ak-form></ak-form>
+<ak-card [total]="todayTotal$ | async" when="today">
+  <ol class="ak-items__list">
+    <li *ngFor="let appKeep of appKeeps$ | async" class="ak-item">
+      <button class="ak-item__what">
+        <div>{{appKeep.title}}</div>
+        <span class="ak-category">{{appKeep.type | lowercase}}</span>
+      </button>
+      <div class="ak-item__amount">{{appKeep.amount | akAmount}}</div>
+      <button class="ak-items__remove" (click)="remove(appKeep)">x</button>
+    </li>
+  </ol>
+</ak-card>
+<ak-card [total]="thisMonthTotal$ | async" when="this month"></ak-card>
+<ak-card [total]="lastMonthTotal$ | async" when="last month"></ak-card>

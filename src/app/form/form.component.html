@@ -1,0 +1,20 @@
+<form class="ak-form" #form=ngForm>
+  <div class="ak-form__inputs">
+    <div class="ak-input  ak-input--amount">
+      <label for="amount" class="visually-hidden">Amount</label>
+      <input name="amount" #amount id="amount"
+             type="number" min="0" step="0.01" ngModel
+             (keydown.enter)="$event.preventDefault(); what.focus()">
+      <div class="ak-text-big  ak-amount" (click)="amount.focus()">{{form.value.amount || 0 | akAmount}}</div>
+    </div>
+    <div class="ak-input">
+      <input id="what" #what name="title" ngModel placeholder="Description">
+    </div>
+  </div>
+  <div class="ak-form__buttons">
+    <button class="ak-button  ak-button--primary" type="submit"
+            (click)="add(form.value); form.reset(); amount.focus()">Add
+    </button>
+    <button class="ak-button" type="reset" (click)="form.reset(); amount.focus();">Reset</button>
+  </div>
+</form>

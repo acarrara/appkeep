@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const appKeepSchema = new mongoose.Schema({
   title: {type: String, trim: true},
   type: String,
-  date: {type: Number, min: 0},
+  date: {type: Date},
   amount: {type: Number, min: 0}
 });
 
@@ -22,6 +22,28 @@ model.range = range => {
       {
         $group: {
           _id: "statistics",
+          total: {$sum: '$amount'}
+        }
+      }]
+  ).exec();
+};
+
+model.statistics = range => {
+  return model.aggregate(
+    [{
+      $match: {
+        'date': {
+          $gte: range.start,
+          $lt: range.end
+        }
+      }
+    },
+
+      {
+        $group: {
+          _id: {
+            month: {$month: "$date"}
+          },
           total: {$sum: '$amount'}
         }
       }]

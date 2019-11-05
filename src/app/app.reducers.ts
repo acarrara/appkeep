@@ -2,10 +2,12 @@ import { Reducer } from '../redux/Reducer';
 import { AppActions } from './app.actions';
 import { AppKeepState } from './models/AppKeepState';
 import { AppKeep } from './models/AppKeep';
+import { ArrayableFunctions } from './ArrayableFunctions';
+import { Statistics } from './models/Statistics';
 
-export class AppReducers {
+export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> {
 
-  public loadAppKeeps: Reducer<AppKeepState, AppKeep[]> = (action, oldState) => {
+  private loadAppKeeps: Reducer<AppKeepState, AppKeep[]> = (action, oldState) => {
     switch (action.type) {
       case AppActions.LOAD_APPKEEPS_SUCCESS: {
         return {
@@ -19,7 +21,21 @@ export class AppReducers {
     }
   }
 
-  public addAppKeep: Reducer<AppKeepState, AppKeep> = (action, oldState) => {
+  private loadStatistics: Reducer<AppKeepState, Statistics> = (action, oldState) => {
+    switch (action.type) {
+      case AppActions.LOAD_STATISTICS_SUCCESS: {
+        return {
+          ...oldState,
+          statistics: action.payload
+        };
+      }
+      default: {
+        return oldState;
+      }
+    }
+  }
+
+  private addAppKeep: Reducer<AppKeepState, AppKeep> = (action, oldState) => {
     switch (action.type) {
       case AppActions.ADD_APPKEEP_SUCCESS: {
         return {
@@ -33,7 +49,7 @@ export class AppReducers {
     }
   }
 
-  public deleteAppKeep: Reducer<AppKeepState, AppKeep> = (action, oldState) => {
+  private deleteAppKeep: Reducer<AppKeepState, AppKeep> = (action, oldState) => {
     switch (action.type) {
       case AppActions.DELETE_APPKEEP_SUCCESS: {
         return {

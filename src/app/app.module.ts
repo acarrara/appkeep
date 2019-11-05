@@ -42,10 +42,10 @@ import { AppActions } from './app.actions';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(store: StoreService<AppKeepState>, reducers: AppReducers, epics: AppEpics) {
+  constructor(store: StoreService<AppKeepState>, reducers: AppReducers, epics: AppEpics, actions: AppActions) {
     store.setup({
-      reducers: [reducers.loadAppKeeps, reducers.addAppKeep, reducers.deleteAppKeep],
-      epics: [epics.loadAppKeeps, epics.addAppKeep, epics.deleteAppKeep],
+      reducers: reducers.toArray(),
+      epics: epics.toArray(),
       initialState: {
         appKeeps: [],
         statistics: {
@@ -54,5 +54,7 @@ export class AppModule {
         }
       }
     });
+    store.dispatch(actions.loadAppKeeps());
+    store.dispatch(actions.loadStatistics());
   }
 }

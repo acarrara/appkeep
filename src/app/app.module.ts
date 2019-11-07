@@ -20,7 +20,6 @@ import { AppEpics } from './app.epics';
 import { ReduxModule } from '../redux/redux-module';
 import { AppActions } from './app.actions';
 import { EditComponent } from './edit/edit.component';
-import { NavComponent } from './nav/nav.component';
 import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
 import credentials from '../credentials.json';
 import { LoginComponent } from './login/login.component';
@@ -47,7 +46,6 @@ export function provideConfig() {
     CardComponent,
     EditComponent,
     AmountPipe,
-    NavComponent,
     LoginComponent,
     ProfileComponent
   ],

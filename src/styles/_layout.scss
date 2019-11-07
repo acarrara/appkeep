@@ -10,23 +10,11 @@
   align-items: center;
   justify-content: center;
 
-  & > .ak-layout__header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 100vw;
-
-    color: $ak-color-background-form;
-  }
-
   & > .ak-layout__main {
     height: 100vh;
     width: 100vw;
 
     max-width: 30rem;
-
-    padding: 0 $ak-size-m;
 
     color: $ak-color-text;
     background-color: $ak-color-background;
@@ -36,15 +24,14 @@
 }
 
 .ak-form {
-
-  margin-bottom: $ak-size-l;
-
   border-bottom-left-radius: $ak-size-m;
   border-bottom-right-radius: $ak-size-m;
 
   background-color: $ak-color-background-form;
 
   box-shadow: 0 6px 4px -4px $ak-color-shadow;
+
+  margin: 0 $ak-size-m $ak-size-l;
 
   & .ak-form__buttons {
     display: flex;
@@ -68,10 +55,13 @@
 }
 
 .ak-edit {
-  background-color: $ak-color-background-form;
 
   & > .ak-edit__header {
+    background-color: $ak-color-background-form;
+
     padding: $ak-size-s $ak-size-l;
+
+    margin: 0 $ak-size-m;
 
     display: flex;
     align-items: center;
@@ -84,5 +74,22 @@
       flex-grow: 0;
       @include ak-button();
     }
+  }
+}
+
+.ak-home {
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
+
+  & > .ak-home__header {
+    flex-grow: 0;
+  }
+
+  & > .ak-home__content {
+    flex-grow: 1;
+
+    overflow-y: auto;
   }
 }

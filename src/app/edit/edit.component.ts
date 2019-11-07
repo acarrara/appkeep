@@ -14,6 +14,11 @@ import { AppActions } from '../app.actions';
 export class EditComponent {
 
   public appKeep: AppKeep;
+  titleOptions: string[] = [
+    'Birimbao',
+    'Naturasi',
+    'Natura si'
+  ];
 
   constructor(private activatedRoute: ActivatedRoute,
               private store: StoreService<AppKeepState>,

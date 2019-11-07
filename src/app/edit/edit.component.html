@@ -1,6 +1,6 @@
 <div class="ak-edit">
   <div class="ak-edit__header">
-    <h1>Edit AppKeep</h1>
+    <h2>Edit AppKeep</h2>
     <button (click)="close()" class="ak-edit__close">x</button>
   </div>
   <form class="ak-form">
@@ -12,7 +12,10 @@
       </div>
       <div class="ak-input">
         <label for="what">Title</label>
-        <input id="what" #what name="title" [(ngModel)]="appKeep.title" placeholder="Description">
+        <input id="what" #what name="title" [(ngModel)]="appKeep.title" placeholder="Description" list="whatlist">
+        <datalist id="whatlist">
+          <option *ngFor="let option of titleOptions" [value]="option"></option>
+        </datalist>
       </div>
       <div class="ak-input">
         <label for="date">Date</label>

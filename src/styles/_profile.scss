@@ -1,14 +1,12 @@
 .ak-profile {
-
   background-color: $ak-color-background-form;
+
+  position: relative;
 
   display: flex;
   align-items: center;
 
-  position: relative;
-  left: -$ak-size-m;
-
-  width: 100vw;
+  width: 100%;
   max-width: 30rem;
 
   box-shadow: 0 6px 4px -4px $ak-color-shadow;
@@ -26,7 +24,7 @@
   & > .ak-profile__image {
     border-radius: 50%;
     flex-grow: 0;
-    height: $ak-size-xxl;
+    height: $ak-size-xl;
   }
 
     & > .ak-profile__button {

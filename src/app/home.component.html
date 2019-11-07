@@ -1,15 +1,21 @@
-<ak-profile></ak-profile>
-<ak-form></ak-form>
-<ak-card [total]="todayTotal$ | async" when="today">
-  <ol class="ak-items__list">
-    <li *ngFor="let appKeep of appKeeps$ | async" class="ak-item">
-      <a class="ak-item__what" routerLink="/edit/{{appKeep._id}}">
-        <div>{{appKeep.title}}</div>
-        <span class="ak-category">{{appKeep.type | lowercase}}</span>
-      </a>
-      <div class="ak-item__amount">{{appKeep.amount | akAmount}}</div>
-    </li>
-  </ol>
-</ak-card>
-<ak-card [total]="thisMonthTotal$ | async" when="this month"></ak-card>
-<ak-card [total]="lastMonthTotal$ | async" when="last month"></ak-card>
+<div class="ak-home">
+  <header class="ak-home__header">
+    <ak-profile></ak-profile>
+  </header>
+  <section class="ak-home__content">
+    <ak-form></ak-form>
+    <ak-card [total]="todayTotal$ | async" when="today">
+      <ol class="ak-items__list">
+        <li *ngFor="let appKeep of appKeeps$ | async" class="ak-item">
+          <a class="ak-item__what" routerLink="/edit/{{appKeep._id}}">
+            <div>{{appKeep.title}}</div>
+            <span class="ak-category">{{appKeep.type | lowercase}}</span>
+          </a>
+          <div class="ak-item__amount">{{appKeep.amount | akAmount}}</div>
+        </li>
+      </ol>
+    </ak-card>
+    <ak-card [total]="thisMonthTotal$ | async" when="this month"></ak-card>
+    <ak-card [total]="lastMonthTotal$ | async" when="last month"></ak-card>
+  </section>
+</div>

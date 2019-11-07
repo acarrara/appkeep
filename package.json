@@ -4,15 +4,18 @@
   "scripts": {
     "ng": "ng",
     "start": "node scripts/server.js",
+    "preserve": "node scripts/credentials.js",
     "serve": "ng serve",
-    "build": "ng build --prod",
+    "prebuild": "node scripts/credentials.js",
+    "build": "ng build --aot --prod",
     "preserve:prod": "npm run build",
     "serve:prod": "http-server -c-1 -p 4000 --proxy http://localhost:3000 dist/appkeep",
     "test": "ng test",
     "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot --prod"
+    "postinstall": "npm run prebuild && ng build --aot --prod",
+    "print": "node -p process.env"
   },
   "engines": {
     "node": "~12.6.0",

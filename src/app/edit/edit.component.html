@@ -1,0 +1,33 @@
+<div class="ak-edit">
+  <div class="ak-edit__header">
+    <h1>Edit AppKeep</h1>
+    <button (click)="close()" class="ak-edit__close">x</button>
+  </div>
+  <form class="ak-form">
+    <fieldset class="ak-form__inputs">
+      <legend class="visually-hidden"></legend>
+      <div class="ak-input">
+        <label for="amount">Amount</label>
+        <input name="amount" #amount id="amount" type="number" min="0" step="0.01" [(ngModel)]="appKeep.amount">
+      </div>
+      <div class="ak-input">
+        <label for="what">Title</label>
+        <input id="what" #what name="title" [(ngModel)]="appKeep.title" placeholder="Description">
+      </div>
+      <div class="ak-input">
+        <label for="date">Date</label>
+        <input id="date" #date name="date" type="date"
+               [ngModel]="appKeep.date | date: 'yyyy-MM-dd'"
+            (ngModelChange)="toDate($event)">
+      </div>
+      <div class="ak-input">
+        <label for="category">Category</label>
+        <input id="category" #category name="category" [(ngModel)]="appKeep.type" placeholder="Category">
+      </div>
+    </fieldset>
+    <div class="ak-form__buttons">
+      <button class="ak-button" (click)="edit()">Edit</button>
+      <button class="ak-button  ak-button--primary" (click)="delete()">Delete</button>
+    </div>
+  </form>
+</div>

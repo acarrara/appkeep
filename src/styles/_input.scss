@@ -44,3 +44,11 @@
   text-align: right;
   cursor: pointer;
 }
+
+.ak-edit {
+
+  & .ak-input > label {
+    margin-top: $ak-size-l;
+    margin-bottom: $ak-size-m;
+  }
+}

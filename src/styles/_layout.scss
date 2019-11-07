@@ -46,8 +46,9 @@
 
   box-shadow: 0 6px 4px -4px $ak-color-shadow;
 
-  & > .ak-form__buttons {
+  & .ak-form__buttons {
     display: flex;
+
     & > * {
       flex-grow: 1;
     }
@@ -61,7 +62,27 @@
     }
   }
 
- & > .ak-form__inputs {
-   padding: 0 $ak-size-l $ak-size-l;
- }
+  & .ak-form__inputs {
+    padding: 0 $ak-size-l $ak-size-l;
+  }
+}
+
+.ak-edit {
+  background-color: $ak-color-background-form;
+
+  & > .ak-edit__header {
+    padding: $ak-size-s $ak-size-l;
+
+    display: flex;
+    align-items: center;
+
+    & > *:first-child {
+      flex-grow: 1;
+    }
+
+    & > *:last-child {
+      flex-grow: 0;
+      @include ak-button();
+    }
+  }
 }

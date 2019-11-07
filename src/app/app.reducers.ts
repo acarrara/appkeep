@@ -4,8 +4,23 @@ import { AppKeepState } from './models/AppKeepState';
 import { AppKeep } from './models/AppKeep';
 import { ArrayableFunctions } from './ArrayableFunctions';
 import { Statistics } from './models/Statistics';
+import { SocialUser } from 'angularx-social-login';
 
 export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> {
+
+  private login: Reducer<AppKeepState, SocialUser> = (action, oldState) => {
+    switch (action.type) {
+      case AppActions.LOGIN: {
+        return {
+          ...oldState,
+          user: action.payload
+        };
+      }
+      default: {
+        return oldState;
+      }
+    }
+  }
 
   private loadAppKeeps: Reducer<AppKeepState, AppKeep[]> = (action, oldState) => {
     switch (action.type) {

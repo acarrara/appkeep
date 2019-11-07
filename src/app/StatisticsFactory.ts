@@ -5,7 +5,6 @@ export class StatisticsFactory {
     const date = new Date();
     const thisMonth = date.getMonth() + 1;
     const lastMonth = date.getMonth();
-    console.log(statisticsRaw, thisMonth, lastMonth)
     return {
       lastMonth: this.findTotal(statisticsRaw, lastMonth),
       thisMonth: this.findTotal(statisticsRaw, thisMonth)

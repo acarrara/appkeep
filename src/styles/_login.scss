@@ -1,0 +1,18 @@
+.ak-login {
+  padding: 0 $ak-size-xxl;
+  height: 70vh;
+
+  & > .ak-login__form {
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    text-align: center;
+
+    & > * + * {
+      margin-top: 1rem;
+    }
+  }
+}

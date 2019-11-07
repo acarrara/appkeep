@@ -1,0 +1,7 @@
+<ng-container *ngIf="user$ | async; let user">
+  <div class="ak-profile">
+    <img [src]="user.photoUrl" class="ak-profile__image">
+    <div class="ak-profile__name">{{user.firstName}} {{user.lastName}}</div>
+    <button class="ak-profile__button" (click)="logout()">Logout</button>
+  </div>
+</ng-container>

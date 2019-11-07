@@ -19,6 +19,24 @@ import { AppReducers } from './app.reducers';
 import { AppEpics } from './app.epics';
 import { ReduxModule } from '../redux/redux-module';
 import { AppActions } from './app.actions';
+import { EditComponent } from './edit/edit.component';
+import { NavComponent } from './nav/nav.component';
+import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
+import credentials from '../credentials.json';
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './auth.guard';
+
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider(credentials.clientID)
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -27,7 +45,11 @@ import { AppActions } from './app.actions';
     FormComponent,
     EmptyStateComponent,
     CardComponent,
-    AmountPipe
+    EditComponent,
+    AmountPipe,
+    NavComponent,
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +58,19 @@ import { AppActions } from './app.actions';
     HttpClientModule,
     ServiceWorkerModule.register('sw-include.js', {enabled: environment.production}),
     RouterModule,
-    ReduxModule
+    ReduxModule,
+    SocialLoginModule
   ],
-  providers: [AppEpics, AppReducers, AppActions],
+  providers: [
+    AuthGuard,
+    AppEpics,
+    AppReducers,
+    AppActions,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
@@ -51,7 +83,8 @@ export class AppModule {
         statistics: {
           lastMonth: 0,
           thisMonth: 0
-        }
+        },
+        user: undefined
       }
     });
     store.dispatch(actions.loadAppKeeps());

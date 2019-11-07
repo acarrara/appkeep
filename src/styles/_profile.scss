@@ -1,0 +1,36 @@
+.ak-profile {
+
+  background-color: $ak-color-background-form;
+
+  display: flex;
+  align-items: center;
+
+  position: relative;
+  left: -$ak-size-m;
+
+  width: 100vw;
+  max-width: 30rem;
+
+  box-shadow: 0 6px 4px -4px $ak-color-shadow;
+
+  padding: $ak-size-m;
+
+  & > * + * {
+    margin-left: $ak-size-m;
+  }
+
+  & > .ak-profile__name {
+    flex-grow: 1;
+  }
+
+  & > .ak-profile__image {
+    border-radius: 50%;
+    flex-grow: 0;
+    height: $ak-size-xxl;
+  }
+
+    & > .ak-profile__button {
+    flex-grow: 0;
+    @include ak-button();
+  }
+}

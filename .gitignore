@@ -12,6 +12,7 @@
 
 # environment variables
 .env
+credentials.json
 
 # profiling files
 chrome-profiler-events*.json

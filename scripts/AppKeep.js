@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const appKeepSchema = new mongoose.Schema({
   title: {type: String, trim: true},
-  type: String,
+  category: {type: String, trim: true},
   date: {type: Date},
   amount: {type: Number, min: 0}
 });

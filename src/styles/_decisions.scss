@@ -20,8 +20,12 @@ $_sat-xl: 90;
 $_sat-xxl: 92;
 $_sat-xxxl: 94;
 
+@function ak-color($l, $s, $h) {
+  @return lch($l, $s, $h, 'hsluv');
+}
+
 @function brand-color($l, $s) {
-  @return lch($l, $s, $ak-brand-hue, 'hsluv');
+  @return ak-color($l, $s, $ak-brand-hue);
 }
 
 $ak-color-text: brand-color($_light-xs, $_sat-xl);

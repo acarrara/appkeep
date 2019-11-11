@@ -1,3 +1,7 @@
+// $_category-hues: 0, 55, 110, 165, 220, 275, 330, 25, 80, 135, 190, 245, 300, 355, 50, 105, 160, 215, 270, 325, 20, 75, 130, 185, 240, 295, 350, 45, 100, 155, 210, 265, 320, 15, 70, 125, 180, 235, 290, 345, 40, 95, 150, 205, 260, 315, 10, 65, 120, 175, 230, 285, 340, 35, 90, 145, 200, 255, 310, 5, 60, 115, 170, 225, 280, 335, 30, 85, 140, 195, 250, 305;
+
+$_category_hues: 0, 45, 90, 135, 180, 225, 270, 315, 360;
+
 .ak-category {
   display: inline-block;
 
@@ -8,7 +12,12 @@
 
   padding: $ak-size-xs $ak-size-s;
 
-  background-color: #ddd;
-
   margin-top: $ak-size-m;
+
+  @each $_category-hue in $_category-hues {
+    &.ak-category--#{$_category-hue} {
+      background-color: ak-color(50, 90, $_category-hue);
+    }
+  }
+
 }

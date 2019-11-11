@@ -74,10 +74,11 @@ export function provideConfig() {
 export class AppModule {
   constructor(store: StoreService<AppKeepState>, reducers: AppReducers, epics: AppEpics, actions: AppActions) {
     store.setup({
-      reducers: reducers.toArray(),
-      epics: epics.toArray(),
+      reducers: [...reducers.toArray(), ...reducers.getAppKeepReducers(), ...reducers.getOptionReducers()],
+      epics: [...epics.toArray(), ...epics.getOptionEpics(), ...epics.getAppKeepEpics()],
       initialState: {
         appKeeps: [],
+        options: [],
         statistics: {
           lastMonth: 0,
           thisMonth: 0
@@ -86,6 +87,7 @@ export class AppModule {
       }
     });
     store.dispatch(actions.loadAppKeeps());
+    store.dispatch(actions.loadOptions());
     store.dispatch(actions.loadStatistics());
   }
 }

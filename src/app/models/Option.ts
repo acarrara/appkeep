@@ -1,7 +1,6 @@
 import { RestResource } from './RestResource';
 
-export interface AppKeep extends RestResource {
+export interface Option extends RestResource {
   title: string;
   category: string;
-  amount: number;
 }

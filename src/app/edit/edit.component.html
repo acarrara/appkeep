@@ -1,36 +1,44 @@
-<div class="ak-edit">
-  <div class="ak-edit__header">
-    <h2>Edit AppKeep</h2>
-    <button (click)="close()" class="ak-edit__close">x</button>
-  </div>
-  <form class="ak-form">
-    <fieldset class="ak-form__inputs">
-      <legend class="visually-hidden"></legend>
-      <div class="ak-input">
-        <label for="amount">Amount</label>
-        <input name="amount" #amount id="amount" type="number" min="0" step="0.01" [(ngModel)]="appKeep.amount">
-      </div>
-      <div class="ak-input">
-        <label for="what">Title</label>
-        <input id="what" #what name="title" [(ngModel)]="appKeep.title" placeholder="Description" list="whatlist">
-        <datalist id="whatlist">
-          <option *ngFor="let option of titleOptions" [value]="option"></option>
-        </datalist>
-      </div>
-      <div class="ak-input">
-        <label for="date">Date</label>
-        <input id="date" #date name="date" type="date"
-               [ngModel]="appKeep.date | date: 'yyyy-MM-dd'"
-            (ngModelChange)="toDate($event)">
-      </div>
-      <div class="ak-input">
-        <label for="category">Category</label>
-        <input id="category" #category name="category" [(ngModel)]="appKeep.type" placeholder="Category">
-      </div>
-    </fieldset>
-    <div class="ak-form__buttons">
-      <button class="ak-button" (click)="edit()">Edit</button>
-      <button class="ak-button  ak-button--primary" (click)="delete()">Delete</button>
+<ng-container *ngIf="options$ | async; let options">
+  <div class="ak-edit">
+    <div class="ak-edit__header">
+      <h2>Edit AppKeep</h2>
+      <button (click)="close()" class="ak-edit__close">x</button>
     </div>
-  </form>
-</div>
+    <form class="ak-form">
+      <fieldset class="ak-form__inputs">
+        <legend class="visually-hidden"></legend>
+        <div class="ak-input">
+          <label for="amount">Amount</label>
+          <input name="amount" #amount id="amount" type="number" min="0" step="0.01" [(ngModel)]="appKeep.amount">
+        </div>
+        <div class="ak-input">
+          <label for="what">Title</label>
+          <input id="what" #what name="title" [(ngModel)]="appKeep.title" (change)="onChange(options)"
+                 placeholder="Description" list="whatlist"
+                 autocomplete="off">
+          <datalist id="whatlist">
+            <option *ngFor="let option of options" [value]="option.title"></option>
+          </datalist>
+        </div>
+        <div class="ak-input">
+          <label for="date">Date</label>
+          <input id="date" #date name="date" type="date"
+                 [ngModel]="appKeep.date | date: 'yyyy-MM-dd'"
+                 (ngModelChange)="toDate($event)">
+        </div>
+        <div class="ak-input">
+          <label for="category">Category</label>
+          <input id="category" #category name="category" [(ngModel)]="appKeep.category" placeholder="Category"
+                 list="categorylist" autocomplete="off">
+          <datalist id="categorylist" *ngIf="categories$ | async; let categories">
+            <option *ngFor="let category of categories" [value]="category"></option>
+          </datalist>
+        </div>
+      </fieldset>
+      <div class="ak-form__buttons">
+        <button class="ak-button" (click)="edit(options)">Edit</button>
+        <button class="ak-button  ak-button--primary" (click)="delete()">Delete</button>
+      </div>
+    </form>
+  </div>
+</ng-container>

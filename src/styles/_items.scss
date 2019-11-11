@@ -22,6 +22,10 @@
 
   padding: $ak-size-m 0;
 
+  &.ak-item--updating {
+
+  }
+
   & + .ak-item {
     border-top: 1px solid $ak-color-border;
   }
@@ -37,7 +41,7 @@
     }
   }
 
-  .ak-item__amount, .ak-item__remove {
+  .ak-item__amount, .ak-item__editing {
     flex-grow: 0;
     margin-left: $ak-size-l;
   }

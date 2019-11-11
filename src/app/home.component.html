@@ -6,11 +6,12 @@
     <ak-form></ak-form>
     <ak-card [total]="todayTotal$ | async" when="today">
       <ol class="ak-items__list">
-        <li *ngFor="let appKeep of appKeeps$ | async" class="ak-item">
+        <li *ngFor="let appKeep of appKeeps$ | async" class="ak-item" [ngClass]="{'ak-item--updating': appKeep._updating}">
           <a class="ak-item__what" routerLink="/edit/{{appKeep._id}}">
             <div>{{appKeep.title}}</div>
-            <span class="ak-category">{{appKeep.type | lowercase}}</span>
+            <span class="ak-category">{{appKeep.category | lowercase}}</span>
           </a>
+          <div class="ak-item__editing" *ngIf="appKeep._updating">updating...</div>
           <div class="ak-item__amount">{{appKeep.amount | akAmount}}</div>
         </li>
       </ol>

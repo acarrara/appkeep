@@ -25,6 +25,7 @@ import credentials from '../credentials.json';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './auth.guard';
+import { IconComponent } from './icon/icon.component';
 
 const config = new AuthServiceConfig([
   {
@@ -47,7 +48,8 @@ export function provideConfig() {
     EditComponent,
     AmountPipe,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,9 @@
+.ak-icon {
+  & > .ak-icon--logo {
+
+    &.ak-icon__svg {
+      fill: transparent;
+    }
+  }
+}
+

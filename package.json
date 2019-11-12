@@ -15,7 +15,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "npm run prebuild && ng build --aot --prod",
-    "print": "node -p process.env"
+    "icons": "reload -b -s icons.html -e svg,html -d src/ -p 9000"
   },
   "engines": {
     "node": "~12.6.0",
@@ -62,6 +62,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "~5.4.0",
+    "reload": "^3.0.3",
     "sass-planifolia": "^0.6.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",

@@ -37,3 +37,15 @@
 
   text-align: center;
 }
+
+
+#door {
+  transform-origin: 60% 50%;
+  animation: toLock 500ms ease-in-out 1s forwards;
+}
+
+@keyframes toLock {
+  100% {
+    transform: translateX(-5%) rotate(-90deg);
+  }
+}

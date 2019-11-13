@@ -1,34 +1,39 @@
 .ak-login {
-  padding: 0 $ak-size-xxl;
-  height: 70vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
 
-  & > .ak-login__form {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+.ak-login__mask {
+  height: 30vh;
+  background-image:
+    linear-gradient(
+        to top right,
+        $ak-color-text, $ak-color-header
+    );
+  clip-path: ellipse(130% 65% at -5% 30%);
 
-    text-align: center;
-  }
+  flex-grow: 0;
+}
 
-  & .ak-login__logo {
-    display: block;
-    width: 50%;
-    align-self: center;
-  }
+.ak-login__logo-container {
+  height: 10rem;
+  width: 10rem;
+  padding: 1rem;
+  border-radius: 50%;
+  background-color: $ak-color-background-form;
+  box-shadow: 0px 18px 36px 0px $ak-color-shadow;
 
-  & .ak-login__something {
-    flex-grow: 1;
+  margin: -6rem auto 0;
+  position: relative;
+}
 
-    display: flex;
-    flex-direction: column;
+.ak-login__form {
+  flex-grow: 1;
 
+  display: flex;
+  flex-direction: column;
 
-    color: $ak-color-canvas;
-    background-color: $ak-color-header;
-
-    clip-path: ellipse(100% 70% at 40% 5%);
-    //filter: drop-shadow(0px 10px 4px $ak-color-shadow);
-  }
-
+  text-align: center;
 }

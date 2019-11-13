@@ -49,4 +49,9 @@
       background-color: $ak-color-button-active;
     }
   }
+
+  &.ak-button--login {
+    border-radius: $ak-size-xl;
+    width: 60%;
+  }
 }

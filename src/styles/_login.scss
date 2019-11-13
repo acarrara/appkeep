@@ -38,14 +38,61 @@
   text-align: center;
 }
 
-
 #door {
-  transform-origin: 60% 50%;
-  animation: toLock 500ms ease-in-out 1s forwards;
+  transform-origin: 50% 60%;
+  animation: toLock 8s ease-in-out 1s infinite;
+}
+
+#ceiling {
+  animation: ceiling 8s ease-in-out 1s infinite;
+}
+
+#stripe {
+  transform-origin: 18% 57%;
+  animation: stripe 8s ease-in-out 1s infinite;
+}
+
+@keyframes stripe {
+  10% {
+    transform: rotate(-45deg);
+  }
+  50% {
+    transform: rotate(-45deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes ceiling {
+  10% {
+    transform: translateY(3%);
+  }
+  50% {
+    transform: translateY(3%);
+  }
+  60% {
+    transform: translateY(0%)
+  }
+  100% {
+    transform: translateY(0%)
+  }
 }
 
 @keyframes toLock {
+  10% {
+    transform: translateX(15%) rotate(-90deg);
+  }
+  50% {
+    transform: translateX(15%) rotate(-90deg);
+  }
+  60% {
+    transform: translateX(0%) rotate(0deg);
+  }
   100% {
-    transform: translateX(-5%) rotate(-90deg);
+    transform: translateX(0%) rotate(0deg);
   }
 }

@@ -16,7 +16,7 @@
         </li>
       </ol>
     </ak-card>
-    <ak-card [total]="thisMonthTotal$ | async" when="this month"></ak-card>
+    <ak-month-card [monthStatistics]="thisMonthTotal$ | async" month="this month"></ak-month-card>
     <ak-card [total]="lastMonthTotal$ | async" when="last month"></ak-card>
   </section>
 </div>

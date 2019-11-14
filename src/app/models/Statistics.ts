@@ -1,4 +1,6 @@
+import { MonthStatistics } from './MonthStatistic';
+
 export interface Statistics {
-  lastMonth: number;
-  thisMonth: number;
+  lastMonth: MonthStatistics;
+  thisMonth: MonthStatistics;
 }

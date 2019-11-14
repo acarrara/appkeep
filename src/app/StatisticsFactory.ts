@@ -1,4 +1,5 @@
 import { Statistics } from './models/Statistics';
+import { MonthStatistics } from './models/MonthStatistic';
 
 export class StatisticsFactory {
   create(statisticsRaw: any): Statistics {
@@ -6,13 +7,13 @@ export class StatisticsFactory {
     const thisMonth = date.getMonth() + 1;
     const lastMonth = date.getMonth();
     return {
-      lastMonth: this.findTotal(statisticsRaw, lastMonth),
-      thisMonth: this.findTotal(statisticsRaw, thisMonth)
+      lastMonth: this.findMonthStatistics(statisticsRaw, lastMonth),
+      thisMonth: this.findMonthStatistics(statisticsRaw, thisMonth)
     };
   }
 
-  private findTotal(statisticsRaw: any[], thisMonth: number) {
-    const totalRaw = statisticsRaw.find(item => item._id.month === thisMonth);
-    return totalRaw === undefined ? 0 : totalRaw.total;
+  private findMonthStatistics(statisticsRaw: any[], thisMonth: number): MonthStatistics {
+    const monthStatisticsRaw: any = statisticsRaw.find(item => item._id.month === thisMonth);
+    return monthStatisticsRaw === undefined ? {categories: []} : {categories: monthStatisticsRaw.categories};
   }
 }

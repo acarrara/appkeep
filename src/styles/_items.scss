@@ -83,3 +83,10 @@
 .ak-items__remove {
   @include ak-button();
 }
+
+.ak-item__percentage {
+  background-color: $ak-color-header;
+  height: $ak-size-m;
+  border-radius: $ak-size-s;
+  min-width: $ak-size-xs;
+}

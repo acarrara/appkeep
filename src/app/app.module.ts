@@ -26,6 +26,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './auth.guard';
 import { IconComponent } from './icon/icon.component';
+import { MonthCardComponent } from './month-card/month-card.component';
 
 const config = new AuthServiceConfig([
   {
@@ -49,7 +50,8 @@ export function provideConfig() {
     AmountPipe,
     LoginComponent,
     ProfileComponent,
-    IconComponent
+    IconComponent,
+    MonthCardComponent
   ],
   imports: [
     BrowserModule,
@@ -82,8 +84,8 @@ export class AppModule {
         appKeeps: [],
         options: [],
         statistics: {
-          lastMonth: 0,
-          thisMonth: 0
+          lastMonth: {categories: []},
+          thisMonth: {categories: []}
         },
         user: undefined
       }

@@ -58,6 +58,7 @@ module.exports = function (app) {
       const statistics = await AppKeep.statistics(dates.month('all'));
       response.send(statistics);
     } catch (error) {
+      console.log(error);
       response.status(500).send(error);
     }
   });

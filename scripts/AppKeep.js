@@ -22,7 +22,7 @@ model.range = range => {
       {
         $group: {
           _id: "statistics",
-          total: {$sum: '$amount'}
+          total: {$sum: '$amount'},
         }
       }]
   ).exec();
@@ -38,13 +38,21 @@ model.statistics = range => {
         }
       }
     },
-
       {
         $group: {
           _id: {
-            month: {$month: "$date"}
+            month: {$month: "$date"},
+            category: "$category"
           },
-          total: {$sum: '$amount'}
+          total: {$sum: "$amount"}
+        }
+      },
+      {
+        $group: {
+          _id: {
+            month: "$_id.month"
+          },
+          categories: {$addToSet: {category: "$_id.category", total: "$total"}}
         }
       }]
   ).exec();

@@ -6,7 +6,7 @@
       <path id="ceiling" d="M18 37 l 32 -32 l 32 32" stroke-width="6" stroke-linecap="square" stroke-linejoin="round"
             stroke="#c5c6c9" fill="#c5c6c9">
       </path>
-        <path id="stripe" d="M18 57 h 60" stroke-width="10" stroke="#444"></path>
+      <path id="stripe" d="M18 57 h 60" stroke-width="10" stroke="#444"></path>
       <path d="M85 85 h -70 v -45 h 70 v 45" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"
             stroke="#092949" fill="#092949"></path>
       <g id="door">

@@ -2,8 +2,8 @@
   <ol class="ak-items__list">
     <li *ngFor="let category of monthStatistics.categories" class="ak-item">
       <div class="ak-item__what">
-        <div>{{category.category}}</div>
-        <div class="ak-item__percentage" [style.width]="percentage(category)"></div>
+          <div class="ak-item__percentage" [style.width]="percentage(category)" [attr.data-percentage]="percentage(category)"></div>
+        <span class="ak-badge">{{category.category | lowercase}}</span>
       </div>
       <div class="ak-item__amount">{{category.total | akAmount}}</div>
     </li>

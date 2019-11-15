@@ -9,7 +9,7 @@
         <li *ngFor="let appKeep of appKeeps$ | async" class="ak-item" [ngClass]="{'ak-item--updating': appKeep._updating}">
           <a class="ak-item__what" routerLink="/edit/{{appKeep._id}}">
             <div>{{appKeep.title}}</div>
-            <span class="ak-category">{{appKeep.category | lowercase}}</span>
+            <span class="ak-badge">{{appKeep.category | lowercase}}</span>
           </a>
           <div class="ak-item__editing" *ngIf="appKeep._updating">updating...</div>
           <div class="ak-item__amount">{{appKeep.amount | akAmount}}</div>

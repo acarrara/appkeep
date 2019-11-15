@@ -26,6 +26,10 @@ export class MonthCardComponent implements OnChanges {
   }
 
   percentage(category: CategoryStatistics) {
-    return (category.total / this.total * 100).toFixed(0) + '%';
+    return this.percentageAsNumber(category) + '%';
+  }
+
+  percentageAsNumber(category: CategoryStatistics) {
+    return (category.total / this.total * 100).toFixed(0);
   }
 }

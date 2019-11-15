@@ -2,7 +2,7 @@
 
 $_category_hues: 0, 45, 90, 135, 180, 225, 270, 315, 360;
 
-.ak-category {
+.ak-badge {
   display: inline-block;
 
   font-size: 0.75rem;
@@ -15,7 +15,7 @@ $_category_hues: 0, 45, 90, 135, 180, 225, 270, 315, 360;
   margin-top: $ak-size-m;
 
   @each $_category-hue in $_category-hues {
-    &.ak-category--#{$_category-hue} {
+    &.ak-badge--#{$_category-hue} {
       background-color: ak-color(50, 90, $_category-hue);
     }
   }

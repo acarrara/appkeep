@@ -9,6 +9,7 @@ import { Statistics } from './models/Statistics';
 import { StatisticsFactory } from './StatisticsFactory';
 import { Option } from './models/Option';
 import { RestEpic } from './RestEpic';
+import { User } from './models/User';
 
 @Injectable()
 export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
@@ -25,6 +26,10 @@ export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
 
   public getAppKeepEpics(): Epic<any, any>[] {
     return new RestEpic<AppKeep>(this.http, 'appkeep').toEpics();
+  }
+
+  public getUserEpics(): Epic<any, any>[] {
+    return new RestEpic<User>(this.http, 'user').toEpics();
   }
 
   private loadStatistics: Epic<any, Statistics> = actions$ => {

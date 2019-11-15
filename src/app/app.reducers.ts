@@ -7,6 +7,7 @@ import { SocialUser } from 'angularx-social-login';
 import { AppKeep } from './models/AppKeep';
 import { Option } from './models/Option';
 import { RestReducer } from './RestReducer';
+import { User } from './models/User';
 
 export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> {
 
@@ -16,6 +17,10 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
 
   public getOptionReducers(): Reducer<AppKeepState, Option | Option[]>[] {
     return new RestReducer('option').toReducers();
+  }
+
+  public getUserReducers(): Reducer<AppKeepState, User | User[]>[] {
+    return new RestReducer('user').toReducers();
   }
 
   private login: Reducer<AppKeepState, SocialUser> = (action, oldState) => {

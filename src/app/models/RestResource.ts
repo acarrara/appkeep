@@ -1,5 +1,5 @@
 export interface RestResource {
   _id?: string;
-  date: number;
+  date?: number;
   _updating?: boolean;
 }

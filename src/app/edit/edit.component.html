@@ -34,6 +34,14 @@
             <option *ngFor="let category of categories" [value]="category"></option>
           </datalist>
         </div>
+        <div class="ak-input">
+          <label for="payer">Payer</label>
+          <input id="payer" #payer name="payer" [(ngModel)]="appKeep.user" placeholder="Payer"
+                 list="payerlist" autocomplete="off">
+          <datalist id="payerlist" *ngIf="users$ | async; let users">
+            <option *ngFor="let user of users" [value]="user"></option>
+          </datalist>
+        </div>
       </fieldset>
       <div class="ak-form__buttons">
         <button class="ak-button" (click)="edit(options)">Edit</button>

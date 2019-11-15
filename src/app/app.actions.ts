@@ -14,6 +14,7 @@ export class AppActions {
   public static EDIT_APPKEEP = 'EDIT_APPKEEP';
   public static EDIT_OPTION = 'EDIT_OPTION';
   public static LOAD_OPTIONS = 'LOAD_OPTIONS';
+  public static LOAD_USERS = 'LOAD_USERS';
   public static ADD_OPTION = 'ADD_OPTION';
   public static LOGIN = 'LOGIN';
 
@@ -47,6 +48,10 @@ export class AppActions {
 
   public loadOptions(): Action<any> {
     return {type: AppActions.LOAD_OPTIONS};
+  }
+
+  public loadUsers(): Action<any> {
+    return {type: AppActions.LOAD_USERS};
   }
 
   addOption(option: Option): Action<Option> {

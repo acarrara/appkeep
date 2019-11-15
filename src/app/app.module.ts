@@ -27,6 +27,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './auth.guard';
 import { IconComponent } from './icon/icon.component';
 import { MonthCardComponent } from './month-card/month-card.component';
+import { LogoComponent } from './logo/logo.component';
 
 const config = new AuthServiceConfig([
   {
@@ -51,7 +52,8 @@ export function provideConfig() {
     LoginComponent,
     ProfileComponent,
     IconComponent,
-    MonthCardComponent
+    MonthCardComponent,
+    LogoComponent
   ],
   imports: [
     BrowserModule,
@@ -78,8 +80,8 @@ export function provideConfig() {
 export class AppModule {
   constructor(store: StoreService<AppKeepState>, reducers: AppReducers, epics: AppEpics, actions: AppActions) {
     store.setup({
-      reducers: [...reducers.toArray(), ...reducers.getAppKeepReducers(), ...reducers.getOptionReducers()],
-      epics: [...epics.toArray(), ...epics.getOptionEpics(), ...epics.getAppKeepEpics()],
+      reducers: [...reducers.toArray(), ...reducers.getAppKeepReducers(), ...reducers.getOptionReducers(), ...reducers.getUserReducers()],
+      epics: [...epics.toArray(), ...epics.getOptionEpics(), ...epics.getAppKeepEpics(), ...epics.getUserEpics()],
       initialState: {
         appKeeps: [],
         options: [],
@@ -87,11 +89,13 @@ export class AppModule {
           lastMonth: {categories: []},
           thisMonth: {categories: []}
         },
-        user: undefined
+        user: undefined,
+        users: []
       }
     });
     store.dispatch(actions.loadAppKeeps());
     store.dispatch(actions.loadOptions());
     store.dispatch(actions.loadStatistics());
+    store.dispatch(actions.loadUsers());
   }
 }

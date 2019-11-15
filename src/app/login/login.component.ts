@@ -4,6 +4,7 @@ import { StoreService } from '../../redux/store.service';
 import { AppKeepState } from '../models/AppKeepState';
 import { AppActions } from '../app.actions';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'ak-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService,
               private store: StoreService<AppKeepState>,
               private actions: AppActions,
-              private router: Router) {
+              private router: Router,
+              private http: HttpClient) {
   }
 
   signInWithGoogle(): void {
@@ -25,10 +27,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.authService.authState.subscribe(user => {
       if (user !== null) {
-        this.store.dispatch(this.actions.login(user));
-        this.router.navigate(['/home']);
+        this.http.post<boolean>(`/api/users/authorized`, {email: user.email}).subscribe(authorized => {
+          if (authorized) {
+            this.store.dispatch(this.actions.login(user));
+            this.router.navigate(['/home']);
+          } else {
+            this.authService.signOut();
+            this.router.navigate(['/login']);
+          }
+        });
       }
     });
   }
-
 }

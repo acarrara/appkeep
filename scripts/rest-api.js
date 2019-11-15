@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const dates = require('./dates');
 const AppKeep = require('./AppKeep');
 const Option = require('./Option');
+const User = require('./User');
 
 module.exports = function (app) {
 
@@ -44,6 +45,7 @@ module.exports = function (app) {
           'title': true,
           'category': true,
           'amount': true,
+          'user': true
         }
       }]).sort({date: -1}).exec();
       response.send(appKeeps);
@@ -120,11 +122,52 @@ module.exports = function (app) {
     }
   });
 
-  app.put("/api/options/:id", async (request, response) => {
+  app.put("/api/users/:id", async (request, response) => {
     try {
-      const option = await Option.findById(request.params.id).exec();
-      option.set(request.body);
-      const result = await option.save();
+      const user = await User.findById(request.params.id).exec();
+      user.set(request.body);
+      const result = await user.save();
+      response.send(result);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
+  app.post('/api/users', async (request, response) => {
+    try {
+      const user = new User(request.body);
+      const result = await user.save();
+      response.send(result);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
+  app.get('/api/users', async (request, response) => {
+    try {
+      const users = await User.find().exec();
+      response.send(users);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
+  app.post('/api/users/authorized', async (request, response) => {
+    try {
+      const user = await User.countDocuments({
+        email: request.body.email
+      });
+      response.send(!!user);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
+  app.put("/api/users/:id", async (request, response) => {
+    try {
+      const user = await User.findById(request.params.id).exec();
+      user.set(request.body);
+      const result = await user.save();
       response.send(result);
     } catch (error) {
       response.status(500).send(error);

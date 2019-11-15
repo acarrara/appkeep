@@ -7,6 +7,8 @@ import { map } from 'rxjs/operators';
 import { AppActions } from '../app.actions';
 import { Option } from '../models/Option';
 import { OptionableComponent } from '../optionable.component';
+import { Listen } from '../../redux/listen.decorator';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ak-edit',
@@ -16,6 +18,9 @@ import { OptionableComponent } from '../optionable.component';
 export class EditComponent extends OptionableComponent {
 
   public appKeep: AppKeep;
+
+  @Listen(['users'], users => users.map(user => user.email))
+  public users$: Observable<string[]>;
 
   constructor(private activatedRoute: ActivatedRoute,
               store: StoreService<AppKeepState>,

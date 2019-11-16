@@ -1,13 +1,35 @@
 <div class="ak-login">
-  <div class="ak-login__mask">
+  <div>
+    <svg class="ak-icon__svg" viewBox="0 0 100 100">
+      <path d="M0 70 c 30 -5 75 25 80 30 h -80 v -30" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"
+            stroke="#d5dae0" fill="#d5dae0">
+      </path>
+      <path d="M100 75 c -30 -5 -50 20 -50 25 h 55 v -30" stroke-width="6" stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke="#d5dae0" fill="#d5dae0">
+      </path>
+      <path d="M10 83 c -5 -5 -5 -5 0 -20 c 5 15 5 15 0 20" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke="#79e08a" fill="#79e08a">
+      </path>
+      <path d="M90 77 c -5 -5 -5 -5 0 -20 c 5 15 5 15 0 20" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke="#79e08a" fill="#79e08a">
+      </path>
+      <path d="M20 20 h20" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"
+            stroke="#e0e0e0">
+      </path>
+      <path d="M35 30 h 30" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"
+            stroke="#e0e0e0">
+      </path>
+    </svg>
+  </div>
+  <div style="position: relative; margin: 0 auto; top: -20vh; width: 20vh;">
+    <ak-logo></ak-logo>
   </div>
   <div class="ak-login__form">
-    <div class="ak-login__logo-container">
-      <ak-logo></ak-logo>
-    </div>
-    <div style="padding: 2rem">
-      <h1 style="margin-top: 2rem;">Hello again.</h1>
-      <h2 style="margin-bottom: 2rem;">Welcome back.</h2>
+    <div>
+      <h1 style="margin-bottom: 1rem">Hello again.</h1>
       <button class="ak-button  ak-button--primary  ak-button--login" (click)="signInWithGoogle()">Login</button>
     </div>
   </div>

@@ -122,6 +122,17 @@ module.exports = function (app) {
     }
   });
 
+  app.put("/api/options/:id", async (request, response) => {
+    try {
+      const option = await Option.findById(request.params.id).exec();
+      option.set(request.body);
+      const result = await option.save();
+      response.send(result);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
   app.put("/api/users/:id", async (request, response) => {
     try {
       const user = await User.findById(request.params.id).exec();

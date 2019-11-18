@@ -39,7 +39,7 @@
 }
 
 #door {
-  transform-origin: 50% 60%;
+  transform-origin: 50% 72%;
   animation: toLock 8s ease-in-out 1s infinite;
 }
 
@@ -48,8 +48,30 @@
 }
 
 #stripe {
-  transform-origin: 18% 57%;
+  transform-origin: 18% 69%;
   animation: stripe 8s ease-in-out 1s infinite;
+}
+
+#clouds {
+  animation: clouds 12s linear 1s infinite;
+}
+
+#background {
+  animation: background 8s ease-in-out 1s infinite;
+}
+
+@keyframes clouds {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(10%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @keyframes stripe {
@@ -64,6 +86,21 @@
   }
   100% {
     transform: rotate(0deg);
+  }
+}
+
+@keyframes background {
+  10% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
   }
 }
 

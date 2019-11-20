@@ -1,7 +1,8 @@
-@import "~sass-planifolia/sass/math";
-@import "~sass-planifolia/sass/color";
+@import "node_modules/sass-planifolia/sass/math.scss";
+@import "node_modules/sass-planifolia/sass/color.scss";
 
-$ak-brand-hue: 250;
+$ak-brand-hue: 245;
+//$ak-brand-hue: 170;
 
 $_light-xxxs: 12;
 $_light-xxs: 14;
@@ -33,10 +34,11 @@ $ak-color-shadow: brand-color($_light-l, $_sat-s);
 $ak-color-canvas: brand-color($_light-xxxl, $_sat-xxs);
 $ak-color-background: brand-color($_light-xxl, $_sat-xxs);
 $ak-color-background-form: brand-color($_light-xxxl, $_sat-xxs);
-$ak-color-button-hover: brand-color($_light-xxs, $_sat-xxl);
-$ak-color-button-active: brand-color($_light-xxxs, $_sat-xxxl);
+$ak-color-button-primary: brand-color(35, 100);
+$ak-color-button-hover: brand-color(30, 100);
+$ak-color-button-active: brand-color(25, 100);
 $ak-color-border: brand-color($_light-xl, $_sat-xxs);
-$ak-color-header: brand-color($_light-m, $_sat-m);
+$ak-color-header: brand-color(45, 100);
 
 $ak-size-xs: 0.125rem;
 $ak-size-s: 0.25rem;
@@ -44,16 +46,3 @@ $ak-size-m: 0.5rem;
 $ak-size-l: 1rem;
 $ak-size-xl: 2rem;
 $ak-size-xxl: 3rem;
-
-/* HSL */
-$color1: hsla(147%, 100%, 35%, 1);
-$color2: hsla(199%, 74%, 46%, 1);
-$color3: hsla(47%, 86%, 54%, 1);
-$color4: hsla(33%, 100%, 49%, 1);
-$color5: hsla(356%, 76%, 59%, 1);
-
-$color1: #00b550;
-$color2: #1f97ce;
-$color3: #efc323;
-$color4: #fa8b00;
-$color5: #e64550;

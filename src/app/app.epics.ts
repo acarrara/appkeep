@@ -10,6 +10,7 @@ import { StatisticsFactory } from './StatisticsFactory';
 import { Option } from './models/Option';
 import { RestEpic } from './RestEpic';
 import { User } from './models/User';
+import { zip } from 'rxjs';
 
 @Injectable()
 export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
@@ -35,7 +36,10 @@ export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
   private loadStatistics: Epic<any, Statistics> = actions$ => {
     return actions$.pipe(
       filter(action => action.type === AppActions.LOAD_STATISTICS),
-      mergeMap(() => this.http.get<any>('/api/appkeeps/statistics').pipe(
+      mergeMap(() => zip(
+        this.http.get<any>('/api/appkeeps/statistics'),
+        this.http.get<any>('/api/appkeeps/statistics/year')
+      ).pipe(
         first(),
         map(statistics => this.actions.loadStatisticsSuccess(this.statisticsFactory.create(statistics)))
       ))

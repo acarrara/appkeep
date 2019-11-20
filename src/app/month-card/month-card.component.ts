@@ -32,4 +32,8 @@ export class MonthCardComponent implements OnChanges {
   percentageAsNumber(category: CategoryStatistics) {
     return (category.total / this.total * 100).toFixed(0);
   }
+
+  hue(i: number) {
+    return i % 8 + 1;
+  }
 }

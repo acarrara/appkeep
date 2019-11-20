@@ -93,3 +93,27 @@
     overflow-y: auto;
   }
 }
+
+.ak-home__footer {
+  background-color: $ak-color-header;
+  color: $ak-color-background-form;
+  padding: $ak-size-m;
+
+  & > button {
+    @include ak-button();
+    text-decoration: underline;
+  }
+}
+
+.ak-info {
+  height: $ak-size-xl;
+  width: $ak-size-xl;
+  border: 2px solid $ak-color-background-form;
+
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-right: $ak-size-m;
+}

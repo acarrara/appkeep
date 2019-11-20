@@ -60,7 +60,6 @@ module.exports = function (app) {
       const statistics = await AppKeep.statistics(dates.month('all'));
       response.send(statistics);
     } catch (error) {
-      console.log(error);
       response.status(500).send(error);
     }
   });
@@ -68,6 +67,16 @@ module.exports = function (app) {
   app.get('/api/appkeeps/statistics/month/:id', async (request, response) => {
     try {
       const statistics = await AppKeep.range(dates.month(request.params.id));
+      response.send(statistics);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
+  app.get('/api/appkeeps/statistics/year', async (request, response) => {
+    try {
+      const statistics = await AppKeep.yearStatistics(dates.year('last'));
+      console.log(statistics, dates.year('last'))
       response.send(statistics);
     } catch (error) {
       response.status(500).send(error);

@@ -6,12 +6,12 @@ module.exports = {
 
   lastMonth: function () {
     const date = new Date();
-    return new Date(date.getFullYear(), date.getMonth() - 1, 1, 0, 0, 0, 0);
+    return new Date(date.getFullYear(), date.getMonth(), 1, 0, 0, 0, 0);
   },
 
   lastYear: function () {
     const date = new Date();
-    return new Date(date.getFullYear(), 1, 1, 0, 0, 0, 0).getTime();
+    return new Date(date.getFullYear() -1 , date.getMonth(), 1, 0, 0, 0, 0);
   },
 
   today: function () {
@@ -34,6 +34,15 @@ module.exports = {
         return {start: this.lastMonth(), end: this.now()};
       default:
         return {start: this.thisMonth()};
+    }
+  },
+
+  year: function (year) {
+    switch (year) {
+      case 'last':
+        return {start: this.lastYear(), end: this.now()};
+      default:
+        return {start: this.lastYear()};
     }
   }
 };

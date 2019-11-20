@@ -28,6 +28,8 @@ import { AuthGuard } from './auth.guard';
 import { IconComponent } from './icon/icon.component';
 import { MonthCardComponent } from './month-card/month-card.component';
 import { LogoComponent } from './logo/logo.component';
+import { YearCardComponent } from './year-card/year-card.component';
+import { AkMonthNamePipe } from './month-name.pipe';
 
 const config = new AuthServiceConfig([
   {
@@ -53,7 +55,9 @@ export function provideConfig() {
     ProfileComponent,
     IconComponent,
     MonthCardComponent,
-    LogoComponent
+    LogoComponent,
+    YearCardComponent,
+    AkMonthNamePipe
   ],
   imports: [
     BrowserModule,
@@ -87,7 +91,8 @@ export class AppModule {
         options: [],
         statistics: {
           lastMonth: {categories: []},
-          thisMonth: {categories: []}
+          thisMonth: {categories: []},
+          year: {months: []}
         },
         user: undefined,
         users: []

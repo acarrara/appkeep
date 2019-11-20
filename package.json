@@ -9,13 +9,15 @@
     "prebuild": "node scripts/credentials.js",
     "build": "ng build --aot --prod",
     "preserve:prod": "npm run build",
-    "serve:prod": "http-server -c-1 -p 4000 --proxy http://localhost:3000 dist/appkeep",
+    "serve:prod": "http-server -p 4000 --proxy http://localhost:3000 dist/appkeep",
     "test": "ng test",
     "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "npm run prebuild && ng build --aot --prod",
-    "icons": "reload -b -s icons.html -e svg,html -d src/ -p 9000"
+    "icons": "reload -b -s icons.html -e svg,html -d src/ -p 9000",
+    "prepatterns": "sass src/styles.scss src/patterns.css -I . --no-source-map",
+    "patterns": "reload -b -s patterns.html -e svg,css,html -d src/ -p 9001"
   },
   "engines": {
     "node": "~12.6.0",

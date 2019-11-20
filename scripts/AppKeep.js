@@ -59,4 +59,25 @@ model.statistics = range => {
   ).exec();
 };
 
+model.yearStatistics = range => {
+  return model.aggregate(
+    [{
+      $match: {
+        'date': {
+          $gte: range.start,
+          $lt: range.end
+        }
+      }
+    },
+      {
+        $group: {
+          _id: {
+            month: {$month: "$date"},
+          },
+          total: {$sum: "$amount"}
+        }
+      }]
+  ).exec();
+};
+
 module.exports = model;

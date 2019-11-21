@@ -38,6 +38,7 @@ export class EditComponent extends OptionableComponent {
     this.store.dispatch(this.actions.editAppKeep(this.appKeep));
     const {title, category} = this.appKeep;
     this.updateOptions(title, category, options);
+    this.store.dispatch(this.actions.loadStatistics());
     this.close();
   }
 
@@ -47,6 +48,7 @@ export class EditComponent extends OptionableComponent {
 
   delete() {
     this.store.dispatch(this.actions.deleteAppKeep(this.appKeep));
+    this.store.dispatch(this.actions.loadStatistics());
     this.close();
   }
 

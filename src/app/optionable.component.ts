@@ -9,7 +9,7 @@ export abstract class OptionableComponent {
 
   @Listen(['options'])
   public options$: Observable<Option[]>;
-  @Listen(['options'], options => options.map(option => option.category).filter((value, index, self) => index === self.indexOf(value)))
+  @Listen(['options'], options => [...new Set(options.map(option => option.category))])
   public categories$: Observable<string[]>;
 
   constructor(protected store: StoreService<AppKeepState>,
@@ -18,7 +18,7 @@ export abstract class OptionableComponent {
 
   protected updateOptions(title, category, options) {
     const option = this.optionFromList(title, options);
-    const updatedOption = {title, category, date: new Date().getTime()};
+    const updatedOption = {title, category: category.toLowerCase(), date: new Date().getTime()};
     if (option) {
       this.store.dispatch(this.actions.editOption({_id: option._id, ...updatedOption}));
     } else {

@@ -76,7 +76,6 @@ module.exports = function (app) {
   app.get('/api/appkeeps/statistics/year', async (request, response) => {
     try {
       const statistics = await AppKeep.yearStatistics(dates.year('last'));
-      console.log(statistics, dates.year('last'))
       response.send(statistics);
     } catch (error) {
       response.status(500).send(error);

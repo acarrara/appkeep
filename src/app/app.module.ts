@@ -30,6 +30,8 @@ import { MonthCardComponent } from './month-card/month-card.component';
 import { LogoComponent } from './logo/logo.component';
 import { YearCardComponent } from './year-card/year-card.component';
 import { AkMonthNamePipe } from './month-name.pipe';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { NotificationService } from './notification.service';
 
 const config = new AuthServiceConfig([
   {
@@ -57,7 +59,8 @@ export function provideConfig() {
     MonthCardComponent,
     LogoComponent,
     YearCardComponent,
-    AkMonthNamePipe
+    AkMonthNamePipe,
+    EditCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +77,7 @@ export function provideConfig() {
     AppEpics,
     AppReducers,
     AppActions,
+    NotificationService,
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig

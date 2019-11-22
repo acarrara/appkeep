@@ -6,6 +6,7 @@ import { StoreService } from '../../redux/store.service';
 import { AppKeepState } from '../models/AppKeepState';
 import { OptionableComponent } from '../optionable.component';
 import { Option } from '../models/Option';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'ak-form',
@@ -17,7 +18,10 @@ export class FormComponent extends OptionableComponent implements AfterViewInit 
   @ViewChild('amount', {static: false})
   amount: ElementRef;
 
-  constructor(private http: HttpClient, actions: AppActions, store: StoreService<AppKeepState>) {
+  constructor(private http: HttpClient,
+              private notifications: NotificationService,
+              actions: AppActions,
+              store: StoreService<AppKeepState>) {
     super(store, actions);
   }
 
@@ -38,6 +42,7 @@ export class FormComponent extends OptionableComponent implements AfterViewInit 
     this.store.dispatch(this.actions.addAppKeep(appKeep));
     this.updateOptions(appKeep.title, appKeep.category, options);
     this.store.dispatch(this.actions.loadStatistics());
+    this.notifications.sendNotification(appKeep);
   }
 
   onChange(appKeep: AppKeep, options: Option[]) {

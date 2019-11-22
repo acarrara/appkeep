@@ -5,6 +5,7 @@ import { Listen } from '../redux/listen.decorator';
 import { MonthStatistics } from './models/MonthStatistic';
 import { YearStatistics } from './models/YearStatistics';
 import { SwUpdate } from '@angular/service-worker';
+import { NotificationService } from './notification.service';
 
 @Component({
   selector: 'ak-home',
@@ -25,11 +26,18 @@ export class HomeComponent {
   lastYearTotal$: Observable<YearStatistics>;
   availableVersion: boolean;
 
-  constructor(private swUpdate: SwUpdate, cdr: ChangeDetectorRef) {
+  constructor(private swUpdate: SwUpdate,
+              notificationService: NotificationService,
+              private cdr: ChangeDetectorRef) {
+    this.handleUpdates();
+    notificationService.handlePushNotifications();
+  }
+
+  private handleUpdates() {
     if (this.swUpdate.isEnabled) {
       this.swUpdate.available.subscribe(() => {
         this.availableVersion = true;
-        cdr.markForCheck();
+        this.cdr.markForCheck();
       });
     }
   }

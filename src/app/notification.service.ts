@@ -1,0 +1,43 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { first } from 'rxjs/operators';
+import vapid from '../vapid.json';
+import { SwPush } from '@angular/service-worker';
+import { AppKeep } from './models/AppKeep';
+import { AmountPipe } from './amount.pipe';
+
+@Injectable()
+export class NotificationService {
+
+  private amountPipe: AmountPipe = new AmountPipe();
+
+  constructor(private swPush: SwPush,
+              private http: HttpClient) {
+  }
+
+  storeSubscription(subscription: PushSubscription) {
+    this.http.post('/api/subscriptions', subscription).pipe(first()).subscribe(() => {
+      console.log('subscription sent');
+    });
+  }
+
+  sendNotification(appKeep: AppKeep) {
+    const content = `${appKeep.title} [${appKeep.category} - ${this.amountPipe.transform(appKeep.amount)}]`;
+    this.http.post('/api/notifications', {content}).pipe(first()).subscribe(() => {
+      console.log('subscription sent');
+    });
+  }
+
+  handlePushNotifications() {
+    if (this.swPush.isEnabled) {
+      this.swPush.requestSubscription({
+        serverPublicKey: vapid.publicKey
+      }).then(subscription => {
+        this.storeSubscription(subscription);
+      }).catch(console.error);
+      this.swPush.notificationClicks.subscribe(data => {
+        console.log(data);
+      });
+    }
+  }
+}

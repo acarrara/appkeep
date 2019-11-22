@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const restApi = require('./rest-api');
+const notifications = require('./notifications');
 
 const app = express();
 
@@ -9,6 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 restApi(app);
+notifications(app);
 
 // Serve static files....
 app.use(express.static(__dirname + '/../dist/appkeep'));

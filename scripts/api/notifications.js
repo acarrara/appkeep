@@ -20,9 +20,10 @@ module.exports = function (app) {
   app.post('/api/notifications', async (request, response) => {
     const notificationPayload = {
       notification: {
-        title: 'New AppKeep',
+        title: request.body.title,
         body: request.body.content,
         icon: 'assets/icons/icon-512x512.png',
+        vibrate: [100, 50, 100]
       },
     };
 

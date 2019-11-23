@@ -17,7 +17,7 @@ export class NotificationService {
 
   sendNotification(appKeep: AppKeep) {
     const content = `${appKeep.title} - ${this.amountPipe.transform(appKeep.amount)}`;
-    const title = `AppKeep - ${appKeep.category}`
+    const title = `AppKeep - ${appKeep.category}`;
     this.http.post('/api/notifications', {title, content}).pipe(first()).subscribe(() => {
       console.log('subscription sent');
     });

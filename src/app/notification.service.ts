@@ -15,14 +15,8 @@ export class NotificationService {
               private http: HttpClient) {
   }
 
-  storeSubscription(subscription: PushSubscription) {
-    this.http.post('/api/subscriptions', subscription).pipe(first()).subscribe(() => {
-      console.log('subscription sent');
-    });
-  }
-
   sendNotification(appKeep: AppKeep) {
-    const content = `${appKeep.title} [${appKeep.category} - ${this.amountPipe.transform(appKeep.amount)}]`;
+    const content = `${appKeep.title} [${appKeep.category}] - ${this.amountPipe.transform(appKeep.amount)}`;
     this.http.post('/api/notifications', {content}).pipe(first()).subscribe(() => {
       console.log('subscription sent');
     });
@@ -30,14 +24,24 @@ export class NotificationService {
 
   handlePushNotifications() {
     if (this.swPush.isEnabled) {
-      this.swPush.requestSubscription({
-        serverPublicKey: vapid.publicKey
-      }).then(subscription => {
-        this.storeSubscription(subscription);
-      }).catch(console.error);
-      this.swPush.notificationClicks.subscribe(data => {
-        console.log(data);
+      this.swPush.subscription.subscribe(maybeSubscription => {
+        if (maybeSubscription === null) {
+          this.swPush.requestSubscription({
+            serverPublicKey: vapid.publicKey
+          }).then(subscription => {
+            this.storeSubscription(subscription);
+          }).catch(console.error);
+          this.swPush.notificationClicks.subscribe(data => {
+            console.log(data);
+          });
+        }
       });
     }
+  }
+
+  private storeSubscription(subscription: PushSubscription) {
+    this.http.post('/api/subscriptions', subscription).pipe(first()).subscribe(() => {
+      console.log('subscription sent');
+    });
   }
 }

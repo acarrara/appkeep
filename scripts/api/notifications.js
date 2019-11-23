@@ -1,5 +1,5 @@
 const webPush = require('web-push');
-const Subscription = require('./Subscription');
+const Subscription = require('./schemas/Subscription');
 
 module.exports = function (app) {
 

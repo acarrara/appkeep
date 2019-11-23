@@ -25,6 +25,10 @@ export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
     return new RestEpic<Option>(this.http, 'option').toEpics();
   }
 
+  public getCategoryEpics(): Epic<any, any>[] {
+    return new RestEpic<Option>(this.http, 'categorie').toEpics();
+  }
+
   public getAppKeepEpics(): Epic<any, any>[] {
     return new RestEpic<AppKeep>(this.http, 'appkeep').toEpics();
   }

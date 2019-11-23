@@ -12,7 +12,7 @@
     "serve:prod": "http-server -p 4000 --proxy http://localhost:3000 dist/appkeep",
     "test": "ng test",
     "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
-    "lint": "ng lint",
+    "lint": "ng lint --fix",
     "e2e": "ng e2e",
     "postinstall": "npm run prebuild && ng build --aot --prod",
     "icons": "reload -b -s icons.html -e svg,html -d src/ -p 9000",

@@ -3,19 +3,23 @@ import { AppKeep } from './models/AppKeep';
 import { Statistics } from './models/Statistics';
 import { SocialUser } from 'angularx-social-login';
 import { Option } from './models/Option';
+import { Category } from './models/Category';
 
 export class AppActions {
 
   public static LOAD_APPKEEPS = 'LOAD_APPKEEPS';
+  public static ADD_APPKEEP = 'ADD_APPKEEP';
+  public static EDIT_APPKEEP = 'EDIT_APPKEEP';
+  public static DELETE_APPKEEP = 'DELETE_APPKEEP';
   public static LOAD_STATISTICS = 'LOAD_STATISTICS';
   public static LOAD_STATISTICS_SUCCESS = 'LOAD_STATISTICS_SUCCESS';
-  public static ADD_APPKEEP = 'ADD_APPKEEP';
-  public static DELETE_APPKEEP = 'DELETE_APPKEEP';
-  public static EDIT_APPKEEP = 'EDIT_APPKEEP';
-  public static EDIT_OPTION = 'EDIT_OPTION';
   public static LOAD_OPTIONS = 'LOAD_OPTIONS';
-  public static LOAD_USERS = 'LOAD_USERS';
   public static ADD_OPTION = 'ADD_OPTION';
+  public static EDIT_OPTION = 'EDIT_OPTION';
+  public static LOAD_CATEGORIES = 'LOAD_CATEGORIES';
+  public static ADD_CATEGORY = 'ADD_CATEGORIE';
+  public static EDIT_CATEGORY = 'EDIT_CATEGORIE';
+  public static LOAD_USERS = 'LOAD_USERS';
   public static LOGIN = 'LOGIN';
 
   public loadAppKeeps(): Action<any> {
@@ -50,15 +54,27 @@ export class AppActions {
     return {type: AppActions.LOAD_OPTIONS};
   }
 
-  public loadUsers(): Action<any> {
-    return {type: AppActions.LOAD_USERS};
-  }
-
   addOption(option: Option): Action<Option> {
     return {type: AppActions.ADD_OPTION, payload: option};
   }
 
   editOption(option: Option) {
     return {type: AppActions.EDIT_OPTION, payload: option};
+  }
+
+  public loadCategories(): Action<any> {
+    return {type: AppActions.LOAD_CATEGORIES};
+  }
+
+  addCategory(category: Category): Action<Category> {
+    return {type: AppActions.ADD_CATEGORY, payload: category};
+  }
+
+  editCategory(category: Category) {
+    return {type: AppActions.EDIT_CATEGORY, payload: category};
+  }
+
+  public loadUsers(): Action<any> {
+    return {type: AppActions.LOAD_USERS};
   }
 }

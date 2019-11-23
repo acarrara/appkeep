@@ -9,6 +9,7 @@ import { Option } from '../models/Option';
 import { OptionableComponent } from '../optionable.component';
 import { Listen } from '../../redux/listen.decorator';
 import { Observable } from 'rxjs';
+import { Category } from '../models/Category';
 
 @Component({
   selector: 'ak-edit',
@@ -34,10 +35,10 @@ export class EditComponent extends OptionableComponent {
     });
   }
 
-  edit(options: Option[]) {
+  edit(options: Option[], categories: Category[]) {
     this.store.dispatch(this.actions.editAppKeep(this.appKeep));
     const {title, category} = this.appKeep;
-    this.updateOptions(title, category, options);
+    this.updateOptions(title, category, options, categories);
     this.store.dispatch(this.actions.loadStatistics());
     this.close();
   }

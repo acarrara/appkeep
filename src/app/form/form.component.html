@@ -1,25 +1,28 @@
 <ng-container *ngIf="options$ | async; let options">
-  <form class="ak-form" #form=ngForm>
-    <div class="ak-form__inputs">
-      <div class="ak-input  ak-input--amount">
-        <label for="amount" class="visually-hidden">Amount</label>
-        <input name="amount" #amount id="amount"
-               type="number" min="0" step="0.01" ngModel
-               (keydown.enter)="$event.preventDefault(); what.focus()">
-        <div class="ak-text-big  ak-amount" (click)="amount.focus()">{{form.value.amount || 0 | akAmount}}</div>
+  <ng-container *ngIf="categories$ | async; let categories">
+    <form class="ak-form" #form=ngForm>
+      <div class="ak-form__inputs">
+        <div class="ak-input  ak-input--amount">
+          <label for="amount" class="visually-hidden">Amount</label>
+          <input name="amount" #amount id="amount"
+                 type="number" min="0" step="0.01" ngModel
+                 (keydown.enter)="$event.preventDefault(); what.focus()">
+          <div class="ak-text-big  ak-amount" (click)="amount.focus()">{{form.value.amount || 0 | akAmount}}</div>
+        </div>
+        <div class="ak-input">
+          <input id="what" #what name="title" ngModel (change)="onChange(form.value, options)" placeholder="Description"
+                 list="addwhatlist" autocomplete="off">
+          <datalist id="addwhatlist">
+            <option *ngFor="let option of options" [value]="option.title"></option>
+          </datalist>
+        </div>
       </div>
-      <div class="ak-input">
-        <input id="what" #what name="title" ngModel (change)="onChange(form.value, options)" placeholder="Description" list="addwhatlist" autocomplete="off">
-        <datalist id="addwhatlist">
-          <option *ngFor="let option of options" [value]="option.title"></option>
-        </datalist>
+      <div class="ak-form__buttons">
+        <button class="ak-button  ak-button--primary" type="submit"
+                (click)="add(form.value, options, categories); form.reset(); amount.focus()">Add
+        </button>
+        <button class="ak-button" type="reset" (click)="form.reset(); amount.focus();">Reset</button>
       </div>
-    </div>
-    <div class="ak-form__buttons">
-      <button class="ak-button  ak-button--primary" type="submit"
-              (click)="add(form.value, options); form.reset(); amount.focus()">Add
-      </button>
-      <button class="ak-button" type="reset" (click)="form.reset(); amount.focus();">Reset</button>
-    </div>
-  </form>
+    </form>
+  </ng-container>
 </ng-container>

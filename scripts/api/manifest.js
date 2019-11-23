@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const statistics = require('./statistics');
 const appkeeps = require('./appkeeps');
 const options = require('./options');
+const categories = require('./categories');
 const users = require('./users');
 const notifications = require('./notifications');
 
@@ -19,8 +20,9 @@ module.exports = function (app) {
     }
   });
 
-  appkeeps(app);
   statistics(app);
+  appkeeps(app);
+  categories(app);
   options(app);
   users(app);
   notifications(app);

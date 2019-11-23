@@ -9,20 +9,23 @@ export abstract class OptionableComponent {
 
   @Listen(['options'])
   public options$: Observable<Option[]>;
-  @Listen(['options'], options => [...new Set(options.map(option => option.category))])
+  @Listen(['categories'], categories => categories.map(category => category.category))
   public categories$: Observable<string[]>;
 
   constructor(protected store: StoreService<AppKeepState>,
               protected actions: AppActions) {
   }
 
-  protected updateOptions(title, category, options) {
+  protected updateOptions(title, category, options, categories) {
     const option = this.optionFromList(title, options);
     const updatedOption = {title, category: category.toLowerCase(), date: new Date().getTime()};
     if (option) {
       this.store.dispatch(this.actions.editOption({_id: option._id, ...updatedOption}));
     } else {
       this.store.dispatch(this.actions.addOption(updatedOption));
+    }
+    if (!categories.includes(category)) {
+      this.store.dispatch(this.actions.addCategory({category, hue: categories.length % 8}));
     }
   }
 

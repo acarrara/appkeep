@@ -7,6 +7,7 @@ import { AppKeepState } from '../models/AppKeepState';
 import { OptionableComponent } from '../optionable.component';
 import { Option } from '../models/Option';
 import { NotificationService } from '../notification.service';
+import { Category } from '../models/Category';
 
 @Component({
   selector: 'ak-form',
@@ -34,13 +35,13 @@ export class FormComponent extends OptionableComponent implements AfterViewInit 
     }
   }
 
-  add(appKeep: AppKeep, options: Option[]) {
+  add(appKeep: AppKeep, options: Option[], categories: string[]) {
     appKeep.category = appKeep.category || appKeep.title;
     appKeep.date = Date.now();
     appKeep.amount = appKeep.amount || 0;
     appKeep.user = this.store.snapshot<string>(['user'], user => user.email);
     this.store.dispatch(this.actions.addAppKeep(appKeep));
-    this.updateOptions(appKeep.title, appKeep.category, options);
+    this.updateOptions(appKeep.title, appKeep.category, options, categories);
     this.store.dispatch(this.actions.loadStatistics());
     this.notifications.sendNotification(appKeep);
   }

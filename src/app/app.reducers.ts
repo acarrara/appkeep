@@ -8,6 +8,7 @@ import { AppKeep } from './models/AppKeep';
 import { Option } from './models/Option';
 import { RestReducer } from './RestReducer';
 import { User } from './models/User';
+import { Category } from './models/Category';
 
 export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> {
 
@@ -17,6 +18,10 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
 
   public getOptionReducers(): Reducer<AppKeepState, Option | Option[]>[] {
     return new RestReducer('option').toReducers();
+  }
+
+  public getCategoryReducers(): Reducer<AppKeepState, Category | Category[]>[] {
+    return new RestReducer('categorie').toReducers();
   }
 
   public getUserReducers(): Reducer<AppKeepState, User | User[]>[] {

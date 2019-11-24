@@ -6,6 +6,7 @@ import { MonthStatistics } from './models/MonthStatistic';
 import { YearStatistics } from './models/YearStatistics';
 import { SwUpdate } from '@angular/service-worker';
 import { NotificationService } from './notification.service';
+import { Category } from './models/Category';
 
 @Component({
   selector: 'ak-home',
@@ -24,6 +25,8 @@ export class HomeComponent {
   lastMonthTotal$: Observable<MonthStatistics>;
   @Listen(['statistics', 'year'])
   lastYearTotal$: Observable<YearStatistics>;
+  @Listen(['categories'])
+  categories$: Observable<Category[]>;
   availableVersion: boolean;
 
   constructor(private swUpdate: SwUpdate,
@@ -47,8 +50,9 @@ export class HomeComponent {
     navigator.serviceWorker.controller.postMessage({type: 'online'});
   }
 
-  hue(i: number) {
-    return i % 8 + 1;
+  hue(categoryTitle: string, categories: Category[]) {
+    const match = categories.find(category => category.category === categoryTitle);
+    return match ? match.hue : 0;
   }
 
   reload() {

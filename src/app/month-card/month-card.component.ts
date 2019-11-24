@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MonthStatistics } from '../models/MonthStatistic';
 import { CategoryStatistics } from '../models/CategoryStatistics';
+import { Category } from '../models/Category';
 
 @Component({
   selector: 'ak-month-card',
@@ -13,6 +14,8 @@ export class MonthCardComponent implements OnChanges {
   month: string;
   @Input()
   monthStatistics: MonthStatistics;
+  @Input()
+  categories: Category[];
 
   private total: number;
 
@@ -33,7 +36,8 @@ export class MonthCardComponent implements OnChanges {
     return (category.total / this.total * 100).toFixed(0);
   }
 
-  hue(i: number) {
-    return i % 8 + 1;
+  hue(categoryTitle: string) {
+    const match = this.categories.find(category => category.category === categoryTitle);
+    return match ? match.hue : 0;
   }
 }

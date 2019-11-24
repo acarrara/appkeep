@@ -1,10 +1,10 @@
 <ak-card [total]="getTotal()" [when]="month">
   <ol class="ak-items__list">
     <li *ngFor="let category of monthStatistics.categories; let i = index" class="ak-item">
-      <div class="ak-item__what">
-          <div class="ak-item__percentage ak-item--{{hue(i)}}" [style.width]="percentage(category)" [attr.data-percentage]="percentage(category)"></div>
+      <a class="ak-item__what" routerLink="/category/{{category.category}}">
+          <div class="ak-item__percentage ak-item--{{hue(category.category)}}" [style.width]="percentage(category)" [attr.data-percentage]="percentage(category)"></div>
         <span class="ak-badge">{{category.category | lowercase}}</span>
-      </div>
+      </a>
       <div class="ak-item__amount">{{category.total | akAmount}}</div>
     </li>
   </ol>

@@ -27,16 +27,14 @@ module.exports = function (app) {
       },
     };
 
-    const promises = [];
-    const subscribers = await Subscription.find().exec();
-    subscribers.forEach(subscription => {
-      promises.push(
-        webPush.sendNotification(
-          subscription,
-          JSON.stringify(notificationPayload)
-        )
-      )
-    });
-    Promise.all(promises).then(() => response.sendStatus(200));
+    const subscriptions = await Subscription.find().exec();
+    const promises = subscriptions.map(subscription =>
+      webPush.sendNotification(
+        subscription,
+        JSON.stringify(notificationPayload)
+      ));
+    Promise.all(promises)
+      .then(() => response.sendStatus(200))
+      .catch(error => response.status(500).send(error));
   });
 };

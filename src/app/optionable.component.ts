@@ -25,7 +25,7 @@ export abstract class OptionableComponent {
       this.store.dispatch(this.actions.addOption(updatedOption));
     }
     if (!categories.includes(category)) {
-      this.store.dispatch(this.actions.addCategory({category, hue: categories.length % 8}));
+      this.store.dispatch(this.actions.addCategory({category, hue: categories.length % 8 + 1}));
     }
   }
 

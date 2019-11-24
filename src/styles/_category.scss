@@ -30,3 +30,29 @@ $_category_hues: 15, 60, 105, 150, 195, 240, 285, 330;
     background-color: ak-color(75, 90, $_category-hue);
   }
 }
+
+.ak-edit__hues {
+  display: flex;
+
+  & > .ak-edit__hue {
+    flex-grow: 1;
+    height: $ak-size-xl;
+
+
+    & > input:checked + label {
+      border: 4px solid $ak-color-header;
+    }
+
+    & > label {
+      display: block;
+      height: 100%;
+      width: 100%;
+      cursor: pointer;
+      border-radius: $ak-size-s;
+    }
+
+    & + .ak-edit__hue {
+      margin-left: $ak-size-m;
+    }
+  }
+}

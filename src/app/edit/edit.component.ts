@@ -38,7 +38,7 @@ export class EditComponent extends OptionableComponent {
   edit(options: Option[], categories: Category[]) {
     this.store.dispatch(this.actions.editAppKeep(this.appKeep));
     const {title, category} = this.appKeep;
-    this.updateOptions(title, category, options, categories);
+    this.updateOptions(title, category, options, categories.map(current => current.category));
     this.store.dispatch(this.actions.loadStatistics());
     this.close();
   }

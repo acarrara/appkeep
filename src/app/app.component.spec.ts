@@ -19,7 +19,6 @@ describe('AppComponent', () => {
         break;
       }
     }
-    console.log('hello', values.length, values);
     expect(true).toBeTruthy();
   });
 });

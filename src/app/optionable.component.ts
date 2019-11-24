@@ -30,6 +30,6 @@ export abstract class OptionableComponent {
   }
 
   protected optionFromList(title: string, options: Option[]) {
-    return options.find(current => current.title === title);
+    return options.find(current => current.title.toLowerCase() === title.toLowerCase());
   }
 }

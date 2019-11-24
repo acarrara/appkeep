@@ -12,6 +12,7 @@ import { AppActions } from '../app.actions';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditCategoryComponent {
+
   category: Category;
 
   constructor(private activatedRoute: ActivatedRoute,

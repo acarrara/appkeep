@@ -1,6 +1,6 @@
 .ak-input {
 
-  & > label {
+  & > label, & > .ak-input__title {
     display: block;
     width: 100%;
 
@@ -47,7 +47,7 @@
 
 .ak-edit {
 
-  & .ak-input > label {
+  & .ak-input > label, & .ak-input > .ak-input__title {
     margin-top: $ak-size-l;
     margin-bottom: $ak-size-m;
   }

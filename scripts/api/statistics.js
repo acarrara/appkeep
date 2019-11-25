@@ -29,4 +29,13 @@ module.exports = function (app) {
       response.status(500).send(error);
     }
   });
+
+  app.get('/api/appkeeps/statistics/category/:category', async (request, response) => {
+    try {
+      const statistics = await AppKeep.yearStatistics(dates.year('last'), request.params.category);
+      response.send(statistics);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
 };

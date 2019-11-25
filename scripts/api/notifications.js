@@ -28,13 +28,28 @@ module.exports = function (app) {
     };
 
     const subscriptions = await Subscription.find().exec();
-    const promises = subscriptions.map(subscription =>
-      webPush.sendNotification(
-        subscription,
-        JSON.stringify(notificationPayload)
-      ));
-    Promise.all(promises)
+
+    const promise = subscriptions.reduce((promiseChain, subscription) =>
+        promiseChain.then(() => triggerPush(subscription, notificationPayload)),
+      Promise.resolve());
+
+    promise
       .then(() => response.sendStatus(200))
       .catch(error => response.status(500).send(error));
   });
+
+  function triggerPush(subscription, notificationPayload) {
+    return webPush.sendNotification(
+      subscription,
+      JSON.stringify(notificationPayload)
+    ).catch(err => {
+      if (err.statusCode === 404 || err.statusCode === 410) {
+        console.log('Subscription has expired or is no longer valid: ', subscription, err);
+        return Subscription.deleteOne({_id: subscription._id}).exec();
+      } else {
+        throw err;
+      }
+    });
+  }
+
 };

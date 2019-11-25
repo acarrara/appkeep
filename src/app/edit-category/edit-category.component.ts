@@ -23,7 +23,6 @@ export class EditCategoryComponent {
       this.category = {
         ...this.store.snapshot<Category>(['categories'], categories => categories.find(item => item.category === category))
       };
-      console.log(this.store.snapshot([]));
     });
   }
 
@@ -34,9 +33,5 @@ export class EditCategoryComponent {
   edit() {
     this.store.dispatch(this.actions.editCategory(this.category));
     this.close();
-  }
-
-  checked(hue: number, category: Category) {
-    return hue === category.hue;
   }
 }

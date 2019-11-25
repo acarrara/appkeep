@@ -29,15 +29,11 @@ model.range = range => {
   ).exec();
 };
 
-model.statistics = range => {
+model.statistics = (range, category) => {
+  category = category || '';
   return model.aggregate(
     [{
-      $match: {
-        'date': {
-          $gte: range.start,
-          $lt: range.end
-        }
-      }
+      $match: matchBy(range, category)
     },
       {
         $group: {
@@ -59,15 +55,11 @@ model.statistics = range => {
   ).exec();
 };
 
-model.yearStatistics = range => {
+model.yearStatistics = (range, category) => {
+  category = category || '';
   return model.aggregate(
     [{
-      $match: {
-        'date': {
-          $gte: range.start,
-          $lt: range.end
-        }
-      }
+      $match: matchBy(range, category)
     },
       {
         $group: {
@@ -79,5 +71,16 @@ model.yearStatistics = range => {
       }]
   ).exec();
 };
+
+function matchBy(range, category) {
+  const dateMatch = {
+    'date': {
+      $gte: range.start,
+      $lt: range.end
+    }
+  };
+  const categoryMatch = {'category': category};
+  return category ? {$and: [dateMatch, categoryMatch]} : dateMatch;
+}
 
 module.exports = model;

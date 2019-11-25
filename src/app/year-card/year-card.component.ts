@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { YearStatistics } from '../models/YearStatistics';
 import { Month } from '../models/Month';
-import { CategoryStatistics } from '../models/CategoryStatistics';
+import { CategoryAmount } from '../models/CategoryAmount';
 
 @Component({
   selector: 'ak-year-card',
@@ -11,6 +11,8 @@ import { CategoryStatistics } from '../models/CategoryStatistics';
 export class YearCardComponent {
   @Input()
   year: string;
+  @Input()
+  hue = 0;
   @Input()
   yearStatistics: YearStatistics;
 

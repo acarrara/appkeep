@@ -11,6 +11,7 @@ import { Option } from './models/Option';
 import { RestEpic } from './RestEpic';
 import { User } from './models/User';
 import { zip } from 'rxjs';
+import { CategoryStatistics } from './models/CategoryStatistics';
 
 @Injectable()
 export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
@@ -46,6 +47,19 @@ export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
       ).pipe(
         first(),
         map(statistics => this.actions.loadStatisticsSuccess(this.statisticsFactory.create(statistics)))
+      ))
+    );
+  }
+
+  private loadCategoryStatistics: Epic<any, CategoryStatistics> = actions$ => {
+    return actions$.pipe(
+      filter(action => action.type === AppActions.LOAD_CATEGORY_STATISTICS),
+      mergeMap(action => zip(
+        this.http.get<any>(`/api/categories/${action.payload}/appkeeps`),
+        this.http.get<any>(`/api/categories/${action.payload}/statistics/year`)
+      ).pipe(
+        first(),
+        map(statistics => this.actions.loadCategoryStatisticsSuccess(this.statisticsFactory.createCategoryStatistics(statistics)))
       ))
     );
   }

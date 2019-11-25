@@ -4,6 +4,7 @@ import { Statistics } from './models/Statistics';
 import { SocialUser } from 'angularx-social-login';
 import { Option } from './models/Option';
 import { Category } from './models/Category';
+import { CategoryStatistics } from './models/CategoryStatistics';
 
 export class AppActions {
 
@@ -13,6 +14,8 @@ export class AppActions {
   public static DELETE_APPKEEP = 'DELETE_APPKEEP';
   public static LOAD_STATISTICS = 'LOAD_STATISTICS';
   public static LOAD_STATISTICS_SUCCESS = 'LOAD_STATISTICS_SUCCESS';
+  public static LOAD_CATEGORY_STATISTICS = 'LOAD_CATEGORY_STATISTICS';
+  public static LOAD_CATEGORY_STATISTICS_SUCCESS = 'LOAD_CATEGORY_STATISTICS_SUCCESS';
   public static LOAD_OPTIONS = 'LOAD_OPTIONS';
   public static ADD_OPTION = 'ADD_OPTION';
   public static EDIT_OPTION = 'EDIT_OPTION';
@@ -44,6 +47,14 @@ export class AppActions {
 
   loadStatisticsSuccess(statistics: Statistics): Action<Statistics> {
     return {type: AppActions.LOAD_STATISTICS_SUCCESS, payload: statistics};
+  }
+
+  loadCategoryStatistics(category: string): Action<any> {
+    return {type: AppActions.LOAD_CATEGORY_STATISTICS, payload: category};
+  }
+
+  loadCategoryStatisticsSuccess(categoryStatistics: CategoryStatistics): Action<CategoryStatistics> {
+    return {type: AppActions.LOAD_CATEGORY_STATISTICS_SUCCESS, payload: categoryStatistics};
   }
 
   login(user: SocialUser): Action<SocialUser> {

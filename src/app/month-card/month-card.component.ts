@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MonthStatistics } from '../models/MonthStatistic';
-import { CategoryStatistics } from '../models/CategoryStatistics';
+import { CategoryAmount } from '../models/CategoryAmount';
 import { Category } from '../models/Category';
 
 @Component({
@@ -28,11 +28,11 @@ export class MonthCardComponent implements OnChanges {
     this.total = this.monthStatistics.categories.reduce((previousValue, currentValue) => previousValue + currentValue.total, 0);
   }
 
-  percentage(category: CategoryStatistics) {
+  percentage(category: CategoryAmount) {
     return this.percentageAsNumber(category) + '%';
   }
 
-  percentageAsNumber(category: CategoryStatistics) {
+  percentageAsNumber(category: CategoryAmount) {
     return (category.total / this.total * 100).toFixed(0);
   }
 

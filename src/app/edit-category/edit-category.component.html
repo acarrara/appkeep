@@ -22,26 +22,15 @@
       <button class="ak-button ">Reset</button>
     </div>
   </form>
-  <section class="ak-items">
-    <div class="ak-items__header">
-      <div class="ak-items__title">This year</div>
-      <div class="ak-items__amount">833.72</div>
-    </div>
-    <ol class="ak-items__list">
-      <li class="ak-item">
-        <div class="ak-item__what">
-          <div class="ak-item__percentage ak-item--{{category.hue}}" style="width: 61%"></div>
-          <span class="ak-badge">november</span>
-        </div>
-        <div class="ak-item__amount">585.34</div>
-      </li>
-      <li class="ak-item">
-        <div class="ak-item__what">
-          <div class="ak-item__percentage ak-item--{{category.hue}}" style="width: 34%"></div>
-          <span class="ak-badge">october</span>
-        </div>
-        <div class="ak-item__amount">234.23</div>
-      </li>
-    </ol>
-  </section>
+  <ak-appkeeps-card [appKeeps]="thisMonthAppKeeps$ | async"
+                    [total]="thisMonthTotal$ | async"
+                    [hue]="category.hue"
+                    when="this month">
+  </ak-appkeeps-card>
+  <ak-appkeeps-card [appKeeps]="lastMonthAppKeeps$ | async"
+                    [total]="lastMonthTotal$ | async"
+                    [hue]="category.hue"
+                    when="last month">
+  </ak-appkeeps-card>
+  <ak-year-card [yearStatistics]="yearStatistics$ | async" year="this year" [hue]="category.hue"></ak-year-card>
 </div>

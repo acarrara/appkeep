@@ -9,6 +9,7 @@ import { Option } from './models/Option';
 import { RestReducer } from './RestReducer';
 import { User } from './models/User';
 import { Category } from './models/Category';
+import { CategoryStatistics } from './models/CategoryStatistics';
 
 export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> {
 
@@ -48,6 +49,20 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
         return {
           ...oldState,
           statistics: action.payload
+        };
+      }
+      default: {
+        return oldState;
+      }
+    }
+  }
+
+  private loadCategoryStatistics: Reducer<AppKeepState, CategoryStatistics> = (action, oldState) => {
+    switch (action.type) {
+      case AppActions.LOAD_CATEGORY_STATISTICS_SUCCESS: {
+        return {
+          ...oldState,
+          categoryStatistics: action.payload
         };
       }
       default: {

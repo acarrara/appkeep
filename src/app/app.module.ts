@@ -32,6 +32,7 @@ import { YearCardComponent } from './year-card/year-card.component';
 import { AkMonthNamePipe } from './month-name.pipe';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { NotificationService } from './notification.service';
+import { AppkeepsCardComponent } from './appkeeps-card/appkeeps-card.component';
 
 const config = new AuthServiceConfig([
   {
@@ -60,7 +61,8 @@ export function provideConfig() {
     LogoComponent,
     YearCardComponent,
     AkMonthNamePipe,
-    EditCategoryComponent
+    EditCategoryComponent,
+    AppkeepsCardComponent
   ],
   imports: [
     BrowserModule,
@@ -108,6 +110,11 @@ export class AppModule {
         statistics: {
           lastMonth: {categories: []},
           thisMonth: {categories: []},
+          year: {months: []}
+        },
+        categoryStatistics: {
+          thisMonthAppKeeps: [],
+          lastMonthAppKeeps: [],
           year: {months: []}
         },
         user: undefined,

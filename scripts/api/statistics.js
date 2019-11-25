@@ -30,7 +30,7 @@ module.exports = function (app) {
     }
   });
 
-  app.get('/api/appkeeps/statistics/category/:category', async (request, response) => {
+  app.get('/api/categories/:category/statistics/year', async (request, response) => {
     try {
       const statistics = await AppKeep.yearStatistics(dates.year('last'), request.params.category);
       response.send(statistics);

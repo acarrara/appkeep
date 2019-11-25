@@ -50,11 +50,6 @@ export class HomeComponent {
     navigator.serviceWorker.controller.postMessage({type: 'online'});
   }
 
-  hue(categoryTitle: string, categories: Category[]) {
-    const match = categories.find(category => category.category === categoryTitle);
-    return match ? match.hue : 0;
-  }
-
   reload() {
     if (this.swUpdate.isEnabled) {
       this.swUpdate.activateUpdate().then(() => document.location.reload());

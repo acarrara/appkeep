@@ -8,25 +8,16 @@
     </header>
     <section class="ak-home__content">
       <ak-form></ak-form>
-      <ak-card [total]="todayTotal$ | async" when="today">
-        <ol class="ak-items__list">
-          <li *ngFor="let appKeep of appKeeps$ | async; let i = index" class="ak-item"
-              [ngClass]="{'ak-item--updating': appKeep._updating}">
-            <a class="ak-item__what" routerLink="/edit/{{appKeep._id}}">
-              <div>{{appKeep.title}}</div>
-              <span
-                class="ak-badge  ak-badge--{{hue(appKeep.category, categories)}}">{{appKeep.category | lowercase}}</span>
-            </a>
-            <div class="ak-item__editing" *ngIf="appKeep._updating">updating...</div>
-            <div class="ak-item__amount">{{appKeep.amount | akAmount}}</div>
-          </li>
-        </ol>
-      </ak-card>
+      <ak-appkeeps-card [appKeeps]="appKeeps$ | async"
+                        [categories]="categories"
+                        [total]="todayTotal$ | async"
+                        when="today">
+      </ak-appkeeps-card>
       <ak-month-card [monthStatistics]="thisMonthTotal$ | async" [categories]="categories"
                      month="this month"></ak-month-card>
       <ak-month-card [monthStatistics]="lastMonthTotal$ | async" [categories]="categories"
                      month="last month"></ak-month-card>
-      <ak-year-card [yearStatistics]="lastYearTotal$ | async" year="last year"></ak-year-card>
+      <ak-year-card [yearStatistics]="lastYearTotal$ | async" year="this year"></ak-year-card>
     </section>
   </div>
 </ng-container>

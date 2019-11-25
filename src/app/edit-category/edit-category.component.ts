@@ -5,6 +5,10 @@ import { AppKeepState } from '../models/AppKeepState';
 import { Category } from '../models/Category';
 import { map } from 'rxjs/operators';
 import { AppActions } from '../app.actions';
+import { Observable } from 'rxjs';
+import { Listen } from '../../redux/listen.decorator';
+import { YearStatistics } from '../models/YearStatistics';
+import { AppKeep } from '../models/AppKeep';
 
 @Component({
   selector: 'ak-edit-category',
@@ -12,6 +16,17 @@ import { AppActions } from '../app.actions';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditCategoryComponent {
+
+  @Listen(['categoryStatistics', 'year'])
+  yearStatistics$: Observable<YearStatistics>;
+  @Listen(['categoryStatistics', 'thisMonthAppKeeps'])
+  thisMonthAppKeeps$: Observable<AppKeep[]>;
+  @Listen(['categoryStatistics', 'thisMonthAppKeeps'], appKeeps => appKeeps.reduce((previous, current) => previous + current.amount, 0))
+  thisMonthTotal$: Observable<number>;
+  @Listen(['categoryStatistics', 'lastMonthAppKeeps'])
+  lastMonthAppKeeps$: Observable<AppKeep[]>;
+  @Listen(['categoryStatistics', 'lastMonthAppKeeps'], appKeeps => appKeeps.reduce((previous, current) => previous + current.amount, 0))
+  lastMonthTotal$: Observable<number>;
 
   category: Category;
 
@@ -24,6 +39,7 @@ export class EditCategoryComponent {
         ...this.store.snapshot<Category>(['categories'], categories => categories.find(item => item.category === category))
       };
     });
+    this.store.dispatch(this.actions.loadCategoryStatistics(this.category.category));
   }
 
   close() {

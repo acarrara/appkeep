@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const matchers = require('../utils/matchers');
 
 const appKeepSchema = new mongoose.Schema({
   title: {type: String, trim: true},
@@ -10,15 +11,10 @@ const appKeepSchema = new mongoose.Schema({
 
 const model = mongoose.model('AppKeeps', appKeepSchema);
 
-model.range = range => {
+model.range = (range, category) => {
   return model.aggregate(
     [{
-      $match: {
-        'date': {
-          $gte: range.start,
-          $lt: range.end
-        }
-      }
+      $match: matchers.matchBy(range, category)
     },
       {
         $group: {
@@ -33,7 +29,7 @@ model.statistics = (range, category) => {
   category = category || '';
   return model.aggregate(
     [{
-      $match: matchBy(range, category)
+      $match: matchers.matchBy(range, category)
     },
       {
         $group: {
@@ -59,7 +55,7 @@ model.yearStatistics = (range, category) => {
   category = category || '';
   return model.aggregate(
     [{
-      $match: matchBy(range, category)
+      $match: matchers.matchBy(range, category)
     },
       {
         $group: {
@@ -71,16 +67,5 @@ model.yearStatistics = (range, category) => {
       }]
   ).exec();
 };
-
-function matchBy(range, category) {
-  const dateMatch = {
-    'date': {
-      $gte: range.start,
-      $lt: range.end
-    }
-  };
-  const categoryMatch = {'category': category};
-  return category ? {$and: [dateMatch, categoryMatch]} : dateMatch;
-}
 
 module.exports = model;

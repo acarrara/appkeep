@@ -1,5 +1,6 @@
 const AppKeep = require('./schemas/AppKeep');
 const dates = require('./utils/dates');
+const matchers = require('./utils/matchers');
 
 module.exports = function (app) {
 
@@ -7,7 +8,7 @@ module.exports = function (app) {
     try {
       const appKeep = new AppKeep(request.body);
       const result = await appKeep.save();
-      const toSend = {...result._doc, date: result._doc.date.getTime()}
+      const toSend = {...result._doc, date: result._doc.date.getTime()};
       response.send(toSend);
     } catch (error) {
       response.status(500).send(error);
@@ -22,20 +23,10 @@ module.exports = function (app) {
             $gte: dates.today()
           }
         },
-      }, {
-        $project: {
-          'date': {
-            $subtract: ["$date", new Date("1970-01-01")]
-          },
-          'title': true,
-          'category': true,
-          'amount': true,
-          'user': true
-        }
-      }]).sort({date: -1}).exec();
+      }
+      ]).sort({date: -1}).exec();
       response.send(appKeeps);
     } catch (error) {
-      console.log(error)
       response.status(500).send(error);
     }
   });
@@ -64,6 +55,34 @@ module.exports = function (app) {
     try {
       const appKeep = await AppKeep.deleteOne({_id: request.params.id}).exec();
       response.send(appKeep);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
+  app.get('/api/categories/:category/appkeeps', async (request, response) => {
+    try {
+      const range = dates.month('all');
+      const category = request.params.category;
+      const appKeeps = await AppKeep.aggregate([
+        {
+          $match: matchers.matchBy(range, category)
+        },
+        {
+          $sort: {
+            date: -1
+          }
+        },
+        {
+          $group: {
+            _id: {
+              month: {$month: "$date"},
+            },
+            appKeeps: {$push: "$$ROOT"}
+          }
+        }
+      ]).exec();
+      response.send(appKeeps);
     } catch (error) {
       response.status(500).send(error);
     }

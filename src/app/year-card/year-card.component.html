@@ -2,7 +2,7 @@
   <ol class="ak-items__list">
     <li *ngFor="let month of yearStatistics.months" class="ak-item">
       <div class="ak-item__what">
-        <div class="ak-item__percentage" [style.width]="getPercentage(month)"></div>
+        <div class="ak-item__percentage  ak-item--{{hue}}" [style.width]="getPercentage(month)"></div>
         <span class="ak-badge">{{month.label | akMonthName | lowercase}}</span>
       </div>
       <div class="ak-item__amount">{{month.total | akAmount}}</div>

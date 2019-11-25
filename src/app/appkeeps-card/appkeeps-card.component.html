@@ -1,0 +1,14 @@
+<ak-card [total]="total" [when]="when">
+  <ol class="ak-items__list">
+    <li *ngFor="let appKeep of appKeeps" class="ak-item"
+        [ngClass]="{'ak-item--updating': appKeep._updating}">
+      <a class="ak-item__what" routerLink="/edit/{{appKeep._id}}">
+        <div>{{appKeep.title}}</div>
+        <span
+          class="ak-badge  ak-badge--{{hue || lookupHue(appKeep.category, categories)}}">{{appKeep.category | lowercase}}</span>
+      </a>
+      <div class="ak-item__editing" *ngIf="appKeep._updating">updating...</div>
+      <div class="ak-item__amount">{{appKeep.amount | akAmount}}</div>
+    </li>
+  </ol>
+</ak-card>

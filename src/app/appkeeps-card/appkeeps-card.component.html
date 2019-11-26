@@ -4,7 +4,7 @@
         [ngClass]="{'ak-item--updating': appKeep._updating}">
       <a class="ak-item__what" routerLink="/edit/{{appKeep._id}}">
         <div>{{appKeep.title}}</div>
-        <span class="ak-badge  ak-badge--{{hue || lookupHue(appKeep.category, categories)}}">
+        <span class="ak-badge  ak-badge--{{hue || (appKeep.category | akCategoryHue)}}">
           <span *ngIf="showDate">{{appKeep.date | date: 'EEE dd'}}</span>
           <span *ngIf="!showDate">{{appKeep.category | lowercase}}</span>
         </span>

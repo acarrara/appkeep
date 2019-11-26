@@ -1,9 +1,10 @@
-<div class="ak-profile">
-  <button class="ak-profile__button" (click)="back()">
-    <span class="visually-hidden"back>close</span>
+<div class="ak-header  ak-category  ak-category--{{hue}}">
+  <button class="ak-header__button" (click)="back()">
+    <span class="visually-hidden">close</span>
     <ak-icon type="backbutton"></ak-icon>
   </button>
-  <div class="ak-profile__header">
+  <div class="ak-header__title">
     <ng-content></ng-content>
   </div>
+  <div class="ak-header__right"></div>
 </div>

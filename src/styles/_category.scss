@@ -21,7 +21,16 @@ $_category_hues: 15, 60, 105, 150, 195, 240, 285, 330;
       background-color: ak-color(95, 80, $_category-hue);
     }
   }
+}
 
+.ak-category {
+
+  @each $_category-hue in $_category-hues {
+    $i: index($_category_hues, $_category-hue);
+    &.ak-category--#{$i} {
+      background-color: ak-color(95, 80, $_category-hue);
+    }
+  }
 }
 
 @each $_category-hue in $_category-hues {

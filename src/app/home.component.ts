@@ -25,8 +25,6 @@ export class HomeComponent {
   lastMonthTotal$: Observable<MonthStatistics>;
   @Listen(['statistics', 'year'])
   lastYearTotal$: Observable<YearStatistics>;
-  @Listen(['categories'])
-  categories$: Observable<Category[]>;
   availableVersion: boolean;
 
   constructor(private swUpdate: SwUpdate,

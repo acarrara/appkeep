@@ -1,23 +1,18 @@
-<ng-container *ngIf="categories$ | async; let categories">
-  <div class="ak-page">
-    <footer class="ak-home__footer" *ngIf="availableVersion"><span class="ak-info">&#8505;</span> New version available.
-      <button (click)="reload()">Update</button>
-    </footer>
-    <header class="ak-page__header">
-      <ak-profile></ak-profile>
-    </header>
-    <section class="ak-page__content">
-      <ak-form></ak-form>
-      <ak-appkeeps-card [appKeeps]="appKeeps$ | async"
-                        [categories]="categories"
-                        [total]="todayTotal$ | async"
-                        when="today">
-      </ak-appkeeps-card>
-      <ak-month-card [monthStatistics]="thisMonthTotal$ | async" [categories]="categories"
-                     month="this month"></ak-month-card>
-      <ak-month-card [monthStatistics]="lastMonthTotal$ | async" [categories]="categories"
-                     month="last month"></ak-month-card>
-      <ak-year-card [yearStatistics]="lastYearTotal$ | async" year="this year"></ak-year-card>
-    </section>
-  </div>
-</ng-container>
+<div class="ak-page">
+  <footer class="ak-home__footer" *ngIf="availableVersion"><span class="ak-info">&#8505;</span> New version available.
+    <button (click)="reload()">Update</button>
+  </footer>
+  <header class="ak-page__header">
+    <ak-profile></ak-profile>
+  </header>
+  <section class="ak-page__content">
+    <ak-form></ak-form>
+    <ak-appkeeps-card [appKeeps]="appKeeps$ | async"
+                      [total]="todayTotal$ | async"
+                      when="today">
+    </ak-appkeeps-card>
+    <ak-month-card [monthStatistics]="thisMonthTotal$ | async" month="this month"></ak-month-card>
+    <ak-month-card [monthStatistics]="lastMonthTotal$ | async" month="last month"></ak-month-card>
+    <ak-year-card [yearStatistics]="lastYearTotal$ | async" year="this year"></ak-year-card>
+  </section>
+</div>

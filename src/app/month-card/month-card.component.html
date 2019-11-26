@@ -2,7 +2,7 @@
   <ol class="ak-items__list">
     <li *ngFor="let category of monthStatistics.categories; let i = index" class="ak-item">
       <a class="ak-item__what" routerLink="/category/{{category.category}}">
-          <div class="ak-item__percentage ak-item--{{hue(category.category)}}" [style.width]="percentage(category)" [attr.data-percentage]="percentage(category)"></div>
+          <div class="ak-item__percentage ak-item--{{category.category | akCategoryHue}}" [style.width]="percentage(category)" [attr.data-percentage]="percentage(category)"></div>
         <span class="ak-badge">{{category.category | lowercase}}</span>
       </a>
       <div class="ak-item__amount">{{category.total | akAmount}}</div>

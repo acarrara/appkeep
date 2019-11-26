@@ -12,11 +12,11 @@ import { AppKeep } from '../models/AppKeep';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'ak-edit-category',
-  templateUrl: 'edit-category.component.html',
+  selector: 'ak-category',
+  templateUrl: 'category.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EditCategoryComponent {
+export class CategoryComponent {
 
   @Listen(['categoryStatistics', 'year'])
   yearStatistics$: Observable<YearStatistics>;

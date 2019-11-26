@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
@@ -7,6 +7,9 @@ import { Location } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoryHeaderComponent {
+
+  @Input()
+  hue = 0;
 
   constructor(private location: Location) {
   }

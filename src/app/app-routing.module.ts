@@ -4,7 +4,7 @@ import { HomeComponent } from './home.component';
 import { EditComponent } from './edit/edit.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
-import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { CategoryComponent } from './edit-category/category.component';
 
 
 const routes: Routes = [
@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'category/:category',
-    component: EditCategoryComponent,
+    component: CategoryComponent,
     canActivate: [AuthGuard]
   },
   {

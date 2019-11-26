@@ -1,10 +1,11 @@
-.ak-profile {
+.ak-header {
   background-color: $ak-color-background-form;
 
   position: relative;
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   width: 100%;
   max-width: 30rem;
@@ -17,22 +18,29 @@
     margin-left: $ak-size-m;
   }
 
-  & > .ak-profile__name {
+  & > .ak-header__name {
     flex-grow: 1;
   }
 
-  & > .ak-profile__header {
-
+  & > .ak-header__title {
+    flex-grow: 0;
   }
 
-  & > .ak-profile__image {
+  & > .ak-header__image {
     border-radius: 50%;
     flex-grow: 0;
     height: $ak-size-xl;
   }
 
-    & > .ak-profile__button {
+  & > .ak-header__button {
     flex-grow: 0;
     @include ak-button();
   }
+
+  & > .ak-header__right {
+    flex-grow: 0;
+    min-width: $ak-size-xl;
+    min-height: $ak-size-xl;
+  }
+
 }

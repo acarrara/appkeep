@@ -4,9 +4,13 @@ html {
   line-height: 1.5rem;
 }
 
-h1, .ak-text-big {
+.ak-text-big {
   font-size: $ak-size-xl;
   line-height: $ak-size-xxl;
+}
+
+h1 {
+  font-size: 1.5rem;
 }
 
 h2 {

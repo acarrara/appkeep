@@ -54,7 +54,7 @@
     <symbol id="backbutton" viewBox="0 0 100 100">
       <path d="M6 50 h 88" stroke-width="12" stroke-linecap="round" stroke="#444">
       </path>
-      <path d="M50 6 l -44 44 l 44 44" fill="transparent" stroke-width="12" stroke-linecap="round" stroke="#444">
+      <path d="M50 6 l -44 44 l 44 44" fill="transparent" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" stroke="#444">
       </path>
     </symbol>
     <symbol id="save" viewBox="0 0 100 100">

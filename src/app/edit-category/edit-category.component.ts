@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { StoreService } from '../../redux/store.service';
 import { AppKeepState } from '../models/AppKeepState';
 import { Category } from '../models/Category';
@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { Listen } from '../../redux/listen.decorator';
 import { YearStatistics } from '../models/YearStatistics';
 import { AppKeep } from '../models/AppKeep';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'ak-edit-category',
@@ -32,7 +33,7 @@ export class EditCategoryComponent {
 
   constructor(private activatedRoute: ActivatedRoute,
               private store: StoreService<AppKeepState>,
-              private router: Router,
+              private location: Location,
               private actions: AppActions) {
     this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('category'))).subscribe(category => {
       this.category = {
@@ -43,7 +44,7 @@ export class EditCategoryComponent {
   }
 
   close() {
-    this.router.navigate(['']);
+    this.location.back();
   }
 
   edit() {

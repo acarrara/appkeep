@@ -11,7 +11,7 @@ const appKeepSchema = new mongoose.Schema({
 
 const model = mongoose.model('AppKeeps', appKeepSchema);
 
-model.range = (range, category) => {
+model.singleMonth = (range, category) => {
   return model.aggregate(
     [{
       $match: matchers.matchBy(range, category)

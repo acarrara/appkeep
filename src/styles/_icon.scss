@@ -1,4 +1,11 @@
 .ak-icon {
+
+  height: $ak-size-l;
+
+  & > .ak-icon__svg {
+    height: $ak-size-l;
+  }
+
   & > .ak-icon--logo {
 
     &.ak-icon__svg {

@@ -1,7 +1,10 @@
 <div class="ak-edit">
   <div class="ak-edit__header">
     <h2>{{category.category}}</h2>
-    <button class="ak-edit__close" (click)="close()">x</button>
+    <button (click)="close()" class="ak-edit__close">
+      <span class="visually-hidden">close</span>
+      <ak-icon type="close"></ak-icon>
+    </button>
   </div>
   <form class="ak-form">
     <fieldset class="ak-form__inputs">

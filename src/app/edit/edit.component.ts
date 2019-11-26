@@ -10,6 +10,7 @@ import { OptionableComponent } from '../optionable.component';
 import { Listen } from '../../redux/listen.decorator';
 import { Observable } from 'rxjs';
 import { Category } from '../models/Category';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'ak-edit',
@@ -18,15 +19,15 @@ import { Category } from '../models/Category';
 })
 export class EditComponent extends OptionableComponent {
 
-  public appKeep: AppKeep;
-
   @Listen(['users'], users => users.map(user => user.email))
   public users$: Observable<string[]>;
+
+  public appKeep: AppKeep;
 
   constructor(private activatedRoute: ActivatedRoute,
               store: StoreService<AppKeepState>,
               actions: AppActions,
-              private router: Router) {
+              private location: Location) {
     super(store, actions);
     this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('id'))).subscribe(id => {
       this.appKeep = {
@@ -46,7 +47,7 @@ export class EditComponent extends OptionableComponent {
   }
 
   close() {
-    this.router.navigate(['']);
+    this.location.back();
   }
 
   delete() {

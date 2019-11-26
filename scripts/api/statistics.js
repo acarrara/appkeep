@@ -14,7 +14,7 @@ module.exports = function (app) {
 
   app.get('/api/appkeeps/statistics/month/:id', async (request, response) => {
     try {
-      const statistics = await AppKeep.range(dates.month(request.params.id));
+      const statistics = await AppKeep.singleMonth(dates.month(request.params.id));
       response.send(statistics);
     } catch (error) {
       response.status(500).send(error);

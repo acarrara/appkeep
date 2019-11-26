@@ -46,9 +46,19 @@
       <use href="#logo" x="30" y="38.5" height="40" width="40"></use>
     </symbol>
     <symbol id="close" viewBox="0 0 100 100">
-      <path d="M5 5 l 90 90" stroke-width="8" stroke-linecap="round" stroke="#444">
+      <path d="M6 6 l 88 88" stroke-width="12" stroke-linecap="round" stroke="#444">
       </path>
-      <path d="M5 95 l 90 -90" stroke-width="8" stroke-linecap="round" stroke="#444">
+      <path d="M6 94 l 88 -88" stroke-width="12" stroke-linecap="round" stroke="#444">
+      </path>
+    </symbol>
+    <symbol id="backbutton" viewBox="0 0 100 100">
+      <path d="M6 50 h 88" stroke-width="12" stroke-linecap="round" stroke="#444">
+      </path>
+      <path d="M50 6 l -44 44 l 44 44" fill="transparent" stroke-width="12" stroke-linecap="round" stroke="#444">
+      </path>
+    </symbol>
+    <symbol id="save" viewBox="0 0 100 100">
+      <path d="M28 6 v 25 h 36 v -25 h -52 v 88 h 82 v -60 l -28 -28" stroke-width="11"  stroke-linejoin="round" stroke-linecap="round" stroke="#444">
       </path>
     </symbol>
   </defs>

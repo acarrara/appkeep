@@ -19,6 +19,8 @@ export class AppkeepsCardComponent {
   when: string;
   @Input()
   hue = 0;
+  @Input()
+  showDate = false;
 
   lookupHue(categoryTitle: string, categories: Category[]) {
     const match = categories.find(category => category.category === categoryTitle);

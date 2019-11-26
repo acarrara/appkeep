@@ -1,12 +1,12 @@
 <ng-container *ngIf="categories$ | async; let categories">
-  <div class="ak-home">
+  <div class="ak-page">
     <footer class="ak-home__footer" *ngIf="availableVersion"><span class="ak-info">&#8505;</span> New version available.
       <button (click)="reload()">Update</button>
     </footer>
-    <header class="ak-home__header">
+    <header class="ak-page__header">
       <ak-profile></ak-profile>
     </header>
-    <section class="ak-home__content">
+    <section class="ak-page__content">
       <ak-form></ak-form>
       <ak-appkeeps-card [appKeeps]="appKeeps$ | async"
                         [categories]="categories"

@@ -1,39 +1,39 @@
-<div class="ak-edit">
-  <div class="ak-edit__header">
+<div class="ak-page">
+  <ak-category-header class="ak-page__header">
     <h2>{{category.category}}</h2>
-    <button (click)="close()" class="ak-edit__close">
-      <span class="visually-hidden">close</span>
-      <ak-icon type="close"></ak-icon>
-    </button>
-  </div>
-  <form class="ak-form">
-    <fieldset class="ak-form__inputs">
-      <legend class="visually-hidden"></legend>
-      <div class="ak-input">
-        <div class="ak-input__title">Color</div>
-        <div class="ak-edit__hues">
-          <div class="ak-edit__hue" *ngFor="let hue of [1,2,3,4,5,6,7,8]">
-            <input class="visually-hidden" type="radio" name="hue" id="hue_{{hue}}"
-                   [value]="hue" [(ngModel)]="category.hue">
-            <label class="ak-item--{{hue}}" for="hue_{{hue}}"></label>
+  </ak-category-header>
+  <div class="ak-edit  ak-page__content">
+    <form class="ak-form">
+      <fieldset class="ak-form__inputs">
+        <legend class="visually-hidden"></legend>
+        <div class="ak-input">
+          <div class="ak-input__title">Color</div>
+          <div class="ak-edit__hues">
+            <div class="ak-edit__hue" *ngFor="let hue of [1,2,3,4,5,6,7,8]">
+              <input class="visually-hidden" type="radio" name="hue" id="hue_{{hue}}"
+                     [value]="hue" [(ngModel)]="category.hue">
+              <label class="ak-item--{{hue}}" for="hue_{{hue}}"></label>
+            </div>
           </div>
         </div>
+      </fieldset>
+      <div class="ak-form__buttons">
+        <button class="ak-button ak-button--primary" (click)="edit()">Save</button>
+        <button class="ak-button ">Reset</button>
       </div>
-    </fieldset>
-    <div class="ak-form__buttons">
-      <button class="ak-button ak-button--primary" (click)="edit()">Save</button>
-      <button class="ak-button ">Reset</button>
-    </div>
-  </form>
-  <ak-appkeeps-card [appKeeps]="thisMonthAppKeeps$ | async"
-                    [total]="thisMonthTotal$ | async"
-                    [hue]="category.hue"
-                    when="this month">
-  </ak-appkeeps-card>
-  <ak-appkeeps-card [appKeeps]="lastMonthAppKeeps$ | async"
-                    [total]="lastMonthTotal$ | async"
-                    [hue]="category.hue"
-                    when="last month">
-  </ak-appkeeps-card>
-  <ak-year-card [yearStatistics]="yearStatistics$ | async" year="this year" [hue]="category.hue"></ak-year-card>
+    </form>
+    <ak-appkeeps-card [appKeeps]="thisMonthAppKeeps$ | async"
+                      [total]="thisMonthTotal$ | async"
+                      [hue]="category.hue"
+                      when="this month"
+                      [showDate]="true">
+    </ak-appkeeps-card>
+    <ak-appkeeps-card [appKeeps]="lastMonthAppKeeps$ | async"
+                      [total]="lastMonthTotal$ | async"
+                      [hue]="category.hue"
+                      when="last month"
+                      [showDate]="true">
+    </ak-appkeeps-card>
+    <ak-year-card [yearStatistics]="yearStatistics$ | async" year="this year" [hue]="category.hue"></ak-year-card>
+  </div>
 </div>

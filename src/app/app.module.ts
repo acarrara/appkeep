@@ -33,6 +33,7 @@ import { AkMonthNamePipe } from './month-name.pipe';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { NotificationService } from './notification.service';
 import { AppkeepsCardComponent } from './appkeeps-card/appkeeps-card.component';
+import { CategoryHeaderComponent } from './category-header/category-header.component';
 
 const config = new AuthServiceConfig([
   {
@@ -62,7 +63,8 @@ export function provideConfig() {
     YearCardComponent,
     AkMonthNamePipe,
     EditCategoryComponent,
-    AppkeepsCardComponent
+    AppkeepsCardComponent,
+    CategoryHeaderComponent
   ],
   imports: [
     BrowserModule,

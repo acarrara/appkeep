@@ -77,17 +77,17 @@
   }
 }
 
-.ak-home {
+.ak-page {
   display: flex;
   flex-direction: column;
 
   height: 100vh;
 
-  & > .ak-home__header {
+  & > .ak-page__header {
     flex-grow: 0;
   }
 
-  & > .ak-home__content {
+  & > .ak-page__content {
     flex-grow: 1;
 
     overflow-y: auto;

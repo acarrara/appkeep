@@ -17,15 +17,12 @@
           <legend class="visually-hidden">Settings</legend>
           <div class="ak-input">
             <div class="ak-toggle">
-              <span class="ak-toggle__label">Allow notifications</span>
-              <input id="toggle" type="checkbox" class="visually-hidden">
+              <span class="ak-toggle__label">Enable notifications</span>
+              <input id="toggle" type="checkbox" class="visually-hidden" [checked]="subscribed$ | async" (click)="subscribeToNotifications($event.target.checked)">
               <label for="toggle"></label>
             </div>
           </div>
         </fieldset>
-        <div class="ak-form__buttons">
-          <button class="ak-button  ak-button--primary">Save</button>
-        </div>
       </div>
     </div>
   </div>

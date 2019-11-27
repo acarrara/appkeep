@@ -65,5 +65,22 @@
       <path d="M40 6 h -34 v 88 h 34" fill="transparent" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" stroke="#444">
       </path>
     </symbol>
+      <symbol id="wallet" viewBox="0 0 100 100">
+        <path d="M10 45 l 36 -36 l 36 36 Z" stroke-width="6" stroke-linecap="square"
+              stroke-linejoin="round" stroke="#fa8b00" fill="#fa8b00">
+        </path>
+        <path d="M18 60 l 42 -42" stroke-width="10" stroke="#444">
+        </path>
+        <path d="M90 97 h -87 v -50 h 87 v 50" stroke-width="6" stroke-linecap="round"
+              stroke-linejoin="round" stroke="#d8ba4b" fill="#d8ba4b">
+        </path>
+        <g>
+          <path d="M65 54 h 25 v 20 h -25 a 10 10 0 1 1 0 -20" stroke-width="6" stroke-linecap="round"
+                stroke-linejoin="round" stroke="#a05900" fill="#a05900">
+          </path>
+          <circle cx="65" cy="64" r="5" fill="#d8ba4b">
+          </circle>
+        </g>
+      </symbol>
   </defs>
 </svg>

@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
 import { AppKeep } from '../models/AppKeep';
 import { HttpClient } from '@angular/common/http';
 import { AppActions } from '../app.actions';
@@ -7,7 +7,6 @@ import { AppKeepState } from '../models/AppKeepState';
 import { OptionableComponent } from '../optionable.component';
 import { Option } from '../models/Option';
 import { NotificationService } from '../notification.service';
-import { Category } from '../models/Category';
 
 @Component({
   selector: 'ak-form',
@@ -15,9 +14,6 @@ import { Category } from '../models/Category';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormComponent extends OptionableComponent implements AfterViewInit {
-
-  @ViewChild('amount', {static: false})
-  amount: ElementRef;
 
   constructor(private http: HttpClient,
               private notifications: NotificationService,
@@ -27,7 +23,6 @@ export class FormComponent extends OptionableComponent implements AfterViewInit 
   }
 
   ngAfterViewInit(): void {
-    this.amount.nativeElement.focus();
     if (navigator || navigator.serviceWorker) {
       navigator.serviceWorker.addEventListener('message', event => {
         // this.appKeep.emit(event.data);

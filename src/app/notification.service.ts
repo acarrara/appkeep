@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import vapid from '../vapid.json';
 import { SwPush } from '@angular/service-worker';
 import { AppKeep } from './models/AppKeep';
 import { AmountPipe } from './amount.pipe';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class NotificationService {
@@ -23,20 +24,37 @@ export class NotificationService {
     });
   }
 
-  handlePushNotifications() {
+  subscribeToNotifications() {
     if (this.swPush.isEnabled) {
-      this.swPush.subscription.subscribe(maybeSubscription => {
+      this.swPush.subscription.pipe(first()).subscribe(maybeSubscription => {
         if (maybeSubscription === null) {
           this.swPush.requestSubscription({
             serverPublicKey: vapid.publicKey
           }).then(subscription => {
             this.storeSubscription(subscription);
           }).catch(console.error);
-          this.swPush.notificationClicks.subscribe(data => {
-            console.log(data);
-          });
         }
       });
+    }
+  }
+
+  unsubscribeFromNotifications() {
+    if (this.swPush.isEnabled) {
+      this.swPush.subscription.pipe(first()).subscribe(maybeSubscription => {
+        if (maybeSubscription !== null) {
+          this.swPush.unsubscribe().then(() => {
+            console.log('unsubscribed');
+          }).catch(console.error);
+        }
+      });
+    }
+  }
+
+  isSubscribed(): Observable<boolean> {
+    if (this.swPush.isEnabled) {
+      return this.swPush.subscription.pipe(first(), map(maybeSubscription => maybeSubscription !== null));
+    } else {
+      return of(false);
     }
   }
 

@@ -65,8 +65,8 @@
     display: inline-flex;
     align-items: center;
 
-    width: $ak-size-xl * 2;
-    height: $ak-size-xl;
+    width: $ak-size-xxl;
+    height: $ak-size-l + $ak-size-m;
 
     border-radius: $ak-size-l;
 
@@ -78,8 +78,8 @@
 
     &:after {
       content: '';
-      height: $ak-size-l + $ak-size-m;
-      width: $ak-size-l + $ak-size-m;
+      height: $ak-size-l;
+      width: $ak-size-l;
 
       margin-left: $ak-size-s;
 
@@ -95,7 +95,7 @@
   }
 
   & > input:checked + label:after {
-    transform: translateX($ak-size-xl);
+    transform: translateX($ak-size-l + $ak-size-m);
   }
 }
 

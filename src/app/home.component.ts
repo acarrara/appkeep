@@ -5,8 +5,6 @@ import { Listen } from '../redux/listen.decorator';
 import { MonthStatistics } from './models/MonthStatistic';
 import { YearStatistics } from './models/YearStatistics';
 import { SwUpdate } from '@angular/service-worker';
-import { NotificationService } from './notification.service';
-import { Category } from './models/Category';
 
 @Component({
   selector: 'ak-home',
@@ -28,10 +26,8 @@ export class HomeComponent {
   availableVersion: boolean;
 
   constructor(private swUpdate: SwUpdate,
-              notificationService: NotificationService,
               private cdr: ChangeDetectorRef) {
     this.handleUpdates();
-    notificationService.handlePushNotifications();
   }
 
   private handleUpdates() {

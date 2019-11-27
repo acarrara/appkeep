@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Listen } from '../../redux/listen.decorator';
 import { Observable } from 'rxjs';
 import { AuthService, SocialUser } from 'angularx-social-login';
-import { Listen } from '../../redux/listen.decorator';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,23 +9,16 @@ import { Router } from '@angular/router';
   templateUrl: 'profile.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
 
   @Listen(['user'])
   public user$: Observable<SocialUser>;
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private auth: AuthService) {
   }
 
   logout() {
     this.auth.signOut();
   }
 
-  ngOnInit(): void {
-    this.auth.authState.subscribe(user => {
-      if (user === null) {
-        this.router.navigate(['/login']);
-      }
-    });
-  }
 }

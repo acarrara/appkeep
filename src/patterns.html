@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" type="text/css" href="styles/_category.scss"/>
+  <link rel="stylesheet" type="text/css" href="styles/_input.scss"/>
   <meta charset="utf-8">
   <title>AppKeep Icons</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +10,27 @@
 </head>
 <body>
 <div class="wrapper">
+  <div class="wrapper-item">
+    <div class="ak-page">
+      <div class="ak-page__content">
+        <form class="ak-form">
+          <fieldset class="ak-form__inputs">
+            <legend class="visually-hidden"></legend>
+            <div class="ak-input">
+              <div class="ak-toggle">
+                <span class="ak-toggle__label">Allow notifications</span>
+                <input id="toggle" type="checkbox" class="visually-hidden">
+                <label for="toggle"></label>
+              </div>
+            </div>
+          </fieldset>
+          <div class="ak-form__buttons">
+            <button class="ak-button ak-button--primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <div class="wrapper-item">
     <div class="ak-edit">
       <div class="ak-edit__header">

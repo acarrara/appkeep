@@ -1,7 +1,32 @@
 <ng-container *ngIf="user$ | async; let user">
-  <div class="ak-header">
-    <img [src]="user.photoUrl" class="ak-header__image">
-    <div class="ak-header__name">{{user.firstName}}</div>
-    <button class="ak-header__button" (click)="logout()">Logout</button>
+  <div class="ak-page">
+    <div class="ak-page__header">
+      <ak-category-header>
+        <header class="ak-heading">
+          <small class="ak-heading__kicker">Profile</small>
+          <h1 class="ak-heading__title">{{user.firstName}}</h1>
+        </header>
+        <button class="ak-header__button" (click)="logout()">
+          <ak-icon type="logout"></ak-icon>
+        </button>
+      </ak-category-header>
+    </div>
+    <div class="ak-page__content">
+      <div class="ak-form">
+        <fieldset class="ak-form__inputs">
+          <legend class="visually-hidden">Settings</legend>
+          <div class="ak-input">
+            <div class="ak-toggle">
+              <span class="ak-toggle__label">Allow notifications</span>
+              <input id="toggle" type="checkbox" class="visually-hidden">
+              <label for="toggle"></label>
+            </div>
+          </div>
+        </fieldset>
+        <div class="ak-form__buttons">
+          <button class="ak-button  ak-button--primary">Save</button>
+        </div>
+      </div>
+    </div>
   </div>
 </ng-container>

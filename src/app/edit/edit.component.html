@@ -2,7 +2,10 @@
   <ng-container *ngIf="categories$ | async; let categories">
     <div class="ak-page">
       <ak-category-header class="ak-page__header" [hue]="appKeep.category | akCategoryHue">
-        <h1>{{appKeep.title}}</h1>
+        <header class="ak-heading">
+          <small class="ak-heading__kicker">AppKeep</small>
+          <h1 class="ak-heading__title">{{appKeep.title}}</h1>
+        </header>
       </ak-category-header>
       <div class="ak-edit  ak-page__content">
         <form class="ak-form">
@@ -45,8 +48,8 @@
             </div>
           </fieldset>
           <div class="ak-form__buttons">
-            <button class="ak-button  ak-button--primary" (click)="delete()">Delete</button>
-            <button class="ak-button" (click)="edit(options, categories)">Edit</button>
+            <button class="ak-button  ak-button--primary" (click)="edit(options, categories)">Edit</button>
+            <button class="ak-button" (click)="delete()">Delete</button>
           </div>
         </form>
       </div>

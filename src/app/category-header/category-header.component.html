@@ -4,7 +4,9 @@
     <ak-icon type="backbutton"></ak-icon>
   </button>
   <div class="ak-header__title">
-    <ng-content></ng-content>
+    <ng-content select="header"></ng-content>
   </div>
-  <div class="ak-header__right"></div>
+  <div class="ak-header__right">
+    <ng-content select="button"></ng-content>
+  </div>
 </div>

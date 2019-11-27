@@ -57,8 +57,12 @@
       <path d="M50 6 l -44 44 l 44 44" fill="transparent" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" stroke="#444">
       </path>
     </symbol>
-    <symbol id="save" viewBox="0 0 100 100">
-      <path d="M28 6 v 25 h 36 v -25 h -52 v 88 h 82 v -60 l -28 -28" stroke-width="11"  stroke-linejoin="round" stroke-linecap="round" stroke="#444">
+    <symbol id="logout" viewBox="0 0 100 100">
+      <path d="M94 50 h -60" stroke-width="12" stroke-linecap="round" stroke="#444">
+      </path>
+      <path d="M70 26 l 24 24 l -24 24" fill="transparent" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" stroke="#444">
+      </path>
+      <path d="M40 6 h -34 v 88 h 34" fill="transparent" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" stroke="#444">
       </path>
     </symbol>
   </defs>

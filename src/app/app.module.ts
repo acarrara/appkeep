@@ -23,7 +23,7 @@ import { EditComponent } from './edit/edit.component';
 import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
 import credentials from '../credentials.json';
 import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
+import { HomeHeaderComponent } from './profile/home-header.component';
 import { AuthGuard } from './auth.guard';
 import { IconComponent } from './icon/icon.component';
 import { MonthCardComponent } from './month-card/month-card.component';
@@ -35,6 +35,7 @@ import { NotificationService } from './notification.service';
 import { AppkeepsCardComponent } from './appkeeps-card/appkeeps-card.component';
 import { CategoryHeaderComponent } from './category-header/category-header.component';
 import { AkCategoryHuePipe } from './ak-category-hue.pipe';
+import { ProfileComponent } from './profile/profile.component';
 
 const config = new AuthServiceConfig([
   {
@@ -57,7 +58,7 @@ export function provideConfig() {
     EditComponent,
     AmountPipe,
     LoginComponent,
-    ProfileComponent,
+    HomeHeaderComponent,
     IconComponent,
     MonthCardComponent,
     LogoComponent,
@@ -66,7 +67,8 @@ export function provideConfig() {
     CategoryComponent,
     AppkeepsCardComponent,
     CategoryHeaderComponent,
-    AkCategoryHuePipe
+    AkCategoryHuePipe,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -63,4 +63,14 @@ export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
       ))
     );
   }
+
+  private serverLogin: Epic<any, string> = actions$ => {
+    return actions$.pipe(
+      filter(action => action.type === AppActions.SERVER_LOGIN),
+      mergeMap(action => this.http.post<string>('/auth', {token: action.payload}).pipe(
+        first(),
+        map(apiToken => this.actions.serverLoginSuccess(apiToken))
+      ))
+    );
+  }
 }

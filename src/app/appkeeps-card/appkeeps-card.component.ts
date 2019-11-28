@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { AppKeep } from '../models/AppKeep';
+import { Category } from '../models/Category';
+import { Listen } from '../../redux/listen.decorator';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ak-appkeeps-card',
@@ -7,6 +10,9 @@ import { AppKeep } from '../models/AppKeep';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppkeepsCardComponent {
+
+  @Listen(['categories'])
+  categories$: Observable<Category[]>;
 
   @Input()
   appKeeps: AppKeep[];

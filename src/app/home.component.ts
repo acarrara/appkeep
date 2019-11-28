@@ -5,6 +5,9 @@ import { Listen } from '../redux/listen.decorator';
 import { MonthStatistics } from './models/MonthStatistic';
 import { YearStatistics } from './models/YearStatistics';
 import { SwUpdate } from '@angular/service-worker';
+import { StoreService } from '../redux/store.service';
+import { AppKeepState } from './models/AppKeepState';
+import { AppActions } from './app.actions';
 
 @Component({
   selector: 'ak-home',
@@ -26,8 +29,16 @@ export class HomeComponent {
   availableVersion: boolean;
 
   constructor(private swUpdate: SwUpdate,
-              private cdr: ChangeDetectorRef) {
+              private cdr: ChangeDetectorRef,
+              store: StoreService<AppKeepState>,
+              actions: AppActions) {
     this.handleUpdates();
+
+    store.dispatch(actions.loadAppKeeps());
+    store.dispatch(actions.loadOptions());
+    store.dispatch(actions.loadCategories());
+    store.dispatch(actions.loadStatistics());
+    store.dispatch(actions.loadUsers());
   }
 
   private handleUpdates() {

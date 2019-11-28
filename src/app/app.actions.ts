@@ -24,6 +24,8 @@ export class AppActions {
   public static EDIT_CATEGORY = 'EDIT_CATEGORIE';
   public static LOAD_USERS = 'LOAD_USERS';
   public static LOGIN = 'LOGIN';
+  public static SERVER_LOGIN = 'SERVER_LOGIN';
+  public static SERVER_LOGIN_SUCCESS = 'SERVER_LOGIN_SUCCESS';
 
   public loadAppKeeps(): Action<any> {
     return {type: AppActions.LOAD_APPKEEPS};
@@ -87,5 +89,13 @@ export class AppActions {
 
   public loadUsers(): Action<any> {
     return {type: AppActions.LOAD_USERS};
+  }
+
+  serverLogin(idToken: string): Action<string> {
+    return {type: AppActions.SERVER_LOGIN, payload: idToken};
+  }
+
+  serverLoginSuccess(apiToken: string) {
+    return {type: AppActions.SERVER_LOGIN_SUCCESS, payload: apiToken};
   }
 }

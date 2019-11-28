@@ -15,6 +15,7 @@
 .env
 credentials.json
 vapid.json
+keys/
 
 # profiling files
 chrome-profiler-events*.json

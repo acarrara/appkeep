@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MonthStatistics } from '../models/MonthStatistic';
 import { CategoryAmount } from '../models/CategoryAmount';
+import { Listen } from '../../redux/listen.decorator';
+import { Observable } from 'rxjs';
+import { Category } from '../models/Category';
 
 @Component({
   selector: 'ak-month-card',
@@ -8,6 +11,9 @@ import { CategoryAmount } from '../models/CategoryAmount';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MonthCardComponent implements OnChanges {
+
+  @Listen(['categories'])
+  categories$: Observable<Category[]>;
 
   @Input()
   month: string;

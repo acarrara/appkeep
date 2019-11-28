@@ -43,6 +43,20 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
     }
   }
 
+  private serverLogin: Reducer<AppKeepState, string> = (action, oldState) => {
+    switch (action.type) {
+      case AppActions.SERVER_LOGIN_SUCCESS: {
+        return {
+          ...oldState,
+          apiToken: action.payload
+        };
+      }
+      default: {
+        return oldState;
+      }
+    }
+  }
+
   private loadStatistics: Reducer<AppKeepState, Statistics> = (action, oldState) => {
     switch (action.type) {
       case AppActions.LOAD_STATISTICS_SUCCESS: {

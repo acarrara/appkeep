@@ -1,7 +1,7 @@
 <ng-container *ngIf="options$ | async; let options">
   <ng-container *ngIf="categories$ | async; let categories">
     <div class="ak-page">
-      <ak-category-header class="ak-page__header" [hue]="appKeep.category | akCategoryHue">
+      <ak-category-header class="ak-page__header" [hue]="appKeep.category | akCategoryHue: categories">
         <header class="ak-heading">
           <small class="ak-heading__kicker">AppKeep</small>
           <h1 class="ak-heading__title">{{appKeep.title}}</h1>
@@ -35,7 +35,7 @@
               <input id="category" #category name="category" [(ngModel)]="appKeep.category" placeholder="Category"
                      list="categorylist" autocomplete="off">
               <datalist id="categorylist">
-                <option *ngFor="let category of categories" [value]="category"></option>
+                <option *ngFor="let category of categories" [value]="category.category"></option>
               </datalist>
             </div>
             <div class="ak-input">

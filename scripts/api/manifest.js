@@ -5,6 +5,7 @@ const options = require('./options');
 const categories = require('./categories');
 const users = require('./users');
 const notifications = require('./notifications');
+const auth = require('./auth');
 
 module.exports = function (app) {
 
@@ -20,6 +21,7 @@ module.exports = function (app) {
     }
   });
 
+  auth(app);
   statistics(app);
   appkeeps(app);
   categories(app);

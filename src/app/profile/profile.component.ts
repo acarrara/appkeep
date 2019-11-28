@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Listen } from '../../redux/listen.decorator';
 import { Observable } from 'rxjs';
-import { AuthService, SocialUser } from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
 import { NotificationService } from '../notification.service';
+import { ApiAuthenticationService } from '../api-authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ak-profile',
@@ -16,11 +18,13 @@ export class ProfileComponent implements OnInit {
 
   subscribed$: Observable<boolean>;
 
-  constructor(private auth: AuthService, private notificationService: NotificationService) {
+  constructor(private apiTokenService: ApiAuthenticationService,
+              private notificationService: NotificationService,
+              private router: Router) {
   }
 
   logout() {
-    this.auth.signOut();
+    this.apiTokenService.signOut().subscribe(() => this.router.navigate(['/login']));
   }
 
   subscribeToNotifications(subscribed: boolean) {

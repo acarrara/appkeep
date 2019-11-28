@@ -4,13 +4,14 @@ import { Option } from './models/Option';
 import { StoreService } from '../redux/store.service';
 import { AppKeepState } from './models/AppKeepState';
 import { AppActions } from './app.actions';
+import { Category } from './models/Category';
 
 export abstract class OptionableComponent {
 
   @Listen(['options'])
   public options$: Observable<Option[]>;
-  @Listen(['categories'], categories => categories.map(category => category.category))
-  public categories$: Observable<string[]>;
+  @Listen(['categories'])
+  public categories$: Observable<Category[]>;
 
   constructor(protected store: StoreService<AppKeepState>,
               protected actions: AppActions) {
@@ -24,7 +25,7 @@ export abstract class OptionableComponent {
     } else {
       this.store.dispatch(this.actions.addOption(updatedOption));
     }
-    if (!categories.includes(category)) {
+    if (!categories.map(current => current.category).includes(category)) {
       this.store.dispatch(this.actions.addCategory({category, hue: categories.length % 8 + 1}));
     }
   }

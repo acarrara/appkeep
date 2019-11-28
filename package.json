@@ -40,6 +40,8 @@
     "dexie": "^2.0.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "google-auth-library": "^5.5.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.5",
     "path": "^0.12.7",
     "rxjs": "~6.4.0",

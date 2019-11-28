@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AppKeep } from '../models/AppKeep';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { StoreService } from '../../redux/store.service';
 import { AppKeepState } from '../models/AppKeepState';
 import { map } from 'rxjs/operators';
@@ -41,7 +41,7 @@ export class EditComponent extends OptionableComponent {
   edit(options: Option[], categories: Category[]) {
     this.store.dispatch(this.actions.editAppKeep(this.appKeep));
     const {title, category} = this.appKeep;
-    this.updateOptions(title, category, options, categories.map(current => current.category));
+    this.updateOptions(title, category, options, categories);
     this.store.dispatch(this.actions.loadStatistics());
     this.close();
   }

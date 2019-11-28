@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AmountPipe } from './amount.pipe';
 import { FormComponent } from './form/form.component';
@@ -36,6 +36,8 @@ import { AppkeepsCardComponent } from './appkeeps-card/appkeeps-card.component';
 import { CategoryHeaderComponent } from './category-header/category-header.component';
 import { AkCategoryHuePipe } from './ak-category-hue.pipe';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthInterceptor } from './auth-interceptor.service';
+import { ApiAuthenticationService } from './api-authentication.service';
 
 const config = new AuthServiceConfig([
   {
@@ -81,11 +83,17 @@ export function provideConfig() {
     SocialLoginModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     AuthGuard,
     AppEpics,
     AppReducers,
     AppActions,
     NotificationService,
+    ApiAuthenticationService,
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig
@@ -124,13 +132,9 @@ export class AppModule {
           year: {months: []}
         },
         user: undefined,
+        apiToken: undefined,
         users: []
       }
     });
-    store.dispatch(actions.loadAppKeeps());
-    store.dispatch(actions.loadOptions());
-    store.dispatch(actions.loadCategories());
-    store.dispatch(actions.loadStatistics());
-    store.dispatch(actions.loadUsers());
   }
 }

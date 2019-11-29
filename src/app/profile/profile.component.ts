@@ -5,6 +5,10 @@ import { SocialUser } from 'angularx-social-login';
 import { NotificationService } from '../notification.service';
 import { ApiAuthenticationService } from '../api-authentication.service';
 import { Router } from '@angular/router';
+import { User } from '../models/User';
+import { StoreService } from '../../redux/store.service';
+import { AppKeepState } from '../models/AppKeepState';
+import { AppActions } from '../app.actions';
 
 @Component({
   selector: 'ak-profile',
@@ -15,16 +19,21 @@ export class ProfileComponent implements OnInit {
 
   @Listen(['user'])
   user$: Observable<SocialUser>;
+  @Listen(['users'])
+  users$: Observable<User[]>;
 
   subscribed$: Observable<boolean>;
+  newUser = '';
 
-  constructor(private apiTokenService: ApiAuthenticationService,
+  constructor(private apiAuth: ApiAuthenticationService,
               private notificationService: NotificationService,
-              private router: Router) {
+              private router: Router,
+              private store: StoreService<AppKeepState>,
+              private actions: AppActions) {
   }
 
   logout() {
-    this.apiTokenService.signOut().subscribe(() => this.router.navigate(['/login']));
+    this.apiAuth.signOut().subscribe(() => this.router.navigate(['/login']));
   }
 
   subscribeToNotifications(subscribed: boolean) {
@@ -39,4 +48,12 @@ export class ProfileComponent implements OnInit {
     this.subscribed$ = this.notificationService.isSubscribed();
   }
 
+  addUser() {
+    this.store.dispatch(this.actions.addUser({email: this.newUser, date: Date.now()}));
+    this.newUser = '';
+  }
+
+  removeUser(user: User) {
+    this.store.dispatch(this.actions.deleteUser(user));
+  }
 }

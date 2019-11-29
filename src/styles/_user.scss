@@ -1,0 +1,24 @@
+.ak-users {
+
+  & > .ak-users__user {
+    display: flex;
+    align-items: center;
+
+    padding: $ak-size-l 0;
+
+    & > .ak-users__email {
+      flex-grow: 1;
+    }
+
+    & > .ak-users__remove {
+      flex-grow: 0;
+      @include ak-button();
+    }
+
+    & + .ak-users__user {
+      border-top: 1px solid $ak-color-border;
+    }
+
+  }
+}
+

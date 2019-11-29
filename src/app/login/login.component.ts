@@ -10,12 +10,12 @@ import { ApiAuthenticationService } from '../api-authentication.service';
 export class LoginComponent {
 
   constructor(private router: Router,
-              private apiTokenService: ApiAuthenticationService) {
+              private apiAuth: ApiAuthenticationService) {
   }
 
   signInWithGoogle() {
-    this.apiTokenService.signIn();
-    this.apiTokenService.loggedIn$.subscribe(loggedIn => {
+    this.apiAuth.signIn();
+    this.apiAuth.loggedIn$.subscribe(loggedIn => {
       if (loggedIn) {
         this.router.navigate(['/home']);
       }

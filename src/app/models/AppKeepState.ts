@@ -14,5 +14,4 @@ export interface AppKeepState {
   categoryStatistics: CategoryStatistics;
   user: SocialUser;
   users: User[];
-  apiToken: string;
 }

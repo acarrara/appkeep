@@ -132,7 +132,6 @@ export class AppModule {
           year: {months: []}
         },
         user: undefined,
-        apiToken: undefined,
         users: []
       }
     });

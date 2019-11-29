@@ -7,14 +7,12 @@ import { ApiAuthenticationService } from './api-authentication.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private apiTokenService: ApiAuthenticationService,
+  constructor(private apiAuth: ApiAuthenticationService,
               private router: Router) {
   }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> {
-    return this.apiTokenService.silentSignIn().pipe(tap(loggedIn => {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    return this.apiAuth.silentSignIn().pipe(tap(loggedIn => {
       if (!loggedIn) {
         this.router.navigate(['/login']);
       }

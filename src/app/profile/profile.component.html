@@ -14,13 +14,26 @@
     <div class="ak-page__content">
       <div class="ak-form">
         <fieldset class="ak-form__inputs">
-          <legend class="visually-hidden">Settings</legend>
+          <legend class="ak-form__legend">Settings</legend>
           <div class="ak-input">
             <div class="ak-toggle">
               <span class="ak-toggle__label">Enable notifications</span>
-              <input id="toggle" type="checkbox" class="visually-hidden" [checked]="subscribed$ | async" (click)="subscribeToNotifications($event.target.checked)">
+              <input id="toggle" type="checkbox" class="visually-hidden" [checked]="subscribed$ | async"
+                     (click)="subscribeToNotifications($event.target.checked)">
               <label for="toggle"></label>
             </div>
+          </div>
+          <div class="ak-input">
+            <label for="friends">Friends</label>
+            <input type="text" id="friends" [(ngModel)]="newUser" (keydown.enter)="addUser(); ">
+            <ul class="ak-users">
+              <li class="ak-users__user" *ngFor="let current of users$ | async">
+                <div class="ak-users__email">{{current.email}}</div>
+                <button class="ak-users__remove" (click)="removeUser(current)" *ngIf="current.email !== user.email">
+                  <ak-icon type="close"></ak-icon>
+                </button>
+              </li>
+            </ul>
           </div>
         </fieldset>
       </div>

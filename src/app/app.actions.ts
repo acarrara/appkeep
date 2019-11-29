@@ -5,6 +5,7 @@ import { SocialUser } from 'angularx-social-login';
 import { Option } from './models/Option';
 import { Category } from './models/Category';
 import { CategoryStatistics } from './models/CategoryStatistics';
+import { User } from './models/User';
 
 export class AppActions {
 
@@ -23,9 +24,9 @@ export class AppActions {
   public static ADD_CATEGORY = 'ADD_CATEGORIE';
   public static EDIT_CATEGORY = 'EDIT_CATEGORIE';
   public static LOAD_USERS = 'LOAD_USERS';
+  public static ADD_USER = 'ADD_USER';
+  public static DELETE_USER = 'DELETE_USER';
   public static LOGIN = 'LOGIN';
-  public static SERVER_LOGIN = 'SERVER_LOGIN';
-  public static SERVER_LOGIN_SUCCESS = 'SERVER_LOGIN_SUCCESS';
 
   public loadAppKeeps(): Action<any> {
     return {type: AppActions.LOAD_APPKEEPS};
@@ -91,11 +92,11 @@ export class AppActions {
     return {type: AppActions.LOAD_USERS};
   }
 
-  serverLogin(idToken: string): Action<string> {
-    return {type: AppActions.SERVER_LOGIN, payload: idToken};
+  addUser(user: User) {
+    return {type: AppActions.ADD_USER, payload: user};
   }
 
-  serverLoginSuccess(apiToken: string) {
-    return {type: AppActions.SERVER_LOGIN_SUCCESS, payload: apiToken};
+  deleteUser(user: User) {
+    return {type: AppActions.DELETE_USER, payload: user};
   }
 }

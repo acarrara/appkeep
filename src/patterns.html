@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" type="text/css" href="styles/_user.scss"/>
   <link rel="stylesheet" type="text/css" href="styles/_input.scss"/>
   <meta charset="utf-8">
   <title>AppKeep Icons</title>
@@ -22,6 +23,20 @@
                 <input id="toggle" type="checkbox" class="visually-hidden">
                 <label for="toggle"></label>
               </div>
+            </div>
+            <div class="ak-input">
+              <label for="friends">Friends</label>
+              <input type="text" id="friends">
+              <ul class="ak-users">
+                <li class="ak-users__user">
+                  <div class="ak-users__email">carrara1@gmail.com</div>
+                  <button class="ak-users__remove">x</button>
+                </li>
+                <li class="ak-users__user">
+                  <div class="ak-users__email">carrara2@gmail.com</div>
+                  <button class="ak-users__remove">x</button>
+                </li>
+              </ul>
             </div>
           </fieldset>
           <div class="ak-form__buttons">

@@ -1,3 +1,9 @@
+.ak-form__legend {
+  margin-top: $ak-size-l;
+
+  font-size: 1.2rem;
+}
+
 .ak-input {
 
   & > label, & > .ak-input__title {
@@ -59,7 +65,7 @@
   justify-content: space-between;
   width: 100%;
 
-  margin-top: $ak-size-l;
+  margin: $ak-size-l auto;
 
   & > label {
     display: inline-flex;
@@ -103,3 +109,4 @@
   display: inline;
   margin-right: $ak-size-xl;
 }
+

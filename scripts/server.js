@@ -8,11 +8,13 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 restApi(app);
 
-// serve app
+if (process.env.production) {
+  app.use(enforce.HTTPS({trustProtoHeader: true}));
+}
+
 app.use(express.static(__dirname + '/../dist/appkeep'));
 
 app.get('/*', function (req, res) {

@@ -23,6 +23,7 @@ module.exports = function (app) {
         title: request.body.title,
         body: request.body.content,
         icon: 'assets/icons/icon-512x512.png',
+        badge: 'assets/badge.png',
         vibrate: [100, 50, 100]
       },
     };

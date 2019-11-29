@@ -24,13 +24,21 @@
             </div>
           </div>
           <div class="ak-input">
-            <label for="friends">Friends</label>
-            <input type="text" id="friends" [(ngModel)]="newUser" (keydown.enter)="addUser(); ">
+            <label for="friends">AppKeepers</label>
             <ul class="ak-users">
               <li class="ak-users__user" *ngFor="let current of users$ | async">
                 <div class="ak-users__email">{{current.email}}</div>
                 <button class="ak-users__remove" (click)="removeUser(current)" *ngIf="current.email !== user.email">
                   <ak-icon type="close"></ak-icon>
+                </button>
+              </li>
+              <li class="ak-users__user">
+                <div class="ak-users__email">
+                  <input type="text" id="friends" placeholder="i.e. appkeeper@mail.com" [(ngModel)]="newUser"
+                         (keydown.enter)="addUser()">
+                </div>
+                <button class="ak-users__remove">
+                  <ak-icon type="add"></ak-icon>
                 </button>
               </li>
             </ul>

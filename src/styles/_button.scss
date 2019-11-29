@@ -16,6 +16,19 @@
   cursor: pointer;
 }
 
+@mixin ak-button-primary() {
+  color: $ak-color-canvas;
+  background-color: $ak-color-button-primary;
+
+  &:hover {
+    background-color: $ak-color-button-hover;
+  }
+
+  &:active {
+    background-color: $ak-color-button-active;
+  }
+}
+
 .ak-button {
   color: $ak-color-text;
   background-color: inherit;
@@ -37,17 +50,7 @@
   }
 
   &.ak-button--primary {
-
-    color: $ak-color-canvas;
-    background-color: $ak-color-button-primary;
-
-    &:hover {
-      background-color: $ak-color-button-hover;
-    }
-
-    &:active {
-      background-color: $ak-color-button-active;
-    }
+    @include ak-button-primary();
   }
 
   &.ak-button--login {

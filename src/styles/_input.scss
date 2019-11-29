@@ -6,6 +6,27 @@
 
 .ak-input {
 
+  &  .ak-input__interactive {
+    display: flex;
+
+    & > input {
+      width: initial;
+
+      flex-grow: 1;
+    }
+
+    & > button {
+      flex-grow: 0;
+      @include ak-button();
+      @include ak-button-primary();
+
+      border-bottom-right-radius: $ak-size-m;
+      border-top-right-radius: $ak-size-m;
+      border-top-left-radius: $ak-size-m;
+
+    }
+  }
+
   & > label, & > .ak-input__title {
     display: block;
     width: 100%;
@@ -15,7 +36,7 @@
     margin-bottom: $ak-size-s;
   }
 
-  & > input {
+  & input {
     width: 100%;
     padding: $ak-size-m;
 

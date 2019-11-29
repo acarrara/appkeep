@@ -45,6 +45,12 @@
       </g>
       <use href="#logo" x="30" y="38.5" height="40" width="40"></use>
     </symbol>
+    <symbol id="add" viewBox="0 0 100 100">
+      <path d="M50 6 v 88" stroke-width="12" stroke-linecap="round" stroke="#444">
+      </path>
+      <path d="M6 50 h 88" stroke-width="12" stroke-linecap="round" stroke="#444">
+      </path>
+    </symbol>
     <symbol id="close" viewBox="0 0 100 100">
       <path d="M6 6 l 88 88" stroke-width="12" stroke-linecap="round" stroke="#444">
       </path>

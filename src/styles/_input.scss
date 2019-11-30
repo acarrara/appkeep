@@ -9,21 +9,24 @@
   &  .ak-input__interactive {
     display: flex;
 
-    & > input {
-      width: initial;
-
+    & input {
       flex-grow: 1;
+
+      padding: $ak-size-m 0;
     }
 
-    & > button {
+    & button, & a {
       flex-grow: 0;
+
       @include ak-button();
       @include ak-button-primary();
+
+      color: $ak-color-background-form;
+      stroke: $ak-color-background-form;
 
       border-bottom-right-radius: $ak-size-m;
       border-top-right-radius: $ak-size-m;
       border-top-left-radius: $ak-size-m;
-
     }
   }
 
@@ -49,6 +52,7 @@
     border: none;
 
     border-bottom: 1px solid $ak-color-border;
+
   }
 
   &.ak-input--amount {
@@ -103,6 +107,8 @@
 
     transition: background-color 0.2s ease-in-out;
 
+    box-shadow: 0px 1px 2px 0px $ak-color-shadow inset;
+
     &:after {
       content: '';
       height: $ak-size-l;
@@ -112,6 +118,8 @@
 
       border-radius: 50%;
       background-color: $ak-color-background-form;
+
+      box-shadow: 0px 1px 2px 0px $ak-color-shadow;
 
       transition: transform 0.2s ease-in-out;
     }

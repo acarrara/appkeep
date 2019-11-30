@@ -13,6 +13,49 @@
 <div class="wrapper">
   <div class="wrapper-item">
     <div class="ak-page">
+      <div class="ak-edit  ak-page__content">
+        <form class="ak-form">
+          <fieldset class="ak-form__inputs">
+            <legend class="visually-hidden"></legend>
+            <div class="ak-input">
+              <label for="amount">Amount</label>
+              <input name="amount" id="amount" type="number" min="0" step="0.01" placeholder="0000">
+            </div>
+            <div class="ak-input">
+              <label for="what">Title</label>
+              <input id="what" name="title" placeholder="Description" list="whatlist" autocomplete="off">
+              <datalist id="whatlist">
+                <option value="qualcosa"></option>
+                <option value="qualcos'altro"></option>
+              </datalist>
+            </div>
+            <div class="ak-input">
+              <label for="category">Category</label>
+              <input id="category" name="category" placeholder="Category" list="categorylist" autocomplete="off">
+              <datalist id="categorylist">
+                <option value="spesa"></option>
+                <option value="macchina"></option>
+              </datalist>
+            </div>
+            <div class="ak-input">
+              <label for="payer">Payer</label>
+              <input id="payer" name="payer" placeholder="Payer" list="payerlist" autocomplete="off">
+              <datalist id="payerlist">
+                <option value="alessandro@mail.com"></option>
+                <option value="paola@mail.com"></option>
+              </datalist>
+            </div>
+          </fieldset>
+          <div class="ak-form__buttons">
+            <button class="ak-button  ak-button--primary">Add</button>
+            <button class="ak-button">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper-item">
+    <div class="ak-page">
       <div class="ak-page__content">
         <form class="ak-form">
           <fieldset class="ak-form__inputs">
@@ -24,30 +67,54 @@
                 <label for="toggle"></label>
               </div>
             </div>
-            <div class="ak-input">
-              <label for="friends">AppKeepers</label>
-              <ul class="ak-users">
-                <li class="ak-users__user">
-                  <div class="ak-users__email">carrara1@gmail.com</div>
-                  <button class="ak-users__remove">x</button>
-                </li>
-                <li class="ak-users__user">
-                  <div class="ak-users__email">carrara2@gmail.com</div>
-                  <button class="ak-users__remove">x</button>
-                </li>
-              <li class="ak-users__user">
-                <div class="ak-users__email">
-                  <input type="text" id="friends" placeholder="i.e. appkeeper@mail.com">
-                </div>
-                <button class="ak-users__remove">+</button>
-              </li>
-              </ul>
-            </div>
           </fieldset>
-          <div class="ak-form__buttons">
-            <button class="ak-button ak-button--primary">Save</button>
-          </div>
         </form>
+        <section class="ak-items">
+          <div class="ak-items__header">
+            <div class="ak-items__title">Appkeepers</div>
+          </div>
+          <ol class="ak-items__list">
+            <li class="ak-item">
+              <div style="flex-grow: 1; padding: 1rem 0; display: flex; align-items: center">carrara1@mail.com</div>
+            </li>
+            <li class="ak-item">
+              <div style="flex-grow: 1; padding: 1rem 0; display: flex; align-items: center">carrara2@mail.com</div>
+            </li>
+            <li class="ak-item ak-input">
+              <div class="ak-users__email  ak-input__interactive" style="flex-grow: 1; padding: 1rem 0;">
+                <input type="text" id="friends" placeholder="i.e. appkeeper@mail.com">
+                <button>Add</button>
+              </div>
+            </li>
+          </ol>
+        </section>
+        <section class="ak-items">
+          <div class="ak-items__header">
+            <div class="ak-items__title">Monthly appkeeps</div>
+            <div class="ak-items__amount">193.40</div>
+          </div>
+          <ol class="ak-items__list">
+            <li class="ak-item">
+              <a class="ak-item__what">
+                <div>Mutuo</div>
+                <span class="ak-badge  ak-badge--4">banca</span>
+              </a>
+              <div class="ak-item__amount">573.00</div>
+            </li>
+            <li class="ak-item">
+              <a class="ak-item__what">
+                <div>Telefono</div>
+                <span class="ak-badge  ak-badge--5">telefono</span>
+              </a>
+              <div class="ak-item__amount">7.99</div>
+            </li>
+            <li class="ak-item ak-input">
+              <div class="ak-item__what ak-input__interactive">
+                <a href="" style="margin-left: auto; margin-top: 1rem">Add</a>
+              </div>
+            </li>
+          </ol>
+        </section>
       </div>
     </div>
   </div>
@@ -259,6 +326,16 @@
   <div class="wrapper-item">
     <svg viewBox="0 0 100 100">
       <defs>
+        <linearGradient id="gradient1"
+                        x1="0%" y1="0%"
+                        x2="100%" y2="0%"
+                        spreadMethod="pad">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#000000" stop-opacity="1"/>
+        </linearGradient>
+        <mask id="login-mask" x="0" y="0" width="100" height="100">
+          <circle cx="50" cy="60" r="50" fill="url(#gradient1)"></circle>
+        </mask>
         <symbol id="logo" viewBox="0 0 100 100">
           <path id="ceiling" d="M18 49 l 32 -32 l 32 32" stroke-width="6" stroke-linecap="square"
                 stroke-linejoin="round"

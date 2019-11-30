@@ -14,11 +14,14 @@
   font-family: inherit;
   text-align: center;
   cursor: pointer;
+
 }
 
 @mixin ak-button-primary() {
   color: $ak-color-canvas;
   background-color: $ak-color-button-primary;
+
+  box-shadow: 0px 1px 2px 0px $ak-color-shadow;
 
   &:hover {
     background-color: $ak-color-button-hover;
@@ -56,5 +59,7 @@
   &.ak-button--login {
     border-radius: $ak-size-xl;
     width: 60%;
+
+    box-shadow: 0px 1px 2px 0px $ak-color-shadow;
   }
 }

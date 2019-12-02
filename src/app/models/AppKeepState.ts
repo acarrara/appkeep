@@ -8,6 +8,7 @@ import { CategoryStatistics } from './CategoryStatistics';
 
 export interface AppKeepState {
   appKeeps: AppKeep[];
+  monthlyAppKeeps: AppKeep[];
   options: Option[];
   categories: Category[];
   statistics: Statistics;

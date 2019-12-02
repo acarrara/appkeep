@@ -14,7 +14,7 @@
     <div class="ak-page__content">
       <div class="ak-form">
         <fieldset class="ak-form__inputs">
-          <legend class="ak-form__legend">Settings</legend>
+          <legend class="visually-hidden">Settings</legend>
           <div class="ak-input">
             <div class="ak-toggle">
               <span class="ak-toggle__label">Enable notifications</span>
@@ -23,28 +23,31 @@
               <label for="toggle"></label>
             </div>
           </div>
-          <div class="ak-input">
-            <label for="friends">AppKeepers</label>
-            <ul class="ak-users">
-              <li class="ak-users__user" *ngFor="let current of users$ | async">
-                <div class="ak-users__email">{{current.email}} <span *ngIf="current.email === user.email">(you)</span></div>
-                <button class="ak-users__remove" (click)="removeUser(current)" *ngIf="current.email !== user.email">
-                  <ak-icon type="close"></ak-icon>
-                </button>
-              </li>
-              <li class="ak-users__user  ak-input__interactive">
-                <div class="ak-users__email">
-                  <input type="email" id="friends" placeholder="i.e. appkeeper@mail.com" [(ngModel)]="newUser"
-                         (keydown.enter)="addUser()">
-                </div>
-                <button>
-                  <ak-icon type="add"></ak-icon>
-                </button>
-              </li>
-            </ul>
-          </div>
         </fieldset>
       </div>
+      <ak-monthly-appkeeps-card></ak-monthly-appkeeps-card>
+      <section class="ak-items">
+        <div class="ak-items__header">
+          <div class="ak-items__title">Appkeepers</div>
+        </div>
+        <ol class="ak-items__list">
+          <li class="ak-item" *ngFor="let current of users$ | async">
+            <div class="ak-item__what  ak-user">{{current.email}} <span
+              *ngIf="current.email === user.email">(you)</span></div>
+            <button class="ak-items__remove" *ngIf="current.email !== user.email">
+              <ak-icon type="close" (click)="removeUser(current)"></ak-icon>
+            </button>
+          </li>
+          <li class="ak-item ak-input  ak-input__interactive">
+            <div class="ak-item__what">
+              <input type="text" id="friends" placeholder="i.e. appkeeper@mail.com">
+            </div>
+            <button class="ak-items__remove" (click)="addUser()">
+              <ak-icon type="add"></ak-icon>
+            </button>
+          </li>
+        </ol>
+      </section>
     </div>
   </div>
 </ng-container>

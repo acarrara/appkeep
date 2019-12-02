@@ -10,6 +10,7 @@ import { User } from './models/User';
 export class AppActions {
 
   public static LOAD_APPKEEPS = 'LOAD_APPKEEPS';
+  public static LOAD_MONTHLYAPPKEEPS = 'LOAD_MONTHLYAPPKEEPS';
   public static ADD_APPKEEP = 'ADD_APPKEEP';
   public static EDIT_APPKEEP = 'EDIT_APPKEEP';
   public static DELETE_APPKEEP = 'DELETE_APPKEEP';
@@ -98,5 +99,9 @@ export class AppActions {
 
   deleteUser(user: User) {
     return {type: AppActions.DELETE_USER, payload: user};
+  }
+
+  loadMonthlyAppKeeps() {
+    return {type: AppActions.LOAD_MONTHLYAPPKEEPS};
   }
 }

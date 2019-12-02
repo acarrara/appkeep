@@ -41,7 +41,7 @@
     }
   }
 
-  .ak-item__amount, .ak-item__editing {
+  .ak-item__amount, .ak-item__editing, .ak-item__action {
     flex-grow: 0;
     margin-left: $ak-size-l;
   }
@@ -82,6 +82,7 @@
 
 .ak-items__remove {
   @include ak-button();
+  margin-left: auto;
 }
 
 .ak-item__percentage {
@@ -99,4 +100,8 @@
 
     content: attr(data-percentage);
   }
+}
+
+.ak-items__action {
+  margin-right: $ak-size-l;
 }

@@ -1,17 +1,11 @@
-.ak-form__legend {
-  margin-top: $ak-size-l;
-
-  font-size: 1.2rem;
-}
-
 .ak-input {
 
-  &  .ak-input__interactive {
+  &.ak-input__interactive {
     display: flex;
 
-    & input {
-      flex-grow: 1;
+    padding: $ak-size-l 0;
 
+    & input {
       padding: $ak-size-m 0;
     }
 

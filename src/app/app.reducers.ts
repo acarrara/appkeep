@@ -17,6 +17,10 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
     return new RestReducer<AppKeep>('appKeep').toReducers();
   }
 
+  public getMonthlyAppKeepReducers(): Reducer<AppKeepState, AppKeep | AppKeep[]>[] {
+    return new RestReducer<AppKeep>('monthlyAppKeep').toReducers();
+  }
+
   public getOptionReducers(): Reducer<AppKeepState, Option | Option[]>[] {
     return new RestReducer('option').toReducers();
   }

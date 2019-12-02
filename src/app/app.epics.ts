@@ -34,6 +34,10 @@ export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
     return new RestEpic<AppKeep>(this.http, 'appkeep').toEpics();
   }
 
+  public getMonthlyAppKeepEpics(): Epic<any, any>[] {
+    return new RestEpic<AppKeep>(this.http, 'monthlyappkeep').toEpics();
+  }
+
   public getUserEpics(): Epic<any, any>[] {
     return new RestEpic<User>(this.http, 'user').toEpics();
   }

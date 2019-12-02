@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const statistics = require('./statistics');
 const appkeeps = require('./appkeeps');
+const monthlyAppkeeps = require('./monthlyAppkeeps');
 const options = require('./options');
 const categories = require('./categories');
 const users = require('./users');
@@ -24,6 +25,7 @@ module.exports = function (app) {
   auth(app);
   statistics(app);
   appkeeps(app);
+  monthlyAppkeeps(app);
   categories(app);
   options(app);
   users(app);

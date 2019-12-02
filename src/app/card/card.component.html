@@ -3,9 +3,10 @@
     <div class="ak-items__title">{{when}}</div>
     <div class="ak-items__amount">{{total | akAmount}}</div>
   </div>
-  <ng-container *ngIf="total; else noAppkeeps">
-    <ng-content></ng-content>
+  <ng-container  *ngIf="total; else noAppkeeps">
+    <ng-content select=".ak-items__list"></ng-content>
   </ng-container>
+  <ng-content select=".ak-items__action"></ng-content>
 </section>
 
 <ng-template #noAppkeeps>

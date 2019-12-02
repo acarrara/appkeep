@@ -1,6 +1,6 @@
 const {OAuth2Client} = require('google-auth-library');
-const jwt = require('./jwt.js');
-const authMiddleware = require('./auth-middleware');
+const jwt = require('./utils/jwt.js');
+const authMiddleware = require('./utils/auth-middleware');
 const User = require('./schemas/User');
 
 module.exports = function (app) {

@@ -51,6 +51,12 @@
       <path d="M6 50 h 88" stroke-width="12" stroke-linecap="round">
       </path>
     </symbol>
+    <symbol id="up" viewBox="0 0 100 100">
+      <path d="M50 6 v 88" stroke-width="12" stroke-linecap="round" stroke="green">
+      </path>
+      <path d="M50 6 l 20 40 h -40 Z" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="green"
+            stroke="green"></path>
+    </symbol>
     <symbol id="close" viewBox="0 0 100 100">
       <path d="M6 6 l 88 88" stroke-width="12" stroke-linecap="round" stroke="#444">
       </path>

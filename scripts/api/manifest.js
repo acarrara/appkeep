@@ -7,6 +7,7 @@ const categories = require('./categories');
 const users = require('./users');
 const notifications = require('./notifications');
 const auth = require('./auth');
+const jobs = require('./utils/jobs');
 
 module.exports = function (app) {
 
@@ -30,4 +31,6 @@ module.exports = function (app) {
   options(app);
   users(app);
   notifications(app);
+
+  jobs.scheduleMonthlyAppKeeps();
 };

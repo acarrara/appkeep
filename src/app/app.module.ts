@@ -39,6 +39,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthInterceptor } from './auth-interceptor.service';
 import { ApiAuthenticationService } from './api-authentication.service';
 import { MonthlyAppkeepsCardComponent } from './monthly-appkeeps-card/monthly-appkeeps-card.component';
+import { MonthlyComponent } from './monthly/monthly.component';
 
 const config = new AuthServiceConfig([
   {
@@ -72,7 +73,8 @@ export function provideConfig() {
     CategoryHeaderComponent,
     AkCategoryHuePipe,
     ProfileComponent,
-    MonthlyAppkeepsCardComponent
+    MonthlyAppkeepsCardComponent,
+    MonthlyComponent
   ],
   imports: [
     BrowserModule,

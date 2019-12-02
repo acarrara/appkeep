@@ -11,6 +11,9 @@ export class AppActions {
 
   public static LOAD_APPKEEPS = 'LOAD_APPKEEPS';
   public static LOAD_MONTHLYAPPKEEPS = 'LOAD_MONTHLYAPPKEEPS';
+  public static ADD_MONTHLYAPPKEEP = 'ADD_MONTHLYAPPKEEP';
+  public static EDIT_MONTHLYAPPKEEP = 'EDIT_MONTHLYAPPKEEP';
+  public static DELETE_MONTHLYAPPKEEP = 'DELETE_MONTHLYAPPKEEP';
   public static ADD_APPKEEP = 'ADD_APPKEEP';
   public static EDIT_APPKEEP = 'EDIT_APPKEEP';
   public static DELETE_APPKEEP = 'DELETE_APPKEEP';
@@ -103,5 +106,17 @@ export class AppActions {
 
   loadMonthlyAppKeeps() {
     return {type: AppActions.LOAD_MONTHLYAPPKEEPS};
+  }
+
+  addMonthlyAppKeep(monthlyAppKeep: AppKeep) {
+    return {type: AppActions.ADD_MONTHLYAPPKEEP, payload: monthlyAppKeep};
+  }
+
+  editMonthlyAppKeep(monthlyAppKeep: AppKeep) {
+    return {type: AppActions.EDIT_MONTHLYAPPKEEP, payload: monthlyAppKeep};
+  }
+
+  deleteMonthlyAppKeep(monthlyAppKeep: AppKeep) {
+    return {type: AppActions.DELETE_MONTHLYAPPKEEP, payload: monthlyAppKeep};
   }
 }

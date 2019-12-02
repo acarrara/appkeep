@@ -16,7 +16,7 @@ export class MonthlyAppkeepsCardComponent {
 
   @Listen(['categories'])
   categories$: Observable<Category[]>;
-  @Listen(['monthlyAppKeeps'], monthlyAppkeeps => monthlyAppkeeps.reduce((appKeep, partial) => partial + appKeep.amount, 0))
+  @Listen(['monthlyAppKeeps'], monthlyAppkeeps => monthlyAppkeeps.reduce((partial, appKeep) => partial + appKeep.amount, 0))
   monthlyAppkeepsTotal$: Observable<number>;
   @Listen(['monthlyAppKeeps'])
   monthlyAppKeeps$: Observable<AppKeep[]>;

@@ -3,7 +3,7 @@
     <ol class="ak-items__list">
       <li *ngFor="let appKeep of monthlyAppKeeps$ | async" class="ak-item"
           [ngClass]="{'ak-item--updating': appKeep._updating}">
-        <a class="ak-item__what" routerLink="/edit/{{appKeep._id}}">
+        <a class="ak-item__what" routerLink="/monthly/{{appKeep._id}}">
           <div>{{appKeep.title}}</div>
           <span class="ak-badge  ak-badge--{{appKeep.category | akCategoryHue: categories}}">
           <span>{{appKeep.category | lowercase}}</span>
@@ -14,7 +14,7 @@
       </li>
     </ol>
     <div class="ak-input  ak-input__interactive  ak-items__action">
-      <a href="" class="ak-items__remove" routerLink="monthly">
+      <a class="ak-items__remove" routerLink="/monthly">
         <ak-icon type="add"></ak-icon>
       </a>
     </div>

@@ -44,6 +44,7 @@
   .ak-item__amount, .ak-item__editing, .ak-item__action {
     flex-grow: 0;
     margin-left: $ak-size-l;
+    display: flex;
   }
 }
 
@@ -78,6 +79,11 @@
 
 .ak-items__amount {
   flex-grow: 0;
+  display: flex;
+}
+
+.ak-item__indicator {
+  margin-left: $ak-size-s;
 }
 
 .ak-items__remove {

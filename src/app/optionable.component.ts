@@ -25,6 +25,10 @@ export abstract class OptionableComponent {
     } else {
       this.store.dispatch(this.actions.addOption(updatedOption));
     }
+    this.updateCategory(categories, category);
+  }
+
+  protected updateCategory(categories, category) {
     if (!categories.map(current => current.category).includes(category)) {
       this.store.dispatch(this.actions.addCategory({category, hue: categories.length % 8 + 1, date: Date.now()}));
     }

@@ -21,6 +21,5 @@ module.exports.scheduleMonthlyAppKeeps = async function () {
     }
   }
 
-  // TODO: set to 0 8 1 * *
-  cron.scheduleJob('0 8 3 * *', () => storeMonthlyAppKeeps());
+  cron.scheduleJob('0 3 1 * *', () => storeMonthlyAppKeeps());
 };

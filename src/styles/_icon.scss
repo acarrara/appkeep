@@ -11,5 +11,16 @@
       fill: transparent;
     }
   }
-}
 
+  &.ak-icon--positive {
+    stroke: $ak-color-positive-strong;
+  }
+
+  &.ak-icon--negative {
+    stroke: $ak-color-negative-strong;
+  }
+
+  &.ak-icon--indifferent {
+    stroke: $ak-color-background-form;
+  }
+}

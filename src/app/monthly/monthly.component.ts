@@ -9,6 +9,7 @@ import { User } from '../models/User';
 import { Location } from '@angular/common';
 import { Listen } from '../../redux/listen.decorator';
 import { ActivatedRoute } from '@angular/router';
+import { Category } from '../models/Category';
 
 @Component({
   selector: 'ak-monthly',
@@ -43,14 +44,15 @@ export class MonthlyComponent extends OptionableComponent implements OnInit {
   reset() {
     this.monthlyAppkeep = {
       category: '',
-      title: 'New monthly AppKeep',
+      title: 'New appKeep',
       amount: 0,
       date: Date.now(),
       user: ''
     };
   }
 
-  primaryAction() {
+  primaryAction(categories: Category[]) {
+    this.updateCategory(categories, this.monthlyAppkeep.category);
     if (this.edit) {
       this.store.dispatch(this.actions.editMonthlyAppKeep(this.monthlyAppkeep));
     } else {

@@ -37,9 +37,19 @@
       <use href="assets/symbols.svg#wallet-alpha"></use>
     </svg>
   </div>
-  <div class="ak-icon ak-icon--logo">
+  <div class="ak-icon ak-icon--logo  ak-icon--positive">
     <svg class="ak-icon__svg" viewBox="0 0 1 1">
       <use href="assets/symbols.svg#up"></use>
+    </svg>
+  </div>
+  <div class="ak-icon ak-icon--logo  ak-icon--negative">
+    <svg class="ak-icon__svg" viewBox="0 0 1 1">
+      <use href="assets/symbols.svg#down"></use>
+    </svg>
+  </div>
+  <div class="ak-icon ak-icon--logo">
+    <svg class="ak-icon__svg" viewBox="0 0 1 1">
+      <use href="assets/symbols.svg#stable"></use>
     </svg>
   </div>
 </div>
@@ -184,7 +194,13 @@
       transform: translateX(0%) rotate(0deg);
     }
   }
-
+  
+  .ak-icon.ak-icon--positive {
+    stroke: #00795f;
+  }
+  .ak-icon.ak-icon--negative {
+    stroke: #cd2a01;
+  }
 </style>
 
 </body>

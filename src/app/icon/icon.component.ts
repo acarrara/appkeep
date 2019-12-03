@@ -9,4 +9,6 @@ export class IconComponent {
 
   @Input()
   type: string;
+  @Input()
+  mood: string;
 }

@@ -11,7 +11,10 @@
         </span>
         </a>
         <div class="ak-item__editing" *ngIf="appKeep._updating">updating...</div>
-        <div class="ak-item__amount">{{appKeep.amount | akAmount}}</div>
+        <div class="ak-item__amount">
+          <span>{{appKeep.amount | akAmount}}</span>
+          <ak-icon type="down" mood="negative" class="ak-item__indicator"></ak-icon>
+        </div>
       </li>
     </ol>
   </ak-card>

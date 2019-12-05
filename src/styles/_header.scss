@@ -1,5 +1,5 @@
 .ak-header {
-  background-color: $ak-color-background-form;
+  background-color: $ak-color-light;
 
   position: relative;
 
@@ -10,7 +10,7 @@
   width: 100%;
   max-width: 30rem;
 
-  box-shadow: 0 6px 4px -4px $ak-color-shadow;
+  @include standard-shadow();
 
   padding: $ak-size-m;
 

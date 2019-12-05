@@ -1,6 +1,6 @@
 <ng-container *ngIf="categories$ | async; let categories">
   <ak-card [total]="getTotal()" [when]="month">
-    <ol class="ak-items__list">
+    <ol class="ak-card__content">
       <li *ngFor="let category of monthStatistics.categories; let i = index" class="ak-item">
         <a class="ak-item__what" routerLink="/category/{{category.category}}">
           <div class="ak-item__percentage ak-item--{{category.category | akCategoryHue: categories}}"

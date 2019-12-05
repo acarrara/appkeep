@@ -60,13 +60,14 @@ export class EditComponent extends OptionableComponent {
     this.appKeep.date = new Date($event).getTime();
   }
 
-  onChange(options: Option[]) {
-    const option: Option = this.optionFromList(this.appKeep.title, options);
-    this.appKeep.category = option ? option.category : this.appKeep.category;
-  }
-
   private lookupAppKeep(id, path: string[]) {
     return this.store.snapshot<AppKeep[]>(path).find(appKeep => appKeep._id === id);
   }
 
+  onCategoryChange(categories: Category[]) {
+    const category = this.lookupCategory(categories, this.appKeep.category);
+    if (category) {
+      this.appKeep.income = category.income;
+    }
+  }
 }

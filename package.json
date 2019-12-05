@@ -11,7 +11,7 @@
     "preserve:prod": "npm run build",
     "serve:prod": "http-server -p 4000 --proxy http://localhost:3000 dist/appkeep",
     "test": "ng test",
-    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless --code-coverage",
     "lint": "ng lint --fix",
     "e2e": "ng e2e",
     "postinstall": "npm run prebuild && ng build --aot --prod",

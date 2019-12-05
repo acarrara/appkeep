@@ -15,8 +15,8 @@
       @include ak-button();
       @include ak-button-primary();
 
-      color: $ak-color-background-form;
-      stroke: $ak-color-background-form;
+      color: $ak-color-light;
+      stroke: $ak-color-light;
 
       border-bottom-right-radius: $ak-size-m;
       border-top-right-radius: $ak-size-m;
@@ -30,6 +30,7 @@
 
     cursor: pointer;
 
+    margin-top: $ak-size-l;
     margin-bottom: $ak-size-s;
   }
 
@@ -70,21 +71,16 @@
   cursor: pointer;
 }
 
-.ak-edit {
-
-  & .ak-input > label, & .ak-input > .ak-input__title {
-    margin-top: $ak-size-l;
-    margin-bottom: $ak-size-m;
-  }
-}
-
 .ak-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
 
   margin: $ak-size-l auto;
+
+  & > input {
+    @include visually-hidden();
+  }
 
   & > label {
     display: inline-flex;
@@ -111,7 +107,7 @@
       margin-left: $ak-size-s;
 
       border-radius: 50%;
-      background-color: $ak-color-background-form;
+      background-color: $ak-color-light;
 
       box-shadow: 0px 1px 2px 0px $ak-color-shadow;
 

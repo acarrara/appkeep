@@ -5,7 +5,8 @@ const appKeepSchema = new mongoose.Schema({
   category: {type: String, trim: true},
   date: {type: Date},
   amount: {type: Number, min: 0},
-  user: {type: String}
+  user: {type: String},
+  income: {type: Boolean}
 });
 
 const model = mongoose.model('MonthlyAppKeeps', appKeepSchema);

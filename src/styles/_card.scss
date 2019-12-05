@@ -1,0 +1,48 @@
+.ak-card {
+  margin: 0 $ak-size-m;
+
+  margin-bottom: $ak-size-l;
+  min-height: 256px;
+
+  background-color: $ak-color-light;
+  border-radius: $ak-size-m;
+
+  display: flex;
+  flex-direction: column;
+
+  @include standard-shadow();
+}
+
+.ak-card__header {
+  display: flex;
+  align-items: center;
+  padding: $ak-size-s $ak-size-l;
+
+  color: $ak-color-light;
+
+  flex-grow: 0;
+
+  background-color: $ak-color-primary;
+  border-top-left-radius: $ak-size-m;
+  border-top-right-radius: $ak-size-m;
+
+  border-bottom: 1px solid $ak-color-border;
+}
+
+.ak-card__title {
+  flex-grow: 1;
+
+  &:first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.ak-card__amount {
+  flex-grow: 0;
+  display: flex;
+}
+
+.ak-card__content {
+  padding: $ak-size-s $ak-size-l;
+  flex-grow: 1;
+}

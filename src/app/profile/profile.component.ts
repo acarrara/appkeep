@@ -9,7 +9,6 @@ import { User } from '../models/User';
 import { StoreService } from '../../redux/store.service';
 import { AppKeepState } from '../models/AppKeepState';
 import { AppActions } from '../app.actions';
-import { AppKeep } from '../models/AppKeep';
 
 @Component({
   selector: 'ak-profile',

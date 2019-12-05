@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" type="text/css" href="styles/_organizer.scss"/>
+  <link rel="stylesheet" type="text/css" href="styles/_organizer.scss"/>
   <link rel="stylesheet" type="text/css" href="styles/_user.scss"/>
   <link rel="stylesheet" type="text/css" href="styles/_input.scss"/>
   <meta charset="utf-8">
@@ -19,7 +21,36 @@
             <legend class="visually-hidden"></legend>
             <div class="ak-input">
               <label for="amount">Amount</label>
-              <input name="amount" id="amount" type="number" min="0" step="0.01" placeholder="0000">
+              <div class="ak-organizer">
+                <input class="ak-organizer__fill" name="amount" id="amount" type="number" min="0" step="0.01"
+                       placeholder="0000">
+                <div class="ak-options-toggle">
+                  <input type="checkbox" id="income-toggle">
+                  <label for="income-toggle">
+                    <div class="ak-options-toggle__background">
+                      <div class="ak-icon  ak-icon--small">
+                        <svg viewBox="0 0 100 100">
+                          <path d="M50 6 v 88" stroke-width="12" stroke-linecap="round">
+                          </path>
+                          <path id="arrow" d="M80 36 l -30 -30 l -30 30" fill="transparent" stroke-width="10"
+                                stroke-linecap="round" stroke-linejoin="round">
+                          </path>
+                        </svg>
+                      </div>
+                      <div class="ak-icon  ak-icon--small">
+                        <svg viewBox="0 0 100 100">
+                          <path d="M50 6 v 88" stroke-width="12" stroke-linecap="round">
+                          </path>
+                          <path id="arrow" d="M80 64 l -30 30 l -30 -30" fill="transparent" stroke-width="10"
+                                stroke-linecap="round" stroke-linejoin="round">
+                          </path>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="ak-options-toggle__handle"></div>
+                  </label>
+                </div>
+              </div>
             </div>
             <div class="ak-input">
               <label for="what">Title</label>
@@ -60,21 +91,21 @@
         <form class="ak-form">
           <fieldset class="ak-form__inputs">
             <legend class="visually-hidden"></legend>
-            <div class="ak-input">
+            <div class="ak-input  ak-organizer">
+              <span class="ak-organizer__fill">Allow notifications</span>
               <div class="ak-toggle">
-                <span class="ak-toggle__label">Allow notifications</span>
                 <input id="toggle" type="checkbox" class="visually-hidden">
                 <label for="toggle"></label>
               </div>
             </div>
           </fieldset>
         </form>
-        <section class="ak-items">
-          <div class="ak-items__header">
-            <div class="ak-items__title">Monthly appkeeps</div>
-            <div class="ak-items__amount">193.40</div>
+        <section class="ak-card">
+          <div class="ak-card__header">
+            <div class="ak-card__title">Monthly appkeeps</div>
+            <div class="ak-card__amount">193.40</div>
           </div>
-          <ol class="ak-items__list">
+          <ol class="ak-card__content">
             <li class="ak-item">
               <a class="ak-item__what">
                 <div>Mutuo</div>
@@ -96,11 +127,11 @@
             </li>
           </ol>
         </section>
-        <section class="ak-items">
-          <div class="ak-items__header">
-            <div class="ak-items__title">Appkeepers</div>
+        <section class="ak-card">
+          <div class="ak-card__header">
+            <div class="ak-card__title">Appkeepers</div>
           </div>
-          <ol class="ak-items__list">
+          <ol class="ak-card__content">
             <li class="ak-item">
               <div style="flex-grow: 1; padding: 1rem 0; display: flex; align-items: center">carrara1@mail.com</div>
             </li>
@@ -119,60 +150,101 @@
     </div>
   </div>
   <div class="wrapper-item">
-    <div class="ak-edit">
-      <div class="ak-edit__header">
-        <h2>Spesa</h2>
-        <button class="ak-edit__close">x</button>
+    <div class="ak-page">
+      <div class="ak-page__header">
+        <header class="ak-header ak-header  ak-category  ak-category--1">
+          <button class="ak-header__button">X</button>
+          <h2 class="ak-heading">Spesa</h2>
+          <div class="ak-header__right"></div>
+        </header>
       </div>
-      <form class="ak-form">
-        <fieldset class="ak-form__inputs">
-          <legend class="visually-hidden"></legend>
-          <div class="ak-edit__hues">
-            <div class="ak-edit__hue">
-              <label class="ak-item--1" for="hue_1"></label>
-              <input class="visually-hidden" type="radio" name="hue" id="hue_1" value="1">
+      <div class="ak-page__content">
+        <form class="ak-form">
+          <fieldset class="ak-form__inputs">
+            <legend class="visually-hidden"></legend>
+            <div class="ak-input">
+              <div class="ak-input__title">
+                <div class="ak-organizer">
+                  <div class="ak-organizer__fill">Type</div>
+                  <div class="ak-options-toggle">
+                    <input type="checkbox" id="type-toggle">
+                    <label for="type-toggle">
+                      <div class="ak-options-toggle__background">
+                        <div class="ak-icon  ak-icon--small">
+                          <svg viewBox="0 0 100 100">
+                            <path d="M50 6 v 88" stroke-width="12" stroke-linecap="round">
+                            </path>
+                            <path id="arrow" d="M80 36 l -30 -30 l -30 30" fill="transparent" stroke-width="10"
+                                  stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                          </svg>
+                        </div>
+                        <div class="ak-icon  ak-icon--small">
+                          <svg viewBox="0 0 100 100">
+                            <path d="M50 6 v 88" stroke-width="12" stroke-linecap="round">
+                            </path>
+                            <path id="arrow" d="M80 64 l -30 30 l -30 -30" fill="transparent" stroke-width="10"
+                                  stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                          </svg>
+                        </div>
+                      </div>
+                      <div class="ak-options-toggle__handle"></div>
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="ak-edit__hue">
-              <input class="visually-hidden" type="radio" name="hue" id="hue_2" value="2">
-              <label class="ak-item--2" for="hue_2"></label>
-            </div>
-            <div class="ak-edit__hue">
-              <input class="visually-hidden" type="radio" name="hue" id="hue_3" value="3">
-              <label class="ak-item--3" for="hue_3"></label>
-            </div>
-            <div class="ak-edit__hue">
-              <input class="visually-hidden" type="radio" name="hue" id="hue_4" value="4">
-              <label class="ak-item--4" for="hue_4"></label>
-            </div>
-            <div class="ak-edit__hue">
-              <input class="visually-hidden" type="radio" name="hue" id="hue_5" value="5">
-              <label class="ak-item--5" for="hue_5"></label>
-            </div>
-            <div class="ak-edit__hue">
-              <input class="visually-hidden" type="radio" name="hue" id="hue_6" value="6">
-              <label class="ak-item--6" for="hue_6"></label>
-            </div>
-            <div class="ak-edit__hue">
-              <input class="visually-hidden" type="radio" name="hue" id="hue_7" value="7">
-              <label class="ak-item--7" for="hue_7"></label>
-            </div>
-            <div class="ak-edit__hue">
-              <input class="visually-hidden" type="radio" name="hue" id="hue_8" value="8">
-              <label class="ak-item--8" for="hue_8"></label>
-            </div>
+            <fieldset class="ak-input">
+              <legend class="ak-input__title">Colour</legend>
+              <div class="ak-edit__hues">
+                <div class="ak-edit__hue">
+                  <label class="ak-item--1" for="hue_1"></label>
+                  <input class="visually-hidden" type="radio" name="hue" id="hue_1" value="1">
+                </div>
+                <div class="ak-edit__hue">
+                  <input class="visually-hidden" type="radio" name="hue" id="hue_2" value="2">
+                  <label class="ak-item--2" for="hue_2"></label>
+                </div>
+                <div class="ak-edit__hue">
+                  <input class="visually-hidden" type="radio" name="hue" id="hue_3" value="3">
+                  <label class="ak-item--3" for="hue_3"></label>
+                </div>
+                <div class="ak-edit__hue">
+                  <input class="visually-hidden" type="radio" name="hue" id="hue_4" value="4">
+                  <label class="ak-item--4" for="hue_4"></label>
+                </div>
+                <div class="ak-edit__hue">
+                  <input class="visually-hidden" type="radio" name="hue" id="hue_5" value="5">
+                  <label class="ak-item--5" for="hue_5"></label>
+                </div>
+                <div class="ak-edit__hue">
+                  <input class="visually-hidden" type="radio" name="hue" id="hue_6" value="6">
+                  <label class="ak-item--6" for="hue_6"></label>
+                </div>
+                <div class="ak-edit__hue">
+                  <input class="visually-hidden" type="radio" name="hue" id="hue_7" value="7">
+                  <label class="ak-item--7" for="hue_7"></label>
+                </div>
+                <div class="ak-edit__hue">
+                  <input class="visually-hidden" type="radio" name="hue" id="hue_8" value="8">
+                  <label class="ak-item--8" for="hue_8"></label>
+                </div>
+              </div>
+            </fieldset>
+          </fieldset>
+          <div class="ak-form__buttons">
+            <button class="ak-button ak-button--primary">Save</button>
+            <button class="ak-button ">Reset</button>
           </div>
-        </fieldset>
-        <div class="ak-form__buttons">
-          <button class="ak-button ak-button--primary">Save</button>
-          <button class="ak-button ">Reset</button>
+        </form>
+      </div>
+      <section class="ak-card">
+        <div class="ak-card__header">
+          <div class="ak-card__title">This year</div>
+          <div class="ak-card__amount">833.72</div>
         </div>
-      </form>
-      <section class="ak-items">
-        <div class="ak-items__header">
-          <div class="ak-items__title">This year</div>
-          <div class="ak-items__amount">833.72</div>
-        </div>
-        <ol class="ak-items__list">
+        <ol class="ak-card__content">
           <li class="ak-item">
             <div class="ak-item__what">
               <div class="ak-item__percentage ak-item--1" style="width: 61%"></div>
@@ -192,12 +264,12 @@
     </div>
   </div>
   <div class="wrapper-item">
-    <section class="ak-items">
-      <div class="ak-items__header">
-        <div class="ak-items__title">This month</div>
-        <div class="ak-items__amount">89.34</div>
+    <section class="ak-card">
+      <div class="ak-card__header">
+        <div class="ak-card__title">This month</div>
+        <div class="ak-card__amount">89.34</div>
       </div>
-      <ol class="ak-items__list">
+      <ol class="ak-card__content">
         <li class="ak-item">
           <div class="ak-item__what">
             <div class="ak-item__percentage ak-item--1" style="width: 61%" data-percentage="61%"></div>
@@ -258,12 +330,12 @@
     </section>
   </div>
   <div class="wrapper-item">
-    <section class="ak-items">
-      <div class="ak-items__header">
-        <div class="ak-items__title">Today</div>
-        <div class="ak-items__amount">89.34</div>
+    <section class="ak-card">
+      <div class="ak-card__header">
+        <div class="ak-card__title">Today</div>
+        <div class="ak-card__amount">89.34</div>
       </div>
-      <ol class="ak-items__list">
+      <ol class="ak-card__content">
         <li class="ak-item">
           <a class="ak-item__what">
             <div>Naturasi</div>

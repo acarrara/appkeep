@@ -41,9 +41,4 @@ export class FormComponent extends OptionableComponent implements AfterViewInit 
     this.store.dispatch(this.actions.loadStatistics());
     this.notifications.sendNotification(appKeep);
   }
-
-  onChange(appKeep: AppKeep, options: Option[]) {
-    const option: Option = this.optionFromList(appKeep.title, options);
-    appKeep.category = option ? option.category : appKeep.category;
-  }
 }

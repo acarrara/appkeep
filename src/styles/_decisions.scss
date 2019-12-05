@@ -29,19 +29,19 @@ $_sat-xxxl: 94;
   @return ak-color($l, $s, $ak-brand-hue);
 }
 
-$ak-color-text: brand-color($_light-xs, $_sat-xl);
+$ak-color-dark: brand-color($_light-xs, $_sat-xl);
 $ak-color-shadow: brand-color($_light-l, $_sat-s);
 $ak-color-canvas: brand-color($_light-xxxl, $_sat-xxs);
 $ak-color-background: brand-color($_light-xxl, $_sat-xxs);
-$ak-color-background-form: brand-color($_light-xxxl, $_sat-xxs);
+$ak-color-light: brand-color($_light-xxxl, $_sat-xxs);
 $ak-color-button-primary: brand-color(35, 100);
 $ak-color-button-hover: brand-color(30, 100);
 $ak-color-button-active: brand-color(25, 100);
 $ak-color-border: brand-color($_light-xl, $_sat-xxs);
-$ak-color-header: brand-color(45, 100);
+$ak-color-primary: brand-color(45, 100);
 
-$ak-color-positive-strong: ak-color(45, 100, 160);
-$ak-color-negative-strong: ak-color(45, 100, 15);
+$ak-color-positive-strong: ak-color(45, 90, 160);
+$ak-color-negative-strong: ak-color(45, 90, 15);
 
 $ak-size-xs: 0.125rem;
 $ak-size-s: 0.25rem;

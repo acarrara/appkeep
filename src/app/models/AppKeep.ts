@@ -5,4 +5,5 @@ export interface AppKeep extends RestResource {
   category: string;
   amount: number;
   user: string;
+  income: boolean;
 }

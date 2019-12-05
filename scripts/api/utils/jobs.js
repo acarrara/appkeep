@@ -10,6 +10,7 @@ module.exports.scheduleMonthlyAppKeeps = async function () {
     appKeep.title = monthlyAppKeep.title;
     appKeep.category = monthlyAppKeep.category;
     appKeep.amount = monthlyAppKeep.amount;
+    appKeep.income = monthlyAppKeep.income;
     appKeep.user = monthlyAppKeep.user;
     await appKeep.save();
   }

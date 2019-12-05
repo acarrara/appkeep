@@ -1,18 +1,3 @@
-.ak-items {
-  margin: 0 $ak-size-m;
-
-  margin-bottom: $ak-size-l;
-  min-height: 256px;
-
-  background-color: $ak-color-background-form;
-  border-radius: $ak-size-m;
-
-  display: flex;
-  flex-direction: column;
-
-  box-shadow: 0 6px 4px -4px $ak-color-shadow;
-}
-
 .ak-item {
   display: flex;
   align-items: center;
@@ -48,40 +33,6 @@
   }
 }
 
-.ak-items__list {
-  padding: $ak-size-s $ak-size-l;
-  flex-grow: 1;
-}
-
-.ak-items__header {
-  display: flex;
-  align-items: center;
-  padding: $ak-size-s $ak-size-l;
-
-  color: $ak-color-background;
-
-  flex-grow: 0;
-
-  background-color: $ak-color-header;
-  border-top-left-radius: $ak-size-m;
-  border-top-right-radius: $ak-size-m;
-
-  border-bottom: 1px solid $ak-color-border;
-}
-
-.ak-items__title {
-  flex-grow: 1;
-
-  &:first-letter {
-    text-transform: uppercase;
-  }
-}
-
-.ak-items__amount {
-  flex-grow: 0;
-  display: flex;
-}
-
 .ak-item__indicator {
   margin-left: $ak-size-s;
 }
@@ -92,7 +43,7 @@
 }
 
 .ak-item__percentage {
-  background-color: $ak-color-header;
+  background-color: $ak-color-primary;
   border-radius: $ak-size-s;
   min-width: $ak-size-xs;
   height: $ak-size-l;

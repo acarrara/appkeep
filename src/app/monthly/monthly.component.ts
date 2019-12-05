@@ -47,7 +47,8 @@ export class MonthlyComponent extends OptionableComponent implements OnInit {
       title: 'New appKeep',
       amount: 0,
       date: Date.now(),
-      user: ''
+      user: '',
+      income: false
     };
   }
 

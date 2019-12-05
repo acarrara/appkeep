@@ -10,7 +10,7 @@
           <div class="ak-text-big  ak-amount" (click)="amount.focus()">{{form.value.amount || 0 | akAmount}}</div>
         </div>
         <div class="ak-input">
-          <input id="what" #what name="title" ngModel (change)="onChange(form.value, options)" placeholder="Description"
+          <input id="what" #what name="title" ngModel (change)="onChange(form.value,options,categories)" placeholder="Description"
                  list="addwhatlist" autocomplete="off">
           <datalist id="addwhatlist">
             <option *ngFor="let option of options" [value]="option.title"></option>

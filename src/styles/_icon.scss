@@ -1,5 +1,10 @@
 .ak-icon {
   height: $ak-size-l;
+  width: $ak-size-l;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   & > .ak-icon__svg {
     height: $ak-size-l;
@@ -21,6 +26,15 @@
   }
 
   &.ak-icon--indifferent {
-    stroke: $ak-color-background-form;
+    stroke: $ak-color-light;
+  }
+
+  &.ak-icon--small {
+    height: 0.8rem;
+    width: 0.8rem;
+
+    & > .ak-icon__svg {
+      height: 0.8rem;
+    }
   }
 }

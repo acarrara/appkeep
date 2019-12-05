@@ -5,6 +5,7 @@ import { StoreService } from '../redux/store.service';
 import { AppKeepState } from './models/AppKeepState';
 import { AppActions } from './app.actions';
 import { Category } from './models/Category';
+import { AppKeep } from './models/AppKeep';
 
 export abstract class OptionableComponent {
 
@@ -15,6 +16,12 @@ export abstract class OptionableComponent {
 
   constructor(protected store: StoreService<AppKeepState>,
               protected actions: AppActions) {
+  }
+
+  public onChange(appKeep: AppKeep, options: Option[], categories: Category[]) {
+    const option: Option = this.optionFromList(appKeep.title, options);
+    appKeep.category = option ? option.category : appKeep.category;
+    appKeep.income = option ? this.lookupCategory(categories, option.category).income : false;
   }
 
   protected updateOptions(title, category, options, categories) {
@@ -30,11 +37,20 @@ export abstract class OptionableComponent {
 
   protected updateCategory(categories, category) {
     if (!categories.map(current => current.category).includes(category)) {
-      this.store.dispatch(this.actions.addCategory({category, hue: categories.length % 8 + 1, date: Date.now()}));
+      this.store.dispatch(this.actions.addCategory({
+        category,
+        hue: categories.length % 8 + 1,
+        date: Date.now(),
+        income: false
+      }));
     }
   }
 
   protected optionFromList(title: string, options: Option[]) {
     return options.find(current => current.title.toLowerCase() === title.toLowerCase());
+  }
+
+  protected lookupCategory(categories: Category[], optionCategory: string): Category {
+    return categories.find(current => current.category === optionCategory);
   }
 }

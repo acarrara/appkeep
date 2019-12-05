@@ -16,7 +16,7 @@
 
     max-width: 30rem;
 
-    color: $ak-color-text;
+    color: $ak-color-dark;
     background-color: $ak-color-background;
 
     overflow-y: auto;
@@ -27,9 +27,9 @@
   border-bottom-left-radius: $ak-size-m;
   border-bottom-right-radius: $ak-size-m;
 
-  background-color: $ak-color-background-form;
+  background-color: $ak-color-light;
 
-  box-shadow: 0 6px 4px -4px $ak-color-shadow;
+  @include standard-shadow();
 
   margin: 0 $ak-size-m $ak-size-l;
 
@@ -57,7 +57,7 @@
 .ak-edit {
 
   & > .ak-edit__header {
-    background-color: $ak-color-background-form;
+    background-color: $ak-color-light;
 
     padding: $ak-size-s $ak-size-l;
 
@@ -95,8 +95,8 @@
 }
 
 .ak-home__footer {
-  background-color: $ak-color-header;
-  color: $ak-color-background-form;
+  background-color: $ak-color-primary;
+  color: $ak-color-light;
   padding: $ak-size-m;
 
   & > button {
@@ -108,7 +108,7 @@
 .ak-info {
   height: $ak-size-xl;
   width: $ak-size-xl;
-  border: 2px solid $ak-color-background-form;
+  border: 2px solid $ak-color-light;
 
   border-radius: 50%;
   display: inline-flex;

@@ -1,13 +1,13 @@
-<section class="ak-items">
-  <div class="ak-items__header">
-    <div class="ak-items__title">{{when}}</div>
-    <div class="ak-items__amount">
+<section class="ak-card">
+  <div class="ak-card__header">
+    <div class="ak-card__title">{{when}}</div>
+    <div class="ak-card__amount">
       <span>{{total | akAmount}}</span>
       <ak-icon type="stable" class="ak-item__indicator" mood="indifferent"></ak-icon>
     </div>
   </div>
   <ng-container  *ngIf="total; else noAppkeeps">
-    <ng-content select=".ak-items__list"></ng-content>
+    <ng-content select=".ak-card__content"></ng-content>
   </ng-container>
   <ng-content select=".ak-items__action"></ng-content>
 </section>

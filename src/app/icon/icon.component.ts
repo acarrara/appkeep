@@ -11,4 +11,6 @@ export class IconComponent {
   type: string;
   @Input()
   mood: string;
+  @Input()
+  size: string;
 }

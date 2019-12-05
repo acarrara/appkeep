@@ -3,7 +3,7 @@
     <div class="ak-card__title">{{when}}</div>
     <div class="ak-card__amount">
       <span>{{total | akAmount}}</span>
-      <ak-icon *ngIf="indicator" type="stable" class="ak-item__indicator" mood="indifferent"></ak-icon>
+      <ak-icon *ngIf="indicator" type="stable" size="small" class="ak-item__indicator" mood="indifferent"></ak-icon>
     </div>
   </div>
   <ng-container  *ngIf="total; else noAppkeeps">

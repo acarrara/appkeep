@@ -54,9 +54,20 @@
     position: absolute;
     left: 100%;
     padding-left: $ak-size-s;
+    white-space: nowrap;
 
     content: attr(data-percentage);
   }
+}
+
+.ak-item__percentage-negative {
+  background-color: $ak-color-negative-normal;
+  border-bottom: $ak-size-s solid $ak-color-negative-normal;
+}
+
+.ak-item__percentage-positive {
+  background-color: $ak-color-positive-normal;
+  border-bottom: $ak-size-s solid $ak-color-positive-normal;
 }
 
 .ak-items__action {

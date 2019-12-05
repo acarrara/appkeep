@@ -1,4 +1,5 @@
 export interface Month {
-  total: number;
+  appKeepTotal: number;
+  incomeTotal: number;
   label: string;
 }

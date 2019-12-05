@@ -38,7 +38,13 @@ model.statistics = (range, category) => {
             month: {$month: "$date"},
             category: "$category"
           },
-          total: {$sum: "$amount"}
+          total: {
+            $sum: {
+              $cond: [
+                {$eq: ["$income", true]}, "$amount", {$multiply: ["$amount", -1]}
+              ]
+            }
+          }
         }
       },
       {
@@ -63,7 +69,16 @@ model.yearStatistics = (range, category) => {
           _id: {
             month: {$month: "$date"},
           },
-          total: {$sum: "$amount"}
+          incomeTotal: {
+            $sum: {
+              $cond: [{$eq: ["$income", true]}, "$amount", 0]
+            }
+          },
+          appKeepTotal: {
+            $sum: {
+              $cond: [{$eq: ["$income", false]}, "$amount", 0]
+            }
+          },
         }
       }]
   ).exec();

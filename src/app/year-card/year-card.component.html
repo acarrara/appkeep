@@ -1,11 +1,22 @@
-<ak-card [total]="getTotal()" [when]="year">
+<ak-card [total]="total" [when]="year" [indicator]="true">
   <ol class="ak-card__content">
     <li *ngFor="let month of yearStatistics.months" class="ak-item">
       <div class="ak-item__what">
-        <div class="ak-item__percentage  ak-item--{{hue}}" [style.width]="getPercentage(month)"></div>
-        <span class="ak-badge">{{month.label | akMonthName | lowercase}}</span>
+        <div>
+          <div class="ak-item__percentage  ak-item__percentage-negative ak-item--{{hue}}"
+               *ngIf="month.appKeepTotal"
+               [style.width]="getAppKeepPercentage(month)"
+               [attr.data-percentage]="month.appKeepTotal | akAmount"></div>
+          <div class="ak-item__percentage  ak-item__percentage-positive ak-item--{{hue}}"
+               *ngIf="month.incomeTotal"
+               [style.width]="getIncomePercentage(month)"
+               [attr.data-percentage]="month.incomeTotal | akAmount"></div>
+          <span class="ak-badge">{{month.label | akMonthName | lowercase}}</span></div>
       </div>
-      <div class="ak-item__amount">{{month.total | akAmount}}</div>
+      <div class="ak-item__amount">
+        <span>{{month.incomeTotal + month.appKeepTotal | akAmount}}</span>
+        <ak-income-indicator [income]="month.incomeTotal + month.appKeepTotal >= 0"></ak-income-indicator>
+      </div>
     </li>
   </ol>
 </ak-card>

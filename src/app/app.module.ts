@@ -40,6 +40,7 @@ import { AuthInterceptor } from './auth-interceptor.service';
 import { ApiAuthenticationService } from './api-authentication.service';
 import { MonthlyAppkeepsCardComponent } from './monthly-appkeeps-card/monthly-appkeeps-card.component';
 import { MonthlyComponent } from './monthly/monthly.component';
+import { IncomeIndicatorComponent } from './income-indicator/income-indicator.component';
 
 const config = new AuthServiceConfig([
   {
@@ -74,7 +75,8 @@ export function provideConfig() {
     AkCategoryHuePipe,
     ProfileComponent,
     MonthlyAppkeepsCardComponent,
-    MonthlyComponent
+    MonthlyComponent,
+    IncomeIndicatorComponent
   ],
   imports: [
     BrowserModule,
@@ -129,8 +131,8 @@ export class AppModule {
         options: [],
         categories: [],
         statistics: {
-          lastMonth: {categories: []},
-          thisMonth: {categories: []},
+          lastMonth: {appKeepCategories: [], incomeCategories: []},
+          thisMonth: {appKeepCategories: [], incomeCategories: []},
           year: {months: []}
         },
         categoryStatistics: {

@@ -29,7 +29,13 @@ export class StatisticsFactory {
 
   private findMonthStatistics(statisticsRaw: any[], thisMonth: number): MonthStatistics {
     const monthStatisticsRaw: any = statisticsRaw.find(item => item._id.month === thisMonth);
-    return monthStatisticsRaw === undefined ? {categories: []} : {categories: monthStatisticsRaw.categories};
+    return monthStatisticsRaw === undefined ? {
+      appKeepCategories: [],
+      incomeCategories: []
+    } : {
+      appKeepCategories: monthStatisticsRaw.categories.filter(category => category.total < 0),
+      incomeCategories: monthStatisticsRaw.categories.filter(category => category.total >= 0)
+    };
   }
 
   private findMonthCategoryAppkeeps(statisticsRaw: any[], thisMonth: number): AppKeep[] {
@@ -40,7 +46,8 @@ export class StatisticsFactory {
   private findYearStatistics(statisticsRaw: any[]): YearStatistics {
     return statisticsRaw.reduce((result, current) => {
       result.months.push({
-        total: current.total,
+        appKeepTotal: -current.appKeepTotal,
+        incomeTotal: current.incomeTotal,
         label: current._id.month
       });
       return result;

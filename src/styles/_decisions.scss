@@ -40,8 +40,11 @@ $ak-color-button-active: brand-color(25, 100);
 $ak-color-border: brand-color($_light-xl, $_sat-xxs);
 $ak-color-primary: brand-color(45, 100);
 
-$ak-color-positive-strong: ak-color(45, 90, 160);
-$ak-color-negative-strong: ak-color(45, 90, 15);
+$ak-color-positive-strong: ak-color(45, 90, 140);
+$ak-color-negative-strong: ak-color(45, 90, 10);
+
+$ak-color-positive-normal: ak-color(65, 90, 140);
+$ak-color-negative-normal: ak-color(65, 90, 10);
 
 $ak-size-xs: 0.125rem;
 $ak-size-s: 0.25rem;

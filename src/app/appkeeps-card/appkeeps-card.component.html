@@ -13,9 +13,7 @@
         <div class="ak-item__editing" *ngIf="appKeep._updating">updating...</div>
         <div class="ak-item__amount">
           <span>{{appKeep.amount | akAmount}}</span>
-          <ak-icon [type]="appKeep.income ? 'up' : 'down'"
-                   [mood]="appKeep.income ? 'positive' : 'negative'"
-                   class="ak-item__indicator"></ak-icon>
+          <ak-income-indicator [income]="appKeep.income"></ak-income-indicator>
         </div>
       </li>
     </ol>

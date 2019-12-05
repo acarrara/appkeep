@@ -20,22 +20,29 @@ export class MonthCardComponent implements OnChanges {
   @Input()
   monthStatistics: MonthStatistics;
 
-  private total: number;
-
-  getTotal() {
-    return this.total;
-  }
+  appKeepTotal: number;
+  incomeTotal: number;
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.monthStatistics.categories.sort(((a, b) => b.total - a.total));
-    this.total = this.monthStatistics.categories.reduce((previousValue, currentValue) => previousValue + currentValue.total, 0);
+    this.appKeepTotal = this.updateCategories(this.monthStatistics.appKeepCategories);
+    this.incomeTotal = this.updateCategories(this.monthStatistics.incomeCategories);
   }
 
-  percentage(category: CategoryAmount) {
-    return this.percentageAsNumber(category) + '%';
+  appKeepPercentage(category: CategoryAmount) {
+    return this.percentageAsNumber(category, this.appKeepTotal) + '%';
   }
 
-  percentageAsNumber(category: CategoryAmount) {
-    return (category.total / this.total * 100).toFixed(0);
+  incomePercentage(category: CategoryAmount) {
+    return this.percentageAsNumber(category, this.incomeTotal) + '%';
+  }
+
+  private percentageAsNumber(category: CategoryAmount, total: number) {
+    return (category.total / total * 100).toFixed(0);
+  }
+
+  private updateCategories(categoryAmounts: CategoryAmount[]) {
+    categoryAmounts.sort(((a, b) => a.total - b.total));
+    return categoryAmounts
+      .reduce((previousValue, currentValue) => previousValue + currentValue.total, 0);
   }
 }

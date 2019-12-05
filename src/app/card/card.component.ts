@@ -11,5 +11,7 @@ export class CardComponent {
   when: string;
   @Input()
   total: number;
+  @Input()
+  indicator = false;
 
 }

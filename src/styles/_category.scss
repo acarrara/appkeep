@@ -21,6 +21,18 @@ $_category_hues: 15, 60, 105, 150, 195, 240, 285, 330;
       background-color: ak-color(95, 80, $_category-hue);
     }
   }
+
+  & + .ak-badge {
+    margin-left: $ak-size-s;
+  }
+
+  &.ak-badge--negative {
+    background-color: $ak-color-negative-light;
+  }
+
+  &.ak-badge--positive {
+    background-color: $ak-color-positive-light;
+  }
 }
 
 .ak-category {

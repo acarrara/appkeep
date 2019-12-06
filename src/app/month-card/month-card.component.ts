@@ -22,17 +22,31 @@ export class MonthCardComponent implements OnChanges {
 
   appKeepTotal: number;
   incomeTotal: number;
+  appKeepHighest: number;
+  incomeHighest: number;
 
   ngOnChanges(changes: SimpleChanges): void {
     this.appKeepTotal = this.updateCategories(this.monthStatistics.appKeepCategories);
     this.incomeTotal = this.updateCategories(this.monthStatistics.incomeCategories);
+    this.appKeepHighest = this.monthStatistics.appKeepCategories.length ?
+      this.monthStatistics.appKeepCategories[0].total : 0;
+    this.incomeHighest = this.monthStatistics.incomeCategories.length ?
+      this.monthStatistics.incomeCategories[this.monthStatistics.incomeCategories.length - 1].total : 0;
   }
 
   appKeepPercentage(category: CategoryAmount) {
-    return this.percentageAsNumber(category, this.appKeepTotal) + '%';
+    return this.percentageAsNumber(category, this.appKeepHighest) + '%';
   }
 
   incomePercentage(category: CategoryAmount) {
+    return this.percentageAsNumber(category, this.incomeHighest) + '%';
+  }
+
+  appKeepRelativePercentage(category: CategoryAmount) {
+    return this.percentageAsNumber(category, this.appKeepTotal) + '%';
+  }
+
+  incomeRelativePercentage(category: CategoryAmount) {
     return this.percentageAsNumber(category, this.incomeTotal) + '%';
   }
 

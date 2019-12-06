@@ -37,8 +37,8 @@
 
     border-radius: $ak-size-l;
 
-    background-color: $ak-color-negative-strong;
-    stroke: $ak-color-negative-strong;
+    background-color: $ak-color-negative-normal;
+    stroke: $ak-color-negative-normal;
 
     cursor: pointer;
 
@@ -73,7 +73,7 @@
   }
 
   & > input:checked + label {
-    background-color: $ak-color-positive-strong;
+    background-color: $ak-color-positive-normal;
   }
 
   & > input:checked + label {

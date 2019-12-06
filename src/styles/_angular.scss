@@ -3,8 +3,14 @@ ak-empty-state {
   display: flex;
 }
 
-ak-icon, ak-income-indicator {
+ak-icon {
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ak-income-indicator {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 }

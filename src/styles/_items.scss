@@ -31,6 +31,23 @@
     margin-left: $ak-size-l;
     display: flex;
   }
+
+  &.ak-item--recap {
+    align-items: stretch;
+
+    & .ak-item__percentage {
+      max-width: 100%;
+    }
+
+    & > .ak-item__amount {
+      text-align: right;
+      flex-direction: column;
+    }
+
+    & > .ak-item__amount > * + *, & .ak-item__percentage + .ak-item__percentage {
+      margin-top: $ak-size-m;
+    }
+  }
 }
 
 .ak-item__indicator {
@@ -46,6 +63,7 @@
   background-color: $ak-color-primary;
   border-radius: $ak-size-s;
   min-width: $ak-size-xs;
+  max-width: calc(100% - #{$ak-size-xl});
   height: $ak-size-l;
 
   position: relative;

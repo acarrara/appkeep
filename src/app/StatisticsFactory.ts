@@ -3,6 +3,7 @@ import { MonthStatistics } from './models/MonthStatistic';
 import { YearStatistics } from './models/YearStatistics';
 import { CategoryStatistics } from './models/CategoryStatistics';
 import { AppKeep } from './models/AppKeep';
+import { OverallStatistics } from './models/OverallStatistics';
 
 export class StatisticsFactory {
   create(statisticsRaw: any): Statistics {
@@ -15,7 +16,8 @@ export class StatisticsFactory {
       lastMonth: this.findMonthStatistics(statisticsRaw[0], lastMonth),
       thisMonth: this.findMonthStatistics(statisticsRaw[0], thisMonth),
       thisYear: this.findYearStatistics(statisticsRaw[1], thisYear),
-      lastYear: this.findYearStatistics(statisticsRaw[1], lastYear)
+      lastYear: this.findYearStatistics(statisticsRaw[1], lastYear),
+      overall: this.findOverallStatistics(statisticsRaw[2])
     };
   }
 
@@ -29,7 +31,8 @@ export class StatisticsFactory {
       lastMonthAppKeeps: this.findMonthCategoryAppkeeps(statisticsRaw[0], lastMonth),
       thisMonthAppKeeps: this.findMonthCategoryAppkeeps(statisticsRaw[0], thisMonth),
       lastYear: this.findYearStatistics(statisticsRaw[1], lastYear),
-      thisYear: this.findYearStatistics(statisticsRaw[1], thisYear)
+      thisYear: this.findYearStatistics(statisticsRaw[1], thisYear),
+      overall: this.findOverallStatistics(statisticsRaw[2])
     };
   }
 
@@ -63,5 +66,16 @@ export class StatisticsFactory {
       }, value);
     }
     return value;
+  }
+
+  private findOverallStatistics(statisticsRaw: any[]): OverallStatistics {
+    return statisticsRaw.reduce((result, current) => {
+        result.years.push({
+          appKeepTotal: -current.appKeepTotal,
+          incomeTotal: current.incomeTotal,
+          label: current._id
+        });
+        return result;
+      }, {years: []});
   }
 }

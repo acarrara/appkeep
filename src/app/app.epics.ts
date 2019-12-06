@@ -47,7 +47,8 @@ export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
       filter(action => action.type === AppActions.LOAD_STATISTICS),
       mergeMap(() => zip(
         this.http.get<any>('/api/appkeeps/statistics'),
-        this.http.get<any>('/api/appkeeps/statistics/year')
+        this.http.get<any>('/api/appkeeps/statistics/year'),
+        this.http.get<any>('/api/appkeeps/statistics/overall')
       ).pipe(
         first(),
         map(statistics => this.actions.loadStatisticsSuccess(this.statisticsFactory.create(statistics)))
@@ -60,7 +61,8 @@ export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
       filter(action => action.type === AppActions.LOAD_CATEGORY_STATISTICS),
       mergeMap(action => zip(
         this.http.get<any>(`/api/categories/${action.payload}/appkeeps`),
-        this.http.get<any>(`/api/categories/${action.payload}/statistics/year`)
+        this.http.get<any>(`/api/categories/${action.payload}/statistics/year`),
+        this.http.get<any>(`/api/categories/${action.payload}/statistics/overall`)
       ).pipe(
         first(),
         map(statistics => this.actions.loadCategoryStatisticsSuccess(this.statisticsFactory.createCategoryStatistics(statistics)))

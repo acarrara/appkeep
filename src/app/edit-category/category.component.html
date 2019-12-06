@@ -54,6 +54,8 @@
                       when="last month"
                       [showDate]="true">
     </ak-appkeeps-card>
-    <ak-year-card [yearStatistics]="yearStatistics$ | async" year="this year" [hue]="category.hue"></ak-year-card>
+    <ak-recap-card [recaps]="thisYearStatistics$ | async" year="this year" [hue]="category.hue"></ak-recap-card>
+    <ak-recap-card [recaps]="lastYearStatistics$ | async" year="last year" [hue]="category.hue"></ak-recap-card>
+    <ak-recap-card [recaps]="overallStatistics$ | async" year="overall" [hue]="category.hue"></ak-recap-card>
   </div>
 </div>

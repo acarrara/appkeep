@@ -18,6 +18,10 @@ module.exports = {
     return new Date(year, 1, 1, 0, 0, 0, 0);
   },
 
+  start: function () {
+    return new Date(2018, 1, 1, 0, 0, 0, 0);
+  },
+
   today: function () {
     const date = new Date();
     date.setHours(0, 0, 0, 0);
@@ -47,5 +51,9 @@ module.exports = {
     } else {
       return {start: this.anYear(year), end: this.anYear(year + 1)};
     }
+  },
+
+  all: function () {
+    return {start: this.start(), end: this.now()};
   }
 };

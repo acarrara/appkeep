@@ -30,9 +30,27 @@ module.exports = function (app) {
     }
   });
 
+  app.get('/api/appkeeps/statistics/overall', async (request, response) => {
+    try {
+      const statistics = await AppKeep.overallStatistics();
+      response.send(statistics);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
   app.get('/api/categories/:category/statistics/year', async (request, response) => {
     try {
       const statistics = await AppKeep.yearStatistics(dates.year('last'), request.params.category);
+      response.send(statistics);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
+  app.get('/api/categories/:category/statistics/overall', async (request, response) => {
+    try {
+      const statistics = await AppKeep.overallStatistics(request.params.category);
       response.send(statistics);
     } catch (error) {
       response.status(500).send(error);

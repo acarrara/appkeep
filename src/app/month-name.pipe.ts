@@ -9,7 +9,8 @@ export class AkMonthNamePipe implements PipeTransform {
   ];
 
   transform(value: string): string {
-    return this.monthNames[Number(value) - 1];
+    const monthName = this.monthNames[Number(value) - 1];
+    return monthName ? monthName : value.toString();
   }
 
 }

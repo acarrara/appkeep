@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const matchers = require('../utils/matchers');
+const dates = require('../utils/dates');
 
 const appKeepSchema = new mongoose.Schema({
   title: {type: String, trim: true},
@@ -55,6 +56,41 @@ model.statistics = (range, category) => {
           categories: {$addToSet: {category: "$_id.category", total: "$total"}}
         }
       }]
+  ).exec();
+};
+
+model.overallStatistics = (category) => {
+  category = category || '';
+  return model.aggregate(
+    [
+      {
+        $match: matchers.matchBy(dates.all(), category)
+      },
+      {
+        $group: {
+          _id: {
+            year: {$year: "$date"}
+          },
+          incomeTotal: {
+            $sum: {
+              $cond: [{$eq: ["$income", true]}, "$amount", 0]
+            }
+          },
+          appKeepTotal: {
+            $sum: {
+              $cond: [{$eq: ["$income", false]}, "$amount", 0]
+            }
+          }
+        }
+      },
+      {
+        $project: {
+          _id: "$_id.year",
+          incomeTotal: "$incomeTotal",
+          appKeepTotal: "$appKeepTotal"
+        }
+      }
+    ]
   ).exec();
 };
 

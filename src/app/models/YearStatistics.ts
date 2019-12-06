@@ -1,5 +1,5 @@
-import { Month } from './Month';
+import { Recap } from './Recap';
 
 export interface YearStatistics {
-    months: Month[];
+    months: Recap[];
 }

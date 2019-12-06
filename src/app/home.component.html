@@ -13,7 +13,8 @@
     </ak-appkeeps-card>
     <ak-month-card [monthStatistics]="thisMonthTotal$ | async" month="this month"></ak-month-card>
     <ak-month-card [monthStatistics]="lastMonthTotal$ | async" month="last month"></ak-month-card>
-    <ak-year-card [yearStatistics]="thisYearTotal$ | async" year="this year"></ak-year-card>
-    <ak-year-card [yearStatistics]="lastYearTotal$ | async" year="last year"></ak-year-card>
+    <ak-recap-card [recaps]="thisYearTotal$ | async" year="this year"></ak-recap-card>
+    <ak-recap-card [recaps]="lastYearTotal$ | async" year="last year"></ak-recap-card>
+    <ak-recap-card [recaps]="overallTotal$ | async" year="overall"></ak-recap-card>
   </section>
 </div>

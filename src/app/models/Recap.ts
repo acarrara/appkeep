@@ -1,4 +1,4 @@
-export interface Month {
+export interface Recap {
   appKeepTotal: number;
   incomeTotal: number;
   label: string;

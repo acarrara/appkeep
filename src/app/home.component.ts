@@ -3,11 +3,11 @@ import { AppKeep } from './models/AppKeep';
 import { Observable } from 'rxjs';
 import { Listen } from '../redux/listen.decorator';
 import { MonthStatistics } from './models/MonthStatistic';
-import { YearStatistics } from './models/YearStatistics';
 import { SwUpdate } from '@angular/service-worker';
 import { StoreService } from '../redux/store.service';
 import { AppKeepState } from './models/AppKeepState';
 import { AppActions } from './app.actions';
+import { Recap } from './models/Recap';
 
 @Component({
   selector: 'ak-home',
@@ -24,10 +24,12 @@ export class HomeComponent {
   thisMonthTotal$: Observable<MonthStatistics>;
   @Listen(['statistics', 'lastMonth'])
   lastMonthTotal$: Observable<MonthStatistics>;
-  @Listen(['statistics', 'thisYear'])
-  thisYearTotal$: Observable<YearStatistics>;
-  @Listen(['statistics', 'lastYear'])
-  lastYearTotal$: Observable<YearStatistics>;
+  @Listen(['statistics', 'thisYear'], statistics => statistics.months)
+  thisYearTotal$: Observable<Recap[]>;
+  @Listen(['statistics', 'lastYear'], statistics => statistics.months)
+  lastYearTotal$: Observable<Recap[]>;
+  @Listen(['statistics', 'overall'], statistics => statistics.years)
+  overallTotal$: Observable<Recap[]>;
   availableVersion: boolean;
 
   constructor(private swUpdate: SwUpdate,

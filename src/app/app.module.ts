@@ -28,7 +28,7 @@ import { AuthGuard } from './auth.guard';
 import { IconComponent } from './icon/icon.component';
 import { MonthCardComponent } from './month-card/month-card.component';
 import { LogoComponent } from './logo/logo.component';
-import { YearCardComponent } from './year-card/year-card.component';
+import { RecapCardComponent } from './year-card/recap-card.component';
 import { AkMonthNamePipe } from './month-name.pipe';
 import { CategoryComponent } from './edit-category/category.component';
 import { NotificationService } from './notification.service';
@@ -67,7 +67,7 @@ export function provideConfig() {
     IconComponent,
     MonthCardComponent,
     LogoComponent,
-    YearCardComponent,
+    RecapCardComponent,
     AkMonthNamePipe,
     CategoryComponent,
     AppkeepsCardComponent,
@@ -134,13 +134,15 @@ export class AppModule {
           lastMonth: {appKeepCategories: [], incomeCategories: []},
           thisMonth: {appKeepCategories: [], incomeCategories: []},
           thisYear: {months: []},
-          lastYear: {months: []}
+          lastYear: {months: []},
+          overall: {years: []}
         },
         categoryStatistics: {
           thisMonthAppKeeps: [],
           lastMonthAppKeeps: [],
           thisYear: {months: []},
-          lastYear: {months: []}
+          lastYear: {months: []},
+          overall: {years: []}
         },
         user: undefined,
         users: []

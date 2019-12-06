@@ -10,6 +10,7 @@ import { Listen } from '../../redux/listen.decorator';
 import { YearStatistics } from '../models/YearStatistics';
 import { AppKeep } from '../models/AppKeep';
 import { Location } from '@angular/common';
+import { Recap } from '../models/Recap';
 
 @Component({
   selector: 'ak-category',
@@ -18,8 +19,12 @@ import { Location } from '@angular/common';
 })
 export class CategoryComponent {
 
-  @Listen(['categoryStatistics', 'year'])
-  yearStatistics$: Observable<YearStatistics>;
+  @Listen(['categoryStatistics', 'thisYear'], statistics => statistics.months)
+  thisYearStatistics$: Observable<Recap[]>;
+  @Listen(['categoryStatistics', 'lastYear'], statistics => statistics.months)
+  lastYearStatistics$: Observable<Recap[]>;
+  @Listen(['categoryStatistics', 'overall'], statistics => statistics.years)
+  overallStatistics$: Observable<Recap[]>;
   @Listen(['categoryStatistics', 'thisMonthAppKeeps'])
   thisMonthAppKeeps$: Observable<AppKeep[]>;
   @Listen(['categoryStatistics', 'thisMonthAppKeeps'], appKeeps => appKeeps.reduce((previous, current) => previous + current.amount, 0))

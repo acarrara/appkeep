@@ -24,7 +24,9 @@ export class HomeComponent {
   thisMonthTotal$: Observable<MonthStatistics>;
   @Listen(['statistics', 'lastMonth'])
   lastMonthTotal$: Observable<MonthStatistics>;
-  @Listen(['statistics', 'year'])
+  @Listen(['statistics', 'thisYear'])
+  thisYearTotal$: Observable<YearStatistics>;
+  @Listen(['statistics', 'lastYear'])
   lastYearTotal$: Observable<YearStatistics>;
   availableVersion: boolean;
 

@@ -108,7 +108,7 @@ export function provideConfig() {
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(store: StoreService<AppKeepState>, reducers: AppReducers, epics: AppEpics, actions: AppActions) {
+  constructor(store: StoreService<AppKeepState>, reducers: AppReducers, epics: AppEpics) {
     store.setup({
       reducers: [
         ...reducers.toArray(),
@@ -133,12 +133,14 @@ export class AppModule {
         statistics: {
           lastMonth: {appKeepCategories: [], incomeCategories: []},
           thisMonth: {appKeepCategories: [], incomeCategories: []},
-          year: {months: []}
+          thisYear: {months: []},
+          lastYear: {months: []}
         },
         categoryStatistics: {
           thisMonthAppKeeps: [],
           lastMonthAppKeeps: [],
-          year: {months: []}
+          thisYear: {months: []},
+          lastYear: {months: []}
         },
         user: undefined,
         users: []

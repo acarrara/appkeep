@@ -60,28 +60,51 @@ module.exports = function (app) {
     }
   });
 
+  function filterAppKeeps(range, category) {
+    return AppKeep.aggregate([
+      {
+        $match: matchers.matchBy(range, category)
+      },
+      {
+        $sort: {
+          date: -1
+        }
+      },
+      {
+        $group: {
+          _id: {
+            month: {$month: "$date"},
+          },
+          appKeeps: {$push: "$$ROOT"}
+        }
+      }
+    ]).exec();
+  }
+
   app.get('/api/categories/:category/appkeeps', async (request, response) => {
     try {
       const range = dates.month('all');
-      const category = request.params.category;
-      const appKeeps = await AppKeep.aggregate([
-        {
-          $match: matchers.matchBy(range, category)
-        },
-        {
-          $sort: {
-            date: -1
-          }
-        },
-        {
-          $group: {
-            _id: {
-              month: {$month: "$date"},
-            },
-            appKeeps: {$push: "$$ROOT"}
-          }
-        }
-      ]).exec();
+      const appKeeps = await filterAppKeeps(range, request.params.category);
+      response.send(appKeeps);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
+  app.get('/api/year/:year', async (request, response) => {
+    try {
+      const range = dates.year(request.params.year);
+      const appKeeps = await filterAppKeeps(range);
+      response.send(appKeeps);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
+  app.get('/api/year/:year/:category', async (request, response) => {
+    try {
+      const range = dates.year(request.params.year);
+      const appKeeps = await filterAppKeeps(range, request.params.category);
       response.send(appKeeps);
     } catch (error) {
       response.status(500).send(error);

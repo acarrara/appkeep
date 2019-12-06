@@ -3,11 +3,13 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const restApi = require('./api/manifest');
 const enforce = require('express-sslify');
+const compression = require('compression');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(compression());
 
 restApi(app);
 

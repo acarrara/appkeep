@@ -9,7 +9,7 @@ import { Statistics } from './models/Statistics';
 import { StatisticsFactory } from './StatisticsFactory';
 import { Option } from './models/Option';
 import { RestEpic } from './RestEpic';
-import { User } from './models/User';
+import { UserInfo } from './models/UserInfo';
 import { zip } from 'rxjs';
 import { CategoryStatistics } from './models/CategoryStatistics';
 
@@ -39,7 +39,7 @@ export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
   }
 
   public getUserEpics(): Epic<any, any>[] {
-    return new RestEpic<User>(this.http, 'user').toEpics();
+    return new RestEpic<UserInfo>(this.http, 'user').toEpics();
   }
 
   private loadStatistics: Epic<any, Statistics> = actions$ => {

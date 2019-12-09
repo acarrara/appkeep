@@ -1,21 +1,24 @@
 <ng-container *ngIf="categories$ | async; let categories">
-  <ak-card [total]="total" [when]="when" [indicator]="true">
-    <ol class="ak-card__content">
-      <li *ngFor="let appKeep of appKeeps" class="ak-item"
-          [ngClass]="{'ak-item--updating': appKeep._updating}">
-        <a class="ak-item__what" routerLink="/edit/{{appKeep._id}}">
-          <div>{{appKeep.title}}</div>
-          <span class="ak-badge  ak-badge--{{hue || (appKeep.category | akCategoryHue: categories)}}">
-          <span *ngIf="showDate">{{appKeep.date | date: 'EEE dd'}}</span>
-          <span *ngIf="!showDate">{{appKeep.category | lowercase}}</span>
-        </span>
-        </a>
-        <div class="ak-item__editing" *ngIf="appKeep._updating">updating...</div>
-        <div class="ak-item__amount">
-          <span>{{appKeep.amount | akAmount}}</span>
-          <ak-income-indicator [income]="appKeep.income"></ak-income-indicator>
-        </div>
-      </li>
-    </ol>
-  </ak-card>
-</ng-container>
+    <ak-card [total]="total" [when]="when" [indicator]="true">
+      <ol class="ak-card__content">
+        <li *ngFor="let appKeep of appKeeps" class="ak-item"
+            [ngClass]="{'ak-item--updating': appKeep._updating}">
+          <a class="ak-item__what" routerLink="/edit/{{appKeep._id}}">
+            <div>{{appKeep.title}}</div>
+            <span class="ak-badge  ak-badge--{{hue || (appKeep.category | akCategoryHue: categories)}}">
+            <span *ngIf="showDate">{{appKeep.date | date: 'EEE dd'}}</span>
+            <span *ngIf="!showDate">{{appKeep.category | lowercase}}</span>
+          </span>
+            <span class="ak-badge  ak-badge--{{appKeep.user | akUserHue}}">
+              {{appKeep.user | akUserName}}
+            </span>
+          </a>
+          <div class="ak-item__editing" *ngIf="appKeep._updating">updating...</div>
+          <div class="ak-item__amount">
+            <span>{{appKeep.amount | akAmount}}</span>
+            <ak-income-indicator [income]="appKeep.income"></ak-income-indicator>
+          </div>
+        </li>
+      </ol>
+    </ak-card>
+  </ng-container>

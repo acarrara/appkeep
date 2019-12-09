@@ -34,13 +34,15 @@ import { CategoryComponent } from './edit-category/category.component';
 import { NotificationService } from './notification.service';
 import { AppkeepsCardComponent } from './appkeeps-card/appkeeps-card.component';
 import { CategoryHeaderComponent } from './category-header/category-header.component';
-import { AkCategoryHuePipe } from './ak-category-hue.pipe';
+import { CategoryHuePipe } from './category-hue.pipe';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthInterceptor } from './auth-interceptor.service';
 import { ApiAuthenticationService } from './api-authentication.service';
 import { MonthlyAppkeepsCardComponent } from './monthly-appkeeps-card/monthly-appkeeps-card.component';
 import { MonthlyComponent } from './monthly/monthly.component';
 import { IncomeIndicatorComponent } from './income-indicator/income-indicator.component';
+import { UserHuePipe } from './user-hue.pipe';
+import { UserNamePipe } from './user-name.pipe';
 
 const config = new AuthServiceConfig([
   {
@@ -72,11 +74,13 @@ export function provideConfig() {
     CategoryComponent,
     AppkeepsCardComponent,
     CategoryHeaderComponent,
-    AkCategoryHuePipe,
+    CategoryHuePipe,
     ProfileComponent,
     MonthlyAppkeepsCardComponent,
     MonthlyComponent,
-    IncomeIndicatorComponent
+    IncomeIndicatorComponent,
+    UserHuePipe,
+    UserNamePipe
   ],
   imports: [
     BrowserModule,
@@ -144,7 +148,10 @@ export class AppModule {
           lastYear: {months: []},
           overall: {years: []}
         },
-        user: undefined,
+        user: {
+          social: undefined,
+          info: undefined
+        },
         users: []
       }
     });

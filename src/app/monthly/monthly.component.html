@@ -38,7 +38,8 @@
           </div>
         </fieldset>
         <div class="ak-form__buttons">
-          <button class="ak-button  ak-button--primary" (click)="primaryAction(categories)">{{edit ? 'Edit' : 'Add'}}</button>
+          <button class="ak-button  ak-button--primary"
+                  (click)="primaryAction(categories)">{{edit ? 'Edit' : 'Add'}}</button>
           <button class="ak-button" (click)="criticalAction()">{{edit ? 'Delete' : 'Reset'}}</button>
         </div>
       </form>

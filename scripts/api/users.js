@@ -40,4 +40,15 @@ module.exports = function (app) {
       response.status(500).send(error);
     }
   });
+
+  app.put("/api/categories/:id", async (request, response) => {
+    try {
+      const user = await User.findById(request.params.id).exec();
+      user.set(request.body);
+      const result = await user.save();
+      response.send(result);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
 };

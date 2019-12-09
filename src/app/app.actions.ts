@@ -1,10 +1,10 @@
 import { Action } from '../redux/Action';
 import { AppKeep } from './models/AppKeep';
 import { Statistics } from './models/Statistics';
-import { SocialUser } from 'angularx-social-login';
 import { Option } from './models/Option';
 import { Category } from './models/Category';
 import { CategoryStatistics } from './models/CategoryStatistics';
+import { UserInfo } from './models/UserInfo';
 import { User } from './models/User';
 
 export class AppActions {
@@ -29,6 +29,7 @@ export class AppActions {
   public static EDIT_CATEGORY = 'EDIT_CATEGORIE';
   public static LOAD_USERS = 'LOAD_USERS';
   public static ADD_USER = 'ADD_USER';
+  public static EDIT_USER = 'EDIT_USER';
   public static DELETE_USER = 'DELETE_USER';
   public static LOGIN = 'LOGIN';
 
@@ -64,7 +65,7 @@ export class AppActions {
     return {type: AppActions.LOAD_CATEGORY_STATISTICS_SUCCESS, payload: categoryStatistics};
   }
 
-  login(user: SocialUser): Action<SocialUser> {
+  login(user: User): Action<User> {
     return {type: AppActions.LOGIN, payload: user};
   }
 
@@ -96,11 +97,11 @@ export class AppActions {
     return {type: AppActions.LOAD_USERS};
   }
 
-  addUser(user: User) {
+  addUser(user: UserInfo) {
     return {type: AppActions.ADD_USER, payload: user};
   }
 
-  deleteUser(user: User) {
+  deleteUser(user: UserInfo) {
     return {type: AppActions.DELETE_USER, payload: user};
   }
 
@@ -118,5 +119,9 @@ export class AppActions {
 
   deleteMonthlyAppKeep(monthlyAppKeep: AppKeep) {
     return {type: AppActions.DELETE_MONTHLYAPPKEEP, payload: monthlyAppKeep};
+  }
+
+  editUser(user: UserInfo) {
+    return {type: AppActions.EDIT_USER, payload: user};
   }
 }

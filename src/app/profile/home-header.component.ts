@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SocialUser } from 'angularx-social-login';
 import { Listen } from '../../redux/listen.decorator';
+import { User } from '../models/User';
 
 @Component({
   selector: 'ak-home-header',
@@ -11,6 +11,6 @@ import { Listen } from '../../redux/listen.decorator';
 export class HomeHeaderComponent {
 
   @Listen(['user'])
-  public user$: Observable<SocialUser>;
+  public user$: Observable<User>;
 
 }

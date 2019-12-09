@@ -1,10 +1,10 @@
 import { AppKeep } from './AppKeep';
 import { Statistics } from './Statistics';
-import { SocialUser } from 'angularx-social-login';
 import { Option } from './Option';
-import { User } from './User';
+import { UserInfo } from './UserInfo';
 import { Category } from './Category';
 import { CategoryStatistics } from './CategoryStatistics';
+import { User } from './User';
 
 export interface AppKeepState {
   appKeeps: AppKeep[];
@@ -13,6 +13,6 @@ export interface AppKeepState {
   categories: Category[];
   statistics: Statistics;
   categoryStatistics: CategoryStatistics;
-  user: SocialUser;
-  users: User[];
+  user: User;
+  users: UserInfo[];
 }

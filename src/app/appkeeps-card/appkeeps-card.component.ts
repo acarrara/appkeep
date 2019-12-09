@@ -3,6 +3,7 @@ import { AppKeep } from '../models/AppKeep';
 import { Category } from '../models/Category';
 import { Listen } from '../../redux/listen.decorator';
 import { Observable } from 'rxjs';
+import { UserInfo } from '../models/UserInfo';
 
 @Component({
   selector: 'ak-appkeeps-card',
@@ -13,6 +14,8 @@ export class AppkeepsCardComponent {
 
   @Listen(['categories'])
   categories$: Observable<Category[]>;
+  @Listen(['users'])
+  users$: Observable<UserInfo[]>;
 
   @Input()
   appKeeps: AppKeep[];

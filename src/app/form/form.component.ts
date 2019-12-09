@@ -35,7 +35,7 @@ export class FormComponent extends OptionableComponent implements AfterViewInit 
     appKeep.category = appKeep.category || appKeep.title.toLowerCase();
     appKeep.date = Date.now();
     appKeep.amount = appKeep.amount || 0;
-    appKeep.user = this.store.snapshot<string>(['user'], user => user.email);
+    appKeep.user = this.store.snapshot<string>(['user', 'info'], user => user.email);
     this.store.dispatch(this.actions.addAppKeep(appKeep));
     this.updateOptions(appKeep.title, appKeep.category, options, categories);
     this.store.dispatch(this.actions.loadStatistics());

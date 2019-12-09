@@ -5,7 +5,7 @@ import { AppKeepState } from '../models/AppKeepState';
 import { AppActions } from '../app.actions';
 import { StoreService } from '../../redux/store.service';
 import { Observable } from 'rxjs';
-import { User } from '../models/User';
+import { UserInfo } from '../models/UserInfo';
 import { Location } from '@angular/common';
 import { Listen } from '../../redux/listen.decorator';
 import { ActivatedRoute } from '@angular/router';
@@ -19,7 +19,7 @@ import { Category } from '../models/Category';
 export class MonthlyComponent extends OptionableComponent implements OnInit {
 
   @Listen(['users'], users => users.map(user => user.email))
-  users$: Observable<User[]>;
+  users$: Observable<UserInfo[]>;
   monthlyAppkeep: AppKeep;
   edit: boolean;
 

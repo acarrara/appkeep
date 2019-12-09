@@ -3,13 +3,13 @@ import { AppActions } from './app.actions';
 import { AppKeepState } from './models/AppKeepState';
 import { ArrayableFunctions } from './ArrayableFunctions';
 import { Statistics } from './models/Statistics';
-import { SocialUser } from 'angularx-social-login';
 import { AppKeep } from './models/AppKeep';
 import { Option } from './models/Option';
 import { RestReducer } from './RestReducer';
-import { User } from './models/User';
+import { UserInfo } from './models/UserInfo';
 import { Category } from './models/Category';
 import { CategoryStatistics } from './models/CategoryStatistics';
+import { User } from './models/User';
 
 export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> {
 
@@ -29,11 +29,11 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
     return new RestReducer('categorie').toReducers();
   }
 
-  public getUserReducers(): Reducer<AppKeepState, User | User[]>[] {
+  public getUserReducers(): Reducer<AppKeepState, UserInfo | UserInfo[]>[] {
     return new RestReducer('user').toReducers();
   }
 
-  private login: Reducer<AppKeepState, SocialUser> = (action, oldState) => {
+  private login: Reducer<AppKeepState, User> = (action, oldState) => {
     switch (action.type) {
       case AppActions.LOGIN: {
         return {

@@ -91,14 +91,63 @@
         <form class="ak-form">
           <fieldset class="ak-form__inputs">
             <legend class="visually-hidden"></legend>
-            <div class="ak-input  ak-organizer">
-              <span class="ak-organizer__fill">Allow notifications</span>
-              <div class="ak-toggle">
-                <input id="toggle" type="checkbox" class="visually-hidden">
-                <label for="toggle"></label>
+            <div class="ak-input">
+              <label for="username">Name</label>
+              <input type="text" id="username">
+            </div>
+            <fieldset class="ak-input">
+              <legend class="ak-input__title">Colour</legend>
+              <div class="ak-edit__hues">
+                <div class="ak-edit__hue">
+                  <input class="visually-hidden" type="radio" name="hue" id="user_hue_1" value="1">
+                  <label class="ak-item--1" for="user_hue_1"></label>
+                </div>
+                <div class="ak-edit__hue">
+                  <input class="visually-hidden" type="radio" name="hue" id="user_hue_2" value="2">
+                  <label class="ak-item--2" for="user_hue_2"></label>
+                </div>
+                <div class="ak-edit__hue">
+                  <input class="visually-hidden" type="radio" name="hue" id="user_hue_3" value="3">
+                  <label class="ak-item--3" for="user_hue_3"></label>
+                </div>
+                <div class="ak-edit__hue">
+                  <input class="visually-hidden" type="radio" name="hue" id="user_hue_4" value="4">
+                  <label class="ak-item--4" for="user_hue_4"></label>
+                </div>
+                <div class="ak-edit__hue">
+                  <input class="visually-hidden" type="radio" name="hue" id="user_hue_5" value="5">
+                  <label class="ak-item--5" for="user_hue_5"></label>
+                </div>
+                <div class="ak-edit__hue">
+                  <input class="visually-hidden" type="radio" name="hue" id="user_hue_6" value="6">
+                  <label class="ak-item--6" for="user_hue_6"></label>
+                </div>
+                <div class="ak-edit__hue">
+                  <input class="visually-hidden" type="radio" name="hue" id="user_hue_7" value="7">
+                  <label class="ak-item--7" for="user_hue_7"></label>
+                </div>
+                <div class="ak-edit__hue">
+                  <input class="visually-hidden" type="radio" name="hue" id="user_hue_8" value="8">
+                  <label class="ak-item--8" for="user_hue_8"></label>
+                </div>
+              </div>
+            </fieldset>
+            <div class="ak-input">
+              <div class="ak-input__title">
+                <div class="ak-organizer">
+                  <div class="ak-organizer__fill">Allow notifications</div>
+                  <div class="ak-toggle">
+                    <input id="toggle" type="checkbox" class="visually-hidden">
+                    <label for="toggle"></label>
+                  </div>
+                </div>
               </div>
             </div>
           </fieldset>
+          <div class="ak-form__buttons">
+            <button class="ak-button ak-button--primary">Save</button>
+            <button class="ak-button ">Reset</button>
+          </div>
         </form>
         <section class="ak-card">
           <div class="ak-card__header">
@@ -246,20 +295,20 @@
           <ol class="ak-card__content">
             <li class="ak-item  ak-item--recap">
               <div class="ak-item__what">
-                  <div class="ak-organizer">
-                    <div class="ak-organizer__fill">
-                      <div class="ak-item__percentage  ak-item__percentage-negative ak-item--1"
-                           style="width: 85%"></div>
-                    </div>
+                <div class="ak-organizer">
+                  <div class="ak-organizer__fill">
+                    <div class="ak-item__percentage  ak-item__percentage-negative ak-item--1"
+                         style="width: 85%"></div>
                   </div>
-                  <div class="ak-organizer">
-                    <div class="ak-organizer__fill">
-                      <div class="ak-item__percentage  ak-item__percentage-positive ak-item--1"
-                           style="width: 98%"></div>
-                    </div>
-                  </div>
-                  <span class="ak-badge">november</span>
                 </div>
+                <div class="ak-organizer">
+                  <div class="ak-organizer__fill">
+                    <div class="ak-item__percentage  ak-item__percentage-positive ak-item--1"
+                         style="width: 98%"></div>
+                  </div>
+                </div>
+                <span class="ak-badge">november</span>
+              </div>
               <div class="ak-item__amount">
                 <div>59.32 €</div>
                 <div>59.32 €</div>

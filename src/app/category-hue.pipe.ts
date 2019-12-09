@@ -6,7 +6,7 @@ import { AppKeepState } from './models/AppKeepState';
 @Pipe({
   name: 'akCategoryHue'
 })
-export class AkCategoryHuePipe implements PipeTransform {
+export class CategoryHuePipe implements PipeTransform {
 
   transform(categoryTitle: string, categories: Category[]): number {
     const match = categories.find(category => category.category === categoryTitle);

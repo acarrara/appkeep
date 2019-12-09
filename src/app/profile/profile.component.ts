@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Listen } from '../../redux/listen.decorator';
 import { Observable } from 'rxjs';
-import { SocialUser } from 'angularx-social-login';
 import { NotificationService } from '../notification.service';
 import { ApiAuthenticationService } from '../api-authentication.service';
 import { Router } from '@angular/router';
-import { User } from '../models/User';
+import { UserInfo } from '../models/UserInfo';
 import { StoreService } from '../../redux/store.service';
 import { AppKeepState } from '../models/AppKeepState';
 import { AppActions } from '../app.actions';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'ak-profile',
@@ -17,10 +17,10 @@ import { AppActions } from '../app.actions';
 })
 export class ProfileComponent implements OnInit {
 
-  @Listen(['user'])
-  user$: Observable<SocialUser>;
+  @Listen(['user', 'info'])
+  user$: Observable<UserInfo>;
   @Listen(['users'])
-  users$: Observable<User[]>;
+  users$: Observable<UserInfo[]>;
 
   subscribed$: Observable<boolean>;
   newUser = '';
@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit {
   constructor(private apiAuth: ApiAuthenticationService,
               private notificationService: NotificationService,
               private router: Router,
+              private location: Location,
               private store: StoreService<AppKeepState>,
               private actions: AppActions) {
   }
@@ -48,12 +49,22 @@ export class ProfileComponent implements OnInit {
     this.subscribed$ = this.notificationService.isSubscribed();
   }
 
-  addUser() {
-    this.store.dispatch(this.actions.addUser({email: this.newUser, date: Date.now()}));
+  addUser(users: UserInfo[]) {
+    this.store.dispatch(this.actions.addUser({
+      email: this.newUser,
+      date: Date.now(),
+      hue: users.length % 8 + 1,
+      name: ''
+    }));
     this.newUser = '';
   }
 
-  removeUser(user: User) {
+  removeUser(user: UserInfo) {
     this.store.dispatch(this.actions.deleteUser(user));
+  }
+
+  editUser(user: UserInfo) {
+    this.store.dispatch(this.actions.editUser(user));
+    this.location.back();
   }
 }

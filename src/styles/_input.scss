@@ -76,8 +76,6 @@
   align-items: center;
   justify-content: space-between;
 
-  margin: $ak-size-l auto;
-
   & > input {
     @include visually-hidden();
   }

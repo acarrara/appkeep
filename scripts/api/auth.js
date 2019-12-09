@@ -19,10 +19,20 @@ module.exports = function (app) {
         throw new Error("Error while authenticating google user: audience mismatch: wanted [" + clientID + "] but was [" + audience + "]")
       }
 
-      return {id: payload.sub, email: payload.email};
+      return {id: payload.sub, email: payload.email, name: payload.given_name};
     }).catch(err => {
       throw new Error("Error while authenticating google user: " + JSON.stringify(err));
     });
+  }
+
+  async function updateName(user) {
+    const storedUser = await User.findOne({email: user.email}).exec();
+    if (!storedUser.name) {
+      storedUser.name = user.name;
+      return await storedUser.save();
+    } else {
+      return storedUser;
+    }
   }
 
   app.post('/auth', (request, response) => {
@@ -32,7 +42,9 @@ module.exports = function (app) {
         User.countDocuments({email: user.email}).then(usersCount => {
           const authorized = !!usersCount;
           if (authorized) {
-            response.send(JSON.stringify(jwt.generateToken(user)));
+            updateName(user).then(storedUser => {
+              response.send({user: storedUser, apiToken: jwt.generateToken(user)});
+            });
           } else {
             response.status(403).send('User unauthorized. Not a friend');
           }

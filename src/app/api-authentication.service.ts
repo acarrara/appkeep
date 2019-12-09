@@ -6,6 +6,7 @@ import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { AppKeepState } from './models/AppKeepState';
 import { StoreService } from '../redux/store.service';
 import { AppActions } from './app.actions';
+import { UserInfo } from './models/UserInfo';
 
 @Injectable()
 export class ApiAuthenticationService {
@@ -25,16 +26,18 @@ export class ApiAuthenticationService {
     if (this.apiTokenSubject$.getValue()) {
       return;
     }
-    this.auth.signIn(GoogleLoginProvider.PROVIDER_ID).then(user => {
-      if (user !== null) {
-        this.store.dispatch(this.actions.login(user));
-        this.getApiToken(user.idToken).subscribe(apiToken => this.apiTokenSubject$.next(apiToken));
+    this.auth.signIn(GoogleLoginProvider.PROVIDER_ID).then(social => {
+      if (social !== null) {
+        this.getApiToken(social.idToken).subscribe(({user, apiToken}) => {
+          this.store.dispatch(this.actions.login({social, info: user}));
+          this.apiTokenSubject$.next(apiToken);
+        });
       }
     });
   }
 
-  getApiToken(idToken: string): Observable<string> {
-    return this.http.post<string>('/auth', {token: idToken}).pipe(first());
+  getApiToken(idToken: string): Observable<{ user: UserInfo, apiToken: string }> {
+    return this.http.post<{ user: UserInfo, apiToken: string }>('/auth', {token: idToken}).pipe(first());
   }
 
   silentSignIn(): Observable<boolean> {
@@ -42,15 +45,15 @@ export class ApiAuthenticationService {
       return of(true);
     }
     return this.auth.authState.pipe(
-      flatMap(user => {
-        if (!user) {
+      flatMap(social => {
+        if (!social) {
           this.apiTokenSubject$.next(undefined);
           return of(false);
         } else {
-          this.store.dispatch(this.actions.login(user));
-          return this.getApiToken(user.idToken).pipe(
-            map(apiToken => {
+          return this.getApiToken(social.idToken).pipe(
+            map(({user, apiToken}) => {
               this.apiTokenSubject$.next(apiToken);
+              this.store.dispatch(this.actions.login({social, info: user}));
               return true;
             }));
         }

@@ -4,7 +4,7 @@
       <ak-category-header>
         <header class="ak-heading">
           <small class="ak-heading__kicker">Profile</small>
-          <h1 class="ak-heading__title">{{user.firstName}}</h1>
+          <h1 class="ak-heading__title">{{user.name}}</h1>
         </header>
         <button class="ak-header__button" (click)="logout()">
           <ak-icon type="logout"></ak-icon>
@@ -15,23 +15,47 @@
       <div class="ak-form">
         <fieldset class="ak-form__inputs">
           <legend class="visually-hidden">Settings</legend>
-          <div class="ak-input  ak-organizer">
-              <span class="ak-organizer__fill">Enable notifications</span>
-            <div class="ak-toggle">
-              <input id="toggle" type="checkbox" [checked]="subscribed$ | async"
-                     (click)="subscribeToNotifications($event.target.checked)">
-              <label for="toggle"></label>
+          <div class="ak-input">
+            <div class="ak-input__title">
+              <div class="ak-organizer">
+                <div class="ak-organizer__fill">Enable notifications</div>
+                <div class="ak-toggle">
+                  <input id="toggle" type="checkbox" [checked]="subscribed$ | async"
+                         (click)="subscribeToNotifications($event.target.checked)">
+                  <label for="toggle"></label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ak-input">
+            <label for="name">Name</label>
+            <input id="name" name="name" [(ngModel)]="user.name"
+                   placeholder="i.e. Poppy"
+                   autocomplete="off">
+          </div>
+          <div class="ak-input">
+            <div class="ak-input__title">Colour</div>
+            <div class="ak-edit__hues">
+              <div class="ak-edit__hue" *ngFor="let hue of [1,2,3,4,5,6,7,8]">
+                <input class="visually-hidden" type="radio" name="hue" id="hue_{{hue}}"
+                       [value]="hue" [(ngModel)]="user.hue">
+                <label class="ak-item--{{hue}}" for="hue_{{hue}}"></label>
+              </div>
             </div>
           </div>
         </fieldset>
+        <div class="ak-form__buttons">
+          <button class="ak-button ak-button--primary" (click)="editUser(user)">Edit</button>
+          <button class="ak-button">Reset</button>
+        </div>
       </div>
       <ak-monthly-appkeeps-card></ak-monthly-appkeeps-card>
-      <section class="ak-card">
+      <section class="ak-card" *ngIf="users$ | async; let users">
         <div class="ak-card__header">
           <div class="ak-card__title">Appkeepers</div>
         </div>
         <ol class="ak-card__content">
-          <li class="ak-item" *ngFor="let current of users$ | async">
+          <li class="ak-item" *ngFor="let current of users">
             <div class="ak-item__what  ak-user">{{current.email}} <span
               *ngIf="current.email === user.email">(you)</span></div>
             <button class="ak-items__remove" *ngIf="current.email !== user.email">
@@ -42,7 +66,7 @@
             <div class="ak-item__what">
               <input type="text" id="friends" placeholder="i.e. appkeeper@mail.com">
             </div>
-            <button class="ak-items__remove" (click)="addUser()">
+            <button class="ak-items__remove" (click)="addUser(users)">
               <ak-icon type="add"></ak-icon>
             </button>
           </li>

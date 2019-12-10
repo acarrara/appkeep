@@ -57,11 +57,6 @@
   margin-left: $ak-size-s;
 }
 
-.ak-items__remove {
-  @include ak-button();
-  margin-left: auto;
-}
-
 .ak-item__percentage {
   background-color: $ak-color-primary;
   border-radius: $ak-size-s;

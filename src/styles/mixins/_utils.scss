@@ -7,3 +7,9 @@
 
   margin: 0;
 }
+
+@mixin  ak-flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

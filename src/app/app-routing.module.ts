@@ -7,6 +7,7 @@ import { AuthGuard } from './auth.guard';
 import { CategoryComponent } from './edit-category/category.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MonthlyComponent } from './monthly/monthly.component';
+import { MonthComponent } from './month/month.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,11 @@ const routes: Routes = [
   {
     path: 'monthly/:id',
     component: MonthlyComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'month',
+    component: MonthComponent,
     canActivate: [AuthGuard]
   },
   {

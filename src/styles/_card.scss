@@ -46,3 +46,15 @@
   padding: $ak-size-s $ak-size-l;
   flex-grow: 1;
 }
+
+.ak-card__action {
+  padding-bottom: $ak-size-l;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  button, a {
+    @include ak-button-tertiary();
+    @include ak-flex-center();
+  }
+}

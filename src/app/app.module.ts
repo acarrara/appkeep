@@ -43,6 +43,7 @@ import { MonthlyComponent } from './monthly/monthly.component';
 import { IncomeIndicatorComponent } from './income-indicator/income-indicator.component';
 import { UserHuePipe } from './user-hue.pipe';
 import { UserNamePipe } from './user-name.pipe';
+import { MonthComponent } from './month/month.component';
 
 const config = new AuthServiceConfig([
   {
@@ -80,7 +81,8 @@ export function provideConfig() {
     MonthlyComponent,
     IncomeIndicatorComponent,
     UserHuePipe,
-    UserNamePipe
+    UserNamePipe,
+    MonthComponent
   ],
   imports: [
     BrowserModule,

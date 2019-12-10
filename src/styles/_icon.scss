@@ -37,4 +37,13 @@
       height: 0.8rem;
     }
   }
+
+  &.ak-icon--big {
+    height: $ak-size-xl;
+    width: $ak-size-xl;
+
+    & > .ak-icon__svg {
+      height: $ak-size-xl;
+    }
+  }
 }

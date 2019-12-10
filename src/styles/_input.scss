@@ -10,17 +10,7 @@
     }
 
     & button, & a {
-      flex-grow: 0;
-
-      @include ak-button();
-      @include ak-button-primary();
-
-      color: $ak-color-light;
-      stroke: $ak-color-light;
-
-      border-bottom-right-radius: $ak-size-m;
-      border-top-right-radius: $ak-size-m;
-      border-top-left-radius: $ak-size-m;
+      @include ak-button-tertiary();
     }
   }
 

@@ -7,53 +7,53 @@ import { map } from 'rxjs/operators';
 import { AppActions } from '../app.actions';
 import { Observable } from 'rxjs';
 import { Listen } from '../../redux/listen.decorator';
-import { YearStatistics } from '../models/YearStatistics';
 import { AppKeep } from '../models/AppKeep';
 import { Location } from '@angular/common';
 import { Recap } from '../models/Recap';
+import { sumAppKeeps } from '../sumAppKeeps';
 
 @Component({
-  selector: 'ak-category',
-  templateUrl: 'category.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'ak-category',
+    templateUrl: 'category.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoryComponent {
 
-  @Listen(['categoryStatistics', 'thisYear'], statistics => statistics.months)
-  thisYearStatistics$: Observable<Recap[]>;
-  @Listen(['categoryStatistics', 'lastYear'], statistics => statistics.months)
-  lastYearStatistics$: Observable<Recap[]>;
-  @Listen(['categoryStatistics', 'overall'], statistics => statistics.years)
-  overallStatistics$: Observable<Recap[]>;
-  @Listen(['categoryStatistics', 'thisMonthAppKeeps'])
-  thisMonthAppKeeps$: Observable<AppKeep[]>;
-  @Listen(['categoryStatistics', 'thisMonthAppKeeps'], appKeeps => appKeeps.reduce((previous, current) => previous + current.amount, 0))
-  thisMonthTotal$: Observable<number>;
-  @Listen(['categoryStatistics', 'lastMonthAppKeeps'])
-  lastMonthAppKeeps$: Observable<AppKeep[]>;
-  @Listen(['categoryStatistics', 'lastMonthAppKeeps'], appKeeps => appKeeps.reduce((previous, current) => previous + current.amount, 0))
-  lastMonthTotal$: Observable<number>;
+    @Listen(['categoryStatistics', 'thisYear'], statistics => statistics.months)
+    thisYearStatistics$: Observable<Recap[]>;
+    @Listen(['categoryStatistics', 'lastYear'], statistics => statistics.months)
+    lastYearStatistics$: Observable<Recap[]>;
+    @Listen(['categoryStatistics', 'overall'], statistics => statistics.years)
+    overallStatistics$: Observable<Recap[]>;
+    @Listen(['categoryStatistics', 'thisMonthAppKeeps'])
+    thisMonthAppKeeps$: Observable<AppKeep[]>;
+    @Listen(['categoryStatistics', 'thisMonthAppKeeps'], sumAppKeeps)
+    thisMonthTotal$: Observable<number>;
+    @Listen(['categoryStatistics', 'lastMonthAppKeeps'])
+    lastMonthAppKeeps$: Observable<AppKeep[]>;
+    @Listen(['categoryStatistics', 'lastMonthAppKeeps'], sumAppKeeps)
+    lastMonthTotal$: Observable<number>;
 
-  category: Category;
+    category: Category;
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private store: StoreService<AppKeepState>,
-              private location: Location,
-              private actions: AppActions) {
-    this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('category'))).subscribe(category => {
-      this.category = {
-        ...this.store.snapshot<Category>(['categories'], categories => categories.find(item => item.category === category))
-      };
-    });
-    this.store.dispatch(this.actions.loadCategoryStatistics(this.category.category));
-  }
+    constructor(private activatedRoute: ActivatedRoute,
+                private store: StoreService<AppKeepState>,
+                private location: Location,
+                private actions: AppActions) {
+        this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('category'))).subscribe(category => {
+            this.category = {
+                ...this.store.snapshot<Category>(['categories'], categories => categories.find(item => item.category === category))
+            };
+        });
+        this.store.dispatch(this.actions.loadCategoryStatistics(this.category.category));
+    }
 
-  close() {
-    this.location.back();
-  }
+    close() {
+        this.location.back();
+    }
 
-  edit() {
-    this.store.dispatch(this.actions.editCategory(this.category));
-    this.close();
-  }
+    edit() {
+        this.store.dispatch(this.actions.editCategory(this.category));
+        this.close();
+    }
 }

@@ -8,7 +8,6 @@
   padding: $ak-size-m 0;
 
   &.ak-item--updating {
-
   }
 
   & + .ak-item {
@@ -47,6 +46,10 @@
     & > .ak-item__amount > * + *, & .ak-item__percentage + .ak-item__percentage {
       margin-top: $ak-size-m;
     }
+  }
+
+  &.ak-item--grouped + .ak-item--grouped {
+    border-style: dashed;
   }
 }
 

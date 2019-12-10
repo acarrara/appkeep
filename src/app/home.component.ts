@@ -8,60 +8,61 @@ import { StoreService } from '../redux/store.service';
 import { AppKeepState } from './models/AppKeepState';
 import { AppActions } from './app.actions';
 import { Recap } from './models/Recap';
+import { sumAppKeeps } from './sumAppKeeps';
 
 @Component({
-  selector: 'ak-home',
-  templateUrl: 'home.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'ak-home',
+    templateUrl: 'home.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
 
-  @Listen(['appKeeps'])
-  appKeeps$: Observable<AppKeep[]>;
-  @Listen(['appKeeps'], appKeeps => appKeeps.reduce((previous, current) => previous + current.amount, 0))
-  todayTotal$: Observable<number>;
-  @Listen(['statistics', 'thisMonth'])
-  thisMonthTotal$: Observable<MonthStatistics>;
-  @Listen(['statistics', 'lastMonth'])
-  lastMonthTotal$: Observable<MonthStatistics>;
-  @Listen(['statistics', 'thisYear'], statistics => statistics.months)
-  thisYearTotal$: Observable<Recap[]>;
-  @Listen(['statistics', 'lastYear'], statistics => statistics.months)
-  lastYearTotal$: Observable<Recap[]>;
-  @Listen(['statistics', 'overall'], statistics => statistics.years)
-  overallTotal$: Observable<Recap[]>;
-  availableVersion: boolean;
+    @Listen(['appKeeps'])
+    appKeeps$: Observable<AppKeep[]>;
+    @Listen(['appKeeps'], sumAppKeeps)
+    todayTotal$: Observable<number>;
+    @Listen(['statistics', 'thisMonth'])
+    thisMonthTotal$: Observable<MonthStatistics>;
+    @Listen(['statistics', 'lastMonth'])
+    lastMonthTotal$: Observable<MonthStatistics>;
+    @Listen(['statistics', 'thisYear'], statistics => statistics.months)
+    thisYearTotal$: Observable<Recap[]>;
+    @Listen(['statistics', 'lastYear'], statistics => statistics.months)
+    lastYearTotal$: Observable<Recap[]>;
+    @Listen(['statistics', 'overall'], statistics => statistics.years)
+    overallTotal$: Observable<Recap[]>;
+    availableVersion: boolean;
 
-  constructor(private swUpdate: SwUpdate,
-              private cdr: ChangeDetectorRef,
-              store: StoreService<AppKeepState>,
-              actions: AppActions) {
-    this.handleUpdates();
+    constructor(private swUpdate: SwUpdate,
+                private cdr: ChangeDetectorRef,
+                store: StoreService<AppKeepState>,
+                actions: AppActions) {
+        this.handleUpdates();
 
-    store.dispatch(actions.loadAppKeeps());
-    store.dispatch(actions.loadOptions());
-    store.dispatch(actions.loadCategories());
-    store.dispatch(actions.loadStatistics());
-    store.dispatch(actions.loadUsers());
-  }
-
-  private handleUpdates() {
-    if (this.swUpdate.isEnabled) {
-      this.swUpdate.available.subscribe(() => {
-        this.availableVersion = true;
-        this.cdr.markForCheck();
-      });
+        store.dispatch(actions.loadAppKeeps());
+        store.dispatch(actions.loadOptions());
+        store.dispatch(actions.loadCategories());
+        store.dispatch(actions.loadStatistics());
+        store.dispatch(actions.loadUsers());
     }
-  }
 
-  @HostListener('window:online')
-  sendMessage() {
-    navigator.serviceWorker.controller.postMessage({type: 'online'});
-  }
-
-  reload() {
-    if (this.swUpdate.isEnabled) {
-      this.swUpdate.activateUpdate().then(() => document.location.reload());
+    private handleUpdates() {
+        if (this.swUpdate.isEnabled) {
+            this.swUpdate.available.subscribe(() => {
+                this.availableVersion = true;
+                this.cdr.markForCheck();
+            });
+        }
     }
-  }
+
+    @HostListener('window:online')
+    sendMessage() {
+        navigator.serviceWorker.controller.postMessage({type: 'online'});
+    }
+
+    reload() {
+        if (this.swUpdate.isEnabled) {
+            this.swUpdate.activateUpdate().then(() => document.location.reload());
+        }
+    }
 }

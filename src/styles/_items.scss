@@ -78,14 +78,18 @@
 
 .ak-item__percentage-negative {
   background-color: $ak-color-negative-normal;
-  border-bottom: $ak-size-s solid $ak-color-negative-normal;
 }
 
 .ak-item__percentage-positive {
   background-color: $ak-color-positive-normal;
-  border-bottom: $ak-size-s solid $ak-color-positive-normal;
 }
 
 .ak-items__action {
   margin-right: $ak-size-l;
+}
+
+.ak-item__amount-unit {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

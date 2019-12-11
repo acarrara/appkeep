@@ -50,6 +50,10 @@ $_category_hues: 15, 60, 105, 150, 195, 240, 285, 330;
   .ak-item--#{$i} {
     background-color: ak-color(75, 90, $_category-hue);
   }
+
+  .ak-item__percentage-#{$i} {
+    border-bottom: $ak-size-s solid ak-color(75, 90, $_category-hue);
+  }
 }
 
 .ak-edit__hues {

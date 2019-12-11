@@ -7,63 +7,65 @@
   </ak-category-header>
   <div class="ak-edit  ak-page__content">
     <section class="ak-form">
-      <div class="ak-form__inputs">
-        <div class="ak-highlights">
-          <div class="ak-highlight  ak-highlight--positive">
-            <div class="ak-highlight__icon">
-              <ak-icon type="down" size="big"></ak-icon>
-            </div>
-            <div class="ak-highlight__text">1824.38 €</div>
-            <div class="ak-highlight__type">Income</div>
-          </div>
-          <div class="ak-highlight  ak-highlight--primary">
-            <div class="ak-highlight__icon">
-              <ak-icon type="stable" size="big"></ak-icon>
-            </div>
-            <div class="ak-highlight__text">543.07 €</div>
-            <div class="ak-highlight__type">Balance</div>
-          </div>
-          <div class="ak-highlight  ak-highlight--negative">
-            <div class="ak-highlight__icon">
-              <ak-icon type="down" size="big"></ak-icon>
-            </div>
-            <div class="ak-highlight__text">-1281.31 €</div>
-            <div class="ak-highlight__type">Outcome</div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="ak-card">
-      <div class="ak-card__header">
-        <div class="ak-card__title">AppKeepers</div>
-      </div>
       <ol class="ak-card__content">
         <li class="ak-item  ak-item--recap">
           <div class="ak-item__what">
-            <div class="ak-item__percentage  ak-item__percentage-negative ak-item--2"
-                 style="width: 45%"></div>
-            <div class="ak-item__percentage  ak-item__percentage-positive ak-item--2"
-                 style="width: 77%"></div>
-            <span class="ak-badge  ak-badge--4">alessandro</span>
+            <div class="ak-item__percentage  ak-item__percentage-negative"
+                 style="width: 85%"></div>
+            <div class="ak-item__percentage  ak-item__percentage-positive"
+                 style="width: 100%"></div>
+            <span class="ak-badge">all</span>
             <span class="ak-badge  ak-badge--positive">392.90  €</span>
           </div>
           <div class="ak-item__amount">
-            <div>-909.32 €</div>
-            <div>59.32 €</div>
+            <div class="ak-item__amount-unit">
+              <span>-909.32 €</span>
+              <ak-income-indicator [income]="false"></ak-income-indicator>
+            </div>
+            <div class="ak-item__amount-unit">
+              <span>59.32 €</span>
+              <ak-income-indicator [income]="true"></ak-income-indicator>
+            </div>
           </div>
         </li>
         <li class="ak-item  ak-item--recap">
           <div class="ak-item__what">
-            <div class="ak-item__percentage  ak-item__percentage-negative ak-item--7"
-                 style="width: 15%"></div>
-            <div class="ak-item__percentage  ak-item__percentage-positive ak-item--7"
-                 style="width: 27%"></div>
-            <span class="ak-badge  ak-badge--7">paola</span>
+            <div class="ak-item__percentage  ak-item__percentage-negative  ak-item__percentage-2"
+                 style="width: 45%"></div>
+            <div class="ak-item__percentage  ak-item__percentage-positive  ak-item__percentage-2"
+                 style="width: 77%"></div>
+            <span class="ak-badge  ak-badge--2">alessandro</span>
             <span class="ak-badge  ak-badge--positive">392.90  €</span>
           </div>
           <div class="ak-item__amount">
-            <div>-909.32 €</div>
-            <div>59.32 €</div>
+            <div class="ak-item__amount-unit">
+              <span>-909.32 €</span>
+              <ak-income-indicator [income]="false"></ak-income-indicator>
+            </div>
+            <div class="ak-item__amount-unit">
+              <span>59.32 €</span>
+              <ak-income-indicator [income]="true"></ak-income-indicator>
+            </div>
+          </div>
+        </li>
+        <li class="ak-item  ak-item--recap">
+          <div class="ak-item__what">
+            <div class="ak-item__percentage  ak-item__percentage-negative  ak-item__percentage-7"
+                 style="width: 15%"></div>
+            <div class="ak-item__percentage  ak-item__percentage-positive  ak-item__percentage-7"
+                 style="width: 27%"></div>
+            <span class="ak-badge  ak-badge--7">paola</span>
+            <span class="ak-badge  ak-badge--positive">392.90 €</span>
+          </div>
+          <div class="ak-item__amount">
+            <div class="ak-item__amount-unit">
+              <span>-909.32 €</span>
+              <ak-income-indicator [income]="false"></ak-income-indicator>
+            </div>
+            <div class="ak-item__amount-unit">
+              <span>59.32 €</span>
+              <ak-income-indicator [income]="true"></ak-income-indicator>
+            </div>
           </div>
         </li>
       </ol>

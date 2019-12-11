@@ -25,10 +25,14 @@
     }
   }
 
-  .ak-item__amount, .ak-item__editing, .ak-item__action {
+  .ak-item__amount, .ak-item__editing {
     flex-grow: 0;
     margin-left: $ak-size-l;
     display: flex;
+  }
+
+  .ak-item__action {
+   @include ak-button();
   }
 
   &.ak-item--recap {

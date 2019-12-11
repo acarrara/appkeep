@@ -6,6 +6,8 @@ import { Category } from './models/Category';
 import { CategoryStatistics } from './models/CategoryStatistics';
 import { UserInfo } from './models/UserInfo';
 import { User } from './models/User';
+import { MonthId } from './models/MonthId';
+import { MonthStatistics } from './models/MonthStatistic';
 
 export class AppActions {
 
@@ -18,6 +20,8 @@ export class AppActions {
   public static EDIT_APPKEEP = 'EDIT_APPKEEP';
   public static DELETE_APPKEEP = 'DELETE_APPKEEP';
   public static LOAD_STATISTICS = 'LOAD_STATISTICS';
+  public static LOAD_MONTH_STATISTICS = 'LOAD_MONTH_STATISTICS';
+  public static LOAD_MONTH_STATISTICS_SUCCESS = 'LOAD_MONTH_STATISTICS_SUCCESS';
   public static LOAD_STATISTICS_SUCCESS = 'LOAD_STATISTICS_SUCCESS';
   public static LOAD_CATEGORY_STATISTICS = 'LOAD_CATEGORY_STATISTICS';
   public static LOAD_CATEGORY_STATISTICS_SUCCESS = 'LOAD_CATEGORY_STATISTICS_SUCCESS';
@@ -51,6 +55,14 @@ export class AppActions {
 
   loadStatistics(): Action<any> {
     return {type: AppActions.LOAD_STATISTICS};
+  }
+
+  loadMonthStatistics(year: string, month: string): Action<MonthId> {
+    return {type: AppActions.LOAD_MONTH_STATISTICS, payload: {year, month}};
+  }
+
+  loadMonthStatisticsSuccess(statistics: MonthStatistics): Action<MonthStatistics> {
+    return {type: AppActions.LOAD_MONTH_STATISTICS_SUCCESS, payload: statistics};
   }
 
   loadStatisticsSuccess(statistics: Statistics): Action<Statistics> {

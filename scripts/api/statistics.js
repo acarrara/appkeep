@@ -3,13 +3,26 @@ const AppKeep = require('./schemas/AppKeep');
 
 module.exports = function (app) {
 
-  app.get('/api/appkeeps/statistics', async (request, response) => {
+  app.get('/api/appkeeps/statistics/month', async (request, response) => {
     try {
-      const statistics = await AppKeep.monthStatistics(dates.month('this'));
-      const users = await AppKeep.userStatistics(dates.month('this'));
+      const statistics = await AppKeep.monthStatistics(dates.currentMonth());
+      const users = await AppKeep.userStatistics(dates.currentMonth());
       statistics[0].users = users;
       response.send(statistics);
     } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
+  app.get('/api/appkeeps/statistics/:year/:month', async (request, response) => {
+    try {
+      const range = dates.month(request.params.year, request.params.month);
+      const statistics = await AppKeep.monthStatistics(range);
+      const users = await AppKeep.userStatistics(range);
+      statistics[0].users = users;
+      response.send(statistics);
+    } catch (error) {
+      console.log(error);
       response.status(500).send(error);
     }
   });

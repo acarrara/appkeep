@@ -12,7 +12,7 @@ export class StatisticsFactory {
     const thisMonth = date.getMonth() + 1;
     const thisYear = date.getFullYear();
     return {
-      thisMonth: this.findMonthStatistics(statisticsRaw[0], thisMonth),
+      thisMonth: this.createMonthStatistics(statisticsRaw[0], thisMonth),
       thisYear: this.findYearStatistics(statisticsRaw[1], thisYear),
       overall: this.findOverallStatistics(statisticsRaw[2])
     };
@@ -29,8 +29,8 @@ export class StatisticsFactory {
     };
   }
 
-  private findMonthStatistics(statisticsRaw: any[], thisMonth: number): MonthStatistics {
-    const monthStatisticsRaw: any = statisticsRaw.find(item => item._id.month === thisMonth);
+  createMonthStatistics(statisticsRaw: any[], month: number): MonthStatistics {
+    const monthStatisticsRaw: any = statisticsRaw.find(item => item._id.month === month);
     return monthStatisticsRaw === undefined ? {
       users: [],
       appKeepCategories: [],

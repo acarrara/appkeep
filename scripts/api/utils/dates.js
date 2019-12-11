@@ -13,6 +13,14 @@ module.exports = {
     return new Date(year, 1, 1, 0, 0, 0, 0);
   },
 
+  aMonthStart: function (year, month) {
+    return new Date(year, Number(month) - 1, 1, 0, 0, 0, 0);
+  },
+
+  aMonthEnd: function (year, month) {
+    return new Date(year, month, 1, 0, 0, 0, 0);
+  },
+
   start: function () {
     return new Date(2018, 1, 1, 0, 0, 0, 0);
   },
@@ -27,13 +35,12 @@ module.exports = {
     return new Date();
   },
 
-  month: function (month) {
-    switch (month) {
-      case 'this':
-        return {start: this.thisMonth(), end: this.now()};
-      default:
-        return {start: this.thisMonth()};
-    }
+  currentMonth: function () {
+    return {start: this.thisMonth(), end: this.now()};
+  },
+
+  month: function (year, month) {
+    return {start: this.aMonthStart(year, month), end: this.aMonthEnd(year, month)};
   },
 
   year: function (year) {

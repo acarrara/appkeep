@@ -83,7 +83,7 @@ module.exports = function (app) {
 
   app.get('/api/categories/:category/appkeeps', async (request, response) => {
     try {
-      const range = dates.month('all');
+      const range = dates.currentMonth();
       const appKeeps = await filterAppKeeps(range, request.params.category);
       response.send(appKeeps);
     } catch (error) {

@@ -58,8 +58,8 @@
           <li class="ak-item" *ngFor="let current of users">
             <div class="ak-item__what  ak-user">{{current.email}} <span
               *ngIf="current.email === user.email">(you)</span></div>
-            <button class="ak-items__remove" *ngIf="current.email !== user.email">
-              <ak-icon type="close" (click)="removeUser(current)"></ak-icon>
+            <button class="ak-item__action" *ngIf="current.email !== user.email">
+              <ak-icon size="small" type="close" (click)="removeUser(current)"></ak-icon>
             </button>
           </li>
           <li class="ak-item ak-input  ak-input__interactive">

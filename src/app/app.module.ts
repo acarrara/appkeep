@@ -141,6 +141,11 @@ export class AppModule {
           thisYear: {months: []},
           overall: {years: []}
         },
+        monthStatistics: {
+          users: [],
+          appKeepCategories: [],
+          incomeCategories: []
+        },
         categoryStatistics: {
           thisMonthAppKeeps: [],
           thisYear: {months: []},

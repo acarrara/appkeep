@@ -10,6 +10,7 @@ import { UserInfo } from './models/UserInfo';
 import { Category } from './models/Category';
 import { CategoryStatistics } from './models/CategoryStatistics';
 import { User } from './models/User';
+import { MonthStatistics } from './models/MonthStatistic';
 
 export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> {
 
@@ -53,6 +54,20 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
         return {
           ...oldState,
           statistics: action.payload
+        };
+      }
+      default: {
+        return oldState;
+      }
+    }
+  }
+
+  private loadMonthStatistics: Reducer<AppKeepState, MonthStatistics> = (action, oldState) => {
+    switch (action.type) {
+      case AppActions.LOAD_MONTH_STATISTICS_SUCCESS: {
+        return {
+          ...oldState,
+          monthStatistics: action.payload
         };
       }
       default: {

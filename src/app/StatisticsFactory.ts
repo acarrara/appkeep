@@ -4,19 +4,16 @@ import { YearStatistics } from './models/YearStatistics';
 import { CategoryStatistics } from './models/CategoryStatistics';
 import { AppKeep } from './models/AppKeep';
 import { OverallStatistics } from './models/OverallStatistics';
+import { Recap } from './models/Recap';
 
 export class StatisticsFactory {
   create(statisticsRaw: any): Statistics {
     const date = new Date();
     const thisMonth = date.getMonth() + 1;
-    const lastMonth = date.getMonth();
     const thisYear = date.getFullYear();
-    const lastYear = date.getFullYear() - 1;
     return {
-      lastMonth: this.findMonthStatistics(statisticsRaw[0], lastMonth),
       thisMonth: this.findMonthStatistics(statisticsRaw[0], thisMonth),
       thisYear: this.findYearStatistics(statisticsRaw[1], thisYear),
-      lastYear: this.findYearStatistics(statisticsRaw[1], lastYear),
       overall: this.findOverallStatistics(statisticsRaw[2])
     };
   }
@@ -24,13 +21,9 @@ export class StatisticsFactory {
   createCategoryStatistics(statisticsRaw: any): CategoryStatistics {
     const date = new Date();
     const thisMonth = date.getMonth() + 1;
-    const lastMonth = date.getMonth();
     const thisYear = date.getFullYear();
-    const lastYear = date.getFullYear() - 1;
     return {
-      lastMonthAppKeeps: this.findMonthCategoryAppkeeps(statisticsRaw[0], lastMonth),
       thisMonthAppKeeps: this.findMonthCategoryAppkeeps(statisticsRaw[0], thisMonth),
-      lastYear: this.findYearStatistics(statisticsRaw[1], lastYear),
       thisYear: this.findYearStatistics(statisticsRaw[1], thisYear),
       overall: this.findOverallStatistics(statisticsRaw[2])
     };
@@ -39,9 +32,11 @@ export class StatisticsFactory {
   private findMonthStatistics(statisticsRaw: any[], thisMonth: number): MonthStatistics {
     const monthStatisticsRaw: any = statisticsRaw.find(item => item._id.month === thisMonth);
     return monthStatisticsRaw === undefined ? {
+      users: [],
       appKeepCategories: [],
       incomeCategories: []
     } : {
+      users: monthStatisticsRaw.users.map(current => this.recapFrom(current)),
       appKeepCategories: monthStatisticsRaw.categories.filter(category => category.total < 0),
       incomeCategories: monthStatisticsRaw.categories.filter(category => category.total >= 0)
     };
@@ -70,12 +65,16 @@ export class StatisticsFactory {
 
   private findOverallStatistics(statisticsRaw: any[]): OverallStatistics {
     return statisticsRaw.reduce((result, current) => {
-        result.years.push({
-          appKeepTotal: -current.appKeepTotal,
-          incomeTotal: current.incomeTotal,
-          label: current._id
-        });
-        return result;
-      }, {years: []});
+      result.years.push(this.recapFrom(current));
+      return result;
+    }, {years: []});
+  }
+
+  private recapFrom(current): Recap {
+    return {
+      appKeepTotal: -current.appKeepTotal,
+      incomeTotal: current.incomeTotal,
+      label: current._id
+    };
   }
 }

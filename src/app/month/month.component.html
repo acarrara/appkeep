@@ -2,7 +2,7 @@
   <ak-category-header class="ak-page__header">
     <header class="ak-heading">
       <small class="ak-heading__kicker">Month</small>
-      <h1 class="ak-heading__title">November</h1>
+      <h1 class="ak-heading__title">This month</h1>
     </header>
   </ak-category-header>
   <div class="ak-edit  ak-page__content">
@@ -11,64 +11,45 @@
         <li class="ak-item  ak-item--recap">
           <div class="ak-item__what">
             <div class="ak-item__percentage  ak-item__percentage-negative"
-                 style="width: 85%"></div>
+                 [style.width]="percentage(allAppKeep)"></div>
             <div class="ak-item__percentage  ak-item__percentage-positive"
-                 style="width: 100%"></div>
+                 [style.width]="percentage(allIncome)"></div>
             <span class="ak-badge">all</span>
-            <span class="ak-badge  ak-badge--positive">392.90  €</span>
+            <span class="ak-badge  ak-badge--positive">{{(allIncome + allAppKeep) | akAmount}}</span>
           </div>
           <div class="ak-item__amount">
             <div class="ak-item__amount-unit">
-              <span>-909.32 €</span>
+              <span>{{allAppKeep | akAmount}}</span>
               <ak-income-indicator [income]="false"></ak-income-indicator>
             </div>
             <div class="ak-item__amount-unit">
-              <span>59.32 €</span>
+              <span>{{allIncome | akAmount}}</span>
               <ak-income-indicator [income]="true"></ak-income-indicator>
             </div>
           </div>
         </li>
-        <li class="ak-item  ak-item--recap">
+        <li class="ak-item  ak-item--recap" *ngFor="let user of monthStatistics.users">
           <div class="ak-item__what">
             <div class="ak-item__percentage  ak-item__percentage-negative  ak-item__percentage-2"
-                 style="width: 45%"></div>
+                 [style.width]="percentage(user.appKeepTotal)"></div>
             <div class="ak-item__percentage  ak-item__percentage-positive  ak-item__percentage-2"
-                 style="width: 77%"></div>
+                 [style.width]="percentage(user.incomeTotal)"></div>
             <span class="ak-badge  ak-badge--2">alessandro</span>
-            <span class="ak-badge  ak-badge--positive">392.90  €</span>
+            <span class="ak-badge  ak-badge--positive">{{(user.incomeTotal + user.appKeepTotal) | akAmount}}</span>
           </div>
           <div class="ak-item__amount">
             <div class="ak-item__amount-unit">
-              <span>-909.32 €</span>
+              <span>{{user.appKeepTotal | akAmount}}</span>
               <ak-income-indicator [income]="false"></ak-income-indicator>
             </div>
             <div class="ak-item__amount-unit">
-              <span>59.32 €</span>
-              <ak-income-indicator [income]="true"></ak-income-indicator>
-            </div>
-          </div>
-        </li>
-        <li class="ak-item  ak-item--recap">
-          <div class="ak-item__what">
-            <div class="ak-item__percentage  ak-item__percentage-negative  ak-item__percentage-7"
-                 style="width: 15%"></div>
-            <div class="ak-item__percentage  ak-item__percentage-positive  ak-item__percentage-7"
-                 style="width: 27%"></div>
-            <span class="ak-badge  ak-badge--7">paola</span>
-            <span class="ak-badge  ak-badge--positive">392.90 €</span>
-          </div>
-          <div class="ak-item__amount">
-            <div class="ak-item__amount-unit">
-              <span>-909.32 €</span>
-              <ak-income-indicator [income]="false"></ak-income-indicator>
-            </div>
-            <div class="ak-item__amount-unit">
-              <span>59.32 €</span>
+              <span>{{user.incomeTotal | akAmount}}</span>
               <ak-income-indicator [income]="true"></ak-income-indicator>
             </div>
           </div>
         </li>
       </ol>
     </section>
+    <ak-month-card [monthStatistics]="monthStatistics" month="Categories"></ak-month-card>
   </div>
 </div>

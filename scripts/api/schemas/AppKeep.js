@@ -13,21 +13,7 @@ const appKeepSchema = new mongoose.Schema({
 
 const model = mongoose.model('AppKeeps', appKeepSchema);
 
-model.singleMonth = (range, category) => {
-  return model.aggregate(
-    [{
-      $match: matchers.matchBy(range, category)
-    },
-      {
-        $group: {
-          _id: "statistics",
-          total: {$sum: '$amount'},
-        }
-      }]
-  ).exec();
-};
-
-model.statistics = (range, category) => {
+model.monthStatistics = (range, category) => {
   category = category || '';
   return model.aggregate(
     [{
@@ -37,7 +23,8 @@ model.statistics = (range, category) => {
         $group: {
           _id: {
             month: {$month: "$date"},
-            category: "$category"
+            category: "$category",
+            user: "$user"
           },
           total: {
             $sum: {
@@ -53,7 +40,44 @@ model.statistics = (range, category) => {
           _id: {
             month: "$_id.month"
           },
-          categories: {$addToSet: {category: "$_id.category", total: "$total"}}
+          categories: {$addToSet: {category: "$_id.category", total: "$total"}},
+        }
+      }]
+  ).exec();
+};
+
+model.userStatistics = (range, category) => {
+  category = category || '';
+  return model.aggregate(
+    [{
+      $match: matchers.matchBy(range, category)
+    },
+      {
+        $group: {
+          _id: {
+            user: "$user"
+          },
+          appKeepTotal: {
+            $sum: {
+              $cond: [
+                {$eq: ["$income", false]}, "$amount", 0
+              ]
+            }
+          },
+          incomeTotal: {
+            $sum: {
+              $cond: [
+                {$eq: ["$income", true]}, "$amount", 0
+              ]
+            }
+          }
+        }
+      },
+      {
+        $project: {
+          _id: "$_id.user",
+          incomeTotal: "$incomeTotal",
+          appKeepTotal: "$appKeepTotal"
         }
       }]
   ).exec();

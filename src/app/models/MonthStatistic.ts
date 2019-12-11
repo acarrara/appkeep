@@ -1,6 +1,8 @@
-import { CategoryAmount} from './CategoryAmount';
+import { CategoryAmount } from './CategoryAmount';
+import { Recap } from './Recap';
 
 export interface MonthStatistics {
-    appKeepCategories: CategoryAmount[];
-    incomeCategories: CategoryAmount[];
+  users: Recap[];
+  appKeepCategories: CategoryAmount[];
+  incomeCategories: CategoryAmount[];
 }

@@ -11,10 +11,8 @@
                       [total]="todayTotal$ | async"
                       when="today">
     </ak-appkeeps-card>
-    <ak-month-card [monthStatistics]="thisMonthTotal$ | async" month="this month"></ak-month-card>
-    <ak-month-card [monthStatistics]="lastMonthTotal$ | async" month="last month"></ak-month-card>
+    <ak-month-card [monthStatistics]="thisMonthTotal$ | async" month="this month" [explorable]="true"></ak-month-card>
     <ak-recap-card [recaps]="thisYearTotal$ | async" year="this year"></ak-recap-card>
-    <ak-recap-card [recaps]="lastYearTotal$ | async" year="last year"></ak-recap-card>
     <ak-recap-card [recaps]="overallTotal$ | async" year="overall"></ak-recap-card>
   </section>
 </div>

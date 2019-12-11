@@ -4,14 +4,9 @@ module.exports = {
     return new Date(date.getFullYear(), date.getMonth(), 1, 0, 0, 0, 0);
   },
 
-  lastMonth: function () {
+  thisYear: function () {
     const date = new Date();
-    return new Date(date.getFullYear(), date.getMonth() - 1, 1, 0, 0, 0, 0);
-  },
-
-  lastYear: function () {
-    const date = new Date();
-    return new Date(date.getFullYear() - 1, date.getMonth(), 1, 0, 0, 0, 0);
+    return new Date(date.getFullYear(), 1, 1, 0, 0, 0, 0);
   },
 
   anYear: function (year) {
@@ -36,18 +31,14 @@ module.exports = {
     switch (month) {
       case 'this':
         return {start: this.thisMonth(), end: this.now()};
-      case 'last':
-        return {start: this.lastMonth(), end: this.thisMonth()};
-      case 'all':
-        return {start: this.lastMonth(), end: this.now()};
       default:
         return {start: this.thisMonth()};
     }
   },
 
   year: function (year) {
-    if (year === 'last') {
-      return {start: this.lastYear(), end: this.now()};
+    if (year === 'this') {
+      return {start: this.thisYear(), end: this.now()};
     } else {
       return {start: this.anYear(year), end: this.anYear(year + 1)};
     }

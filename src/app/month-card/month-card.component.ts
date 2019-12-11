@@ -19,6 +19,8 @@ export class MonthCardComponent implements OnChanges {
   month: string;
   @Input()
   monthStatistics: MonthStatistics;
+  @Input()
+  explorable = false;
 
   appKeepTotal: number;
   incomeTotal: number;

@@ -137,17 +137,13 @@ export class AppModule {
         options: [],
         categories: [],
         statistics: {
-          lastMonth: {appKeepCategories: [], incomeCategories: []},
-          thisMonth: {appKeepCategories: [], incomeCategories: []},
+          thisMonth: {users: [], appKeepCategories: [], incomeCategories: []},
           thisYear: {months: []},
-          lastYear: {months: []},
           overall: {years: []}
         },
         categoryStatistics: {
           thisMonthAppKeeps: [],
-          lastMonthAppKeeps: [],
           thisYear: {months: []},
-          lastYear: {months: []},
           overall: {years: []}
         },
         user: {

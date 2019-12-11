@@ -5,16 +5,9 @@ module.exports = function (app) {
 
   app.get('/api/appkeeps/statistics', async (request, response) => {
     try {
-      const statistics = await AppKeep.statistics(dates.month('all'));
-      response.send(statistics);
-    } catch (error) {
-      response.status(500).send(error);
-    }
-  });
-
-  app.get('/api/appkeeps/statistics/month/:id', async (request, response) => {
-    try {
-      const statistics = await AppKeep.singleMonth(dates.month(request.params.id));
+      const statistics = await AppKeep.monthStatistics(dates.month('this'));
+      const users = await AppKeep.userStatistics(dates.month('this'));
+      statistics[0].users = users;
       response.send(statistics);
     } catch (error) {
       response.status(500).send(error);
@@ -23,7 +16,7 @@ module.exports = function (app) {
 
   app.get('/api/appkeeps/statistics/year', async (request, response) => {
     try {
-      const statistics = await AppKeep.yearStatistics(dates.year('last'));
+      const statistics = await AppKeep.yearStatistics(dates.year('this'));
       response.send(statistics);
     } catch (error) {
       response.status(500).send(error);
@@ -41,7 +34,7 @@ module.exports = function (app) {
 
   app.get('/api/categories/:category/statistics/year', async (request, response) => {
     try {
-      const statistics = await AppKeep.yearStatistics(dates.year('last'), request.params.category);
+      const statistics = await AppKeep.yearStatistics(dates.year('this'), request.params.category);
       response.send(statistics);
     } catch (error) {
       response.status(500).send(error);

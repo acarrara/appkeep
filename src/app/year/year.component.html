@@ -1,11 +1,11 @@
 <div class="ak-page">
   <ak-category-header class="ak-page__header">
     <header class="ak-heading">
-      <small class="ak-heading__kicker">Month</small>
-      <h1 class="ak-heading__title">{{month ? (month | akMonthName) + ' ' + year : 'This month'}}</h1>
+      <small class="ak-heading__kicker">Year</small>
+      <h1 class="ak-heading__title">{{year || 'This year'}}</h1>
     </header>
   </ak-category-header>
-  <div class="ak-edit  ak-page__content" *ngIf="monthStatistics">
+  <div class="ak-edit  ak-page__content" *ngIf="yearStatistics">
     <section class="ak-form">
       <ol class="ak-card__content">
         <li class="ak-item  ak-item--recap">
@@ -28,7 +28,7 @@
             </div>
           </div>
         </li>
-        <li class="ak-item  ak-item--recap" *ngFor="let user of monthStatistics.users">
+        <li class="ak-item  ak-item--recap" *ngFor="let user of yearStatistics.users">
           <div class="ak-item__what">
             <div
               class="ak-item__percentage  ak-item__percentage-negative  ak-item__percentage-{{user.label | akUserHue}}"
@@ -52,7 +52,7 @@
         </li>
       </ol>
     </section>
-    <ak-month-card [incomeCategories]="monthStatistics.incomeCategories"
-                   [appKeepCategories]="monthStatistics.appKeepCategories" month="Categories"></ak-month-card>
+    <ak-month-card [incomeCategories]="yearStatistics.incomeCategories"
+                   [appKeepCategories]="yearStatistics.appKeepCategories" month="Categories"></ak-month-card>
   </div>
 </div>

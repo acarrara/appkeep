@@ -6,6 +6,7 @@ import { Category } from './Category';
 import { CategoryStatistics } from './CategoryStatistics';
 import { User } from './User';
 import { MonthStatistics } from './MonthStatistic';
+import { YearStatistics } from './YearStatistics';
 
 export interface AppKeepState {
   appKeeps: AppKeep[];
@@ -14,6 +15,7 @@ export interface AppKeepState {
   categories: Category[];
   statistics: Statistics;
   monthStatistics: MonthStatistics;
+  yearStatistics: YearStatistics;
   categoryStatistics: CategoryStatistics;
   user: User;
   users: UserInfo[];

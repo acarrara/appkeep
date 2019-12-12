@@ -13,7 +13,7 @@ export class StatisticsFactory {
     const thisYear = date.getFullYear();
     return {
       thisMonth: this.createMonthStatistics(statisticsRaw[0], thisMonth),
-      thisYear: this.findYearStatistics(statisticsRaw[1], thisYear),
+      thisYear: this.createYearStatistics(statisticsRaw[1], thisYear),
       overall: this.findOverallStatistics(statisticsRaw[2])
     };
   }
@@ -24,7 +24,7 @@ export class StatisticsFactory {
     const thisYear = date.getFullYear();
     return {
       thisMonthAppKeeps: this.findMonthCategoryAppkeeps(statisticsRaw[0], thisMonth),
-      thisYear: this.findYearStatistics(statisticsRaw[1], thisYear),
+      thisYear: this.createYearStatistics(statisticsRaw[1], thisYear),
       overall: this.findOverallStatistics(statisticsRaw[2])
     };
   }
@@ -47,9 +47,19 @@ export class StatisticsFactory {
     return monthStatisticsRaw === undefined ? [] : monthStatisticsRaw.appKeeps;
   }
 
-  private findYearStatistics(statisticsRaw: any[], year: number): YearStatistics {
+  public createYearStatistics(statisticsRaw: any[], year: number): YearStatistics {
     const yearStatisticsRaw = statisticsRaw.find(item => item._id === year);
-    const value = {months: []};
+    const value = {
+      months: [],
+      users: [],
+      appKeepCategories: [],
+      incomeCategories: []
+    };
+    if (yearStatisticsRaw) {
+      value.users = yearStatisticsRaw.users.map(current => this.recapFrom(current));
+      value.appKeepCategories = yearStatisticsRaw.categories.filter(category => category.total < 0);
+      value.incomeCategories = yearStatisticsRaw.categories.filter(category => category.total >= 0);
+    }
     if (yearStatisticsRaw && yearStatisticsRaw.months) {
       return yearStatisticsRaw.months.reduce((result, current) => {
         result.months.push({

@@ -13,6 +13,7 @@ import { UserInfo } from './models/UserInfo';
 import { zip } from 'rxjs';
 import { CategoryStatistics } from './models/CategoryStatistics';
 import { MonthStatistics } from './models/MonthStatistic';
+import { YearStatistics } from './models/YearStatistics';
 
 @Injectable()
 export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
@@ -54,12 +55,23 @@ export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
     );
   }
 
+  private loadYearStatistics: Epic<any, YearStatistics> = actions$ => {
+    return actions$.pipe(
+      filter(action => action.type === AppActions.LOAD_YEAR_STATISTICS),
+      mergeMap(action => this.http.get<any>(`/api/appkeeps/statistics/${action.payload}`).pipe(
+        first(),
+        map(statistics =>
+          this.actions.loadYearStatisticsSuccess(this.statisticsFactory.createYearStatistics(statistics, Number(action.payload))))
+      ))
+    );
+  }
+
   private loadStatistics: Epic<any, Statistics> = actions$ => {
     return actions$.pipe(
       filter(action => action.type === AppActions.LOAD_STATISTICS),
       mergeMap(() => zip(
-        this.http.get<any>('/api/appkeeps/statistics/month'),
-        this.http.get<any>('/api/appkeeps/statistics/year'),
+        this.http.get<any>('/api/appkeeps/statistics/thismonth'),
+        this.http.get<any>('/api/appkeeps/statistics/thisyear'),
         this.http.get<any>('/api/appkeeps/statistics/overall')
       ).pipe(
         first(),

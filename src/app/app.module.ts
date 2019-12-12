@@ -44,6 +44,7 @@ import { IncomeIndicatorComponent } from './income-indicator/income-indicator.co
 import { UserHuePipe } from './user-hue.pipe';
 import { UserNamePipe } from './user-name.pipe';
 import { MonthComponent } from './month/month.component';
+import { YearComponent } from './year/year.component';
 
 const config = new AuthServiceConfig([
   {
@@ -82,7 +83,8 @@ export function provideConfig() {
     IncomeIndicatorComponent,
     UserHuePipe,
     UserNamePipe,
-    MonthComponent
+    MonthComponent,
+    YearComponent
   ],
   imports: [
     BrowserModule,
@@ -138,7 +140,7 @@ export class AppModule {
         categories: [],
         statistics: {
           thisMonth: {users: [], appKeepCategories: [], incomeCategories: []},
-          thisYear: {months: []},
+          thisYear: {months: [], users: [], appKeepCategories: [], incomeCategories: []},
           overall: {years: []}
         },
         monthStatistics: {
@@ -146,9 +148,10 @@ export class AppModule {
           appKeepCategories: [],
           incomeCategories: []
         },
+        yearStatistics: {months: [], users: [], appKeepCategories: [], incomeCategories: []},
         categoryStatistics: {
           thisMonthAppKeeps: [],
-          thisYear: {months: []},
+          thisYear: {months: [], users: [], appKeepCategories: [], incomeCategories: []},
           overall: {years: []}
         },
         user: {

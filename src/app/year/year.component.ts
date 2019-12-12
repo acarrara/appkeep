@@ -2,35 +2,33 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/
 import { ActivatedRoute } from '@angular/router';
 import { StoreService } from '../../redux/store.service';
 import { AppKeepState } from '../models/AppKeepState';
-import { MonthStatistics } from '../models/MonthStatistic';
 import { AppActions } from '../app.actions';
+import { YearStatistics } from '../models/YearStatistics';
 
 @Component({
-  selector: 'ak-month',
-  templateUrl: 'month.component.html',
+  selector: 'ak-year',
+  templateUrl: 'year.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MonthComponent  {
-  public monthStatistics: MonthStatistics;
+export class YearComponent {
+  public yearStatistics: YearStatistics;
 
   public allAppKeep: number;
   public allIncome: number;
   public year: string;
-  public month: string;
 
   private highest: number;
 
   constructor(activatedRoute: ActivatedRoute, store: StoreService<AppKeepState>, actions: AppActions, cdr: ChangeDetectorRef) {
     activatedRoute.paramMap.subscribe(params => {
-      if (!params.has('year') || !params.has('month')) {
-        this.monthStatistics = store.snapshot<MonthStatistics>(['statistics', 'thisMonth']);
+      if (!params.has('year')) {
+        this.yearStatistics = store.snapshot<YearStatistics>(['statistics', 'thisYear']);
         this.computeStatistics();
       } else {
         this.year = params.get('year');
-        this.month = params.get('month');
-        store.dispatch(actions.loadMonthStatistics(this.year, this.month));
-        store.get<MonthStatistics>(['monthStatistics']).subscribe(monthStatistics => {
-          this.monthStatistics = monthStatistics;
+        store.dispatch(actions.loadYearStatistics(this.year));
+        store.get<YearStatistics>(['yearStatistics']).subscribe(yearStatistics => {
+          this.yearStatistics = yearStatistics;
           this.computeStatistics();
           cdr.markForCheck();
         });
@@ -39,8 +37,8 @@ export class MonthComponent  {
   }
 
   private computeStatistics() {
-    this.allAppKeep = this.monthStatistics.users.reduce((partial, current) => partial + current.appKeepTotal, 0);
-    this.allIncome = this.monthStatistics.users.reduce((partial, current) => partial + current.incomeTotal, 0);
+    this.allAppKeep = this.yearStatistics.users.reduce((partial, current) => partial + current.appKeepTotal, 0);
+    this.allIncome = this.yearStatistics.users.reduce((partial, current) => partial + current.incomeTotal, 0);
     this.highest = Math.max(
       this.allIncome,
       this.allAppKeep
@@ -50,4 +48,5 @@ export class MonthComponent  {
   percentage(partial: number): string {
     return partial ? Math.abs((partial / this.highest * 100)).toFixed(0) + '%' : '0%';
   }
+
 }

@@ -11,8 +11,13 @@
                       [total]="todayTotal$ | async"
                       when="today">
     </ak-appkeeps-card>
-    <ak-month-card [monthStatistics]="thisMonthTotal$ | async" month="this month" [explorable]="true"></ak-month-card>
-    <ak-recap-card [recaps]="thisYearTotal$ | async" year="this year"></ak-recap-card>
-    <ak-recap-card [recaps]="overallTotal$ | async" year="overall"></ak-recap-card>
+    <ng-container *ngIf="thisMonthTotal$ | async; let thisMonth">
+      <ak-month-card [incomeCategories]="thisMonth.incomeCategories" [appKeepCategories]="thisMonth.appKeepCategories"
+                     month="this month" [explorable]="true"></ak-month-card>
+    </ng-container>
+    <ak-recap-card [recaps]="thisYearTotal$ | async" year="this year" [itemRootPath]="['/details', '2019']"
+                   [explorable]="true"></ak-recap-card>
+    <ak-recap-card [recaps]="overallTotal$ | async" year="overall" [itemRootPath]="['/details']"
+                   [explorable]="true"></ak-recap-card>
   </section>
 </div>

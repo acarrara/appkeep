@@ -8,6 +8,7 @@ import { CategoryComponent } from './edit-category/category.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MonthlyComponent } from './monthly/monthly.component';
 import { MonthComponent } from './month/month.component';
+import { YearComponent } from './year/year.component';
 
 
 const routes: Routes = [
@@ -36,13 +37,23 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'month',
+    path: 'details/month',
     component: MonthComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'month/:year/:month',
+    path: 'details/:year/:month',
     component: MonthComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'details/year',
+    component: YearComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'details/:year',
+    component: YearComponent,
     canActivate: [AuthGuard]
   },
   {

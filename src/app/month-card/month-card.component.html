@@ -2,7 +2,7 @@
   <ak-card [total]="incomeTotal + appKeepTotal" [when]="month" [indicator]="true">
     <div class="ak-card__content">
       <ol>
-        <li *ngFor="let category of monthStatistics.appKeepCategories; let i = index" class="ak-item">
+        <li *ngFor="let category of appKeepCategories; let i = index" class="ak-item">
           <a class="ak-item__what" routerLink="/category/{{category.category}}">
             <div class="ak-item__percentage ak-item--{{category.category | akCategoryHue: categories}}"
                  [style.width]="appKeepPercentage(category)"
@@ -14,7 +14,7 @@
             <ak-income-indicator [income]="category.total > 0"></ak-income-indicator>
           </div>
         </li>
-        <li *ngFor="let category of monthStatistics.incomeCategories; let i = index" class="ak-item">
+        <li *ngFor="let category of incomeCategories; let i = index" class="ak-item">
           <a class="ak-item__what" routerLink="/category/{{category.category}}">
             <div class="ak-item__percentage ak-item--{{category.category | akCategoryHue: categories}}"
                  [style.width]="incomePercentage(category)"
@@ -28,7 +28,7 @@
         </li>
       </ol>
       <div class="ak-card__action" *ngIf="explorable">
-        <a routerLink="/month">
+        <a routerLink="/details/month">
           <ak-icon type="go" size="small"></ak-icon>
         </a>
       </div>

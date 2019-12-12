@@ -1,7 +1,7 @@
 <ak-card [total]="total" [when]="year" [indicator]="true">
   <ol class="ak-card__content">
     <li *ngFor="let recap of recaps" class="ak-item  ak-item--recap">
-      <a class="ak-item__what" [routerLink]="['/month', '2019', recap.label]">
+      <a class="ak-item__what" [routerLink]="itemLink(recap.label)">
         <div class="ak-item__percentage  ak-item__percentage-negative ak-item__percentage-{{hue}}"
              *ngIf="recap.appKeepTotal" [style.width]="getAppKeepPercentage(recap)"></div>
         <div class="ak-item__percentage  ak-item__percentage-positive ak-item__percentage-{{hue}}"
@@ -23,4 +23,9 @@
       </div>
     </li>
   </ol>
+  <div class="ak-card__action" *ngIf="explorable">
+    <a routerLink="/details/month">
+      <ak-icon type="go" size="small"></ak-icon>
+    </a>
+  </div>
 </ak-card>

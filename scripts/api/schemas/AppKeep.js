@@ -23,8 +23,7 @@ model.monthStatistics = (range, category) => {
         $group: {
           _id: {
             month: {$month: "$date"},
-            category: "$category",
-            user: "$user"
+            category: "$category"
           },
           total: {
             $sum: {
@@ -156,6 +155,44 @@ model.yearStatistics = (range, category) => {
         }
       }
     ]
+  ).exec();
+};
+
+model.yearCategoryStatistics = (range, category) => {
+  category = category || '';
+  return model.aggregate(
+    [{
+      $match: matchers.matchBy(range, category)
+    },
+      {
+        $group: {
+          _id: {
+            year: {$year: "$date"},
+            category: "$category"
+          },
+          total: {
+            $sum: {
+              $cond: [
+                {$eq: ["$income", true]}, "$amount", {$multiply: ["$amount", -1]}
+              ]
+            }
+          }
+        }
+      },
+      {
+        $group: {
+          _id: {
+            year: "$_id.year"
+          },
+          categories: {$addToSet: {category: "$_id.category", total: "$total"}},
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          categories: 1
+        }
+      }]
   ).exec();
 };
 

@@ -9,7 +9,7 @@ module.exports = {
     return new Date(date.getFullYear(), 1, 1, 0, 0, 0, 0);
   },
 
-  anYear: function (year) {
+  aYearStart: function (year) {
     return new Date(year, 1, 1, 0, 0, 0, 0);
   },
 
@@ -18,7 +18,11 @@ module.exports = {
   },
 
   aMonthEnd: function (year, month) {
-    return new Date(year, month, 1, 0, 0, 0, 0);
+    return new Date(year, month, 0, 23, 59, 59, 0);
+  },
+
+  aYearEnd: function (year) {
+    return new Date(year + 1, 0, 0, 23, 59, 59, 0);
   },
 
   start: function () {
@@ -35,8 +39,16 @@ module.exports = {
     return new Date();
   },
 
+  origin: function () {
+    return new Date(0);
+  },
+
   currentMonth: function () {
     return {start: this.thisMonth(), end: this.now()};
+  },
+
+  currentYear: function () {
+    return {start: this.thisYear(), end: this.now()};
   },
 
   month: function (year, month) {
@@ -44,14 +56,10 @@ module.exports = {
   },
 
   year: function (year) {
-    if (year === 'this') {
-      return {start: this.thisYear(), end: this.now()};
-    } else {
-      return {start: this.anYear(year), end: this.anYear(year + 1)};
-    }
+    return {start: this.aYearStart(year), end: this.aYearEnd(year)};
   },
 
   all: function () {
-    return {start: this.start(), end: this.now()};
+    return {start: this.origin(), end: this.now()};
   }
 };

@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { MonthStatistics } from '../models/MonthStatistic';
 import { CategoryAmount } from '../models/CategoryAmount';
 import { Listen } from '../../redux/listen.decorator';
 import { Observable } from 'rxjs';
@@ -18,7 +17,9 @@ export class MonthCardComponent implements OnChanges {
   @Input()
   month: string;
   @Input()
-  monthStatistics: MonthStatistics;
+  appKeepCategories: CategoryAmount[];
+  @Input()
+  incomeCategories: CategoryAmount[];
   @Input()
   explorable = false;
 
@@ -28,12 +29,12 @@ export class MonthCardComponent implements OnChanges {
   incomeHighest: number;
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.appKeepTotal = this.updateCategories(this.monthStatistics.appKeepCategories);
-    this.incomeTotal = this.updateCategories(this.monthStatistics.incomeCategories);
-    this.appKeepHighest = this.monthStatistics.appKeepCategories.length ?
-      this.monthStatistics.appKeepCategories[0].total : 0;
-    this.incomeHighest = this.monthStatistics.incomeCategories.length ?
-      this.monthStatistics.incomeCategories[this.monthStatistics.incomeCategories.length - 1].total : 0;
+    this.appKeepTotal = this.updateCategories(this.appKeepCategories);
+    this.incomeTotal = this.updateCategories(this.incomeCategories);
+    this.appKeepHighest = this.appKeepCategories.length ?
+      this.appKeepCategories[0].total : 0;
+    this.incomeHighest = this.incomeCategories.length ?
+      this.incomeCategories[this.incomeCategories.length - 1].total : 0;
   }
 
   appKeepPercentage(category: CategoryAmount) {

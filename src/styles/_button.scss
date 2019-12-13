@@ -1,7 +1,7 @@
 @mixin ak-button() {
   padding: $ak-size-m;
 
-  border: 0;
+  border: none;
 
   min-height: $ak-size-xl;
   min-width: $ak-size-xl;
@@ -14,21 +14,26 @@
   font-family: inherit;
   text-align: center;
   cursor: pointer;
-
 }
 
 @mixin ak-button-primary() {
-  color: $ak-color-canvas;
-  background-color: $ak-color-button-primary;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $ak-color-primary;
 
-  box-shadow: 0px 1px 2px 0px $ak-color-shadow;
+  color: $ak-color-light;
+  background-color: $ak-color-primary;
+
+  @include ak-shadow-small();
 
   &:hover {
     background-color: $ak-color-button-hover;
+    border-color: $ak-color-button-hover;
   }
 
   &:active {
     background-color: $ak-color-button-active;
+    border-color: $ak-color-button-active;
   }
 }
 
@@ -41,9 +46,7 @@
   color: $ak-color-light;
   stroke: $ak-color-light;
 
-  border-bottom-right-radius: $ak-size-m;
-  border-top-right-radius: $ak-size-m;
-  border-top-left-radius: $ak-size-m;
+  border-radius: $ak-size-m;
 }
 
 .ak-button {
@@ -54,7 +57,9 @@
 
   @include ak-button();
 
-  border-top: 1px solid $ak-color-border;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $ak-color-border;
 
   &:hover {
     border-color: $ak-color-button-hover;
@@ -63,7 +68,7 @@
   &:active {
     border-color: $ak-color-button-active;
 
-    box-shadow: 0 1px 1px 0 $ak-color-shadow;
+    @include ak-shadow-smaller();
   }
 
   &.ak-button--primary {
@@ -74,6 +79,6 @@
     border-radius: $ak-size-xl;
     width: 60%;
 
-    box-shadow: 0px 1px 2px 0px $ak-color-shadow;
+    @include ak-shadow-small();
   }
 }

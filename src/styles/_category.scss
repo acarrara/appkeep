@@ -1,12 +1,7 @@
-// $_category-hues: 0, 55, 110, 165, 220, 275, 330, 25, 80, 135, 190, 245, 300, 355, 50, 105, 160, 215, 270, 325, 20, 75, 130, 185, 240, 295, 350, 45, 100, 155, 210, 265, 320, 15, 70, 125, 180, 235, 290, 345, 40, 95, 150, 205, 260, 315, 10, 65, 120, 175, 230, 285, 340, 35, 90, 145, 200, 255, 310, 5, 60, 115, 170, 225, 280, 335, 30, 85, 140, 195, 250, 305;
-
-//$_category_hues: 0, 45, 90, 135, 180, 225, 270, 315;
-$_category_hues: 15, 60, 105, 150, 195, 240, 285, 330;
-
 .ak-badge {
   display: inline-block;
 
-  font-size: 0.75rem;
+  font-size: $ak-size-m + $ak-size-s;
 
   border: 1px solid $ak-color-border;
   border-radius: $ak-size-s;
@@ -15,10 +10,10 @@ $_category_hues: 15, 60, 105, 150, 195, 240, 285, 330;
 
   margin-top: $ak-size-m;
 
-  @each $_category-hue in $_category-hues {
-    $i: index($_category_hues, $_category-hue);
+  @each $_hue in $ak-hues {
+    $i: index($ak-hues, $_hue);
     &.ak-badge--#{$i} {
-      background-color: ak-color(95, 80, $_category-hue);
+      background-color: ak-color(95, 80, $_hue);
     }
   }
 
@@ -32,52 +27,5 @@ $_category_hues: 15, 60, 105, 150, 195, 240, 285, 330;
 
   &.ak-badge--positive {
     background-color: $ak-color-positive-light;
-  }
-}
-
-.ak-category {
-
-  @each $_category-hue in $_category-hues {
-    $i: index($_category_hues, $_category-hue);
-    &.ak-category--#{$i} {
-      background-color: ak-color(95, 80, $_category-hue);
-    }
-  }
-}
-
-@each $_category-hue in $_category-hues {
-  $i: index($_category_hues, $_category-hue);
-  .ak-item--#{$i} {
-    background-color: ak-color(75, 90, $_category-hue);
-  }
-
-  .ak-item__percentage-#{$i} {
-    border-bottom: $ak-size-s solid ak-color(75, 90, $_category-hue);
-  }
-}
-
-.ak-edit__hues {
-  display: flex;
-
-  & > .ak-edit__hue {
-    flex-grow: 1;
-    height: $ak-size-xl;
-
-
-    & > input:checked + label {
-      border: 4px solid $ak-color-primary;
-    }
-
-    & > label {
-      display: block;
-      height: 100%;
-      width: 100%;
-      cursor: pointer;
-      border-radius: $ak-size-s;
-    }
-
-    & + .ak-edit__hue {
-      margin-left: $ak-size-m;
-    }
   }
 }

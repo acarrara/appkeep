@@ -4,13 +4,15 @@ ak-empty-state {
 }
 
 ak-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include ak-flex-center();
 }
 
 ak-income-indicator {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+ak-app {
+  @include ak-flex-center();
 }

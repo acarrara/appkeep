@@ -1,10 +1,10 @@
 <ng-container *ngIf="categories$ | async; let categories">
-  <ak-card [total]="incomeTotal + appKeepTotal" [when]="month" [indicator]="true">
+  <ak-card [total]="incomeTotal + appKeepTotal" [when]="title" [indicator]="true">
     <div class="ak-card__content">
       <ol>
         <li *ngFor="let category of appKeepCategories; let i = index" class="ak-item">
           <a class="ak-item__what" routerLink="/category/{{category.category}}">
-            <div class="ak-item__percentage ak-item--{{category.category | akCategoryHue: categories}}"
+            <div class="ak-item-percentage ak-item-percentage--{{category.category | akCategoryHue: categories}}"
                  [style.width]="appKeepPercentage(category)"
                  [attr.data-percentage]="appKeepRelativePercentage(category)"></div>
             <span class="ak-badge">{{category.category | lowercase}}</span>
@@ -16,7 +16,7 @@
         </li>
         <li *ngFor="let category of incomeCategories; let i = index" class="ak-item">
           <a class="ak-item__what" routerLink="/category/{{category.category}}">
-            <div class="ak-item__percentage ak-item--{{category.category | akCategoryHue: categories}}"
+            <div class="ak-item-percentage ak-item-percentage--{{category.category | akCategoryHue: categories}}"
                  [style.width]="incomePercentage(category)"
                  [attr.data-percentage]="incomeRelativePercentage(category)"></div>
             <span class="ak-badge">{{category.category | lowercase}}</span>
@@ -27,11 +27,7 @@
           </div>
         </li>
       </ol>
-      <div class="ak-card__action" *ngIf="explorable">
-        <a routerLink="/details/month">
-          <ak-icon type="go" size="small"></ak-icon>
-        </a>
-      </div>
+      <ng-content></ng-content>
     </div>
   </ak-card>
 </ng-container>

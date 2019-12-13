@@ -7,10 +7,9 @@
   background-color: $ak-color-light;
   border-radius: $ak-size-m;
 
-  display: flex;
-  flex-direction: column;
+  @include ak-flex-column();
 
-  @include standard-shadow();
+  @include ak-shadow-standard();
 }
 
 .ak-card__header {
@@ -45,13 +44,15 @@
 .ak-card__content {
   padding: $ak-size-s $ak-size-l;
   flex-grow: 1;
+
+  @include ak-flex-column();
 }
 
 .ak-card__action {
   padding-bottom: $ak-size-l;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  @include ak-flex-end();
+
+  margin-top: auto;
 
   button, a {
     @include ak-button-tertiary();

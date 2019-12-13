@@ -1,13 +1,12 @@
 .ak-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include ak-flex-center();
 
   cursor: pointer;
 
   padding: $ak-size-m 0;
 
   &.ak-item--updating {
+    color: $ak-color-shadow;
   }
 
   & + .ak-item {
@@ -19,26 +18,27 @@
     @include ak-button();
     text-align: left;
     padding: 0;
+    border: 0;
 
     &:hover {
       text-decoration: underline;
     }
   }
 
-  .ak-item__amount, .ak-item__editing {
+  & .ak-item__amount, & .ak-item__editing {
     flex-grow: 0;
     margin-left: $ak-size-l;
     display: flex;
   }
 
-  .ak-item__action {
-   @include ak-button();
+  & .ak-item__action {
+    @include ak-button();
   }
 
   &.ak-item--recap {
     align-items: stretch;
 
-    & .ak-item__percentage {
+    & .ak-item-percentage {
       max-width: 100%;
     }
 
@@ -47,13 +47,9 @@
       flex-direction: column;
     }
 
-    & > .ak-item__amount > * + *, & .ak-item__percentage + .ak-item__percentage {
+    & > .ak-item__amount > * + *, & .ak-item-percentage + .ak-item-percentage {
       margin-top: $ak-size-m;
     }
-  }
-
-  &.ak-item--grouped + .ak-item--grouped {
-    border-style: dashed;
   }
 }
 
@@ -61,7 +57,7 @@
   margin-left: $ak-size-s;
 }
 
-.ak-item__percentage {
+.ak-item-percentage {
   background-color: $ak-color-primary;
   border-radius: $ak-size-s;
   min-width: $ak-size-xs;
@@ -78,22 +74,28 @@
 
     content: attr(data-percentage);
   }
-}
 
-.ak-item__percentage-negative {
-  background-color: $ak-color-negative-normal;
-}
+  &.ak-item-percentage--negative {
+    background-color: $ak-color-negative-normal;
+  }
 
-.ak-item__percentage-positive {
-  background-color: $ak-color-positive-normal;
-}
+  &.ak-item-percentage--positive {
+    background-color: $ak-color-positive-normal;
+  }
 
-.ak-items__action {
-  margin-right: $ak-size-l;
+  @each $_hue in $ak-hues {
+    $i: index($ak-hues, $_hue);
+
+    &.ak-item-percentage--border-#{$i} {
+      border-bottom: $ak-size-s solid ak-color(75, 90, $_hue);
+    }
+
+    &.ak-item-percentage--#{$i} {
+      background-color: ak-color(75, 90, $_hue);
+    }
+  }
 }
 
 .ak-item__amount-unit {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  @include ak-flex-end();
 }

@@ -2,13 +2,11 @@
   width: 100vw;
   height: 100vh;
 
-  background-color: $ak-color-canvas;
+  background-color: $ak-color-light;
 
-  display: flex;
+  @include ak-flex-center();
+
   flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
 
   & > .ak-layout__main {
     height: 100vh;
@@ -29,7 +27,7 @@
 
   background-color: $ak-color-light;
 
-  @include standard-shadow();
+  @include ak-shadow-standard();
 
   margin: 0 $ak-size-m $ak-size-l;
 
@@ -78,8 +76,7 @@
 }
 
 .ak-page {
-  display: flex;
-  flex-direction: column;
+  @include ak-flex-column();
 
   height: 100vh;
 

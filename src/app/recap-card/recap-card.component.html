@@ -1,0 +1,29 @@
+<ak-card [total]="total" [when]="year" [indicator]="true">
+  <div class="ak-card__content">
+    <ol>
+      <li *ngFor="let recap of recaps" class="ak-item  ak-item--recap">
+        <a class="ak-item__what" [routerLink]="itemLink(recap)">
+          <div class="ak-item-percentage  ak-item-percentage--negative ak-item-percentage--border-{{hue}}"
+               *ngIf="recap.appKeepTotal" [style.width]="getAppKeepPercentage(recap)"></div>
+          <div class="ak-item-percentage  ak-item-percentage--positive ak-item-percentage--border-{{hue}}"
+               *ngIf="recap.incomeTotal" [style.width]="getIncomePercentage(recap)"></div>
+          <span class="ak-badge">{{recap.label | akMonthName | lowercase}}</span>
+          <span class="ak-badge  ak-badge--{{recap.incomeTotal + recap.appKeepTotal > 0 ? 'positive' : 'negative'}}">
+          {{recap.incomeTotal + recap.appKeepTotal | akAmount}}
+        </span>
+        </a>
+        <div class="ak-item__amount">
+        <span *ngIf="recap.appKeepTotal">
+          <span>{{recap.appKeepTotal | akAmount}}</span>
+          <ak-income-indicator [income]="false"></ak-income-indicator>
+        </span>
+          <span *ngIf="recap.incomeTotal">
+          <span>{{recap.incomeTotal | akAmount}}</span>
+          <ak-income-indicator [income]="true"></ak-income-indicator>
+        </span>
+        </div>
+      </li>
+    </ol>
+    <ng-content></ng-content>
+  </div>
+</ak-card>

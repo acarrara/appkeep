@@ -13,10 +13,6 @@ export class RecapCardComponent implements OnChanges {
   hue = 0;
   @Input()
   recaps: Recap[];
-  @Input()
-  itemRootPath: string[] = [];
-  @Input()
-  explorable = false;
 
   total: number;
   topTotal: number;
@@ -34,8 +30,15 @@ export class RecapCardComponent implements OnChanges {
     return this.getPercentage(recap.appKeepTotal);
   }
 
-  itemLink(label: string) {
-    return [...this.itemRootPath, label];
+  itemLink(recap: Recap) {
+    const path = ['/details'];
+    if (recap.scope) {
+      path.push(recap.scope);
+    }
+    if (recap.label) {
+      path.push(recap.label);
+    }
+    return path;
   }
 
   private getPercentage(appKeepTotal: number) {

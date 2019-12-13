@@ -36,7 +36,7 @@ export class StatisticsFactory {
       appKeepCategories: [],
       incomeCategories: []
     } : {
-      users: monthStatisticsRaw.users.map(current => this.recapFrom(current)),
+      users: monthStatisticsRaw.users.map(current => this.recapFrom(current, month)),
       appKeepCategories: monthStatisticsRaw.categories.filter(category => category.total < 0),
       incomeCategories: monthStatisticsRaw.categories.filter(category => category.total >= 0)
     };
@@ -55,8 +55,8 @@ export class StatisticsFactory {
       appKeepCategories: [],
       incomeCategories: []
     };
-    if (yearStatisticsRaw) {
-      value.users = yearStatisticsRaw.users.map(current => this.recapFrom(current));
+    if (yearStatisticsRaw && yearStatisticsRaw.users) {
+      value.users = yearStatisticsRaw.users.map(current => this.recapFrom(current, year));
       value.appKeepCategories = yearStatisticsRaw.categories.filter(category => category.total < 0);
       value.incomeCategories = yearStatisticsRaw.categories.filter(category => category.total >= 0);
     }
@@ -65,7 +65,8 @@ export class StatisticsFactory {
         result.months.push({
           appKeepTotal: -current.appKeepTotal,
           incomeTotal: current.incomeTotal,
-          label: current.month
+          label: current.month,
+          scope: year
         });
         return result;
       }, value);
@@ -75,16 +76,17 @@ export class StatisticsFactory {
 
   private findOverallStatistics(statisticsRaw: any[]): OverallStatistics {
     return statisticsRaw.reduce((result, current) => {
-      result.years.push(this.recapFrom(current));
+      result.years.push(this.recapFrom(current, ''));
       return result;
     }, {years: []});
   }
 
-  private recapFrom(current): Recap {
+  private recapFrom(current, scope): Recap {
     return {
       appKeepTotal: -current.appKeepTotal,
       incomeTotal: current.incomeTotal,
-      label: current._id
+      label: current._id,
+      scope
     };
   }
 }

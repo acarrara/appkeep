@@ -24,8 +24,6 @@ self.addEventListener('fetch', function (event) {
   // specific URLs like if(... || event.request.url.href.match(...))
   if (event.request.method === "POST") {
 
-    console.log('online', navigator.onLine);
-
     // // Init the cache. We use Dexie here to simplify the code. You can use any other
     // // way to access IndexedDB of course.
     // var db = new Dexie("post_cache");

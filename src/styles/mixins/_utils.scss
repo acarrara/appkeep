@@ -8,8 +8,23 @@
   margin: 0;
 }
 
-@mixin  ak-flex-center() {
+@mixin ak-flex-center() {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@mixin ak-flex-end() {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@mixin ak-flex-column() {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin ak-transition() {
+  transition: transform 0.2s ease-in-out;
 }

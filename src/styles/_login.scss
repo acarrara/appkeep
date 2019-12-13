@@ -1,39 +1,13 @@
 .ak-login {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
+  @include ak-flex-column();
   background-color: white;
-}
-
-.ak-login__mask {
-  height: 30vh;
-  background-image:
-    linear-gradient(
-        to top right,
-        $ak-color-dark, $ak-color-primary
-    );
-  clip-path: ellipse(130% 65% at -5% 30%);
-
-  flex-grow: 0;
-}
-
-.ak-login__logo-container {
-  height: 10rem;
-  width: 10rem;
-  padding: 1rem;
-  border-radius: 50%;
-  background-color: $ak-color-light;
-  box-shadow: 0px 18px 36px 0px $ak-color-shadow;
-
-  margin: -6rem auto 0;
-  position: relative;
 }
 
 .ak-login__form {
   flex-grow: 1;
 
-  display: flex;
-  flex-direction: column;
+  @include ak-flex-column();
 
   text-align: center;
 }

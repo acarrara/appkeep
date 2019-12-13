@@ -44,7 +44,7 @@
 
     transition: background-color 0.2s ease-in-out, stroke 0.2s ease-in-out;
 
-    box-shadow: 0px 1px 2px 0px $ak-color-shadow inset;
+    @include ak-shadow-small-inset();
 
     & > .ak-options-toggle__background {
       position: absolute;
@@ -66,9 +66,8 @@
       border-radius: 50%;
       background-color: $ak-color-light;
 
-      box-shadow: 0px 1px 2px 0px $ak-color-shadow;
-
-      transition: transform 0.2s ease-in-out;
+      @include ak-shadow-small();
+      @include ak-transition();
     }
   }
 

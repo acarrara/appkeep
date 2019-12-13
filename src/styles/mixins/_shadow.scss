@@ -1,3 +1,15 @@
-@mixin standard-shadow() {
+@mixin ak-shadow-standard() {
   box-shadow: 0 6px 4px -4px $ak-color-shadow;
+}
+
+@mixin ak-shadow-small() {
+  box-shadow: 0 1px 2px 0 $ak-color-shadow;
+}
+
+@mixin ak-shadow-small-inset() {
+  box-shadow: 0 1px 2px 0 $ak-color-shadow inset;
+}
+
+@mixin ak-shadow-smaller() {
+  box-shadow: 0 1px 1px 0 $ak-color-shadow;
 }

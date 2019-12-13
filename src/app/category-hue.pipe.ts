@@ -1,7 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Category } from './models/Category';
-import { StoreService } from '../redux/store.service';
-import { AppKeepState } from './models/AppKeepState';
 
 @Pipe({
   name: 'akCategoryHue'

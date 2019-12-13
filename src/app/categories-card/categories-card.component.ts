@@ -5,23 +5,21 @@ import { Observable } from 'rxjs';
 import { Category } from '../models/Category';
 
 @Component({
-  selector: 'ak-month-card',
-  templateUrl: 'month-card.component.html',
+  selector: 'ak-categories-card',
+  templateUrl: 'categories-card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MonthCardComponent implements OnChanges {
+export class CategoriesCardComponent implements OnChanges {
 
   @Listen(['categories'])
   categories$: Observable<Category[]>;
 
   @Input()
-  month: string;
+  title: string;
   @Input()
   appKeepCategories: CategoryAmount[];
   @Input()
   incomeCategories: CategoryAmount[];
-  @Input()
-  explorable = false;
 
   appKeepTotal: number;
   incomeTotal: number;

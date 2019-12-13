@@ -2,24 +2,7 @@
 @import "node_modules/sass-planifolia/sass/color.scss";
 
 $ak-brand-hue: 245;
-//$ak-brand-hue: 170;
-
-$_light-xxxs: 12;
-$_light-xxs: 14;
-$_light-xs: 16;
-$_light-m: 40;
-$_light-l: 50;
-$_light-xl: 80;
-$_light-xxl: 96;
-$_light-xxxl: 99;
-
-$_sat-xxs: 4;
-$_sat-s: 10;
-$_sat-m: 50;
-$_sat-l: 70;
-$_sat-xl: 90;
-$_sat-xxl: 92;
-$_sat-xxxl: 94;
+$ak-hues: 15, 60, 105, 150, 195, 240, 285, 330;
 
 @function ak-color($l, $s, $h) {
   @return lch($l, $s, $h, 'hsluv');
@@ -29,15 +12,13 @@ $_sat-xxxl: 94;
   @return ak-color($l, $s, $ak-brand-hue);
 }
 
-$ak-color-dark: brand-color($_light-xs, $_sat-xl);
-$ak-color-shadow: brand-color($_light-l, $_sat-s);
-$ak-color-canvas: brand-color($_light-xxxl, $_sat-xxs);
-$ak-color-background: brand-color($_light-xxl, $_sat-xxs);
-$ak-color-light: brand-color($_light-xxxl, $_sat-xxs);
-$ak-color-button-primary: brand-color(35, 100);
-$ak-color-button-hover: brand-color(30, 100);
-$ak-color-button-active: brand-color(25, 100);
-$ak-color-border: brand-color($_light-xl, $_sat-xxs);
+$ak-color-dark: brand-color(15, 90);
+$ak-color-shadow: brand-color(50, 5);
+$ak-color-background: brand-color(95, 5);
+$ak-color-light: brand-color(98, 5);
+$ak-color-button-hover: brand-color(35, 100);
+$ak-color-button-active: brand-color(30, 100);
+$ak-color-border: brand-color(80, 5);
 $ak-color-primary: brand-color(45, 100);
 
 $ak-color-positive-strong: ak-color(45, 90, 140);
@@ -55,3 +36,10 @@ $ak-size-m: 0.5rem;
 $ak-size-l: 1rem;
 $ak-size-xl: 2rem;
 $ak-size-xxl: 3rem;
+
+@each $_hue in $ak-hues {
+  $i: index($ak-hues, $_hue);
+  .ak-hue-#{$i} {
+    background-color: ak-color(75, 90, $_hue);
+  }
+}

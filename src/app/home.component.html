@@ -12,12 +12,28 @@
                       when="today">
     </ak-appkeeps-card>
     <ng-container *ngIf="thisMonthTotal$ | async; let thisMonth">
-      <ak-month-card [incomeCategories]="thisMonth.incomeCategories" [appKeepCategories]="thisMonth.appKeepCategories"
-                     month="this month" [explorable]="true"></ak-month-card>
+      <ak-categories-card [incomeCategories]="thisMonth.incomeCategories" [appKeepCategories]="thisMonth.appKeepCategories"
+                          title="this month">
+        <footer class="ak-card__action">
+          <a routerLink="/details/month">
+            <ak-icon type="go" size="small"></ak-icon>
+          </a>
+        </footer>
+      </ak-categories-card>
     </ng-container>
-    <ak-recap-card [recaps]="thisYearTotal$ | async" year="this year" [itemRootPath]="['/details', '2019']"
-                   [explorable]="true"></ak-recap-card>
-    <ak-recap-card [recaps]="overallTotal$ | async" year="overall" [itemRootPath]="['/details']"
-                   [explorable]="true"></ak-recap-card>
+    <ak-recap-card [recaps]="thisYearTotal$ | async" year="this year">
+      <footer class="ak-card__action">
+        <a routerLink="/details/year">
+          <ak-icon type="go" size="small"></ak-icon>
+        </a>
+      </footer>
+    </ak-recap-card>
+    <ak-recap-card [recaps]="overallTotal$ | async" year="overall">
+      <footer class="ak-card__action">
+        <a routerLink="/details/overall">
+          <ak-icon type="go" size="small"></ak-icon>
+        </a>
+      </footer>
+    </ak-recap-card>
   </section>
 </div>

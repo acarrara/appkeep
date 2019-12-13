@@ -26,10 +26,10 @@ import { LoginComponent } from './login/login.component';
 import { HomeHeaderComponent } from './profile/home-header.component';
 import { AuthGuard } from './auth.guard';
 import { IconComponent } from './icon/icon.component';
-import { MonthCardComponent } from './month-card/month-card.component';
+import { CategoriesCardComponent } from './categories-card/categories-card.component';
 import { LogoComponent } from './logo/logo.component';
-import { RecapCardComponent } from './year-card/recap-card.component';
-import { AkMonthNamePipe } from './month-name.pipe';
+import { RecapCardComponent } from './recap-card/recap-card.component';
+import { MonthNamePipe } from './month-name.pipe';
 import { CategoryComponent } from './edit-category/category.component';
 import { NotificationService } from './notification.service';
 import { AppkeepsCardComponent } from './appkeeps-card/appkeeps-card.component';
@@ -69,10 +69,10 @@ export function provideConfig() {
     LoginComponent,
     HomeHeaderComponent,
     IconComponent,
-    MonthCardComponent,
+    CategoriesCardComponent,
     LogoComponent,
     RecapCardComponent,
-    AkMonthNamePipe,
+    MonthNamePipe,
     CategoryComponent,
     AppkeepsCardComponent,
     CategoryHeaderComponent,

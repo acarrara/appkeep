@@ -10,15 +10,12 @@
   width: 100%;
   max-width: 30rem;
 
-  @include standard-shadow();
+  @include ak-shadow-standard();
 
   padding: $ak-size-m;
 
   & > * + * {
     margin-left: $ak-size-m;
-  }
-
-  & > .ak-header__title {
   }
 
   & > .ak-header__logo {
@@ -32,10 +29,8 @@
 
   & .ak-header__button {
     @include ak-button();
+    @include ak-flex-center();
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   & > .ak-header__right {
@@ -43,17 +38,22 @@
     min-height: $ak-size-xl;
   }
 
+  @each $_hue in $ak-hues {
+    $i: index($ak-hues, $_hue);
+    &.ak-header--#{$i} {
+      background-color: ak-color(95, 80, $_hue);
+    }
+  }
+
 }
 
 .ak-heading {
-  display: flex;
+  @include ak-flex-center();
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
   & > .ak-heading__kicker {
     color: $ak-color-shadow;
 
-    font-size: 0.75rem;
+    font-size: $ak-size-m + $ak-size-s;
   }
 }

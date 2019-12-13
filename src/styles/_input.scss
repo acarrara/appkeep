@@ -2,15 +2,19 @@
 
   &.ak-input__interactive {
     display: flex;
+    align-items: stretch;
 
     padding: $ak-size-l 0;
 
     & input {
-      padding: $ak-size-m 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
     }
 
-    & button, & a {
+    & button {
       @include ak-button-tertiary();
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
   }
 
@@ -32,19 +36,14 @@
     font-family: inherit;
     line-height: inherit;
     color: inherit;
-    background-color: inherit;
+    background-color: white;
 
-    border: none;
-
-    border-bottom: 1px solid $ak-color-border;
-
+    border: 1px solid $ak-color-border;
+    border-radius: $ak-size-m;
   }
 
   &.ak-input--amount {
-
-    & > label {
-      margin: 0;
-    }
+    @include ak-flex-column();
 
     & > input {
       opacity: 0;
@@ -57,8 +56,16 @@
 }
 
 .ak-amount {
+  width: 100%;
   text-align: right;
   cursor: pointer;
+
+  border: 1px solid $ak-color-border;
+  border-radius: $ak-size-m;
+
+  background-color: white;
+
+  padding: 0 $ak-size-m;
 }
 
 .ak-toggle {
@@ -83,9 +90,8 @@
 
     cursor: pointer;
 
-    transition: background-color 0.2s ease-in-out;
-
-    box-shadow: 0px 1px 2px 0px $ak-color-shadow inset;
+    @include ak-shadow-small-inset();
+    @include ak-transition();
 
     &:after {
       content: '';
@@ -97,14 +103,13 @@
       border-radius: 50%;
       background-color: $ak-color-light;
 
-      box-shadow: 0px 1px 2px 0px $ak-color-shadow;
-
-      transition: transform 0.2s ease-in-out;
+      @include ak-shadow-small();
+      @include ak-transition();
     }
   }
 
   & > input:checked + label {
-    background-color: $ak-color-button-primary;
+    background-color: $ak-color-primary;
   }
 
   & > input:checked + label:after {
@@ -112,8 +117,28 @@
   }
 }
 
-.ak-toggle__label {
-  display: inline;
-  margin-right: $ak-size-xl;
-}
+.ak-input-hues {
+  display: flex;
 
+  & > .ak-input-hues__hue {
+    flex-grow: 1;
+    height: $ak-size-xl;
+
+
+    & > input:checked + label {
+      border: 4px solid $ak-color-primary;
+    }
+
+    & > label {
+      display: block;
+      height: 100%;
+      width: 100%;
+      cursor: pointer;
+      border-radius: $ak-size-s;
+    }
+
+    & + .ak-input-hues__hue {
+      margin-left: $ak-size-m;
+    }
+  }
+}

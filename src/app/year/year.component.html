@@ -10,9 +10,9 @@
       <ol class="ak-card__content">
         <li class="ak-item  ak-item--recap">
           <div class="ak-item__what">
-            <div class="ak-item__percentage  ak-item__percentage-negative"
+            <div class="ak-item-percentage  ak-item-percentage--negative"
                  [style.width]="percentage(allAppKeep)"></div>
-            <div class="ak-item__percentage  ak-item__percentage-positive"
+            <div class="ak-item-percentage  ak-item-percentage--positive"
                  [style.width]="percentage(allIncome)"></div>
             <span class="ak-badge">all</span>
             <span class="ak-badge  ak-badge--positive">{{(allIncome + allAppKeep) | akAmount}}</span>
@@ -31,10 +31,10 @@
         <li class="ak-item  ak-item--recap" *ngFor="let user of yearStatistics.users">
           <div class="ak-item__what">
             <div
-              class="ak-item__percentage  ak-item__percentage-negative  ak-item__percentage-{{user.label | akUserHue}}"
+              class="ak-item-percentage  ak-item-percentage--negative  ak-item-percentage--border-{{user.label | akUserHue}}"
               [style.width]="percentage(user.appKeepTotal)"></div>
             <div
-              class="ak-item__percentage  ak-item__percentage-positive  ak-item__percentage-{{user.label | akUserHue}}"
+              class="ak-item-percentage  ak-item-percentage--positive  ak-item-percentage--border-{{user.label | akUserHue}}"
               [style.width]="percentage(user.incomeTotal)"></div>
             <span class="ak-badge  ak-badge--{{user.label | akUserHue}}">{{user.label | akUserName}}</span>
             <span class="ak-badge  ak-badge--positive">{{(user.incomeTotal + user.appKeepTotal) | akAmount}}</span>
@@ -52,7 +52,8 @@
         </li>
       </ol>
     </section>
-    <ak-month-card [incomeCategories]="yearStatistics.incomeCategories"
-                   [appKeepCategories]="yearStatistics.appKeepCategories" month="Categories"></ak-month-card>
+    <ak-categories-card [incomeCategories]="yearStatistics.incomeCategories"
+                        [appKeepCategories]="yearStatistics.appKeepCategories" title="Categories"></ak-categories-card>
+    <ak-recap-card [recaps]="yearStatistics.months" year="months"></ak-recap-card>
   </div>
 </div>

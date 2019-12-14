@@ -45,6 +45,7 @@ import { UserHuePipe } from './user-hue.pipe';
 import { UserNamePipe } from './user-name.pipe';
 import { MonthComponent } from './month/month.component';
 import { YearComponent } from './year/year.component';
+import { OverallComponent } from './overall/overall.component';
 
 const config = new AuthServiceConfig([
   {
@@ -84,7 +85,8 @@ export function provideConfig() {
     UserHuePipe,
     UserNamePipe,
     MonthComponent,
-    YearComponent
+    YearComponent,
+    OverallComponent
   ],
   imports: [
     BrowserModule,
@@ -141,7 +143,7 @@ export class AppModule {
         statistics: {
           thisMonth: {users: [], appKeepCategories: [], incomeCategories: []},
           thisYear: {months: [], users: [], appKeepCategories: [], incomeCategories: []},
-          overall: {years: []}
+          overall: {years: [], users: [], appKeepCategories: [], incomeCategories: []}
         },
         monthStatistics: {
           users: [],
@@ -152,7 +154,7 @@ export class AppModule {
         categoryStatistics: {
           thisMonthAppKeeps: [],
           thisYear: {months: [], users: [], appKeepCategories: [], incomeCategories: []},
-          overall: {years: []}
+          overall: {years: [], users: [], appKeepCategories: [], incomeCategories: []}
         },
         user: {
           social: undefined,

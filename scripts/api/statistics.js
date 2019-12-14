@@ -27,8 +27,11 @@ module.exports = function (app) {
 
   app.get('/api/appkeeps/statistics/overall', async (request, response) => {
     try {
+      const range = dates.all();
       const statistics = await AppKeep.overallStatistics();
-      response.send(statistics);
+      const users = await AppKeep.userStatistics(range);
+      const categories = await AppKeep.overallCategoryStatistics(range);
+      response.send({statistics, users, categories});
     } catch (error) {
       response.status(500).send(error);
     }

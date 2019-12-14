@@ -8,6 +8,8 @@
 
   flex-direction: column;
 
+  overflow: hidden;
+
   & > .ak-layout__main {
     height: 100vh;
     width: 100vw;
@@ -16,8 +18,6 @@
 
     color: $ak-color-dark;
     background-color: $ak-color-background;
-
-    overflow-y: auto;
   }
 }
 

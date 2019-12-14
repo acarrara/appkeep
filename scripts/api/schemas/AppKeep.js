@@ -196,4 +196,30 @@ model.yearCategoryStatistics = (range, category) => {
   ).exec();
 };
 
+model.overallCategoryStatistics = (range, category) => {
+  category = category || '';
+  return model.aggregate(
+    [{
+      $match: matchers.matchBy(range, category)
+    },
+      {
+        $group: {
+          _id: {
+            category: "$category"
+          },
+          total: {
+            $sum: {
+              $cond: [
+                {$eq: ["$income", true]}, "$amount", {$multiply: ["$amount", -1]}
+              ]
+            }
+          }
+        }
+      },
+      {
+        $project: {_id: 0, category: "$_id.category", total: 1}
+      }]
+  ).exec();
+};
+
 module.exports = model;

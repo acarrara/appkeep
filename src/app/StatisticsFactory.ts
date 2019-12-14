@@ -14,7 +14,7 @@ export class StatisticsFactory {
     return {
       thisMonth: this.createMonthStatistics(statisticsRaw[0], thisMonth),
       thisYear: this.createYearStatistics(statisticsRaw[1], thisYear),
-      overall: this.findOverallStatistics(statisticsRaw[2])
+      overall: this.createOverallStatistics(statisticsRaw[2])
     };
   }
 
@@ -72,6 +72,15 @@ export class StatisticsFactory {
       }, value);
     }
     return value;
+  }
+
+  private createOverallStatistics(statisticsRaw: any): OverallStatistics {
+    return {
+      years: statisticsRaw.statistics.map(stat => this.recapFrom(stat, '')),
+      users: statisticsRaw.users.map(current => this.recapFrom(current, '')),
+      appKeepCategories: statisticsRaw.categories.filter(category => category.total < 0),
+      incomeCategories: statisticsRaw.categories.filter(category => category.total >= 0)
+    };
   }
 
   private findOverallStatistics(statisticsRaw: any[]): OverallStatistics {

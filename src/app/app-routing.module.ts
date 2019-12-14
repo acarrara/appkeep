@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MonthlyComponent } from './monthly/monthly.component';
 import { MonthComponent } from './month/month.component';
 import { YearComponent } from './year/year.component';
+import { OverallComponent } from './overall/overall.component';
 
 
 const routes: Routes = [
@@ -49,6 +50,11 @@ const routes: Routes = [
   {
     path: 'details/year',
     component: YearComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'details/overall',
+    component: OverallComponent,
     canActivate: [AuthGuard]
   },
   {

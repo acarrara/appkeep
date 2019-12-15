@@ -56,14 +56,14 @@ model.userStatistics = (range, category) => {
           _id: {
             user: "$user"
           },
-          appKeepTotal: {
+          outTotal: {
             $sum: {
               $cond: [
                 {$eq: ["$income", false]}, "$amount", 0
               ]
             }
           },
-          incomeTotal: {
+          inTotal: {
             $sum: {
               $cond: [
                 {$eq: ["$income", true]}, "$amount", 0
@@ -75,8 +75,8 @@ model.userStatistics = (range, category) => {
       {
         $project: {
           _id: "$_id.user",
-          incomeTotal: "$incomeTotal",
-          appKeepTotal: "$appKeepTotal"
+          inTotal: "$inTotal",
+          outTotal: "$outTotal"
         }
       }]
   ).exec();
@@ -94,12 +94,12 @@ model.overallStatistics = (category) => {
           _id: {
             year: {$year: "$date"}
           },
-          incomeTotal: {
+          inTotal: {
             $sum: {
               $cond: [{$eq: ["$income", true]}, "$amount", 0]
             }
           },
-          appKeepTotal: {
+          outTotal: {
             $sum: {
               $cond: [{$eq: ["$income", false]}, "$amount", 0]
             }
@@ -109,8 +109,8 @@ model.overallStatistics = (category) => {
       {
         $project: {
           _id: "$_id.year",
-          incomeTotal: "$incomeTotal",
-          appKeepTotal: "$appKeepTotal"
+          inTotal: "$inTotal",
+          outTotal: "$outTotal"
         }
       }
     ]
@@ -130,12 +130,12 @@ model.yearStatistics = (range, category) => {
             month: {$month: "$date"},
             year: {$year: "$date"}
           },
-          incomeTotal: {
+          inTotal: {
             $sum: {
               $cond: [{$eq: ["$income", true]}, "$amount", 0]
             }
           },
-          appKeepTotal: {
+          outTotal: {
             $sum: {
               $cond: [{$eq: ["$income", false]}, "$amount", 0]
             }
@@ -145,11 +145,11 @@ model.yearStatistics = (range, category) => {
       {
         $group: {
           _id: "$_id.year",
-          months: {
+          ranges: {
             $push: {
               month: "$_id.month",
-              incomeTotal: "$incomeTotal",
-              appKeepTotal: "$appKeepTotal"
+              inTotal: "$inTotal",
+              outTotal: "$outTotal"
             }
           }
         }

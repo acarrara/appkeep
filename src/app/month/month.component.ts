@@ -2,16 +2,16 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/
 import { ActivatedRoute } from '@angular/router';
 import { StoreService } from '../../redux/store.service';
 import { AppKeepState } from '../models/AppKeepState';
-import { MonthStatistics } from '../models/MonthStatistic';
 import { AppActions } from '../app.actions';
+import { Details } from '../models/Details';
 
 @Component({
   selector: 'ak-month',
   templateUrl: 'month.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MonthComponent  {
-  public monthStatistics: MonthStatistics;
+export class MonthComponent {
+  public details: Details;
 
   public allAppKeep: number;
   public allIncome: number;
@@ -23,14 +23,14 @@ export class MonthComponent  {
   constructor(activatedRoute: ActivatedRoute, store: StoreService<AppKeepState>, actions: AppActions, cdr: ChangeDetectorRef) {
     activatedRoute.paramMap.subscribe(params => {
       if (!params.has('year') || !params.has('month')) {
-        this.monthStatistics = store.snapshot<MonthStatistics>(['statistics', 'thisMonth']);
+        this.details = store.snapshot<Details>(['statistics', 'thisMonth']);
         this.computeStatistics();
       } else {
         this.year = params.get('year');
         this.month = params.get('month');
         store.dispatch(actions.loadMonthStatistics(this.year, this.month));
-        store.get<MonthStatistics>(['monthStatistics']).subscribe(monthStatistics => {
-          this.monthStatistics = monthStatistics;
+        store.get<Details>(['monthStatistics']).subscribe(monthStatistics => {
+          this.details = monthStatistics;
           this.computeStatistics();
           cdr.markForCheck();
         });
@@ -39,8 +39,8 @@ export class MonthComponent  {
   }
 
   private computeStatistics() {
-    this.allAppKeep = this.monthStatistics.users.reduce((partial, current) => partial + current.appKeepTotal, 0);
-    this.allIncome = this.monthStatistics.users.reduce((partial, current) => partial + current.incomeTotal, 0);
+    this.allAppKeep = this.details.users.reduce((partial, current) => partial + current.outTotal, 0);
+    this.allIncome = this.details.users.reduce((partial, current) => partial + current.inTotal, 0);
     this.highest = Math.max(
       this.allIncome,
       this.allAppKeep

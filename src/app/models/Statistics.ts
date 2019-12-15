@@ -1,9 +1,7 @@
-import { MonthStatistics } from './MonthStatistic';
-import { YearStatistics } from './YearStatistics';
-import { OverallStatistics } from './OverallStatistics';
+import { Details } from './Details';
 
 export interface Statistics {
-  thisMonth: MonthStatistics;
-  thisYear: YearStatistics;
-  overall: OverallStatistics;
+  thisMonth: Details;
+  thisYear: Details;
+  overall: Details;
 }

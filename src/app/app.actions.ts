@@ -7,8 +7,7 @@ import { CategoryStatistics } from './models/CategoryStatistics';
 import { UserInfo } from './models/UserInfo';
 import { User } from './models/User';
 import { MonthId } from './models/MonthId';
-import { MonthStatistics } from './models/MonthStatistic';
-import { YearStatistics } from './models/YearStatistics';
+import { Details } from './models/Details';
 
 export class AppActions {
 
@@ -68,7 +67,7 @@ export class AppActions {
     return {type: AppActions.LOAD_MONTH_STATISTICS, payload: {year, month}};
   }
 
-  loadMonthStatisticsSuccess(statistics: MonthStatistics): Action<MonthStatistics> {
+  loadMonthStatisticsSuccess(statistics: Details): Action<Details> {
     return {type: AppActions.LOAD_MONTH_STATISTICS_SUCCESS, payload: statistics};
   }
 
@@ -76,7 +75,7 @@ export class AppActions {
     return {type: AppActions.LOAD_YEAR_STATISTICS, payload: year};
   }
 
-  loadYearStatisticsSuccess(statistics: YearStatistics): Action<YearStatistics> {
+  loadYearStatisticsSuccess(statistics: Details): Action<Details> {
     return {type: AppActions.LOAD_YEAR_STATISTICS_SUCCESS, payload: statistics};
   }
 

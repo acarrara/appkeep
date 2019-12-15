@@ -5,8 +5,7 @@ import { UserInfo } from './UserInfo';
 import { Category } from './Category';
 import { CategoryStatistics } from './CategoryStatistics';
 import { User } from './User';
-import { MonthStatistics } from './MonthStatistic';
-import { YearStatistics } from './YearStatistics';
+import { Details } from './Details';
 
 export interface AppKeepState {
   appKeeps: AppKeep[];
@@ -14,8 +13,8 @@ export interface AppKeepState {
   options: Option[];
   categories: Category[];
   statistics: Statistics;
-  monthStatistics: MonthStatistics;
-  yearStatistics: YearStatistics;
+  monthStatistics: Details;
+  yearStatistics: Details;
   categoryStatistics: CategoryStatistics;
   user: User;
   users: UserInfo[];

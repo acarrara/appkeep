@@ -17,22 +17,22 @@ export class CategoriesCardComponent implements OnChanges {
   @Input()
   title: string;
   @Input()
-  appKeepCategories: CategoryAmount[];
+  outCategories: CategoryAmount[];
   @Input()
-  incomeCategories: CategoryAmount[];
+  inCategories: CategoryAmount[];
 
-  appKeepTotal: number;
-  incomeTotal: number;
+  outTotal: number;
+  inTotal: number;
   appKeepHighest: number;
   incomeHighest: number;
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.appKeepTotal = this.updateCategories(this.appKeepCategories);
-    this.incomeTotal = this.updateCategories(this.incomeCategories);
-    this.appKeepHighest = this.appKeepCategories.length ?
-      this.appKeepCategories[0].total : 0;
-    this.incomeHighest = this.incomeCategories.length ?
-      this.incomeCategories[this.incomeCategories.length - 1].total : 0;
+    this.outTotal = this.updateCategories(this.outCategories);
+    this.inTotal = this.updateCategories(this.inCategories);
+    this.appKeepHighest = this.outCategories.length ?
+      this.outCategories[0].total : 0;
+    this.incomeHighest = this.inCategories.length ?
+      this.inCategories[this.inCategories.length - 1].total : 0;
   }
 
   appKeepPercentage(category: CategoryAmount) {
@@ -44,11 +44,11 @@ export class CategoriesCardComponent implements OnChanges {
   }
 
   appKeepRelativePercentage(category: CategoryAmount) {
-    return this.percentageAsNumber(category, this.appKeepTotal) + '%';
+    return this.percentageAsNumber(category, this.outTotal) + '%';
   }
 
   incomeRelativePercentage(category: CategoryAmount) {
-    return this.percentageAsNumber(category, this.incomeTotal) + '%';
+    return this.percentageAsNumber(category, this.inTotal) + '%';
   }
 
   private percentageAsNumber(category: CategoryAmount, total: number) {

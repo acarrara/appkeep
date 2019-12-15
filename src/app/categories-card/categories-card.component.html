@@ -1,8 +1,8 @@
 <ng-container *ngIf="categories$ | async; let categories">
-  <ak-card [total]="incomeTotal + appKeepTotal" [when]="title" [indicator]="true">
+  <ak-card [total]="inTotal + outTotal" [when]="title" [indicator]="true">
     <div class="ak-card__content">
       <ol>
-        <li *ngFor="let category of appKeepCategories; let i = index" class="ak-item">
+        <li *ngFor="let category of outCategories; let i = index" class="ak-item">
           <a class="ak-item__what" routerLink="/category/{{category.category}}">
             <div class="ak-item-percentage ak-item-percentage--{{category.category | akCategoryHue: categories}}"
                  [style.width]="appKeepPercentage(category)"
@@ -14,7 +14,7 @@
             <ak-income-indicator [income]="category.total > 0"></ak-income-indicator>
           </div>
         </li>
-        <li *ngFor="let category of incomeCategories; let i = index" class="ak-item">
+        <li *ngFor="let category of inCategories; let i = index" class="ak-item">
           <a class="ak-item__what" routerLink="/category/{{category.category}}">
             <div class="ak-item-percentage ak-item-percentage--{{category.category | akCategoryHue: categories}}"
                  [style.width]="incomePercentage(category)"

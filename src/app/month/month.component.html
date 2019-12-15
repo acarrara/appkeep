@@ -1,11 +1,11 @@
 <div class="ak-page">
   <ak-category-header class="ak-page__header">
     <header class="ak-heading">
-      <small class="ak-heading__kicker">Month</small>
+      <small class="ak-heading__kicker">Details</small>
       <h1 class="ak-heading__title">{{month ? (month | akMonthName) + ' ' + year : 'This month'}}</h1>
     </header>
   </ak-category-header>
-  <div class="ak-edit  ak-page__content" *ngIf="monthStatistics">
+  <div class="ak-edit  ak-page__content" *ngIf="details">
     <section class="ak-form">
       <ol class="ak-card__content">
         <li class="ak-item  ak-item--recap">
@@ -28,31 +28,31 @@
             </div>
           </div>
         </li>
-        <li class="ak-item  ak-item--recap" *ngFor="let user of monthStatistics.users">
+        <li class="ak-item  ak-item--recap" *ngFor="let user of details.users">
           <div class="ak-item__what">
             <div
               class="ak-item-percentage  ak-item-percentage--negative  ak-item-percentage--border-{{user.label | akUserHue}}"
-              [style.width]="percentage(user.appKeepTotal)"></div>
+              [style.width]="percentage(user.outTotal)"></div>
             <div
               class="ak-item-percentage  ak-item-percentage--positive  ak-item-percentage--border-{{user.label | akUserHue}}"
-              [style.width]="percentage(user.incomeTotal)"></div>
+              [style.width]="percentage(user.inTotal)"></div>
             <span class="ak-badge  ak-badge--{{user.label | akUserHue}}">{{user.label | akUserName}}</span>
-            <span class="ak-badge  ak-badge--positive">{{(user.incomeTotal + user.appKeepTotal) | akAmount}}</span>
+            <span class="ak-badge  ak-badge--positive">{{(user.inTotal + user.outTotal) | akAmount}}</span>
           </div>
           <div class="ak-item__amount">
             <div class="ak-item__amount-unit">
-              <span>{{user.appKeepTotal | akAmount}}</span>
+              <span>{{user.outTotal | akAmount}}</span>
               <ak-income-indicator [income]="false"></ak-income-indicator>
             </div>
             <div class="ak-item__amount-unit">
-              <span>{{user.incomeTotal | akAmount}}</span>
+              <span>{{user.inTotal | akAmount}}</span>
               <ak-income-indicator [income]="true"></ak-income-indicator>
             </div>
           </div>
         </li>
       </ol>
     </section>
-    <ak-categories-card [incomeCategories]="monthStatistics.incomeCategories"
-                        [appKeepCategories]="monthStatistics.appKeepCategories" title="Categories"></ak-categories-card>
+    <ak-categories-card [inCategories]="details.inCategories"
+                        [outCategories]="details.outCategories" title="Categories"></ak-categories-card>
   </div>
 </div>

@@ -1,6 +1,6 @@
 export interface Recap {
-  appKeepTotal: number;
-  incomeTotal: number;
+  outTotal: number;
+  inTotal: number;
   label: string;
-  scope: string;
+  scope?: string;
 }

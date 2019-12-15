@@ -48,7 +48,7 @@
                       when="this month"
                       [showDate]="true">
     </ak-appkeeps-card>
-    <ak-recap-card [recaps]="thisYearStatistics$ | async" year="this year" [hue]="category.hue"></ak-recap-card>
-    <ak-recap-card [recaps]="overallStatistics$ | async" year="overall" [hue]="category.hue"></ak-recap-card>
+    <ak-recap-card [recaps]="thisYearStatistics$ | async" title="this year" [hue]="category.hue"></ak-recap-card>
+    <ak-recap-card [recaps]="overallStatistics$ | async" title="overall" [hue]="category.hue"></ak-recap-card>
   </div>
 </div>

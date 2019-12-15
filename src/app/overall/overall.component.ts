@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { OverallStatistics } from '../models/OverallStatistics';
 import { ActivatedRoute } from '@angular/router';
 import { StoreService } from '../../redux/store.service';
 import { AppKeepState } from '../models/AppKeepState';
+import { Details } from '../models/Details';
 
 @Component({
   selector: 'ak-overall',
@@ -10,7 +10,8 @@ import { AppKeepState } from '../models/AppKeepState';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OverallComponent {
-  public overallStatistics: OverallStatistics;
+  public details: Details;
+  public rangesTitle = 'years';
 
   public allAppKeep: number;
   public allIncome: number;
@@ -18,13 +19,13 @@ export class OverallComponent {
   private highest: number;
 
   constructor(activatedRoute: ActivatedRoute, store: StoreService<AppKeepState>) {
-    this.overallStatistics = store.snapshot<OverallStatistics>(['statistics', 'overall']);
+    this.details = store.snapshot<Details>(['statistics', 'overall']);
     this.computeStatistics();
   }
 
   private computeStatistics() {
-    this.allAppKeep = this.overallStatistics.users.reduce((partial, current) => partial + current.appKeepTotal, 0);
-    this.allIncome = this.overallStatistics.users.reduce((partial, current) => partial + current.incomeTotal, 0);
+    this.allAppKeep = this.details.users.reduce((partial, current) => partial + current.outTotal, 0);
+    this.allIncome = this.details.users.reduce((partial, current) => partial + current.inTotal, 0);
     this.highest = Math.max(
       this.allIncome,
       this.allAppKeep

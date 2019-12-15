@@ -19,9 +19,9 @@ import { sumAppKeeps } from '../sumAppKeeps';
 })
 export class CategoryComponent {
 
-  @Listen(['categoryStatistics', 'thisYear'], statistics => statistics.months)
+  @Listen(['categoryStatistics', 'months'])
   thisYearStatistics$: Observable<Recap[]>;
-  @Listen(['categoryStatistics', 'overall'], statistics => statistics.years)
+  @Listen(['categoryStatistics', 'years'])
   overallStatistics$: Observable<Recap[]>;
   @Listen(['categoryStatistics', 'thisMonthAppKeeps'])
   thisMonthAppKeeps$: Observable<AppKeep[]>;

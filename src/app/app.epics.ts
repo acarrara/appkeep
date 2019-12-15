@@ -12,8 +12,7 @@ import { RestEpic } from './RestEpic';
 import { UserInfo } from './models/UserInfo';
 import { zip } from 'rxjs';
 import { CategoryStatistics } from './models/CategoryStatistics';
-import { MonthStatistics } from './models/MonthStatistic';
-import { YearStatistics } from './models/YearStatistics';
+import { Details } from './models/Details';
 
 @Injectable()
 export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
@@ -44,7 +43,7 @@ export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
     return new RestEpic<UserInfo>(this.http, 'user').toEpics();
   }
 
-  private loadMonthStatistics: Epic<any, MonthStatistics> = actions$ => {
+  private loadMonthStatistics: Epic<any, Details> = actions$ => {
     return actions$.pipe(
       filter(action => action.type === AppActions.LOAD_MONTH_STATISTICS),
       mergeMap(action => this.http.get<any>(`/api/appkeeps/statistics/${action.payload.year}/${action.payload.month}`).pipe(
@@ -55,7 +54,7 @@ export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
     );
   }
 
-  private loadYearStatistics: Epic<any, YearStatistics> = actions$ => {
+  private loadYearStatistics: Epic<any, Details> = actions$ => {
     return actions$.pipe(
       filter(action => action.type === AppActions.LOAD_YEAR_STATISTICS),
       mergeMap(action => this.http.get<any>(`/api/appkeeps/statistics/${action.payload}`).pipe(

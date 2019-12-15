@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener } f
 import { AppKeep } from './models/AppKeep';
 import { Observable } from 'rxjs';
 import { Listen } from '../redux/listen.decorator';
-import { MonthStatistics } from './models/MonthStatistic';
 import { SwUpdate } from '@angular/service-worker';
 import { StoreService } from '../redux/store.service';
 import { AppKeepState } from './models/AppKeepState';
 import { AppActions } from './app.actions';
 import { Recap } from './models/Recap';
 import { sumAppKeeps } from './sumAppKeeps';
+import { Details } from './models/Details';
 
 @Component({
   selector: 'ak-home',
@@ -22,10 +22,10 @@ export class HomeComponent {
   @Listen(['appKeeps'], sumAppKeeps)
   todayTotal$: Observable<number>;
   @Listen(['statistics', 'thisMonth'])
-  thisMonthTotal$: Observable<MonthStatistics>;
-  @Listen(['statistics', 'thisYear'], statistics => statistics.months)
+  thisMonthTotal$: Observable<Details>;
+  @Listen(['statistics', 'thisYear'], statistics => statistics.ranges)
   thisYearTotal$: Observable<Recap[]>;
-  @Listen(['statistics', 'overall'], statistics => statistics.years)
+  @Listen(['statistics', 'overall'], statistics => statistics.ranges)
   overallTotal$: Observable<Recap[]>;
   availableVersion: boolean;
 

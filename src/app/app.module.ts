@@ -141,20 +141,20 @@ export class AppModule {
         options: [],
         categories: [],
         statistics: {
-          thisMonth: {users: [], appKeepCategories: [], incomeCategories: []},
-          thisYear: {months: [], users: [], appKeepCategories: [], incomeCategories: []},
-          overall: {years: [], users: [], appKeepCategories: [], incomeCategories: []}
+          thisMonth: {users: [], outCategories: [], inCategories: []},
+          thisYear: {ranges: [], users: [], outCategories: [], inCategories: []},
+          overall: {ranges: [], users: [], outCategories: [], inCategories: []}
         },
         monthStatistics: {
           users: [],
-          appKeepCategories: [],
-          incomeCategories: []
+          outCategories: [],
+          inCategories: []
         },
-        yearStatistics: {months: [], users: [], appKeepCategories: [], incomeCategories: []},
+        yearStatistics: {ranges: [], users: [], outCategories: [], inCategories: []},
         categoryStatistics: {
           thisMonthAppKeeps: [],
-          thisYear: {months: [], users: [], appKeepCategories: [], incomeCategories: []},
-          overall: {years: [], users: [], appKeepCategories: [], incomeCategories: []}
+          months: [],
+          years: []
         },
         user: {
           social: undefined,

@@ -8,7 +8,7 @@ import { Recap } from '../models/Recap';
 })
 export class RecapCardComponent implements OnChanges {
   @Input()
-  year: string;
+  title: string;
   @Input()
   hue = 0;
   @Input()
@@ -18,16 +18,16 @@ export class RecapCardComponent implements OnChanges {
   topTotal: number;
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.total = this.recaps.reduce((partial, currentRecap) => partial + currentRecap.incomeTotal + currentRecap.appKeepTotal, 0);
+    this.total = this.recaps.reduce((partial, currentRecap) => partial + currentRecap.inTotal + currentRecap.outTotal, 0);
     this.topTotal = this.recaps.reduce(((partial, currentRecap) => this.biggest(partial, currentRecap)), 0);
   }
 
   getIncomePercentage(recap: Recap) {
-    return this.getPercentage(recap.incomeTotal);
+    return this.getPercentage(recap.inTotal);
   }
 
   getAppKeepPercentage(recap: Recap) {
-    return this.getPercentage(recap.appKeepTotal);
+    return this.getPercentage(recap.outTotal);
   }
 
   itemLink(recap: Recap) {
@@ -41,11 +41,11 @@ export class RecapCardComponent implements OnChanges {
     return path;
   }
 
-  private getPercentage(appKeepTotal: number) {
-    return appKeepTotal ? Math.abs((appKeepTotal / this.topTotal * 100)).toFixed(0) + '%' : '0%';
+  private getPercentage(outTotal: number) {
+    return outTotal ? Math.abs((outTotal / this.topTotal * 100)).toFixed(0) + '%' : '0%';
   }
 
   private biggest(partial: number, currentRecap: Recap) {
-    return Math.max(partial, Math.abs(currentRecap.incomeTotal), Math.abs(currentRecap.appKeepTotal));
+    return Math.max(partial, Math.abs(currentRecap.inTotal), Math.abs(currentRecap.outTotal));
   }
 }

@@ -1,9 +1,8 @@
-import { YearStatistics } from './YearStatistics';
 import { AppKeep } from './AppKeep';
-import { OverallStatistics } from './OverallStatistics';
+import { Recap } from './Recap';
 
 export class CategoryStatistics {
   thisMonthAppKeeps: AppKeep[];
-  thisYear: YearStatistics;
-  overall: OverallStatistics;
+  months: Recap[];
+  years: Recap[];
 }

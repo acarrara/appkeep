@@ -10,8 +10,7 @@ import { UserInfo } from './models/UserInfo';
 import { Category } from './models/Category';
 import { CategoryStatistics } from './models/CategoryStatistics';
 import { User } from './models/User';
-import { MonthStatistics } from './models/MonthStatistic';
-import { YearStatistics } from './models/YearStatistics';
+import { Details } from './models/Details';
 
 export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> {
 
@@ -63,7 +62,7 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
     }
   }
 
-  private loadMonthStatistics: Reducer<AppKeepState, MonthStatistics> = (action, oldState) => {
+  private loadMonthStatistics: Reducer<AppKeepState, Details> = (action, oldState) => {
     switch (action.type) {
       case AppActions.LOAD_MONTH_STATISTICS_SUCCESS: {
         return {
@@ -77,7 +76,7 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
     }
   }
 
-  private loadYearStatistics: Reducer<AppKeepState, YearStatistics> = (action, oldState) => {
+  private loadYearStatistics: Reducer<AppKeepState, Details> = (action, oldState) => {
     switch (action.type) {
       case AppActions.LOAD_YEAR_STATISTICS_SUCCESS: {
         return {

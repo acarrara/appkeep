@@ -6,7 +6,7 @@ import { Category } from './models/Category';
 import { CategoryStatistics } from './models/CategoryStatistics';
 import { UserInfo } from './models/UserInfo';
 import { User } from './models/User';
-import { MonthId } from './models/MonthId';
+import { Range } from './models/Range';
 import { Details } from './models/Details';
 
 export class AppActions {
@@ -63,7 +63,7 @@ export class AppActions {
     return {type: AppActions.LOAD_STATISTICS_SUCCESS, payload: statistics};
   }
 
-  loadMonthStatistics(year: string, month: string): Action<MonthId> {
+  loadMonthStatistics(year: string, month: string): Action<Range> {
     return {type: AppActions.LOAD_MONTH_STATISTICS, payload: {year, month}};
   }
 

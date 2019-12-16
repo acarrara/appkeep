@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -29,7 +28,7 @@ import { IconComponent } from './icon/icon.component';
 import { CategoriesCardComponent } from './categories-card/categories-card.component';
 import { LogoComponent } from './logo/logo.component';
 import { RecapCardComponent } from './recap-card/recap-card.component';
-import { MonthNamePipe } from './month-name.pipe';
+import { MonthNamePipePipe } from './month-name.pipe';
 import { CategoryComponent } from './edit-category/category.component';
 import { NotificationService } from './notification.service';
 import { AppkeepsCardComponent } from './appkeeps-card/appkeeps-card.component';
@@ -43,9 +42,10 @@ import { MonthlyComponent } from './monthly/monthly.component';
 import { IncomeIndicatorComponent } from './income-indicator/income-indicator.component';
 import { UserHuePipe } from './user-hue.pipe';
 import { UserNamePipe } from './user-name.pipe';
-import { MonthComponent } from './month/month.component';
-import { YearComponent } from './year/year.component';
-import { OverallComponent } from './overall/overall.component';
+import { DetailsComponent } from './details/details.component';
+import { MonthResolveGuard } from './details/month-resolve.guard';
+import { YearResolveGuard } from './details/year-resolve.guard';
+import { OverallResolveGuard } from './details/overall-resolve.guard';
 
 const config = new AuthServiceConfig([
   {
@@ -73,7 +73,7 @@ export function provideConfig() {
     CategoriesCardComponent,
     LogoComponent,
     RecapCardComponent,
-    MonthNamePipe,
+    MonthNamePipePipe,
     CategoryComponent,
     AppkeepsCardComponent,
     CategoryHeaderComponent,
@@ -84,9 +84,7 @@ export function provideConfig() {
     IncomeIndicatorComponent,
     UserHuePipe,
     UserNamePipe,
-    MonthComponent,
-    YearComponent,
-    OverallComponent
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -105,6 +103,9 @@ export function provideConfig() {
       multi: true
     },
     AuthGuard,
+    MonthResolveGuard,
+    YearResolveGuard,
+    OverallResolveGuard,
     AppEpics,
     AppReducers,
     AppActions,

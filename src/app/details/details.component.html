@@ -2,7 +2,7 @@
   <ak-category-header class="ak-page__header">
     <header class="ak-heading">
       <small class="ak-heading__kicker">Details</small>
-      <h1 class="ak-heading__title">{{month ? (month | akMonthName) + ' ' + year : 'This month'}}</h1>
+      <h1 class="ak-heading__title">{{title ? title : (month ? (month | akMonthName) + ' ' + year : year)}}</h1>
     </header>
   </ak-category-header>
   <div class="ak-edit  ak-page__content" *ngIf="details">
@@ -11,19 +11,19 @@
         <li class="ak-item  ak-item--recap">
           <div class="ak-item__what">
             <div class="ak-item-percentage  ak-item-percentage--negative"
-                 [style.width]="percentage(allAppKeep)"></div>
+                 [style.width]="percentage(outTotal)"></div>
             <div class="ak-item-percentage  ak-item-percentage--positive"
-                 [style.width]="percentage(allIncome)"></div>
+                 [style.width]="percentage(inTotal)"></div>
             <span class="ak-badge">all</span>
-            <span class="ak-badge  ak-badge--positive">{{(allIncome + allAppKeep) | akAmount}}</span>
+            <span class="ak-badge  ak-badge--positive">{{(inTotal + outTotal) | akAmount}}</span>
           </div>
           <div class="ak-item__amount">
             <div class="ak-item__amount-unit">
-              <span>{{allAppKeep | akAmount}}</span>
+              <span>{{outTotal | akAmount}}</span>
               <ak-income-indicator [income]="false"></ak-income-indicator>
             </div>
             <div class="ak-item__amount-unit">
-              <span>{{allIncome | akAmount}}</span>
+              <span>{{inTotal | akAmount}}</span>
               <ak-income-indicator [income]="true"></ak-income-indicator>
             </div>
           </div>
@@ -54,5 +54,6 @@
     </section>
     <ak-categories-card [inCategories]="details.inCategories"
                         [outCategories]="details.outCategories" title="Categories"></ak-categories-card>
+    <ak-recap-card *ngIf="details.ranges" [recaps]="details.ranges" [title]="rangesTitle"></ak-recap-card>
   </div>
 </div>

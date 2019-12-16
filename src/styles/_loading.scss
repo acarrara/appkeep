@@ -3,4 +3,35 @@
   width: 100%;
 
   @include ak-flex-center();
+  flex-direction: column;
+}
+
+.ak-loading__svg {
+  width: 50%;
+}
+
+#money1, #money2 {
+  transform-origin: 50% 50%;
+  animation: money 4s ease infinite;
+}
+
+@keyframes money {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(144deg);
+  }
+  40% {
+    transform: rotate(288deg);
+  }
+  60% {
+    transform: rotate(432deg);
+  }
+  80% {
+    transform: rotate(576deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
 }

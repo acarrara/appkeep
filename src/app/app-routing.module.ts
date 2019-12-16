@@ -7,9 +7,10 @@ import { AuthGuard } from './auth.guard';
 import { CategoryComponent } from './edit-category/category.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MonthlyComponent } from './monthly/monthly.component';
-import { MonthComponent } from './month/month.component';
-import { YearComponent } from './year/year.component';
-import { OverallComponent } from './overall/overall.component';
+import { DetailsComponent } from './details/details.component';
+import { MonthResolveGuard } from './details/month-resolve.guard';
+import { YearResolveGuard } from './details/year-resolve.guard';
+import { OverallResolveGuard } from './details/overall-resolve.guard';
 
 
 const routes: Routes = [
@@ -39,28 +40,57 @@ const routes: Routes = [
   },
   {
     path: 'details/month',
-    component: MonthComponent,
-    canActivate: [AuthGuard]
+    component: DetailsComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      details: MonthResolveGuard
+    },
+    data: {
+      title: 'This month'
+    }
   },
   {
     path: 'details/:year/:month',
-    component: MonthComponent,
-    canActivate: [AuthGuard]
+    component: DetailsComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      details: MonthResolveGuard
+    }
   },
   {
     path: 'details/year',
-    component: YearComponent,
-    canActivate: [AuthGuard]
+    component: DetailsComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      details: YearResolveGuard
+    },
+    data: {
+      title: 'This year',
+      rangesTitle: 'months'
+    }
   },
   {
     path: 'details/overall',
-    component: OverallComponent,
-    canActivate: [AuthGuard]
+    component: DetailsComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      details: OverallResolveGuard
+    },
+    data: {
+      title: 'Overall',
+      rangesTitle: 'years'
+    }
   },
   {
     path: 'details/:year',
-    component: YearComponent,
-    canActivate: [AuthGuard]
+    component: DetailsComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      details: YearResolveGuard
+    },
+    data: {
+      rangesTitle: 'months'
+    }
   },
   {
     path: 'monthly',

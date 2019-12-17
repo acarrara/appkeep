@@ -14,6 +14,12 @@
   justify-content: center;
 }
 
+@mixin ak-inline-flex-center() {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @mixin ak-flex-end() {
   display: flex;
   align-items: center;

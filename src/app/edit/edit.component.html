@@ -1,22 +1,22 @@
 <ng-container *ngIf="options$ | async; let options">
   <ng-container *ngIf="categories$ | async; let categories">
     <div class="ak-page">
-      <ak-category-header class="ak-page__header" [hue]="appKeep.category | akCategoryHue: categories">
+      <ak-navigation-header class="ak-page__header" [hue]="appKeep.category | akCategoryHue: categories">
         <header class="ak-heading">
           <small class="ak-heading__kicker">AppKeep</small>
           <h1 class="ak-heading__title">{{appKeep.title}}</h1>
         </header>
-      </ak-category-header>
+      </ak-navigation-header>
       <div class="ak-edit  ak-page__content">
-        <form class="ak-form">
+        <form class="ak-form" #form="ngForm" akFocusOnError>
           <fieldset class="ak-form__inputs">
             <legend class="visually-hidden"></legend>
-            <div class="ak-input">
+            <div class="ak-input  ak-input--amount">
               <label for="amount">Amount</label>
               <div class="ak-organizer">
-                <input name="amount" #amount id="amount" type="number" min="0"
-                       placeholder="0000" class="ak-organizer__fill"
-                       step="0.01" [(ngModel)]="appKeep.amount">
+                <input name="amount" #amount id="amount" type="number" min="0" step="0.01" [(ngModel)]="appKeep.amount">
+                <div class="ak-organizer__fill  ak-amount"
+                     (click)="amount.focus()">{{appKeep.amount || 0 | akAmount}}</div>
                 <div class="ak-options-toggle">
                   <input type="checkbox" id="income-toggle" name="income" [(ngModel)]="appKeep.income">
                   <label for="income-toggle">
@@ -30,14 +30,16 @@
               </div>
             </div>
             <div class="ak-input">
-              <label for="what">Title</label>
+              <label for="what">Description</label>
               <input id="what" #what name="title" [(ngModel)]="appKeep.title"
                      (change)="onChange(appKeep, options, categories)"
                      placeholder="Description" list="whatlist"
-                     autocomplete="off">
+                     autocomplete="off" #whatModel="ngModel" required>
               <datalist id="whatlist">
                 <option *ngFor="let option of options" [value]="option.title"></option>
               </datalist>
+              <ak-input-error message="Add a description."
+                              *ngIf="whatModel.invalid && (whatModel.dirty || whatModel.touched)"></ak-input-error>
             </div>
             <div class="ak-input">
               <label for="date">Date</label>
@@ -48,23 +50,34 @@
             <div class="ak-input">
               <label for="category">Category</label>
               <input id="category" #category name="category" [(ngModel)]="appKeep.category" placeholder="Category"
-                     list="categorylist" autocomplete="off" (change)="onCategoryChange(categories)">
+                     list="categorylist" autocomplete="off" (change)="onCategoryChange(categories)"
+                     #categoryModel="ngModel" required>
               <datalist id="categorylist">
                 <option *ngFor="let category of categories" [value]="category.category"></option>
               </datalist>
+              <ak-input-error message="Choose a category."
+                              *ngIf="categoryModel.invalid && (categoryModel.dirty || categoryModel.touched)"></ak-input-error>
             </div>
             <div class="ak-input">
               <label for="payer">Payer</label>
               <input id="payer" #payer name="payer" [(ngModel)]="appKeep.user" placeholder="Payer"
-                     list="payerlist" autocomplete="off">
+                     list="payerlist" autocomplete="off" required #payerModel="ngModel">
               <datalist id="payerlist" *ngIf="users$ | async; let users">
                 <option *ngFor="let user of users" [value]="user"></option>
               </datalist>
+              <ak-input-error message="Point out who paid."
+                              *ngIf="payerModel.invalid && (payerModel.dirty || payerModel.touched)"></ak-input-error>
             </div>
           </fieldset>
           <div class="ak-form__buttons">
-            <button class="ak-button  ak-button--primary" (click)="edit(options, categories)">Edit</button>
-            <button class="ak-button" (click)="delete()">Delete</button>
+            <button class="ak-button  ak-button--primary" (click)="edit(form, options, categories)">
+              <ak-icon size="small" type="save" mood="indifferent"></ak-icon>
+              <span>Save</span>
+            </button>
+            <button class="ak-button" (click)="delete()">
+              <ak-icon size="small" type="remove"></ak-icon>
+              <span>Delete</span>
+            </button>
           </div>
         </form>
       </div>

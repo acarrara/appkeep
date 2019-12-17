@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home.component';
+import { HomeComponent } from './home/home.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { AmountPipe } from './amount.pipe';
+import { AmountPipe } from './pipes/amount.pipe';
 import { FormComponent } from './form/form.component';
 import { EmptyStateComponent } from './card/empty-state.component';
 import { CardComponent } from './card/card.component';
@@ -22,30 +22,31 @@ import { EditComponent } from './edit/edit.component';
 import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
 import credentials from '../credentials.json';
 import { LoginComponent } from './login/login.component';
-import { HomeHeaderComponent } from './profile/home-header.component';
+import { HomeHeaderComponent } from './home-header/home-header.component';
 import { AuthGuard } from './auth.guard';
 import { IconComponent } from './icon/icon.component';
 import { CategoriesCardComponent } from './categories-card/categories-card.component';
-import { LogoComponent } from './logo/logo.component';
 import { RecapCardComponent } from './recap-card/recap-card.component';
-import { MonthNamePipePipe } from './month-name.pipe';
+import { MonthNamePipePipe } from './pipes/month-name.pipe';
 import { CategoryComponent } from './edit-category/category.component';
 import { NotificationService } from './notification.service';
 import { AppkeepsCardComponent } from './appkeeps-card/appkeeps-card.component';
-import { CategoryHeaderComponent } from './category-header/category-header.component';
-import { CategoryHuePipe } from './category-hue.pipe';
+import { NavigationHeaderComponent } from './navigation-header/navigation-header.component';
+import { CategoryHuePipe } from './pipes/category-hue.pipe';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthInterceptor } from './auth-interceptor.service';
 import { ApiAuthenticationService } from './api-authentication.service';
 import { MonthlyAppkeepsCardComponent } from './monthly-appkeeps-card/monthly-appkeeps-card.component';
 import { MonthlyComponent } from './monthly/monthly.component';
 import { IncomeIndicatorComponent } from './income-indicator/income-indicator.component';
-import { UserHuePipe } from './user-hue.pipe';
-import { UserNamePipe } from './user-name.pipe';
+import { UserHuePipe } from './pipes/user-hue.pipe';
+import { UserNamePipe } from './pipes/user-name.pipe';
 import { DetailsComponent } from './details/details.component';
 import { MonthResolveGuard } from './details/month-resolve.guard';
 import { YearResolveGuard } from './details/year-resolve.guard';
 import { OverallResolveGuard } from './details/overall-resolve.guard';
+import { InputErrorComponent } from './input-error/input-error.component';
+import { FocusOnErrorDirective } from './focus-on-error.directive';
 
 const config = new AuthServiceConfig([
   {
@@ -71,12 +72,11 @@ export function provideConfig() {
     HomeHeaderComponent,
     IconComponent,
     CategoriesCardComponent,
-    LogoComponent,
     RecapCardComponent,
     MonthNamePipePipe,
     CategoryComponent,
     AppkeepsCardComponent,
-    CategoryHeaderComponent,
+    NavigationHeaderComponent,
     CategoryHuePipe,
     ProfileComponent,
     MonthlyAppkeepsCardComponent,
@@ -84,7 +84,9 @@ export function provideConfig() {
     IncomeIndicatorComponent,
     UserHuePipe,
     UserNamePipe,
-    DetailsComponent
+    DetailsComponent,
+    InputErrorComponent,
+    FocusOnErrorDirective
   ],
   imports: [
     BrowserModule,

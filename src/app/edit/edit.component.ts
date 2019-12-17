@@ -11,6 +11,7 @@ import { Listen } from '../../redux/listen.decorator';
 import { Observable } from 'rxjs';
 import { Category } from '../models/Category';
 import { Location } from '@angular/common';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'ak-edit',
@@ -37,7 +38,10 @@ export class EditComponent extends OptionableComponent {
     });
   }
 
-  edit(options: Option[], categories: Category[]) {
+  edit(form: NgForm, options: Option[], categories: Category[]) {
+    if (form.invalid) {
+      return;
+    }
     this.store.dispatch(this.actions.editAppKeep(this.appKeep));
     const {title, category} = this.appKeep;
     this.updateOptions(title, category, options, categories);

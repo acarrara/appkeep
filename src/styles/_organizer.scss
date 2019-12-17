@@ -14,6 +14,7 @@
 
   & > .ak-organizer__fill {
     flex-grow: 1;
+    margin-left: 0;
   }
 }
 
@@ -24,6 +25,10 @@
 
   & > input {
     @include visually-hidden();
+  }
+
+  & > input:focus + label {
+    @include ak-input-focus();
   }
 
   & > label {

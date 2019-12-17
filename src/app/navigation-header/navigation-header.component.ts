@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'ak-category-header',
-  templateUrl: 'category-header.component.html',
+  selector: 'ak-navigation-header',
+  templateUrl: 'navigation-header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CategoryHeaderComponent {
+export class NavigationHeaderComponent {
 
   @Input()
   hue = 0;

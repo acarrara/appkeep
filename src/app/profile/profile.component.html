@@ -1,7 +1,7 @@
 <ng-container *ngIf="user$ | async; let user">
   <div class="ak-page">
     <div class="ak-page__header">
-      <ak-category-header>
+      <ak-navigation-header>
         <header class="ak-heading">
           <small class="ak-heading__kicker">Profile</small>
           <h1 class="ak-heading__title">{{user.name}}</h1>
@@ -9,7 +9,7 @@
         <button class="ak-header__button" (click)="logout()">
           <ak-icon type="logout"></ak-icon>
         </button>
-      </ak-category-header>
+      </ak-navigation-header>
     </div>
     <div class="ak-page__content">
       <div class="ak-form">
@@ -45,8 +45,14 @@
           </div>
         </fieldset>
         <div class="ak-form__buttons">
-          <button class="ak-button ak-button--primary" (click)="editUser(user)">Edit</button>
-          <button class="ak-button">Reset</button>
+          <button class="ak-button ak-button--primary" (click)="editUser(user)">
+            <ak-icon size="small" type="save" mood="indifferent"></ak-icon>
+            <span>Save</span>
+          </button>
+          <button class="ak-button">
+            <ak-icon size="small" type="reset"></ak-icon>
+            <span>Reset</span>
+          </button>
         </div>
       </div>
       <ak-monthly-appkeeps-card></ak-monthly-appkeeps-card>
@@ -59,12 +65,12 @@
             <div class="ak-item__what  ak-user">{{current.email}} <span
               *ngIf="current.email === user.email">(you)</span></div>
             <button class="ak-item__action" *ngIf="current.email !== user.email">
-              <ak-icon size="small" type="close" (click)="removeUser(current)"></ak-icon>
+              <ak-icon size="small" type="remove" (click)="removeUser(current)"></ak-icon>
             </button>
           </li>
           <li class="ak-item ak-input  ak-input__interactive">
             <div class="ak-item__what">
-              <input type="text" id="friends" placeholder="i.e. appkeeper@mail.com">
+              <input type="text" id="friends" placeholder="i.e. appkeeper@mail.com" [(ngModel)]="newUser">
             </div>
             <button (click)="addUser(users)">
               <ak-icon type="add" size="small"></ak-icon>

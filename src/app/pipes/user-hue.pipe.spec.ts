@@ -1,7 +1,7 @@
 import { UserHuePipe } from './user-hue.pipe';
-import { StoreService } from '../redux/store.service';
+import { StoreService } from '../../redux/store.service';
 import { Observable, of } from 'rxjs';
-import { UserInfo } from './models/UserInfo';
+import { UserInfo } from '../models/UserInfo';
 
 describe('UserHuePipe', () => {
 

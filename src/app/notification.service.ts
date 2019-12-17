@@ -4,7 +4,7 @@ import { first, map } from 'rxjs/operators';
 import vapid from '../vapid.json';
 import { SwPush } from '@angular/service-worker';
 import { AppKeep } from './models/AppKeep';
-import { AmountPipe } from './amount.pipe';
+import { AmountPipe } from './pipes/amount.pipe';
 import { Observable, of } from 'rxjs';
 
 @Injectable()

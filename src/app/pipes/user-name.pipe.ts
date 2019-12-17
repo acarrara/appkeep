@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { UserInfo } from './models/UserInfo';
-import { StoreService } from '../redux/store.service';
+import { UserInfo } from '../models/UserInfo';
+import { StoreService } from '../../redux/store.service';
 
 @Pipe({
-  name: 'akUserHue',
+  name: 'akUserName',
   pure: false
 })
-export class UserHuePipe implements PipeTransform {
+export class UserNamePipe implements PipeTransform {
 
   users: UserInfo[];
 
@@ -14,9 +14,9 @@ export class UserHuePipe implements PipeTransform {
     store.get<UserInfo[]>(['users']).subscribe(users => this.users = users);
   }
 
-  transform(userEmail: string): number {
+  transform(userEmail: string): string {
     const match = this.users.find(user => user.email === userEmail);
-    return match ? match.hue : 0;
+    return match ? match.name.toLocaleLowerCase() : userEmail.toLocaleLowerCase();
   }
 
 }

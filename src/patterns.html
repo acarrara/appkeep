@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" type="text/css" href="styles/_input.scss"/>
   <meta charset="utf-8">
   <title>AppKeep Patterns</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,11 +78,11 @@
         <form class="ak-form">
           <fieldset class="ak-form__inputs">
             <legend class="visually-hidden"></legend>
-            <div class="ak-input">
+            <div class="ak-input  ak-input--amount">
               <label for="amount">Amount</label>
               <div class="ak-organizer">
-                <input class="ak-organizer__fill" name="amount" id="amount" type="number" min="0" step="0.01"
-                       placeholder="0000">
+                <input name="amount" id="amount" type="number" min="0" step="0.01">
+                <div class="ak-amount  ak-organizer__fill">0.00</div>
                 <div class="ak-options-toggle">
                   <input type="checkbox" id="income-toggle">
                   <label for="income-toggle">
@@ -112,11 +113,12 @@
             </div>
             <div class="ak-input">
               <label for="what">Title</label>
-              <input id="what" name="title" placeholder="Description" list="whatlist" autocomplete="off">
+              <input id="what" name="title" placeholder="Description" list="whatlist" autocomplete="off" required>
               <datalist id="whatlist">
                 <option value="qualcosa"></option>
                 <option value="qualcos'altro"></option>
               </datalist>
+              <div class="ak-input__error-text">Need a description.</div>
             </div>
             <div class="ak-input">
               <label for="category">Category</label>
@@ -568,22 +570,22 @@
     <svg viewBox="0 0 100 100">
       <defs>
         <symbol id="wallet" viewBox="0 0 100 100">
-        <path d="M11 40 l 36 -36 l 36 36 Z" stroke-width="6" stroke-linecap="square"
-              stroke-linejoin="round" stroke="#fa8b00" fill="#fa8b00">
-        </path>
-        <path d="M11 60 l 48 -48" stroke-width="12" stroke="#444">
-        </path>
-        <path d="M87 94 h -81 v -49 h 81 v 49" stroke-width="12" stroke-linecap="round"
-              stroke-linejoin="round" stroke="#d8ba4b" fill="#d8ba4b">
-        </path>
-        <g>
-          <path d="M67 55 h 30 v 24 h -30 a 12 12 0 1 1 0 -24" stroke-width="6" stroke-linecap="round"
-                stroke-linejoin="round" stroke="#a05900" fill="#a05900">
+          <path d="M11 40 l 36 -36 l 36 36 Z" stroke-width="6" stroke-linecap="square"
+                stroke-linejoin="round" stroke="#fa8b00" fill="#fa8b00">
           </path>
-          <circle cx="67" cy="67" r="6" stroke="#d8ba4b" fill="#d8ba4b">
-          </circle>
-        </g>
-      </symbol>
+          <path d="M11 60 l 48 -48" stroke-width="12" stroke="#444">
+          </path>
+          <path d="M87 94 h -81 v -49 h 81 v 49" stroke-width="12" stroke-linecap="round"
+                stroke-linejoin="round" stroke="#d8ba4b" fill="#d8ba4b">
+          </path>
+          <g>
+            <path d="M67 55 h 30 v 24 h -30 a 12 12 0 1 1 0 -24" stroke-width="6" stroke-linecap="round"
+                  stroke-linejoin="round" stroke="#a05900" fill="#a05900">
+            </path>
+            <circle cx="67" cy="67" r="6" stroke="#d8ba4b" fill="#d8ba4b">
+            </circle>
+          </g>
+        </symbol>
         <symbol id="money" viewBox="0 0 100 100">
           <path d="M6 26 h 88 v 48 h -88 Z" fill="#00b550" stroke="#00a549" stroke-width="12">
           </path>

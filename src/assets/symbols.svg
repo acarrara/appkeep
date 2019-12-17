@@ -72,10 +72,10 @@
       <path d="M69 25 l 25 25 l -25 25" fill="transparent" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
       </path>
     </symbol>
-    <symbol id="close" viewBox="0 0 100 100">
-      <path d="M6 6 l 88 88" stroke-width="12" stroke-linecap="round" stroke="#444">
+    <symbol id="remove" viewBox="0 0 100 100">
+      <path d="M15 15 l 70 70" stroke-width="12" stroke-linecap="round" stroke="#444">
       </path>
-      <path d="M6 94 l 88 -88" stroke-width="12" stroke-linecap="round" stroke="#444">
+      <path d="M15 85 l 70 -70" stroke-width="12" stroke-linecap="round" stroke="#444">
       </path>
     </symbol>
     <symbol id="backbutton" viewBox="0 0 100 100">
@@ -141,6 +141,18 @@
       <path d="M6 26 h 88 v 48 h -88 Z" fill="#00b550" stroke="#00a549" stroke-width="12">
       </path>
       <circle cx="50" cy="50" r="12" stroke="#d8ba4b" fill="#d8ba4b"/>
+    </symbol>
+    <symbol id="error" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="50" stroke-width="0">
+      </circle>
+      <path d="M50 16 v 36" stroke-width="12" stroke-linecap="round" stroke="white">
+      </path>
+      <path d="M50 80 v 0.01" stroke-width="16" stroke-linecap="round" stroke="white">
+      </path>
+    </symbol>
+    <symbol id="save" viewBox="0 0 100 100">
+      <path d="M6 43 l 34 34 l 54 -54" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="transparent">
+      </path>
     </symbol>
   </defs>
 </svg>

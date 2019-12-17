@@ -1,10 +1,10 @@
 <div class="ak-page">
-  <ak-category-header class="ak-page__header" [hue]="category.hue">
+  <ak-navigation-header class="ak-page__header" [hue]="category.hue">
     <header class="ak-heading">
       <small class="ak-heading__kicker">Category</small>
       <h1 class="ak-heading__title">{{category.category}}</h1>
     </header>
-  </ak-category-header>
+  </ak-navigation-header>
   <div class="ak-edit  ak-page__content">
     <form class="ak-form">
       <fieldset class="ak-form__inputs">
@@ -38,8 +38,14 @@
         </div>
       </fieldset>
       <div class="ak-form__buttons">
-        <button class="ak-button ak-button--primary" (click)="edit()">Save</button>
-        <button class="ak-button ">Reset</button>
+        <button class="ak-button ak-button--primary" (click)="edit()">
+          <ak-icon size="small" type="save" mood="indifferent"></ak-icon>
+          <span>Save</span>
+        </button>
+        <button class="ak-button ">
+          <ak-icon size="small" type="reset"></ak-icon>
+          <span>Reset</span>
+        </button>
       </div>
     </form>
     <ak-appkeeps-card [appKeeps]="thisMonthAppKeeps$ | async"

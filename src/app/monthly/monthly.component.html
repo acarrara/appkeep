@@ -1,46 +1,59 @@
 <ng-container *ngIf="categories$ | async; let categories">
   <div class="ak-page">
-    <ak-category-header class="ak-page__header" [hue]="monthlyAppkeep.category | akCategoryHue: categories">
+    <ak-navigation-header class="ak-page__header" [hue]="monthlyAppkeep.category | akCategoryHue: categories">
       <header class="ak-heading">
         <small class="ak-heading__kicker">Monthly AppKeep</small>
         <h1 class="ak-heading__title">{{monthlyAppkeep.title}}</h1>
       </header>
-    </ak-category-header>
+    </ak-navigation-header>
     <div class="ak-edit  ak-page__content">
-      <form class="ak-form" ngForm>
+      <form class="ak-form" #form="ngForm" akFocusOnError>
         <fieldset class="ak-form__inputs">
           <legend class="visually-hidden"></legend>
-          <div class="ak-input">
+          <div class="ak-input  ak-input--amount">
             <label for="amount">Amount</label>
             <input name="amount" id="amount" type="number" min="0" step="0.01" placeholder="0000"
-                   [(ngModel)]="monthlyAppkeep.amount">
+                   [(ngModel)]="monthlyAppkeep.amount" #amount>
+            <div class="ak-amount" (click)="amount.focus()">{{monthlyAppkeep.amount | akAmount}}</div>
           </div>
           <div class="ak-input">
-            <label for="what">Title</label>
+            <label for="what">Description</label>
             <input id="what" name="title" placeholder="Description" autocomplete="off"
-                   [(ngModel)]="monthlyAppkeep.title">
+                   [(ngModel)]="monthlyAppkeep.title" #whatModel="ngModel">
+            <ak-input-error message="Add a description."
+                            *ngIf="whatModel.invalid && (whatModel.dirty || whatModel.touched)"></ak-input-error>
           </div>
           <div class="ak-input">
             <label for="category">Category</label>
             <input id="category" name="category" placeholder="Category" list="categorylist" autocomplete="off"
-                   [(ngModel)]="monthlyAppkeep.category">
+                   [(ngModel)]="monthlyAppkeep.category" #categoryModel="ngModel" required>
             <datalist id="categorylist">
               <option *ngFor="let category of categories" [value]="category.category"></option>
             </datalist>
+            <ak-input-error message="Choose a category."
+                            *ngIf="categoryModel.invalid && (categoryModel.dirty || categoryModel.touched)"></ak-input-error>
           </div>
           <div class="ak-input">
             <label for="payer">Payer</label>
             <input id="payer" name="payer" placeholder="Payer" list="payerlist" autocomplete="off"
-                   [(ngModel)]="monthlyAppkeep.user">
+                   [(ngModel)]="monthlyAppkeep.user" required #payerModel="ngModel">
             <datalist id="payerlist" *ngIf="users$ | async; let users">
               <option *ngFor="let user of users" [value]="user"></option>
             </datalist>
+            <ak-input-error message="Point out who paid."
+                            *ngIf="payerModel.invalid && (payerModel.dirty || payerModel.touched)"></ak-input-error>
           </div>
         </fieldset>
         <div class="ak-form__buttons">
           <button class="ak-button  ak-button--primary"
-                  (click)="primaryAction(categories)">{{edit ? 'Edit' : 'Add'}}</button>
-          <button class="ak-button" (click)="criticalAction()">{{edit ? 'Delete' : 'Reset'}}</button>
+                  (click)="primaryAction(form, categories)">
+            <ak-icon size="small" [type]="edit ? 'save' : 'add'" mood="indifferent"></ak-icon>
+            <span>{{edit ? 'Save' : 'Add'}}</span>
+          </button>
+          <button class="ak-button" (click)="criticalAction()">
+            <ak-icon size="small" [type]="edit ? 'remove' : 'reset'"></ak-icon>
+            <span>{{edit ? 'Delete' : 'Reset'}}</span>
+          </button>
         </div>
       </form>
     </div>

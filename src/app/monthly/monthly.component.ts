@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { OptionableComponent } from '../optionable.component';
 import { AppKeep } from '../models/AppKeep';
 import { AppKeepState } from '../models/AppKeepState';
@@ -10,6 +10,7 @@ import { Location } from '@angular/common';
 import { Listen } from '../../redux/listen.decorator';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from '../models/Category';
+import { NgForm, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'ak-monthly',
@@ -22,6 +23,8 @@ export class MonthlyComponent extends OptionableComponent implements OnInit {
   users$: Observable<UserInfo[]>;
   monthlyAppkeep: AppKeep;
   edit: boolean;
+
+  @ViewChildren('NgModel') models: QueryList<NgModel>;
 
   constructor(store: StoreService<AppKeepState>,
               actions: AppActions,
@@ -52,7 +55,10 @@ export class MonthlyComponent extends OptionableComponent implements OnInit {
     };
   }
 
-  primaryAction(categories: Category[]) {
+  primaryAction(form: NgForm, categories: Category[]) {
+    if (form.invalid) {
+      return;
+    }
     this.updateCategory(categories, this.monthlyAppkeep.category);
     if (this.edit) {
       this.store.dispatch(this.actions.editMonthlyAppKeep(this.monthlyAppkeep));

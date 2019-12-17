@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener } from '@angular/core';
-import { AppKeep } from './models/AppKeep';
+import { AppKeep } from '../models/AppKeep';
 import { Observable } from 'rxjs';
-import { Listen } from '../redux/listen.decorator';
+import { Listen } from '../../redux/listen.decorator';
 import { SwUpdate } from '@angular/service-worker';
-import { StoreService } from '../redux/store.service';
-import { AppKeepState } from './models/AppKeepState';
-import { AppActions } from './app.actions';
-import { Recap } from './models/Recap';
-import { sumAppKeeps } from './sumAppKeeps';
-import { Details } from './models/Details';
+import { StoreService } from '../../redux/store.service';
+import { AppKeepState } from '../models/AppKeepState';
+import { AppActions } from '../app.actions';
+import { Recap } from '../models/Recap';
+import { sumAppKeeps } from '../sumAppKeeps';
+import { Details } from '../models/Details';
 
 @Component({
   selector: 'ak-home',

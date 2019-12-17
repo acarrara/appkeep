@@ -16,7 +16,7 @@
                           title="this month">
         <footer class="ak-card__action">
           <a routerLink="/details/month">
-            <ak-icon type="go" size="small"></ak-icon>
+            <ak-icon type="go" size="small" mood="indifferent"></ak-icon>
           </a>
         </footer>
       </ak-categories-card>
@@ -24,14 +24,14 @@
     <ak-recap-card [recaps]="thisYearTotal$ | async" title="this year">
       <footer class="ak-card__action">
         <a routerLink="/details/year">
-          <ak-icon type="go" size="small"></ak-icon>
+          <ak-icon type="go" size="small" mood="indifferent"></ak-icon>
         </a>
       </footer>
     </ak-recap-card>
     <ak-recap-card [recaps]="overallTotal$ | async" title="overall">
       <footer class="ak-card__action">
         <a routerLink="/details/overall">
-          <ak-icon type="go" size="small"></ak-icon>
+          <ak-icon type="go" size="small" mood="indifferent"></ak-icon>
         </a>
       </footer>
     </ak-recap-card>

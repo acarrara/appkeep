@@ -46,9 +46,9 @@
       <use href="#logo" x="30" y="38.5" height="40" width="40"></use>
     </symbol>
     <symbol id="add" viewBox="0 0 100 100">
-      <path d="M50 6 v 88" stroke-width="12" stroke-linecap="round">
+      <path d="M50 15 v 70" stroke-width="12" stroke-linecap="round">
       </path>
-      <path d="M6 50 h 88" stroke-width="12" stroke-linecap="round">
+      <path d="M15 50 h 70" stroke-width="12" stroke-linecap="round">
       </path>
     </symbol>
     <symbol id="up" viewBox="0 0 100 100">
@@ -69,30 +69,31 @@
       <path d="M6 50 l 12 -35 l 24 70 l 12 -35 h 40" fill="transparent" stroke-width="8" stroke-linecap="round"
             stroke-linejoin="round">
       </path>
-      <path d="M69 25 l 25 25 l -25 25" fill="transparent" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M69 25 l 25 25 l -25 25" fill="transparent" stroke-width="8" stroke-linecap="round"
+            stroke-linejoin="round">
       </path>
     </symbol>
     <symbol id="remove" viewBox="0 0 100 100">
-      <path d="M15 15 l 70 70" stroke-width="12" stroke-linecap="round" stroke="#444">
+      <path d="M15 15 l 70 70" stroke-width="12" stroke-linecap="round">
       </path>
-      <path d="M15 85 l 70 -70" stroke-width="12" stroke-linecap="round" stroke="#444">
+      <path d="M15 85 l 70 -70" stroke-width="12" stroke-linecap="round">
       </path>
     </symbol>
     <symbol id="backbutton" viewBox="0 0 100 100">
-      <path d="M6 50 h 88" stroke-width="12" stroke-linecap="round" stroke="#444">
+      <path d="M6 50 h 88" stroke-width="12" stroke-linecap="round">
       </path>
       <path d="M50 6 l -44 44 l 44 44" fill="transparent" stroke-width="12" stroke-linejoin="round"
-            stroke-linecap="round" stroke="#444">
+            stroke-linecap="round">
       </path>
     </symbol>
     <symbol id="logout" viewBox="0 0 100 100">
-      <path d="M94 50 h -60" stroke-width="12" stroke-linecap="round" stroke="#444">
+      <path d="M94 50 h -60" stroke-width="12" stroke-linecap="round">
       </path>
       <path d="M70 26 l 24 24 l -24 24" fill="transparent" stroke-width="12" stroke-linejoin="round"
-            stroke-linecap="round" stroke="#444">
+            stroke-linecap="round">
       </path>
       <path d="M40 6 h -34 v 88 h 34" fill="transparent" stroke-width="12" stroke-linejoin="round"
-            stroke-linecap="round" stroke="#444">
+            stroke-linecap="round">
       </path>
     </symbol>
     <symbol id="wallet" viewBox="0 0 100 100">
@@ -151,7 +152,29 @@
       </path>
     </symbol>
     <symbol id="save" viewBox="0 0 100 100">
-      <path d="M6 43 l 34 34 l 54 -54" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="transparent">
+      <path d="M6 43 l 34 34 l 54 -54" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"
+            fill="transparent">
+      </path>
+    </symbol>
+    <symbol id="reset" viewBox="0 0 100 100">
+      <path d="M15 65 v -15 a 35 35 0 1 1 35 35" stroke-width="10" stroke-linecap="round" fill="transparent"
+      >
+      </path>
+      <path d="M5 55 l 10 10 l 10 -10" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"
+            fill="transparent">
+      </path>
+    </symbol>
+    <symbol id="delete" viewBox="0 0 100 100">
+      <path d="M40 10 h 20" stroke-width="10" stroke-linecap="round">
+      </path>
+      <path d="M15 25 h 70" stroke-width="10" stroke-linecap="round">
+      </path>
+      <path d="M20 40 v 50 h 60 v -50" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"
+            fill="transparent">
+      </path>
+      <path d="M40 40 v 35" stroke-width="10" stroke-linecap="round">
+      </path>
+      <path d="M60 40 v 35" stroke-width="10" stroke-linecap="round">
       </path>
     </symbol>
   </defs>

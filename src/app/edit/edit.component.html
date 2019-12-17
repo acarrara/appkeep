@@ -21,8 +21,8 @@
                   <input type="checkbox" id="income-toggle" name="income" [(ngModel)]="appKeep.income">
                   <label for="income-toggle">
                     <div class="ak-options-toggle__background">
-                      <ak-icon type="up" size="small"></ak-icon>
-                      <ak-icon type="down" size="small"></ak-icon>
+                      <ak-icon type="up" size="small" mood="indifferent"></ak-icon>
+                      <ak-icon type="down" size="small" mood="indifferent"></ak-icon>
                     </div>
                     <div class="ak-options-toggle__handle"></div>
                   </label>
@@ -71,11 +71,11 @@
           </fieldset>
           <div class="ak-form__buttons">
             <button class="ak-button  ak-button--primary" (click)="edit(form, options, categories)">
-              <ak-icon size="small" type="save" mood="indifferent"></ak-icon>
+              <ak-icon type="save" mood="indifferent"></ak-icon>
               <span>Save</span>
             </button>
             <button class="ak-button" (click)="delete()">
-              <ak-icon size="small" type="remove"></ak-icon>
+              <ak-icon type="delete"></ak-icon>
               <span>Delete</span>
             </button>
           </div>

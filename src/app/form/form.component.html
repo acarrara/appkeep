@@ -22,10 +22,13 @@
       <div class="ak-form__buttons">
         <button class="ak-button  ak-button--primary" type="submit"
                 (click)="add(form.value, options, categories); form.reset();">
-          <ak-icon size="small" type="add" mood="indifferent"></ak-icon>
+          <ak-icon type="add" mood="indifferent"></ak-icon>
           <span>Add</span>
         </button>
-        <button class="ak-button" type="reset" (click)="form.reset();">Reset</button>
+        <button class="ak-button" type="reset" (click)="form.reset();">
+          <ak-icon type="reset"></ak-icon>
+          <span>Reset</span>
+        </button>
       </div>
     </form>
   </ng-container>

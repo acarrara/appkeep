@@ -2,6 +2,8 @@
   height: $ak-size-l;
   width: $ak-size-l;
 
+  stroke: $ak-color-dark;
+
   @include ak-flex-center();
 
   & > .ak-icon__svg {

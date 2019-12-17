@@ -47,11 +47,11 @@
         <div class="ak-form__buttons">
           <button class="ak-button  ak-button--primary"
                   (click)="primaryAction(form, categories)">
-            <ak-icon size="small" [type]="edit ? 'save' : 'add'" mood="indifferent"></ak-icon>
+            <ak-icon [type]="edit ? 'save' : 'add'" mood="indifferent"></ak-icon>
             <span>{{edit ? 'Save' : 'Add'}}</span>
           </button>
           <button class="ak-button" (click)="criticalAction()">
-            <ak-icon size="small" [type]="edit ? 'remove' : 'reset'"></ak-icon>
+            <ak-icon [type]="edit ? 'delete' : 'reset'"></ak-icon>
             <span>{{edit ? 'Delete' : 'Reset'}}</span>
           </button>
         </div>

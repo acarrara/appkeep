@@ -7,7 +7,7 @@ ak-icon {
   @include ak-flex-center();
 }
 
-ak-income-indicator {
+ak-income-indicator, .ak-item__indicator {
   display: inline-flex;
   align-items: center;
   justify-content: center;

@@ -9,9 +9,14 @@
   <link href="patterns.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-<div class="whole">
-  <div class="header">
-    <h1>AppKeep patterns</h1>
+<div class="whole ak-page">
+  <div class="ak-page__header" id="patterns-page-header">
+    <header class="ak-header" id="patterns-header">
+      <h1 class="ak-heading">
+        <span class="ak-heading__kicker">AppKeep</span>
+        <span>Patterns</span>
+      </h1>
+    </header>
   </div>
   <div class="wrapper">
     <div class="wrapper-item">
@@ -55,7 +60,7 @@
                        style="width: 45%"></div>
                   <div class="ak-item-percentage  ak-item-percentage--positive ak-item-percentage--border-2"
                        style="width: 77%"></div>
-                  <span class="ak-badge  ak-badge--2">alessandro</span>
+                  <span class="ak-badge  ak-badge--2">auser</span>
                   <span class="ak-badge  ak-badge--positive">392.90  €</span>
                 </div>
                 <div class="ak-item__amount">
@@ -69,7 +74,7 @@
                        style="width: 15%"></div>
                   <div class="ak-item-percentage  ak-item-percentage--positive ak-item-percentage--border-7"
                        style="width: 27%"></div>
-                  <span class="ak-badge  ak-badge--7">paola</span>
+                  <span class="ak-badge  ak-badge--7">anotheruser</span>
                   <span class="ak-badge  ak-badge--positive">392.90  €</span>
                 </div>
                 <div class="ak-item__amount">
@@ -83,23 +88,23 @@
       </div>
     </div>
     <div class="wrapper-item">
-      <div class="ak-page__header">
-        <header class="ak-header">
-          <button class="ak-header__button">
-            <div class="ak-icon">
-              <svg viewBox="0 0 100 100">
-                <use href="assets/symbols.svg#backbutton"></use>
-              </svg>
-            </div>
-          </button>
-          <h2 class="ak-heading">
-            <span class="ak-heading__kicker">AppKeep</span>
-            <span>Edit AppKeep</span>
-          </h2>
-          <div class="ak-header__right"></div>
-        </header>
-      </div>
       <div class="ak-page">
+        <div class="ak-page__header">
+          <header class="ak-header">
+            <button class="ak-header__button">
+              <div class="ak-icon">
+                <svg viewBox="0 0 100 100">
+                  <use href="assets/symbols.svg#backbutton"></use>
+                </svg>
+              </div>
+            </button>
+            <h2 class="ak-heading">
+              <span class="ak-heading__kicker">AppKeep</span>
+              <span>Edit AppKeep</span>
+            </h2>
+            <div class="ak-header__right"></div>
+          </header>
+        </div>
         <div class="ak-edit  ak-page__content">
           <form class="ak-form">
             <fieldset class="ak-form__inputs">
@@ -108,7 +113,7 @@
                 <label for="amount">Amount</label>
                 <div class="ak-organizer">
                   <input name="amount" id="amount" type="number" min="0" step="0.01">
-                  <div class="ak-amount  ak-organizer__fill">0.00</div>
+                  <div class="ak-amount  ak-organizer__fill">0.00 €</div>
                   <div class="ak-options-toggle">
                     <input type="checkbox" id="income-toggle">
                     <label for="income-toggle">
@@ -186,10 +191,45 @@
     </div>
     <div class="wrapper-item">
       <div class="ak-page">
+        <div class="ak-page__header">
+          <header class="ak-header">
+            <button class="ak-header__button">
+              <div class="ak-icon">
+                <svg viewBox="0 0 100 100">
+                  <use href="assets/symbols.svg#backbutton"></use>
+                </svg>
+              </div>
+            </button>
+            <h2 class="ak-heading">
+              <span class="ak-heading__kicker">Profile</span>
+              <span>Username</span>
+            </h2>
+            <div class="ak-header__right">
+              <button class="ak-header__button">
+                <div class="ak-icon">
+                  <svg viewBox="0 0 100 100">
+                    <use href="assets/symbols.svg#logout"></use>
+                  </svg>
+                </div>
+              </button>
+            </div>
+          </header>
+        </div>
         <div class="ak-page__content">
           <form class="ak-form">
             <fieldset class="ak-form__inputs">
               <legend class="visually-hidden"></legend>
+              <div class="ak-input">
+                <div class="ak-input__title">
+                  <div class="ak-organizer">
+                    <div class="ak-organizer__fill">Allow notifications</div>
+                    <div class="ak-toggle">
+                      <input id="toggle" type="checkbox" class="visually-hidden">
+                      <label for="toggle"></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="ak-input">
                 <label for="username">Name</label>
                 <input type="text" id="username">
@@ -231,49 +271,60 @@
                   </div>
                 </div>
               </fieldset>
-              <div class="ak-input">
-                <div class="ak-input__title">
-                  <div class="ak-organizer">
-                    <div class="ak-organizer__fill">Allow notifications</div>
-                    <div class="ak-toggle">
-                      <input id="toggle" type="checkbox" class="visually-hidden">
-                      <label for="toggle"></label>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </fieldset>
             <div class="ak-form__buttons">
-              <button class="ak-button ak-button--primary">Save</button>
-              <button class="ak-button ">Reset</button>
+              <div class="ak-form__buttons">
+                <button class="ak-button  ak-button--primary">
+                  <div class="ak-icon  ak-icon--small  ak-icon--indifferent">
+                    <svg viewBox="0 0 100 100">
+                      <use href="assets/symbols.svg#save"></use>
+                    </svg>
+                  </div>
+                  <span>Save</span>
+                </button>
+                <button class="ak-button">
+                  <div class="ak-icon  ak-icon--small">
+                    <svg viewBox="0 0 100 100">
+                      <use href="assets/symbols.svg#reset"></use>
+                    </svg>
+                  </div>
+                  <span>Reset</span>
+                </button>
+              </div>
             </div>
           </form>
           <section class="ak-card">
             <div class="ak-card__header">
               <div class="ak-card__title">Monthly appkeeps</div>
-              <div class="ak-card__amount">193.40</div>
+              <div class="ak-card__amount">193.40 €</div>
             </div>
-            <ol class="ak-card__content">
-              <li class="ak-item">
-                <a class="ak-item__what">
-                  <div>Mutuo</div>
-                  <span class="ak-badge  ak-badge--4">banca</span>
+            <div class="ak-card__content">
+              <ol>
+                <li class="ak-item">
+                  <a class="ak-item__what">
+                    <div>Mutuo</div>
+                    <span class="ak-badge  ak-badge--4">banca</span>
+                  </a>
+                  <div class="ak-item__amount">573.00 €</div>
+                </li>
+                <li class="ak-item">
+                  <a class="ak-item__what">
+                    <div>Telefono</div>
+                    <span class="ak-badge  ak-badge--5">telefono</span>
+                  </a>
+                  <div class="ak-item__amount">7.99 €</div>
+                </li>
+              </ol>
+              <div class="ak-card__action">
+                <a href="">
+                  <div class="ak-icon  ak-icon--small  ak-icon--indifferent">
+                    <svg viewBox="0 0 100 100">
+                      <use href="assets/symbols.svg#add"></use>
+                    </svg>
+                  </div>
                 </a>
-                <div class="ak-item__amount">573.00</div>
-              </li>
-              <li class="ak-item">
-                <a class="ak-item__what">
-                  <div>Telefono</div>
-                  <span class="ak-badge  ak-badge--5">telefono</span>
-                </a>
-                <div class="ak-item__amount">7.99</div>
-              </li>
-              <li class="ak-item ak-input">
-                <div class="ak-item__what ak-input__interactive">
-                  <a href="" style="margin-left: auto; margin-top: 1rem">Add</a>
-                </div>
-              </li>
-            </ol>
+              </div>
+            </div>
           </section>
           <section class="ak-card">
             <div class="ak-card__header">
@@ -281,16 +332,29 @@
             </div>
             <ol class="ak-card__content">
               <li class="ak-item">
-                <div style="flex-grow: 1; padding: 1rem 0; display: flex; align-items: center">carrara1@mail.com</div>
+                <div class="ak-item__what  ak-user">aUser@email.com (you)</div>
               </li>
               <li class="ak-item">
-                <div style="flex-grow: 1; padding: 1rem 0; display: flex; align-items: center">carrara2@mail.com</div>
+                <div class="ak-item__what  ak-user">anotherUser@email.com</div>
+                <button class="ak-item__action">
+                  <div class="ak-icon  ak-icon--small">
+                    <svg viewBox="0 0 100 100">
+                      <use href="assets/symbols.svg#remove"></use>
+                    </svg>
+                  </div>
+                </button>
               </li>
-              <li class="ak-item ak-input">
-                <div class="ak-users__email  ak-input__interactive" style="flex-grow: 1; padding: 1rem 0;">
+              <li class="ak-item ak-input  ak-input__interactive">
+                <div class="ak-item__what">
                   <input type="text" id="friends" placeholder="i.e. appkeeper@mail.com">
-                  <button>Add</button>
                 </div>
+                <button>
+                  <div class="ak-icon  ak-icon--small  ak-icon--indifferent">
+                    <svg viewBox="0 0 100 100">
+                      <use href="assets/symbols.svg#add"></use>
+                    </svg>
+                  </div>
+                </button>
               </li>
             </ol>
           </section>
@@ -300,8 +364,14 @@
     <div class="wrapper-item">
       <div class="ak-page">
         <div class="ak-page__header">
-          <header class="ak-header  ak-header--1">
-            <button class="ak-header__button">X</button>
+          <header class="ak-header  ak-header--2">
+            <button class="ak-header__button">
+              <div class="ak-icon">
+                <svg viewBox="0 0 100 100">
+                  <use href="assets/symbols.svg#backbutton"></use>
+                </svg>
+              </div>
+            </button>
             <h2 class="ak-heading">Spesa</h2>
             <div class="ak-header__right"></div>
           </header>
@@ -318,22 +388,14 @@
                       <input type="checkbox" id="type-toggle">
                       <label for="type-toggle">
                         <div class="ak-options-toggle__background">
-                          <div class="ak-icon  ak-icon--small">
+                          <div class="ak-icon  ak-icon--small  ak-icon--indifferent">
                             <svg viewBox="0 0 100 100">
-                              <path d="M50 6 v 88" stroke-width="12" stroke-linecap="round">
-                              </path>
-                              <path id="arrow" d="M80 36 l -30 -30 l -30 30" fill="transparent" stroke-width="10"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                              </path>
+                              <use href="assets/symbols.svg#up"></use>
                             </svg>
                           </div>
-                          <div class="ak-icon  ak-icon--small">
+                          <div class="ak-icon  ak-icon--small  ak-icon--indifferent">
                             <svg viewBox="0 0 100 100">
-                              <path d="M50 6 v 88" stroke-width="12" stroke-linecap="round">
-                              </path>
-                              <path id="arrow" d="M80 64 l -30 30 l -30 -30" fill="transparent" stroke-width="10"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                              </path>
+                              <use href="assets/symbols.svg#down"></use>
                             </svg>
                           </div>
                         </div>
@@ -347,11 +409,11 @@
                 <legend class="ak-input__title">Colour</legend>
                 <div class="ak-input-hues">
                   <div class="ak-input-hues__hue">
-                    <label class="ak-hue-1" for="hue_1"></label>
                     <input class="visually-hidden" type="radio" name="hue" id="hue_1" value="1">
+                    <label class="ak-hue-1" for="hue_1"></label>
                   </div>
                   <div class="ak-input-hues__hue">
-                    <input class="visually-hidden" type="radio" name="hue" id="hue_2" value="2">
+                    <input class="visually-hidden" type="radio" name="hue" id="hue_2" value="2" checked>
                     <label class="ak-hue-2" for="hue_2"></label>
                   </div>
                   <div class="ak-input-hues__hue">
@@ -382,8 +444,24 @@
               </fieldset>
             </fieldset>
             <div class="ak-form__buttons">
-              <button class="ak-button ak-button--primary">Save</button>
-              <button class="ak-button ">Reset</button>
+              <div class="ak-form__buttons">
+                <button class="ak-button  ak-button--primary">
+                  <div class="ak-icon  ak-icon--small  ak-icon--indifferent">
+                    <svg viewBox="0 0 100 100">
+                      <use href="assets/symbols.svg#save"></use>
+                    </svg>
+                  </div>
+                  <span>Save</span>
+                </button>
+                <button class="ak-button">
+                  <div class="ak-icon  ak-icon--small">
+                    <svg viewBox="0 0 100 100">
+                      <use href="assets/symbols.svg#reset"></use>
+                    </svg>
+                  </div>
+                  <span>Reset</span>
+                </button>
+              </div>
             </div>
           </form>
           <section class="ak-card">
@@ -394,9 +472,9 @@
             <ol class="ak-card__content">
               <li class="ak-item  ak-item--recap">
                 <div class="ak-item__what">
-                  <div class="ak-item-percentage  ak-item-percentage--negative ak-item-percentage--1"
+                  <div class="ak-item-percentage  ak-item-percentage--negative ak-item-percentage--border-2"
                        style="width: 85%"></div>
-                  <div class="ak-item-percentage  ak-item-percentage--positive ak-item-percentage--1"
+                  <div class="ak-item-percentage  ak-item-percentage--positive ak-item-percentage--border-2"
                        style="width: 98%"></div>
                   <span class="ak-badge">november</span>
                   <span class="ak-badge  ak-badge--negative">-833.72</span>
@@ -415,130 +493,311 @@
       <section class="ak-card">
         <div class="ak-card__header">
           <div class="ak-card__title">This month</div>
-          <div class="ak-card__amount">89.34</div>
+          <div class="ak-card__amount">
+            <span>89.34 €</span>
+            <div class="ak-item__indicator">
+              <div class="ak-icon  ak-icon--small  ak-icon--indifferent">
+                <svg viewBox="0 0 100 100">
+                  <use href="assets/symbols.svg#stable"></use>
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
-        <ol class="ak-card__content">
-          <li class="ak-item">
-            <div class="ak-item__what">
-              <div class="ak-item-percentage ak-item-percentage--1" style="width: 61%" data-percentage="61%"></div>
-              <span class="ak-badge">category</span>
-            </div>
-            <div class="ak-item__amount">11.11</div>
-          </li>
-          <li class="ak-item">
-            <div class="ak-item__what">
-              <div class="ak-item-percentage ak-item-percentage--2" style="width: 62%" data-percentage="62%"></div>
-              <span class="ak-badge">category</span>
-            </div>
-            <div class="ak-item__amount">22.22</div>
-          </li>
-          <li class="ak-item">
-            <div class="ak-item__what">
-              <div class="ak-item-percentage ak-item-percentage--3" style="width: 63%" data-percentage="63%"></div>
-              <span class="ak-badge">category</span>
-            </div>
-            <div class="ak-item__amount">33.33</div>
-          </li>
-          <li class="ak-item">
-            <div class="ak-item__what">
-              <div class="ak-item-percentage ak-item-percentage--4" style="width: 64%" data-percentage="64%"></div>
-              <span class="ak-badge">category</span>
-            </div>
-            <div class="ak-item__amount">44.44</div>
-          </li>
-          <li class="ak-item">
-            <div class="ak-item__what">
-              <div class="ak-item-percentage ak-item-percentage--5" style="width: 65%" data-percentage="65%"></div>
-              <span class="ak-badge">category</span>
-            </div>
-            <div class="ak-item__amount">55.55</div>
-          </li>
-          <li class="ak-item">
-            <div class="ak-item__what">
-              <div class="ak-item-percentage ak-item-percentage--6" style="width: 66%" data-percentage="66%"></div>
-              <span class="ak-badge">category</span>
-            </div>
-            <div class="ak-item__amount">66.66</div>
-          </li>
-          <li class="ak-item">
-            <div class="ak-item__what">
-              <div class="ak-item-percentage ak-item-percentage--7" style="width: 67%" data-percentage="67%"></div>
-              <span class="ak-badge">category</span>
-            </div>
-            <div class="ak-item__amount">77.77</div>
-          </li>
-          <li class="ak-item">
-            <div class="ak-item__what">
-              <div class="ak-item-percentage ak-item-percentage--8" style="width: 68%" data-percentage="68%"></div>
-              <span class="ak-badge">category</span>
-            </div>
-            <div class="ak-item__amount">88.88</div>
-          </li>
-        </ol>
+        <div class="ak-card__content">
+          <ol>
+            <li class="ak-item">
+              <div class="ak-item__what">
+                <div class="ak-item-percentage ak-item-percentage--1" style="width: 61%" data-percentage="61%"></div>
+                <span class="ak-badge">category</span>
+              </div>
+              <div class="ak-item__amount">
+                <span>11.11 €</span>
+                <div class="ak-item__indicator">
+                  <div class="ak-icon  ak-icon--small  ak-icon--negative">
+                    <svg viewBox="0 0 100 100">
+                      <use href="assets/symbols.svg#down"></use>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="ak-item">
+              <div class="ak-item__what">
+                <div class="ak-item-percentage ak-item-percentage--2" style="width: 62%" data-percentage="62%"></div>
+                <span class="ak-badge">category</span>
+              </div>
+              <div class="ak-item__amount">
+                <span>22.22 €</span>
+                <div class="ak-item__indicator">
+                  <div class="ak-icon  ak-icon--small  ak-icon--negative">
+                    <svg viewBox="0 0 100 100">
+                      <use href="assets/symbols.svg#down"></use>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="ak-item">
+              <div class="ak-item__what">
+                <div class="ak-item-percentage ak-item-percentage--3" style="width: 63%" data-percentage="63%"></div>
+                <span class="ak-badge">category</span>
+              </div>
+              <div class="ak-item__amount">
+                <span>33.33 €</span>
+                <div class="ak-item__indicator">
+                  <div class="ak-icon  ak-icon--small  ak-icon--negative">
+                    <svg viewBox="0 0 100 100">
+                      <use href="assets/symbols.svg#down"></use>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="ak-item">
+              <div class="ak-item__what">
+                <div class="ak-item-percentage ak-item-percentage--4" style="width: 64%" data-percentage="64%"></div>
+                <span class="ak-badge">category</span>
+              </div>
+              <div class="ak-item__amount">
+                <span>44.44 €</span>
+                <div class="ak-item__indicator">
+                  <div class="ak-icon  ak-icon--small  ak-icon--negative">
+                    <svg viewBox="0 0 100 100">
+                      <use href="assets/symbols.svg#down"></use>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="ak-item">
+              <div class="ak-item__what">
+                <div class="ak-item-percentage ak-item-percentage--5" style="width: 65%" data-percentage="65%"></div>
+                <span class="ak-badge">category</span>
+              </div>
+              <div class="ak-item__amount">
+                <span>55.55 €</span>
+                <div class="ak-item__indicator">
+                  <div class="ak-icon  ak-icon--small  ak-icon--negative">
+                    <svg viewBox="0 0 100 100">
+                      <use href="assets/symbols.svg#down"></use>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="ak-item">
+              <div class="ak-item__what">
+                <div class="ak-item-percentage ak-item-percentage--6" style="width: 66%" data-percentage="66%"></div>
+                <span class="ak-badge">category</span>
+              </div>
+              <div class="ak-item__amount">
+                <span>66.66 €</span>
+                <div class="ak-item__indicator">
+                  <div class="ak-icon  ak-icon--small  ak-icon--negative">
+                    <svg viewBox="0 0 100 100">
+                      <use href="assets/symbols.svg#down"></use>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="ak-item">
+              <div class="ak-item__what">
+                <div class="ak-item-percentage ak-item-percentage--7" style="width: 67%" data-percentage="67%"></div>
+                <span class="ak-badge">category</span>
+              </div>
+              <div class="ak-item__amount">
+                <span>77.77 €</span>
+                <div class="ak-item__indicator">
+                  <div class="ak-icon  ak-icon--small  ak-icon--positive">
+                    <svg viewBox="0 0 100 100">
+                      <use href="assets/symbols.svg#up"></use>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="ak-item">
+              <div class="ak-item__what">
+                <div class="ak-item-percentage ak-item-percentage--8" style="width: 68%" data-percentage="68%"></div>
+                <span class="ak-badge">category</span>
+              </div>
+              <div class="ak-item__amount">
+                <span>88.88 €</span>
+                <div class="ak-item__indicator">
+                  <div class="ak-icon  ak-icon--small  ak-icon--positive">
+                    <svg viewBox="0 0 100 100">
+                      <use href="assets/symbols.svg#up"></use>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ol>
+          <footer class="ak-card__action">
+            <a href="">
+              <div class="ak-icon  ak-icon--small  ak-icon--indifferent">
+                <svg viewBox="0 0 100 100">
+                  <use href="assets/symbols.svg#go"></use>
+                </svg>
+              </div>
+            </a>
+          </footer>
+        </div>
       </section>
     </div>
     <div class="wrapper-item">
       <section class="ak-card">
         <div class="ak-card__header">
           <div class="ak-card__title">Today</div>
-          <div class="ak-card__amount">89.34</div>
+          <div class="ak-card__amount">
+            <span>89.34 €</span>
+            <div class="ak-item__indicator">
+              <div class="ak-icon  ak-icon--small  ak-icon--indifferent">
+                <svg viewBox="0 0 100 100">
+                  <use href="assets/symbols.svg#stable"></use>
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
         <ol class="ak-card__content">
           <li class="ak-item">
             <a class="ak-item__what">
               <div>Naturasi</div>
               <span class="ak-badge  ak-badge--1">spesa</span>
+              <span class="ak-badge  ak-badge--2">auser</span>
             </a>
-            <div class="ak-item__amount">45.23</div>
+            <div class="ak-item__amount">
+              <span>45.23 €</span>
+              <div class="ak-item__indicator">
+                <div class="ak-icon  ak-icon--small  ak-icon--negative">
+                  <svg viewBox="0 0 100 100">
+                    <use href="assets/symbols.svg#down"></use>
+                  </svg>
+                </div>
+              </div>
+            </div>
           </li>
           <li class="ak-item">
             <a class="ak-item__what">
               <div>Fumetti</div>
               <span class="ak-badge  ak-badge--2">fumetti</span>
+              <span class="ak-badge  ak-badge--2">auser</span>
             </a>
-            <div class="ak-item__amount">14.46</div>
+            <div class="ak-item__amount">
+              <span>14.46 €</span>
+              <div class="ak-item__indicator">
+                <div class="ak-icon  ak-icon--small  ak-icon--negative">
+                  <svg viewBox="0 0 100 100">
+                    <use href="assets/symbols.svg#down"></use>
+                  </svg>
+                </div>
+              </div>
+            </div>
           </li>
           <li class="ak-item">
             <a class="ak-item__what">
               <div>Quadrifoglio</div>
               <span class="ak-badge  ak-badge--3">igiene</span>
+              <span class="ak-badge  ak-badge--2">auser</span>
             </a>
-            <div class="ak-item__amount">10.66</div>
+            <div class="ak-item__amount">
+              <span>10.66 €</span>
+              <div class="ak-item__indicator">
+                <div class="ak-icon  ak-icon--small  ak-icon--negative">
+                  <svg viewBox="0 0 100 100">
+                    <use href="assets/symbols.svg#down"></use>
+                  </svg>
+                </div>
+              </div>
+            </div>
           </li>
           <li class="ak-item">
             <a class="ak-item__what">
               <div>Isola dei tesori</div>
               <span class="ak-badge  ak-badge--4">animali</span>
+              <span class="ak-badge  ak-badge--2">auser</span>
             </a>
-            <div class="ak-item__amount">10.66</div>
+            <div class="ak-item__amount">
+              <span>10.66 €</span>
+              <div class="ak-item__indicator">
+                <div class="ak-icon  ak-icon--small  ak-icon--negative">
+                  <svg viewBox="0 0 100 100">
+                    <use href="assets/symbols.svg#down"></use>
+                  </svg>
+                </div>
+              </div>
+            </div>
           </li>
           <li class="ak-item">
             <a class="ak-item__what">
               <div>Benzina</div>
               <span class="ak-badge  ak-badge--5">macchina</span>
+              <span class="ak-badge  ak-badge--7">anotheruser</span>
             </a>
-            <div class="ak-item__amount">35.89</div>
+            <div class="ak-item__amount">
+              <span>35.89 €</span>
+              <div class="ak-item__indicator">
+                <div class="ak-icon  ak-icon--small  ak-icon--negative">
+                  <svg viewBox="0 0 100 100">
+                    <use href="assets/symbols.svg#down"></use>
+                  </svg>
+                </div>
+              </div>
+            </div>
           </li>
           <li class="ak-item">
             <a class="ak-item__what">
               <div>Benzina</div>
               <span class="ak-badge  ak-badge--6">macchina</span>
+              <span class="ak-badge  ak-badge--2">auser</span>
             </a>
-            <div class="ak-item__amount">29.34</div>
+            <div class="ak-item__amount">
+              <span>29.34 €</span>
+              <div class="ak-item__indicator">
+                <div class="ak-icon  ak-icon--small  ak-icon--negative">
+                  <svg viewBox="0 0 100 100">
+                    <use href="assets/symbols.svg#down"></use>
+                  </svg>
+                </div>
+              </div>
+            </div>
           </li>
           <li class="ak-item">
             <a class="ak-item__what">
               <div>Sigarette</div>
               <span class="ak-badge  ak-badge--7">sigarette</span>
+              <span class="ak-badge  ak-badge--7">anotheruser</span>
             </a>
-            <div class="ak-item__amount">17.73</div>
+            <div class="ak-item__amount">
+              <span>17.73 €</span>
+              <div class="ak-item__indicator">
+                <div class="ak-icon  ak-icon--small  ak-icon--negative">
+                  <svg viewBox="0 0 100 100">
+                    <use href="assets/symbols.svg#down"></use>
+                  </svg>
+                </div>
+              </div>
+            </div>
           </li>
           <li class="ak-item">
             <a class="ak-item__what">
               <div>Accendino</div>
               <span class="ak-badge  ak-badge--8">varie</span>
+              <span class="ak-badge  ak-badge--2">auser</span>
             </a>
-            <div class="ak-item__amount">2.43</div>
+            <div class="ak-item__amount">
+              <span>2.43 €</span>
+              <div class="ak-item__indicator">
+                <div class="ak-icon  ak-icon--small  ak-icon--negative">
+                  <svg viewBox="0 0 100 100">
+                    <use href="assets/symbols.svg#down"></use>
+                  </svg>
+                </div>
+              </div>
+            </div>
           </li>
         </ol>
       </section>
@@ -626,6 +885,20 @@
 
 <style>
 
+  .ak-page {
+    height: initial;
+    max-height: 100vh;
+  }
+
+  #patterns-page-header {
+    width: 100%;
+  }
+
+  #patterns-header {
+    max-width: 100%;
+    justify-content: center;
+  }
+
   .wrapper-loading {
     position: relative;
     display: flex;
@@ -673,7 +946,14 @@
 
   .header {
     flex-grow: 0;
-    padding: 1rem;
+    box-shadow: 0 6px 4px -4px #75777b;
+    padding: 0.5rem;
+    width: 100%;
+    background-color: #f9f9fa;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .wrapper {

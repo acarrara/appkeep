@@ -62,6 +62,10 @@
   stroke: $ak-color-light;
 
   border-radius: $ak-size-m;
+
+  * + * {
+    margin-left: $ak-size-m;
+  }
 }
 
 .ak-button {

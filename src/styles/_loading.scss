@@ -7,12 +7,13 @@
 }
 
 .ak-loading__svg {
-  width: 50%;
+  width: 70%;
+  position: absolute;
 }
 
 #money1, #money2 {
   transform-origin: 50% 50%;
-  animation: money 4s ease infinite;
+  animation: money 8s ease infinite;
 }
 
 @keyframes money {
@@ -20,18 +21,18 @@
     transform: rotate(0deg);
   }
   20% {
-    transform: rotate(144deg);
+    transform: rotate(504deg);
   }
   40% {
-    transform: rotate(288deg);
+    transform: rotate(1008deg);
   }
   60% {
-    transform: rotate(432deg);
+    transform: rotate(1512deg);
   }
   80% {
-    transform: rotate(576deg);
+    transform: rotate(2016deg);
   }
   100% {
-    transform: rotate(720deg);
+    transform: rotate(2520deg);
   }
 }

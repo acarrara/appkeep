@@ -98,18 +98,18 @@
     </symbol>
     <symbol id="wallet" viewBox="0 0 100 100">
       <path d="M11 40 l 36 -36 l 36 36 Z" stroke-width="6" stroke-linecap="square"
-            stroke-linejoin="round" stroke="#fa8b00" fill="#fa8b00">
+            stroke-linejoin="round" stroke="#006fae" fill="#006fae">
       </path>
-      <path d="M11 60 l 48 -48" stroke-width="12" stroke="#444">
+      <path d="M11 60 l 48 -48" stroke-width="12" stroke="#082840">
       </path>
       <path d="M87 94 h -81 v -49 h 81 v 49" stroke-width="12" stroke-linecap="round"
-            stroke-linejoin="round" stroke="#d8ba4b" fill="#d8ba4b">
+            stroke-linejoin="round" stroke="#c5c6c9" fill="#c5c6c9">
       </path>
       <g>
         <path d="M67 55 h 30 v 24 h -30 a 12 12 0 1 1 0 -24" stroke-width="6" stroke-linecap="round"
-              stroke-linejoin="round" stroke="#a05900" fill="#a05900">
+              stroke-linejoin="round" stroke="#006fae" fill="#006fae">
         </path>
-        <circle cx="67" cy="67" r="6" stroke="#d8ba4b" fill="#d8ba4b">
+        <circle cx="67" cy="67" r="6" stroke="#c5c6c9" fill="#c5c6c9">
         </circle>
       </g>
     </symbol>

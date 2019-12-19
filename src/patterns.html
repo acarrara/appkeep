@@ -177,6 +177,61 @@
     <div class="wrapper-item">
       <section class="ak-card">
         <div class="ak-card__header">
+          <div class="ak-card__title">App colours</div>
+        </div>
+        <div class="ak-card__content">
+          <ol>
+            <li class="ak-item">
+              <div class="ak-item__what">primary</div>
+              <div class="ak-item__amount">
+                <div class="patterns-colour-cell  patterns-colour-cell--primary-normal"></div>
+                <div class="patterns-colour-cell  patterns-colour-cell--primary-strong"></div>
+                <div class="patterns-colour-cell  patterns-colour-cell--primary-stronger"></div>
+              </div>
+            </li>
+            <li class="ak-item">
+              <div class="ak-item__what">background</div>
+              <div class="ak-item__amount">
+                <div class="patterns-colour-cell  patterns-colour-cell--background-normal"></div>
+                <div class="patterns-colour-cell  patterns-colour-cell--background-strong"></div>
+                <div class="patterns-colour-cell  patterns-colour-cell--background-stronger"></div>
+              </div>
+            </li>
+            <li class="ak-item">
+              <div class="ak-item__what">border</div>
+              <div class="ak-item__amount">
+              </div>
+              <div class="patterns-colour-cell  patterns-colour-cell--border"></div>
+            </li>
+            <li class="ak-item">
+              <div class="ak-item__what">text</div>
+              <div class="ak-item__amount">
+                <div class="patterns-colour-cell  patterns-colour-cell--text"></div>
+              </div>
+            </li>
+            <li class="ak-item">
+              <div class="ak-item__what">positive</div>
+              <div class="ak-item__amount">
+                <div class="patterns-colour-cell  patterns-colour-cell--positive-light"></div>
+                <div class="patterns-colour-cell  patterns-colour-cell--positive-normal"></div>
+                <div class="patterns-colour-cell  patterns-colour-cell--positive-strong"></div>
+              </div>
+            </li>
+            <li class="ak-item">
+              <div class="ak-item__what">negative</div>
+              <div class="ak-item__amount">
+                <div class="patterns-colour-cell  patterns-colour-cell--negative-light"></div>
+                <div class="patterns-colour-cell  patterns-colour-cell--negative-normal"></div>
+                <div class="patterns-colour-cell  patterns-colour-cell--negative-strong"></div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+    </div>
+    <div class="wrapper-item">
+      <section class="ak-card">
+        <div class="ak-card__header">
           <div class="ak-card__title">Custom colours</div>
         </div>
         <div class="ak-card__content">
@@ -407,11 +462,11 @@
                 <span>Save</span>
               </button>
               <button class="ak-button">
-                <div class="ak-icon  ak-icon--small">
+                <span class="ak-icon  ak-icon--small">
                   <svg viewBox="0 0 100 100">
                     <use href="assets/symbols.svg#reset"></use>
                   </svg>
-                </div>
+                </span>
                 <span>Reset</span>
               </button>
             </div>
@@ -1059,7 +1114,7 @@
               <path d="M60 72 v 25 h -20 v -25 a 10 10 0 1 1 20 0" stroke-width="6" stroke-linecap="round"
                     stroke-linejoin="round" stroke="#006fae" fill="#006fae">
               </path>
-              <circle cx="50" cy="72" r="5" fill="#c5c6c9"></circle>
+              <circle id="button" cx="50" cy="72" r="5" fill="#c5c6c9"></circle>
             </g>
           </symbol>
           <symbol id="tree" viewBox="20 30">
@@ -1068,7 +1123,7 @@
             <path d="M10 30 c -7 -5 -7 -5 0 -25 v 25" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
                   stroke="#00b550" fill="#00b550"></path>
           </symbol>
-          <symbol id="back" viewBox="0 0 100 100" mask="url(#login-mask)">
+          <symbol id="whole" viewBox="0 0 100 100" mask="url(#login-mask)">
             <rect x="0" y="0" height="100" width="100" fill="url(#sky)"></rect>
             <g id="background">
               <g id="water">
@@ -1093,7 +1148,7 @@
             <use href="#logo" x="30" y="38.5" height="40" width="40"></use>
           </symbol>
         </defs>
-        <use href="#back"></use>
+        <use href="#whole"></use>
       </svg>
     </div>
     <div class="wrapper-item">
@@ -1207,7 +1262,6 @@
     background-color: #f99bd5;
   }
 
-
   .patterns-colour-cell--strong-1 {
     background-color: #e25447;
   }
@@ -1238,6 +1292,62 @@
 
   .patterns-colour-cell--strong-8 {
     background-color: #d650ab;
+  }
+
+  .patterns-colour-cell--primary-normal {
+    background-color: #006fae;
+  }
+
+  .patterns-colour-cell--primary-strong {
+    background-color: #005689;
+  }
+
+  .patterns-colour-cell--primary-stronger {
+    background-color: #024a76;
+  }
+
+  .patterns-colour-cell--background-normal {
+    background-color: #f9f9fa;
+  }
+
+  .patterns-colour-cell--background-strong {
+    background-color: #f0f1f1;
+  }
+
+  .patterns-colour-cell--background-stronger {
+    background-color: #75777b;
+  }
+
+  .patterns-colour-cell--border {
+    background-color: #c5c6c9;
+  }
+
+  .patterns-colour-cell--text {
+    background-color: #082840;
+  }
+
+  .patterns-colour-cell--positive-light {
+    background-color: #cbfcda;
+  }
+
+  .patterns-colour-cell--positive-normal {
+    background-color: #31b36b;
+  }
+
+  .patterns-colour-cell--positive-strong {
+    background-color: #1f7a47;
+  }
+
+  .patterns-colour-cell--negative-light {
+    background-color: #fcedee;
+  }
+
+  .patterns-colour-cell--negative-normal {
+    background-color: #f8757b;
+  }
+
+  .patterns-colour-cell--negative-strong {
+    background-color: #d01f32;
   }
 
   .wrapper-loading {

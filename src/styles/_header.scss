@@ -20,6 +20,7 @@
 
   & > .ak-header__logo {
     height: $ak-size-xl;
+    width: $ak-size-xl;
   }
 
   & .ak-header__image {
@@ -63,5 +64,7 @@
   .ak-wallet-#{$i} {
     fill: ak-color(75, 90, $_hue);
     stroke: ak-color(75, 90, $_hue);
+
+    color: ak-color(55, 70, $_hue);
   }
 }

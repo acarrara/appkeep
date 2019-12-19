@@ -1,6 +1,6 @@
 <ng-container *ngIf="user$ | async; let user">
-  <div class="ak-header">
-    <svg class="ak-header__logo" viewBox="0 0 1 1">
+  <div class="ak-header  ak-wallet-{{user.info.hue}}">
+    <svg class="ak-header__logo  ak-header-1" viewBox="0 0 1 1">
       <use href="assets/symbols.svg#wallet"></use>
     </svg>
     <div>

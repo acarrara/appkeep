@@ -57,3 +57,11 @@
     font-size: $ak-size-m + $ak-size-s;
   }
 }
+
+@each $_hue in $ak-hues {
+  $i: index($ak-hues, $_hue);
+  .ak-wallet-#{$i} {
+    fill: ak-color(75, 90, $_hue);
+    stroke: ak-color(75, 90, $_hue);
+  }
+}

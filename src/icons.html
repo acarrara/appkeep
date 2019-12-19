@@ -37,12 +37,12 @@
       <use href="assets/symbols.svg#wallet-alpha"></use>
     </svg>
   </div>
-  <div class="ak-icon ak-icon--logo  ak-icon--positive">
+  <div class="ak-icon ak-icon--logo">
     <svg class="ak-icon__svg" viewBox="0 0 1 1">
       <use href="assets/symbols.svg#up"></use>
     </svg>
   </div>
-  <div class="ak-icon ak-icon--logo  ak-icon--negative">
+  <div class="ak-icon ak-icon--logo">
     <svg class="ak-icon__svg" viewBox="0 0 1 1">
       <use href="assets/symbols.svg#down"></use>
     </svg>
@@ -83,11 +83,6 @@
     </svg>
   </div>
 </div>
-<!--  <div style="width: 90vh; background-color: white">-->
-<!--    <svg class="ak-icon__svg" viewBox="0 0 1 1">-->
-<!--      <use href="assets/symbols.svg#back"></use>-->
-<!--    </svg>-->
-<!--  </div>-->
 
 <style>
   html, body {
@@ -129,107 +124,9 @@
     background-color: #f3f3f4;
   }
 
-  #door {
-    transform-origin: 50% 72%;
-    animation: toLock 8s ease-in-out 1s infinite;
-  }
-
-  #ceiling {
-    animation: ceiling 8s ease-in-out 1s infinite;
-  }
-
-  #stripe {
-    transform-origin: 18% 69%;
-    animation: stripe 8s ease-in-out 1s infinite;
-  }
-
-  #clouds {
-    animation: clouds 12s linear 1s infinite;
-  }
-
-  #background {
-    animation: background 8s ease-in-out 1s infinite;
-  }
-
-  @keyframes clouds {
-    0% {
-      transform: translateX(0);
-    }
-
-    50% {
-      transform: translateX(10%);
-    }
-
-    100% {
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes stripe {
-    10% {
-      transform: rotate(-45deg);
-    }
-    50% {
-      transform: rotate(-45deg);
-    }
-    60% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(0deg);
-    }
-  }
-
-  @keyframes background {
-    10% {
-      opacity: 0.25;
-    }
-    50% {
-      opacity: 0.25;
-    }
-    60% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes ceiling {
-    10% {
-      transform: translateY(3%);
-    }
-    50% {
-      transform: translateY(3%);
-    }
-    60% {
-      transform: translateY(0%)
-    }
-    100% {
-      transform: translateY(0%)
-    }
-  }
-
-  @keyframes toLock {
-    10% {
-      transform: translateX(15%) rotate(-90deg);
-    }
-    50% {
-      transform: translateX(15%) rotate(-90deg);
-    }
-    60% {
-      transform: translateX(0%) rotate(0deg);
-    }
-    100% {
-      transform: translateX(0%) rotate(0deg);
-    }
-  }
-
-  .ak-icon.ak-icon--positive {
-    stroke: #00795f;
-  }
-  .ak-icon.ak-icon--negative {
-    stroke: #cd2a01;
+  .ak-wallet-1 {
+    stroke: #006fae;
+    fill: #006fae;
   }
 </style>
 

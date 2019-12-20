@@ -50,7 +50,7 @@
             <ak-icon [type]="edit ? 'save' : 'add'" mood="indifferent"></ak-icon>
             <span>{{edit ? 'Save' : 'Add'}}</span>
           </button>
-          <button class="ak-button" (click)="criticalAction()">
+          <button class="ak-button" (click)="criticalAction(form)">
             <ak-icon [type]="edit ? 'delete' : 'reset'"></ak-icon>
             <span>{{edit ? 'Delete' : 'Reset'}}</span>
           </button>

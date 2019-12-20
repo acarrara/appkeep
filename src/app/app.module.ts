@@ -28,7 +28,7 @@ import { IconComponent } from './icon/icon.component';
 import { CategoriesCardComponent } from './categories-card/categories-card.component';
 import { RecapCardComponent } from './recap-card/recap-card.component';
 import { MonthNamePipePipe } from './pipes/month-name.pipe';
-import { CategoryComponent } from './edit-category/category.component';
+import { CategoryComponent } from './category/category.component';
 import { NotificationService } from './notification.service';
 import { AppkeepsCardComponent } from './appkeeps-card/appkeeps-card.component';
 import { NavigationHeaderComponent } from './navigation-header/navigation-header.component';

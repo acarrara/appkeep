@@ -30,14 +30,15 @@ export class CategoryComponent {
 
   category: Category;
 
+  private originalCategory: string;
+
   constructor(private activatedRoute: ActivatedRoute,
               private store: StoreService<AppKeepState>,
               private location: Location,
               private actions: AppActions) {
     this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('category'))).subscribe(category => {
-      this.category = {
-        ...this.store.snapshot<Category>(['categories'], categories => categories.find(item => item.category === category))
-      };
+      this.originalCategory = category;
+      this.lookupCategory(category);
     });
     this.store.dispatch(this.actions.loadCategoryStatistics(this.category.category));
   }
@@ -49,5 +50,15 @@ export class CategoryComponent {
   edit() {
     this.store.dispatch(this.actions.editCategory(this.category));
     this.close();
+  }
+
+  reset() {
+    this.lookupCategory(this.originalCategory);
+  }
+
+  private lookupCategory(category: string) {
+    this.category = {
+      ...this.store.snapshot<Category>(['categories'], categories => categories.find(item => item.category === category))
+    };
   }
 }

@@ -34,7 +34,7 @@ export class MonthlyComponent extends OptionableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.reset();
+    this.resetValue();
     this.route.paramMap.subscribe(paramMap => {
       this.edit = paramMap.has('id');
       if (this.edit) {
@@ -44,7 +44,12 @@ export class MonthlyComponent extends OptionableComponent implements OnInit {
     });
   }
 
-  reset() {
+  reset(form: NgForm) {
+    form.reset();
+    this.resetValue();
+  }
+
+  private resetValue() {
     this.monthlyAppkeep = {
       category: '',
       title: 'New appKeep',
@@ -68,12 +73,12 @@ export class MonthlyComponent extends OptionableComponent implements OnInit {
     this.location.back();
   }
 
-  criticalAction() {
+  criticalAction(form: NgForm) {
     if (this.edit) {
       this.store.dispatch(this.actions.deleteMonthlyAppKeep(this.monthlyAppkeep));
       this.location.back();
     } else {
-      this.reset();
+      this.reset(form);
     }
   }
 }

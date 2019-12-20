@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { EditComponent } from './edit/edit.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
-import { CategoryComponent } from './edit-category/category.component';
+import { CategoryComponent } from './category/category.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MonthlyComponent } from './monthly/monthly.component';
 import { DetailsComponent } from './details/details.component';

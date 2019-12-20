@@ -17,10 +17,10 @@ import { Location } from '@angular/common';
 })
 export class ProfileComponent implements OnInit {
 
-  @Listen(['user', 'info'])
-  user$: Observable<UserInfo>;
   @Listen(['users'])
   users$: Observable<UserInfo[]>;
+
+  user: UserInfo;
 
   subscribed$: Observable<boolean>;
   newUser = '';
@@ -31,6 +31,13 @@ export class ProfileComponent implements OnInit {
               private location: Location,
               private store: StoreService<AppKeepState>,
               private actions: AppActions) {
+    this.lookupUser();
+  }
+
+  private lookupUser() {
+    this.user = {
+      ...this.store.snapshot<UserInfo>(['user', 'info'])
+    };
   }
 
   logout() {
@@ -66,5 +73,9 @@ export class ProfileComponent implements OnInit {
   editUser(user: UserInfo) {
     this.store.dispatch(this.actions.editUser(user));
     this.location.back();
+  }
+
+  reset() {
+    this.lookupUser();
   }
 }

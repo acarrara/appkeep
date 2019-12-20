@@ -104,4 +104,21 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
     }
   }
 
+  private editUserImmediately: Reducer<AppKeepState, UserInfo> = (action, oldState) => {
+    switch (action.type) {
+      case AppActions.EDIT_USER: {
+        return {
+          ...oldState,
+          user: {
+            ...oldState.user,
+            info: action.payload
+          }
+        };
+      }
+      default: {
+        return oldState;
+      }
+    }
+  }
+
 }

@@ -1,5 +1,5 @@
 <ng-container *ngIf="categories$ | async; let categories">
-  <ak-card [total]="monthlyAppkeepsTotal$ | async" when="Monthly AppKeeps">
+  <ak-card [total]="monthlyAppkeepsTotal$ | async" when="Monthly expenses">
     <div class="ak-card__content">
       <ol>
         <li *ngFor="let appKeep of monthlyAppKeeps$ | async" class="ak-item"

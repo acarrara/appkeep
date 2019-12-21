@@ -3,7 +3,7 @@
     <div class="ak-page">
       <ak-navigation-header class="ak-page__header" [hue]="appKeep.category | akCategoryHue: categories">
         <header class="ak-heading">
-          <small class="ak-heading__kicker">AppKeep</small>
+          <small class="ak-heading__kicker">{{appKeep.income ? 'Income' : 'Expense'}}</small>
           <h1 class="ak-heading__title">{{appKeep.title}}</h1>
         </header>
       </ak-navigation-header>

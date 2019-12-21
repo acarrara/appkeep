@@ -3,8 +3,16 @@
 
   width: 100%;
   @include ak-flex-center();
+  flex-direction: column;
 
   & > .ak-empty__message {
     color: $ak-color-shadow;
+    padding-top: $ak-size-m;
+  }
+
+  & > .ak-empty__svg {
+    fill: $ak-color-border;
+    width: 5rem;
+    height: 5rem;
   }
 }

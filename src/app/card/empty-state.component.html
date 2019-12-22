@@ -1,6 +1,33 @@
 <div class="ak-empty">
-  <svg class="ak-empty__svg" viewBox="0 0 1 1">
-    <use href="assets/symbols.svg#sleep"></use>
-  </svg>
+  <div class="ak-empty__svg">
+    <svg viewBox="0 0 100 100">
+      <mask id="sleep-mask" x="0" y="0" width="100" height="100">
+        <g>
+          <path d="M11 40 l 36 -36 l 36 36 Z" stroke-width="6" stroke-linecap="square"
+                stroke-linejoin="round" stroke="white" fill="white">
+          </path>
+          <path d="M11 60 l 50 -50" stroke-width="12" stroke="black"></path>
+          <path d="M87 94 h -81 v -49 h 81 v 49" stroke-width="12" stroke-linecap="round"
+                stroke-linejoin="round" stroke="white" fill="white">
+          </path>
+          <g>
+            <path d="M67 55 h 30 v 24 h -30 a 12 12 0 1 1 0 -24" stroke-width="6" stroke-linecap="round"
+                  stroke-linejoin="round" stroke="white" fill="white">
+            </path>
+            <path d="M49 52 h 8" stroke-width="3" stroke="black" fill="transparent" stroke-linecap="round"/>
+            <path d="M78 52 h 8" stroke-width="3" stroke="black" fill="transparent" stroke-linecap="round"/>
+            <circle cx="67" cy="67" r="6" stroke="black" fill="black"/>
+            <path d="M16 80 h 8 l -8 10 h 8" stroke-width="2" stroke="black" fill="transparent" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <path d="M33 75 h 6 l -6 7.5 h 6" stroke-width="2" stroke="black" fill="transparent" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <path d="M48 70 h 4 l -4 5 h 4" stroke-width="2" stroke="black" fill="transparent" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </g>
+        </g>
+      </mask>
+      <rect x="0" y="0" width="100" height="100" mask="url(#sleep-mask)"></rect>
+    </svg>
+  </div>
   <div class="ak-empty__message">No movements!</div>
 </div>

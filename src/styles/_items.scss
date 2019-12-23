@@ -83,11 +83,19 @@
     background-color: $ak-color-positive-normal;
   }
 
+  &.ak-item-percentage--border-negative {
+    border-bottom: $ak-size-s solid $ak-color-negative-strong;
+  }
+
+  &.ak-item-percentage--border-positive {
+    border-bottom: $ak-size-s solid $ak-color-positive-strong;
+  }
+
   @each $_hue in $ak-hues {
     $i: index($ak-hues, $_hue);
 
     &.ak-item-percentage--border-#{$i} {
-      border-bottom: $ak-size-s solid ak-color(75, 90, $_hue);
+      border-bottom: $ak-size-s solid ak-color(55, 70, $_hue);
     }
 
     &.ak-item-percentage--#{$i} {

@@ -4,9 +4,11 @@
       <ol>
         <li *ngFor="let category of outCategories; let i = index" class="ak-item">
           <a class="ak-item__what" routerLink="/category/{{category.category}}">
-            <div class="ak-item-percentage ak-item-percentage--{{category.category | akCategoryHue: categories}}"
+            <div class="ak-item-percentage ak-item-percentage--{{category.category | akCategoryHue: categories}}
+            ak-item-percentage--border-{{category.category | akCategoryHue: categories}}"
                  [style.width]="appKeepPercentage(category)"
-                 [attr.data-percentage]="appKeepRelativePercentage(category)"></div>
+                 [attr.data-percentage]="appKeepRelativePercentage(category)">
+            </div>
             <span class="ak-badge">{{category.category | lowercase}}</span>
           </a>
           <div class="ak-item__amount">
@@ -16,7 +18,8 @@
         </li>
         <li *ngFor="let category of inCategories; let i = index" class="ak-item">
           <a class="ak-item__what" routerLink="/category/{{category.category}}">
-            <div class="ak-item-percentage ak-item-percentage--{{category.category | akCategoryHue: categories}}"
+            <div class="ak-item-percentage ak-item-percentage--{{category.category | akCategoryHue: categories}}
+            ak-item-percentage--border-{{category.category | akCategoryHue: categories}}"
                  [style.width]="incomePercentage(category)"
                  [attr.data-percentage]="incomeRelativePercentage(category)"></div>
             <span class="ak-badge">{{category.category | lowercase}}</span>

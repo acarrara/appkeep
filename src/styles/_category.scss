@@ -10,10 +10,14 @@
 
   margin-top: $ak-size-m;
 
+  border-bottom-width: $ak-size-xs;
+  border-bottom-color: $ak-color-shadow;
+
   @each $_hue in $ak-hues {
     $i: index($ak-hues, $_hue);
     &.ak-badge--#{$i} {
       background-color: ak-color(95, 80, $_hue);
+      border-color: ak-color(75, 90, $_hue);
     }
   }
 
@@ -23,9 +27,11 @@
 
   &.ak-badge--negative {
     background-color: $ak-color-negative-light;
+    border-color: $ak-color-negative-normal;
   }
 
   &.ak-badge--positive {
     background-color: $ak-color-positive-light;
+    border-color: $ak-color-positive-normal;
   }
 }

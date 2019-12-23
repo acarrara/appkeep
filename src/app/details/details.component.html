@@ -10,12 +10,12 @@
       <ol class="ak-card__content">
         <li class="ak-item  ak-item--recap">
           <div class="ak-item__what">
-            <div class="ak-item-percentage  ak-item-percentage--negative"
+            <div class="ak-item-percentage  ak-item-percentage--negative  ak-item-percentage--border-negative"
                  [style.width]="percentage(outTotal)"></div>
-            <div class="ak-item-percentage  ak-item-percentage--positive"
+            <div class="ak-item-percentage  ak-item-percentage--positive  ak-item-percentage--border-positive"
                  [style.width]="percentage(inTotal)"></div>
             <span class="ak-badge">all</span>
-            <span class="ak-badge  ak-badge--positive">{{(inTotal + outTotal) | akAmount}}</span>
+            <span class="ak-badge  ak-badge--{{(inTotal + outTotal) > 0 ? 'positive' : 'negative'}}">{{(inTotal + outTotal) | akAmount}}</span>
           </div>
           <div class="ak-item__amount">
             <div class="ak-item__amount-unit">
@@ -31,13 +31,13 @@
         <li class="ak-item  ak-item--recap" *ngFor="let user of details.users">
           <div class="ak-item__what">
             <div
-              class="ak-item-percentage  ak-item-percentage--negative  ak-item-percentage--border-{{user.label | akUserHue}}"
+              class="ak-item-percentage  ak-item-percentage--border-negative  ak-item-percentage--{{user.label | akUserHue}}"
               [style.width]="percentage(user.outTotal)"></div>
             <div
-              class="ak-item-percentage  ak-item-percentage--positive  ak-item-percentage--border-{{user.label | akUserHue}}"
+              class="ak-item-percentage  ak-item-percentage--border-positive  ak-item-percentage--{{user.label | akUserHue}}"
               [style.width]="percentage(user.inTotal)"></div>
             <span class="ak-badge  ak-badge--{{user.label | akUserHue}}">{{user.label | akUserName}}</span>
-            <span class="ak-badge  ak-badge--positive">{{(user.inTotal + user.outTotal) | akAmount}}</span>
+            <span class="ak-badge  ak-badge--{{(user.inTotal + user.outTotal) > 0 ? 'positive' : 'negative'}}">{{(user.inTotal + user.outTotal) | akAmount}}</span>
           </div>
           <div class="ak-item__amount">
             <div class="ak-item__amount-unit">

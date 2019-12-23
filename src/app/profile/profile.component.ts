@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
       email: this.newUser,
       date: Date.now(),
       hue: users.length % 8 + 1,
-      name: ''
+      name: this.newUser
     }));
     this.newUser = '';
   }

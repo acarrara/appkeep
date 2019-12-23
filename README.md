@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/acarrara/appkeep.svg?branch=master)](https://travis-ci.org/acarrara/appkeep)
+[![codecov](https://codecov.io/gh/acarrara/appkeep/branch/master/graph/badge.svg)](https://codecov.io/gh/acarrara/appkeep)
+
 # Appkeep
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.0.

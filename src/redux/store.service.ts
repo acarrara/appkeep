@@ -27,9 +27,7 @@ export class StoreService<State> {
     this.epics = [...storeSetup.epics];
     this.reducers = [...storeSetup.reducers];
     this.epics.forEach(epic => {
-      epic(this.actions$).subscribe(action => {
-        this.dispatch(action);
-      });
+      epic(this.actions$).subscribe(action => this.dispatch(action));
     });
   }
 

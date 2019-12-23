@@ -1,5 +1,5 @@
 <ng-container *ngIf="categories$ | async; let categories">
-  <ak-card [total]="total" [when]="when" [indicator]="true">
+  <ak-card [total]="total" [title]="when" [indicator]="true">
     <ol class="ak-card__content">
       <li *ngFor="let appKeep of appKeeps" class="ak-item"
           [ngClass]="{'ak-item--updating': appKeep._updating}">

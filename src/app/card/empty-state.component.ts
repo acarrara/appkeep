@@ -7,7 +7,4 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class EmptyStateComponent {
 
-  @Input()
-  when: string;
-
 }

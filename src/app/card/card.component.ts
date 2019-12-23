@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 export class CardComponent {
 
   @Input()
-  when: string;
+  title: string;
   @Input()
   total: number;
   @Input()

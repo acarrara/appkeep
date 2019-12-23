@@ -1,6 +1,6 @@
 <section class="ak-card">
   <div class="ak-card__header">
-    <div class="ak-card__title">{{when}}</div>
+    <div class="ak-card__title">{{title}}</div>
     <div class="ak-card__amount">
       <span>{{total | akAmount}}</span>
       <ak-icon *ngIf="indicator" type="total" size="small" class="ak-item__indicator" mood="indifferent"></ak-icon>
@@ -12,5 +12,5 @@
 </section>
 
 <ng-template #noAppkeeps>
-  <ak-empty-state [when]="when"></ak-empty-state>
+  <ak-empty-state></ak-empty-state>
 </ng-template>

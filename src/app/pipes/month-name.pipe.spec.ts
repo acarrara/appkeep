@@ -19,4 +19,8 @@ describe('MonthNamePipe', () => {
   it('should not return month name when not a number', () => {
     expect(pipe.transform('aUser')).toEqual('aUser');
   });
+
+  it('should return empty string with an undefined value', () => {
+    expect(pipe.transform(undefined)).toEqual('');
+  });
 });

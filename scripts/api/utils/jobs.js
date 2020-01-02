@@ -4,7 +4,7 @@ const AppKeep = require('../schemas/AppKeep');
 
 module.exports.scheduleMonthlyAppKeeps = async function () {
 
-  function storeNewAppKeep(monthlyAppKeep) {
+  async function storeNewAppKeep(monthlyAppKeep) {
     const appKeep = new AppKeep();
     appKeep.date = Date.now();
     appKeep.title = monthlyAppKeep.title;
@@ -12,8 +12,7 @@ module.exports.scheduleMonthlyAppKeeps = async function () {
     appKeep.amount = monthlyAppKeep.amount;
     appKeep.income = monthlyAppKeep.income;
     appKeep.user = monthlyAppKeep.user;
-    console.log(appKeep);
-    //await appKeep.save();
+    await appKeep.save();
   }
 
   async function storeMonthlyAppKeeps() {

@@ -3,7 +3,7 @@
   "short_name": "AppKeep",
   "theme_color": "#006fae",
   "background_color": "#f9f9fa",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
   "start_url": "/",
   "icons": [

@@ -13,34 +13,36 @@ import { UserInfo } from './models/UserInfo';
 import { zip } from 'rxjs';
 import { CategoryStatistics } from './models/CategoryStatistics';
 import { Details } from './models/Details';
+import { StoreService } from '../redux/store.service';
+import { AppKeepState } from './models/AppKeepState';
 
 @Injectable()
 export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
 
   private statisticsFactory: StatisticsFactory = new StatisticsFactory();
 
-  constructor(private actions: AppActions, private http: HttpClient) {
+  constructor(private actions: AppActions, private http: HttpClient, private store: StoreService<AppKeepState>) {
     super();
   }
 
   public getOptionEpics(): Epic<any, any>[] {
-    return new RestEpic<Option>(this.http, 'option').toEpics();
+    return new RestEpic<Option>(this.http, 'option', this.store, this.actions).toEpics();
   }
 
   public getCategoryEpics(): Epic<any, any>[] {
-    return new RestEpic<Option>(this.http, 'categorie').toEpics();
+    return new RestEpic<Option>(this.http, 'categorie', this.store, this.actions).toEpics();
   }
 
   public getAppKeepEpics(): Epic<any, any>[] {
-    return new RestEpic<AppKeep>(this.http, 'appkeep').toEpics();
+    return new RestEpic<AppKeep>(this.http, 'appkeep', this.store, this.actions).toEpics();
   }
 
   public getMonthlyAppKeepEpics(): Epic<any, any>[] {
-    return new RestEpic<AppKeep>(this.http, 'monthlyappkeep').toEpics();
+    return new RestEpic<AppKeep>(this.http, 'monthlyappkeep', this.store, this.actions).toEpics();
   }
 
   public getUserEpics(): Epic<any, any>[] {
-    return new RestEpic<UserInfo>(this.http, 'user').toEpics();
+    return new RestEpic<UserInfo>(this.http, 'user', this.store, this.actions).toEpics();
   }
 
   private loadMonthStatistics: Epic<any, Details> = actions$ => {

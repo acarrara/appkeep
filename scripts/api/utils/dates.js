@@ -6,11 +6,11 @@ module.exports = {
 
   thisYear: function () {
     const date = new Date();
-    return new Date(date.getFullYear(), 1, 1, 0, 0, 0, 0);
+    return new Date(date.getFullYear(), 0, 1, 0, 0, 0, 0);
   },
 
   aYearStart: function (year) {
-    return new Date(year, 1, 1, 0, 0, 0, 0);
+    return new Date(year, 0, 1, 0, 0, 0, 0);
   },
 
   aMonthStart: function (year, month) {
@@ -26,7 +26,7 @@ module.exports = {
   },
 
   start: function () {
-    return new Date(2018, 1, 1, 0, 0, 0, 0);
+    return new Date(2018, 0, 1, 0, 0, 0, 0);
   },
 
   today: function () {

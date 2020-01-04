@@ -40,8 +40,8 @@ export class DetailsComponent {
     this.outTotal = this.details.users.reduce((partial, current) => partial + current.outTotal, 0);
     this.inTotal = this.details.users.reduce((partial, current) => partial + current.inTotal, 0);
     this.highest = Math.max(
-      this.inTotal,
-      this.outTotal
+      Math.abs(this.inTotal),
+      Math.abs(this.outTotal)
     );
   }
 

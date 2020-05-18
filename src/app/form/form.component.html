@@ -11,7 +11,7 @@
         </div>
         <div class="ak-input">
           <label for="what">Description</label>
-          <input id="what" #what name="title" ngModel (change)="onChange(form.value,options,categories)"
+          <input id="what" #what name="title" ngModel (blur)="onChange(form.value,options,categories)"
                  placeholder="i.e. groceries"
                  list="addwhatlist" autocomplete="off">
           <datalist id="addwhatlist">

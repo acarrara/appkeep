@@ -32,7 +32,7 @@
             <div class="ak-input">
               <label for="what">Description</label>
               <input id="what" #what name="title" [(ngModel)]="appKeep.title"
-                     (change)="onChange(appKeep, options, categories)"
+                     (blur)="onChange(appKeep, options, categories)"
                      placeholder="Description" list="whatlist"
                      autocomplete="off" #whatModel="ngModel" required>
               <datalist id="whatlist">

@@ -2,7 +2,7 @@ const cron = require('node-schedule');
 const MonthlyAppKeep = require('../schemas/MonthlyAppKeep');
 const AppKeep = require('../schemas/AppKeep');
 
-module.exports.scheduleMonthlyAppKeeps = async function () {
+module.exports.storeMonthlyAppKeeps = async function () {
 
   async function storeNewAppKeep(monthlyAppKeep) {
     const appKeep = new AppKeep();
@@ -22,5 +22,6 @@ module.exports.scheduleMonthlyAppKeeps = async function () {
     }
   }
 
-  cron.scheduleJob('0 3 1 * *', () => storeMonthlyAppKeeps());
+  // cron.scheduleJob('0 3 1 * *', () => storeMonthlyAppKeeps());
+  storeMonthlyAppKeeps();
 };

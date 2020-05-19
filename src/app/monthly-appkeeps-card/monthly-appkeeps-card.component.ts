@@ -6,6 +6,7 @@ import { AppKeep } from '../models/AppKeep';
 import { StoreService } from '../../redux/store.service';
 import { AppKeepState } from '../models/AppKeepState';
 import { AppActions } from '../app.actions';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'ak-monthly-appkeeps-card',
@@ -21,8 +22,11 @@ export class MonthlyAppkeepsCardComponent {
   @Listen(['monthlyAppKeeps'])
   monthlyAppKeeps$: Observable<AppKeep[]>;
 
-  constructor(store: StoreService<AppKeepState>, actions: AppActions) {
+  constructor(store: StoreService<AppKeepState>, actions: AppActions, private http: HttpClient) {
     store.dispatch(actions.loadMonthlyAppKeeps());
   }
 
+  storeMonthlyAppkeeps() {
+    this.http.post('/api/monthlyappkeeps/save', {}).subscribe();
+  }
 }

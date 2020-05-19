@@ -14,8 +14,8 @@ export abstract class OptionableComponent {
   @Listen(['categories'])
   public categories$: Observable<Category[]>;
 
-  constructor(protected store: StoreService<AppKeepState>,
-              protected actions: AppActions) {
+  protected constructor(protected store: StoreService<AppKeepState>,
+                        protected actions: AppActions) {
   }
 
   public onChange(appKeep: AppKeep, options: Option[], categories: Category[]) {

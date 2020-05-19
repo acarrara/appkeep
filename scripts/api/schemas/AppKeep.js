@@ -143,6 +143,11 @@ model.yearStatistics = (range, category) => {
         }
       },
       {
+        $sort: {
+          _id: -1
+        }
+      },
+      {
         $group: {
           _id: "$_id.year",
           ranges: {

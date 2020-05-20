@@ -1,5 +1,4 @@
 const MonthlyAppKeep = require('./schemas/MonthlyAppKeep');
-const jobs = require('./utils/jobs');
 
 module.exports = function (app) {
 
@@ -9,15 +8,6 @@ module.exports = function (app) {
       const result = await monthlyAppKeep.save();
       const toSend = {...result._doc, date: result._doc.date.getTime()};
       response.send(toSend);
-    } catch (error) {
-      response.status(500).send(error);
-    }
-  });
-
-  app.post('/api/monthlyappkeeps/save', async (request, response) => {
-    try {
-      jobs.storeMonthlyAppKeeps();
-      response.sendStatus(200);
     } catch (error) {
       response.status(500).send(error);
     }

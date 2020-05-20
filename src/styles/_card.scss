@@ -48,9 +48,6 @@
   @include ak-flex-column();
 }
 
-.ak-card__action + .ak-card__action {
-}
-
 .ak-card__action {
   padding-bottom: $ak-size-l;
   @include ak-flex-end();
@@ -60,9 +57,5 @@
   button, a {
     @include ak-button-tertiary();
     @include ak-flex-center();
-  }
-
-  button + a {
-    margin-left: $ak-size-m;
   }
 }

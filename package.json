@@ -63,6 +63,7 @@
     "@types/node": "~13.13.5",
     "codecov": "^3.6.1",
     "codelyzer": "^5.0.0",
+    "cron": "^1.8.2",
     "http-server": "^0.11.1",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",

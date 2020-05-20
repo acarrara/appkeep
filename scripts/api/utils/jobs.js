@@ -17,10 +17,9 @@ module.exports.storeMonthlyAppKeeps = async function () {
   async function storeMonthlyAppKeeps() {
     const monthlyAppKeeps = await MonthlyAppKeep.find().exec();
     for (const monthlyAppKeep of monthlyAppKeeps) {
-      storeNewAppKeep(monthlyAppKeep);
+      await storeNewAppKeep(monthlyAppKeep);
     }
   }
 
-  // cron.scheduleJob('0 3 1 * *', () => storeMonthlyAppKeeps());
-  storeMonthlyAppKeeps();
+  await storeMonthlyAppKeeps();
 };

@@ -13,10 +13,13 @@ module.exports = {
       } else {
         console.log('Connected to MongoDB server.');
 
-        jobs.storeMonthlyAppKeeps();
-        console.log('Stored monthly appkeeps.');
-
-        mongoose.disconnect(() => console.log('Disconnected from MongoDB server.'))
+        jobs.storeMonthlyAppKeeps().then(() => {
+          console.log('Stored monthly appkeeps.');
+          mongoose.disconnect(() => console.log('Disconnected from MongoDB server.'))
+        }).catch(() => {
+          console.log('Cannot store monthly appkeeps');
+          mongoose.disconnect(() => console.log('Disconnected from MongoDB server.'))
+        });
       }
     });
   }

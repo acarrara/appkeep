@@ -5,7 +5,7 @@ module.exports = {
   run: function () {
     require('dotenv').config();
 
-    const mongoDBUri = process.env.MONGODB_URI;
+    const mongoDBUri = process.env.DB_URI;
 
     mongoose.connect(mongoDBUri, {useNewUrlParser: true, useUnifiedTopology: true}, function (err, res) {
       if (err) {

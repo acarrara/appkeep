@@ -1,13 +1,13 @@
 language: node_js
 node_js:
-  - node
+- node
 before_install:
-  - npm i -g npm@6.9.0
+- npm i -g npm@6.9.0
 script:
-  - npm run lint
-  - npm run test:ci
+- npm run lint
+- npm run test:ci
 deploy:
   provider: heroku
   api_key:
-    secure: R0ojqC6ofRGVFHSTaTcWPx7X8Ssxdrwxf1s5tg9nUK2ZuaPMDchkEzxt+Ky7ZQP0KU2TZdNXyGcJXYEAk+aJUWLlWYe+Od8bB9hl46mJVhgk8SGJgIxOP61Jp6WPpUerFeApjbE+ErQy+56dPzKT4tpEUP3ngTBlSNgETjF5GAuxuu+8mwVqUc6Flcrdp3aq4drPDF4zm9BT15xAeIQ8NhsOgs/vDLD/sOS7ys+jOVYSdwGGe0D68Mw8ppxSaY5y+h3dTmkcLSgGIJ3t3r15somKwoLVjiYE5mBE/8B6IkFGlpLI7JFX0n52EwPA4zoEyQisS6E33bf7S2wEfTqYhQtQcdaqHCtO/5hk8UE+biikHgU7HW3KFThbRb1loDzMVMrXmz3mfTmLq+5zY/a/GTLAe2zMY8XRUq+N9MiYZaYpkbgUDaz68a+xYSa06Wlv9urgJTbJCGYLggrsZhlRAMea42k6acRHxLBwafr1U0QGh+m0tgO08ApEBKESBusTmK+aVxpu1zPtkySFnIDyjuIv5MpzYP2BLarXuKUPCl1VJgsL8Ph/3RuAd63UR2n5v8kWx1vzO4IDI8ndj7oYakfsFN3eRq+ODJ9GOYQ/WTsayZPzHp8S1zfAt44P/W6P4nqA7wcVzbtBGL2nEXjjZ4QPn3KgRRrywAOYdK2fpGY=
+    secure: kyRdlydP0kBlyzKTQg18jD4Hw9vdeKHuOB1CFBFhVmMmmDwwdIFCYW3xYuEiw6gm7xApx8aTsoMOJOP4W583+75WgXU2xaFiieq+j4VwxIAmS7yM3ggLMGauXJwR7vv/8imM5UBcskf0CmpMBpTrR1yW36E7+c/jDl1smOHCgbGJeMXv8cm8tRERJ9F9sV4AehF7OdfDOU0A1hhoAwOyynXMFj8f6GpkiFWjywPdOOh2dw/Pe+pfds1nBit9OwXJ6lwoNIxKbDlnJkVGh6CY963HyTIitD+q7pd8A74HL8p2R63LcO31VNwAHzPtJHuI01LyfjXes99ldvd2LKBbW4gPuatWXqYGFOo6qxUeDoEwVXZ0jRXolfIm1ZEiqmTVRbS61xsTXfy0B7s7JWb6q8xBGLVkQ2vw1r+u3aZFTDnPpXyX/Qr+s2aXmpM7sPVtlDBqFx9gA7ur8K+AcNiyFv8A4SEFwUnBQJMtvEgEHokGj269EhCmHdnHjFJ8dsE6JwLx4FNqvNCUssax3NIQ66+FuRwohmueJRHLwiWwQn0lMk+GTD8NDXSo19Da5KFSknEat78TR4ALnzO0owZCXeQ7DnKZOXCBACrKsQ7q1n/Sf6edJz4+S5hjzq8bTsFJQbH+17QmX2tGf22CQ7mN3m4qIHUPgbMOMP0nIqENTyk=
   app: appkeep

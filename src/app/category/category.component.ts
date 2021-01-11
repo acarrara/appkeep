@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { StoreService } from '../../redux/store.service';
 import { AppKeepState } from '../models/AppKeepState';
 import { Category } from '../models/Category';
-import { map } from 'rxjs/operators';
 import { AppActions } from '../app.actions';
 import { Observable } from 'rxjs';
 import { Listen } from '../../redux/listen.decorator';
@@ -30,17 +29,22 @@ export class CategoryComponent {
 
   category: Category;
 
+  year = '';
+  month = '';
+
   private originalCategory: string;
 
   constructor(private activatedRoute: ActivatedRoute,
               private store: StoreService<AppKeepState>,
               private location: Location,
               private actions: AppActions) {
-    this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('category'))).subscribe(category => {
-      this.originalCategory = category;
-      this.lookupCategory(category);
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      this.originalCategory = paramMap.get('category');
+      this.lookupCategory();
+      this.year = paramMap.get('year');
+      this.month = paramMap.get('month');
+      this.store.dispatch(this.actions.loadCategoryStatistics(this.category.category, this.year, this.month));
     });
-    this.store.dispatch(this.actions.loadCategoryStatistics(this.category.category));
   }
 
   close() {
@@ -53,12 +57,12 @@ export class CategoryComponent {
   }
 
   reset() {
-    this.lookupCategory(this.originalCategory);
+    this.lookupCategory();
   }
 
-  private lookupCategory(category: string) {
+  private lookupCategory() {
     this.category = {
-      ...this.store.snapshot<Category>(['categories'], categories => categories.find(item => item.category === category))
+      ...this.store.snapshot<Category>(['categories'], categories => categories.find(item => item.category === this.originalCategory))
     };
   }
 }

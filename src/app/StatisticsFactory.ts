@@ -16,14 +16,14 @@ export class StatisticsFactory {
     };
   }
 
-  createCategoryStatistics(statisticsRaw: any): CategoryStatistics {
+  createCategoryStatistics(statisticsRaw: any, year?: string, month?: string): CategoryStatistics {
     const date = new Date();
-    const thisMonth = date.getMonth() + 1;
-    const thisYear = date.getFullYear();
+    const thisMonth = month ? Number(month) : date.getMonth() + 1;
+    const thisYear = year ? Number(year) : date.getFullYear();
     return {
       thisMonthAppKeeps: this.findMonthCategoryAppkeeps(statisticsRaw[0], thisMonth),
-      months: statisticsRaw[1][0].ranges.map(current => this.recapFrom(current, thisYear)),
-      years: statisticsRaw[2].map(current => this.recapFrom(current, ''))
+      months: statisticsRaw[1].ranges.map(current => this.recapFrom(current, thisYear)),
+      years: statisticsRaw[2].map(current => this.recapFrom(current, '')).sort((a, b) => Number(b.label) - Number(a.label))
     };
   }
 
@@ -45,8 +45,7 @@ export class StatisticsFactory {
     return monthStatisticsRaw === undefined ? [] : monthStatisticsRaw.appKeeps;
   }
 
-  public createYearStatistics(statisticsRaw: any[], year: number): Details {
-    const yearStatisticsRaw = statisticsRaw.find(item => item._id === year);
+  public createYearStatistics(yearStatisticsRaw: any, year: number): Details {
     const value = {
       ranges: [],
       users: [],
@@ -74,7 +73,7 @@ export class StatisticsFactory {
 
   private createOverallStatistics(statisticsRaw: any): Details {
     return {
-      ranges: statisticsRaw.statistics.map(stat => this.recapFrom(stat, '')),
+      ranges: statisticsRaw.statistics.map(stat => this.recapFrom(stat, '')).sort((a, b) => Number(b.label) - Number(a.label)),
       users: statisticsRaw.users.map(current => this.recapFrom(current, '')),
       outCategories: statisticsRaw.categories.filter(category => category.total < 0),
       inCategories: statisticsRaw.categories.filter(category => category.total >= 0)

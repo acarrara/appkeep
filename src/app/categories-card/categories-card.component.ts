@@ -17,6 +17,10 @@ export class CategoriesCardComponent implements OnChanges {
   @Input()
   title: string;
   @Input()
+  year: string;
+  @Input()
+  month: string;
+  @Input()
   outCategories: CategoryAmount[];
   @Input()
   inCategories: CategoryAmount[];
@@ -49,6 +53,15 @@ export class CategoriesCardComponent implements OnChanges {
 
   incomeRelativePercentage(category: CategoryAmount) {
     return this.percentageAsNumber(category, this.inTotal) + '%';
+  }
+
+  categoryLink(category: string) {
+    const path = ['/category', category];
+    if (this.year) {
+      path.push(this.year);
+      path.push(this.month ? this.month : '1');
+    }
+    return path;
   }
 
   private percentageAsNumber(category: CategoryAmount, total: number) {

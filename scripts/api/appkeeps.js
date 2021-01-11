@@ -81,9 +81,19 @@ module.exports = function (app) {
     ]).exec();
   }
 
-  app.get('/api/categories/:category/appkeeps', async (request, response) => {
+  app.get('/api/categories/:category', async (request, response) => {
     try {
       const range = dates.currentMonth();
+      const appKeeps = await filterAppKeeps(range, request.params.category);
+      response.send(appKeeps);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
+  app.get('/api/categories/:category/:year/:month', async (request, response) => {
+    try {
+      const range = dates.month(request.params.year, request.params.month);
       const appKeeps = await filterAppKeeps(range, request.params.category);
       response.send(appKeeps);
     } catch (error) {

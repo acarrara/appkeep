@@ -3,7 +3,7 @@
     <div class="ak-card__content">
       <ol>
         <li *ngFor="let category of outCategories; let i = index" class="ak-item">
-          <a class="ak-item__what" routerLink="/category/{{category.category}}">
+          <a class="ak-item__what" [routerLink]="categoryLink(category.category)">
             <div class="ak-item-percentage ak-item-percentage--{{category.category | akCategoryHue: categories}}
             ak-item-percentage--border-{{category.category | akCategoryHue: categories}}"
                  [style.width]="appKeepPercentage(category)"
@@ -17,7 +17,7 @@
           </div>
         </li>
         <li *ngFor="let category of inCategories; let i = index" class="ak-item">
-          <a class="ak-item__what" routerLink="/category/{{category.category}}">
+          <a class="ak-item__what" [routerLink]="categoryLink(category.category)">
             <div class="ak-item-percentage ak-item-percentage--{{category.category | akCategoryHue: categories}}
             ak-item-percentage--border-{{category.category | akCategoryHue: categories}}"
                  [style.width]="incomePercentage(category)"

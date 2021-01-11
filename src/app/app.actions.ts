@@ -79,8 +79,8 @@ export class AppActions {
     return {type: AppActions.LOAD_YEAR_STATISTICS_SUCCESS, payload: statistics};
   }
 
-  loadCategoryStatistics(category: string): Action<any> {
-    return {type: AppActions.LOAD_CATEGORY_STATISTICS, payload: category};
+  loadCategoryStatistics(category: string, year?: string, month?: string): Action<any> {
+    return {type: AppActions.LOAD_CATEGORY_STATISTICS, payload: {category, year, month}};
   }
 
   loadCategoryStatisticsSuccess(categoryStatistics: CategoryStatistics): Action<CategoryStatistics> {

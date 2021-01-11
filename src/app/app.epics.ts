@@ -85,12 +85,15 @@ export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
     return actions$.pipe(
       filter(action => action.type === AppActions.LOAD_CATEGORY_STATISTICS),
       mergeMap(action => zip(
-        this.http.get<any>(`/api/categories/${action.payload}/appkeeps`),
-        this.http.get<any>(`/api/categories/${action.payload}/statistics/year`),
-        this.http.get<any>(`/api/categories/${action.payload}/statistics/overall`)
+        // tslint:disable-next-line:max-line-length
+        this.http.get<any>(`/api/categories/${action.payload.category}${action.payload.year ? '/' + action.payload.year : ''}${action.payload.month ? '/' + action.payload.month : ''}`),
+        // tslint:disable-next-line:max-line-length
+        this.http.get<any>(`/api/categories/${action.payload.category}/statistics/year${action.payload.year ? '/' + action.payload.year : ''}`),
+        this.http.get<any>(`/api/categories/${action.payload.category}/statistics/overall`)
       ).pipe(
         first(),
-        map(statistics => this.actions.loadCategoryStatisticsSuccess(this.statisticsFactory.createCategoryStatistics(statistics)))
+        // tslint:disable-next-line:max-line-length
+        map(statistics => this.actions.loadCategoryStatisticsSuccess(this.statisticsFactory.createCategoryStatistics(statistics, action.payload.year, action.payload.month)))
       ))
     );
   }

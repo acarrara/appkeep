@@ -1,14 +1,17 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Recap } from '../models/Recap';
+import { Category } from '../models/Category';
 
 @Component({
-  selector: 'ak-recap-card',
-  templateUrl: 'recap-card.component.html',
+  selector: 'ak-category-recap-card',
+  templateUrl: 'category-recap-card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RecapCardComponent implements OnChanges {
+export class CategoryRecapCardComponent implements OnChanges {
   @Input()
   title: string;
+  @Input()
+  category: Category;
   @Input()
   recaps: Recap[];
 
@@ -29,12 +32,13 @@ export class RecapCardComponent implements OnChanges {
   }
 
   itemLink(recap: Recap) {
-    const path = ['/details'];
+    const path = ['/category', this.category.category];
     if (recap.scope) {
       path.push(recap.scope);
-    }
-    if (recap.label) {
       path.push(recap.label);
+    } else {
+      path.push(recap.label);
+      path.push('1');
     }
     return path;
   }

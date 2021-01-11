@@ -22,7 +22,7 @@ module.exports = {
   },
 
   aYearEnd: function (year) {
-    return new Date(year + 1, 0, 0, 23, 59, 59, 0);
+    return new Date(Number(year) + 1, 0, 0, 23, 59, 59, 0);
   },
 
   start: function () {

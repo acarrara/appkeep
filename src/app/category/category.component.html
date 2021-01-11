@@ -2,7 +2,9 @@
   <ak-navigation-header class="ak-page__header" [hue]="category.hue">
     <header class="ak-heading">
       <small class="ak-heading__kicker">Category</small>
-      <h1 class="ak-heading__title">{{category.category}}</h1>
+      <h1 class="ak-heading__title">
+        <span>{{category.category}}</span><span *ngIf="year"> ({{month | akMonthName}} {{year}})</span>
+      </h1>
     </header>
   </ak-navigation-header>
   <div class="ak-edit  ak-page__content">
@@ -51,10 +53,10 @@
     <ak-appkeeps-card [appKeeps]="thisMonthAppKeeps$ | async"
                       [total]="thisMonthTotal$ | async"
                       [hue]="category.hue"
-                      when="this month"
+                      when="this month {{year ? '(' + (month | akMonthName) + ' ' + year + ')': ''}}"
                       [showDate]="true">
     </ak-appkeeps-card>
-    <ak-recap-card [recaps]="thisYearStatistics$ | async" title="this year" [hue]="category.hue"></ak-recap-card>
-    <ak-recap-card [recaps]="overallStatistics$ | async" title="overall" [hue]="category.hue"></ak-recap-card>
+    <ak-category-recap-card [recaps]="thisYearStatistics$ | async" title="this year {{year ? '(' + year + ')': ''}}" [category]="category"></ak-category-recap-card>
+    <ak-category-recap-card [recaps]="overallStatistics$ | async" title="overall" [category]="category"></ak-category-recap-card>
   </div>
 </div>

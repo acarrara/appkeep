@@ -53,7 +53,7 @@
       </ol>
     </section>
     <ak-categories-card [inCategories]="details.inCategories"
-                        [outCategories]="details.outCategories" title="Categories"></ak-categories-card>
+                        [outCategories]="details.outCategories" title="Categories" [year]="year" [month]="month"></ak-categories-card>
     <ak-recap-card *ngIf="details.ranges" [recaps]="details.ranges" [title]="rangesTitle"></ak-recap-card>
   </div>
 </div>

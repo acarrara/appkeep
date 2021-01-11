@@ -194,7 +194,7 @@ model.yearCategoryStatistics = (range, category) => {
       },
       {
         $project: {
-          _id: 0,
+          _id: "$_id.year",
           categories: 1
         }
       }]

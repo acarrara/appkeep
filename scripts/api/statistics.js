@@ -17,9 +17,13 @@ module.exports = function (app) {
     try {
       const range = dates.currentYear();
       const statistics = await AppKeep.yearStatistics(range);
-      statistics[0].users = await AppKeep.userStatistics(range);
-      statistics[0].categories = (await AppKeep.yearCategoryStatistics(range))[0].categories;
-      response.send(statistics);
+      const fullYear = new Date().getFullYear();
+      const yearStatistics = statistics.find(current => current._id === fullYear);
+      yearStatistics.users = await AppKeep.userStatistics(range);
+      const categoryStatistics = await AppKeep.yearCategoryStatistics(range);
+      const yearCategoryStatistics = categoryStatistics.find(current => current._id === fullYear);
+      yearStatistics.categories = yearCategoryStatistics.categories;
+      response.send(yearStatistics);
     } catch (error) {
       response.status(500).send(error);
     }
@@ -41,11 +45,13 @@ module.exports = function (app) {
     try {
       const range = dates.year(request.params.year);
       const statistics = await AppKeep.yearStatistics(range);
-      statistics[0].users = await AppKeep.userStatistics(range);
-      statistics[0].categories = (await AppKeep.yearCategoryStatistics(range))[0].categories;
-      response.send(statistics);
+      const yearStatistics = statistics.find(current => current._id === Number(request.params.year));
+      yearStatistics.users = await AppKeep.userStatistics(range);
+      const categoryStatistics = await AppKeep.yearCategoryStatistics(range);
+      const yearCategoryStatistics = categoryStatistics.find(current => current._id === Number(request.params.year));
+      yearStatistics.categories = yearCategoryStatistics.categories;
+      response.send(yearStatistics);
     } catch (error) {
-      console.log(error);
       response.status(500).send(error);
     }
   });
@@ -57,7 +63,6 @@ module.exports = function (app) {
       statistics[0].users = await AppKeep.userStatistics(range);
       response.send(statistics);
     } catch (error) {
-      console.log(error);
       response.status(500).send(error);
     }
   });
@@ -65,7 +70,18 @@ module.exports = function (app) {
   app.get('/api/categories/:category/statistics/year', async (request, response) => {
     try {
       const statistics = await AppKeep.yearStatistics(dates.currentYear(), request.params.category);
-      response.send(statistics);
+      response.send(statistics[0]);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
+  app.get('/api/categories/:category/statistics/year/:year', async (request, response) => {
+    try {
+      const range = dates.year(request.params.year);
+      const statistics = await AppKeep.yearStatistics(range, request.params.category);
+      const yearStatistics = statistics.find(current => current._id === Number(request.params.year));
+      response.send(yearStatistics);
     } catch (error) {
       response.status(500).send(error);
     }

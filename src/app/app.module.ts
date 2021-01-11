@@ -47,6 +47,7 @@ import { YearResolveGuard } from './details/year-resolve.guard';
 import { OverallResolveGuard } from './details/overall-resolve.guard';
 import { InputErrorComponent } from './input-error/input-error.component';
 import { FocusOnErrorDirective } from './focus-on-error.directive';
+import { CategoryRecapCardComponent } from './category-recap-card/category-recap-card.component';
 
 const config = new AuthServiceConfig([
   {
@@ -75,6 +76,7 @@ export function provideConfig() {
     RecapCardComponent,
     MonthNamePipePipe,
     CategoryComponent,
+    CategoryRecapCardComponent,
     AppkeepsCardComponent,
     NavigationHeaderComponent,
     CategoryHuePipe,

@@ -34,6 +34,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'category/:category/:year/:month',
+    component: CategoryComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'monthly/:id',
     component: MonthlyComponent,
     canActivate: [AuthGuard]

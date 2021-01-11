@@ -3,9 +3,9 @@
     <ol>
       <li *ngFor="let recap of recaps" class="ak-item  ak-item--recap">
         <a class="ak-item__what" [routerLink]="itemLink(recap)">
-          <div class="ak-item-percentage  ak-item-percentage--border-negative  ak-item-percentage--negative"
+          <div class="ak-item-percentage  ak-item-percentage--border-negative  ak-item-percentage--negative  ak-item-percentage--{{category.hue}}"
                *ngIf="recap.outTotal" [style.width]="getAppKeepPercentage(recap)"></div>
-          <div class="ak-item-percentage  ak-item-percentage--border-positive  ak-item-percentage--positive"
+          <div class="ak-item-percentage  ak-item-percentage--border-positive  ak-item-percentage--positive  ak-item-percentage--{{category.hue}}"
                *ngIf="recap.inTotal" [style.width]="getIncomePercentage(recap)"></div>
           <span class="ak-badge">{{recap.label | akMonthName | lowercase}}</span>
           <span class="ak-badge  ak-badge--{{(recap.inTotal + recap.outTotal) > 0 ? 'positive' : 'negative'}}">

@@ -7,7 +7,7 @@
     "preserve": "node scripts/credentials.js",
     "serve": "ng serve",
     "prebuild": "node scripts/credentials.js",
-    "build": "node scripts/credentials.js && ng build --aot --prod",
+    "build": "ng build --aot --prod",
     "preserve:prod": "npm run build",
     "serve:prod": "http-server -p 4000 --proxy http://localhost:3000 dist/appkeep",
     "test": "ng test",

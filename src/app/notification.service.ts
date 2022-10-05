@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { first, map } from 'rxjs/operators';
-import vapid from '../vapid.json';
 import { SwPush } from '@angular/service-worker';
 import { AppKeep } from './models/AppKeep';
 import { AmountPipe } from './pipes/amount.pipe';
 import { Observable, of } from 'rxjs';
+
+import { config } from 'dotenv';
 
 @Injectable()
 export class NotificationService {
@@ -14,6 +15,7 @@ export class NotificationService {
 
   constructor(private swPush: SwPush,
               private http: HttpClient) {
+    config();
   }
 
   sendNotification(appKeep: AppKeep) {
@@ -29,7 +31,7 @@ export class NotificationService {
       this.swPush.subscription.pipe(first()).subscribe(maybeSubscription => {
         if (maybeSubscription === null) {
           this.swPush.requestSubscription({
-            serverPublicKey: vapid.publicKey
+            serverPublicKey: process.env.VAPID_PUBLIC_KEY
           }).then(subscription => {
             this.storeSubscription(subscription);
           }).catch(console.error);

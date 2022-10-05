@@ -20,7 +20,6 @@ import { ReduxModule } from '../redux/redux-module';
 import { AppActions } from './app.actions';
 import { EditComponent } from './edit/edit.component';
 import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
-import credentials from '../credentials.json';
 import { LoginComponent } from './login/login.component';
 import { HomeHeaderComponent } from './home-header/home-header.component';
 import { AuthGuard } from './auth.guard';
@@ -49,15 +48,19 @@ import { InputErrorComponent } from './input-error/input-error.component';
 import { FocusOnErrorDirective } from './focus-on-error.directive';
 import { CategoryRecapCardComponent } from './category-recap-card/category-recap-card.component';
 
-const config = new AuthServiceConfig([
+import { config } from 'dotenv';
+
+config();
+
+const authServiceConfig = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider(credentials.clientID)
+    provider: new GoogleLoginProvider(process.env.clientID)
   }
 ]);
 
 export function provideConfig() {
-  return config;
+  return authServiceConfig;
 }
 
 @NgModule({

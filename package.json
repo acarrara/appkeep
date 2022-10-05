@@ -15,6 +15,7 @@
     "test:ci": "ng test --watch=false --browsers=ChromeHeadless --code-coverage && codecov",
     "lint": "ng lint --fix",
     "e2e": "ng e2e",
+    "postinstall": "npm run prebuild && ng build --aot --prod",
     "icons": "reload -b -s icons.html -e svg,html -d src/ -p 9000",
     "prepatterns": "sass src/styles.scss src/patterns.css -I . --no-source-map",
     "patterns": "reload -b -s patterns.html -e svg,css,html -d src/ -p 9001"

@@ -2,6 +2,7 @@ const fs = require('fs');
 const targetPath = './src/environments/environment.prod.ts';
 
 require('dotenv').config();
+console.log('process.env', process.env);
 
 const envConfigFile = `export const environment = {
    clientID: '${process.env.clientID}',

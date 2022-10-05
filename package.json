@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node scripts/fake-server.js",
+    "start": "node scripts/server.js",
     "preserve": "node scripts/credentials.js",
     "serve": "ng serve",
     "prebuild": "node scripts/credentials.js",

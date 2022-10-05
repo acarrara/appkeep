@@ -3,12 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "setenv": "ts-node set-env.ts",
     "start": "node scripts/server.js",
     "preserve": "node scripts/credentials.js",
     "serve": "ng serve",
-    "prebuild": "node scripts/credentials.js && npm run setenv",
-    "build": "npm run setenv && ng build --aot --prod",
+    "prebuild": "node scripts/credentials.js",
+    "build": "ng build --aot --prod",
     "preserve:prod": "npm run build",
     "serve:prod": "http-server -p 4000 --proxy http://localhost:3000 dist/appkeep",
     "test": "ng test",
@@ -79,8 +78,5 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "^3.8.3"
-  },
-  "browser": {
-    "fs": false
   }
 }

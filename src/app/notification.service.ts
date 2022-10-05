@@ -5,7 +5,8 @@ import { SwPush } from '@angular/service-worker';
 import { AppKeep } from './models/AppKeep';
 import { AmountPipe } from './pipes/amount.pipe';
 import { Observable, of } from 'rxjs';
-import { environment } from '../environments/environment';
+
+const vapidKey = 'BJhuxRN4FQmXh1OCv9ESDPTzhAzz6wuriWhT_61ZmYsZN4mYSguPJkWoBjRYh6Et2Jet-4aBvMgnbx9HjL_Ifd8';
 
 @Injectable()
 export class NotificationService {
@@ -29,7 +30,7 @@ export class NotificationService {
       this.swPush.subscription.pipe(first()).subscribe(maybeSubscription => {
         if (maybeSubscription === null) {
           this.swPush.requestSubscription({
-            serverPublicKey: environment.vapidKey
+            serverPublicKey: vapidKey
           }).then(subscription => {
             this.storeSubscription(subscription);
           }).catch(console.error);

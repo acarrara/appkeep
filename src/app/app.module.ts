@@ -48,10 +48,12 @@ import { InputErrorComponent } from './input-error/input-error.component';
 import { FocusOnErrorDirective } from './focus-on-error.directive';
 import { CategoryRecapCardComponent } from './category-recap-card/category-recap-card.component';
 
+const clientID = '848348013018-hpu1hsvl233i1bigbb73n2rsnjpk8era.apps.googleusercontent.com';
+
 const authServiceConfig = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider(environment.clientID)
+    provider: new GoogleLoginProvider(clientID)
   }
 ]);
 

@@ -5,8 +5,7 @@ import { SwPush } from '@angular/service-worker';
 import { AppKeep } from './models/AppKeep';
 import { AmountPipe } from './pipes/amount.pipe';
 import { Observable, of } from 'rxjs';
-
-import { config } from 'dotenv';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class NotificationService {
@@ -15,7 +14,6 @@ export class NotificationService {
 
   constructor(private swPush: SwPush,
               private http: HttpClient) {
-    config();
   }
 
   sendNotification(appKeep: AppKeep) {
@@ -31,7 +29,7 @@ export class NotificationService {
       this.swPush.subscription.pipe(first()).subscribe(maybeSubscription => {
         if (maybeSubscription === null) {
           this.swPush.requestSubscription({
-            serverPublicKey: process.env.VAPID_PUBLIC_KEY
+            serverPublicKey: environment.vapidKey
           }).then(subscription => {
             this.storeSubscription(subscription);
           }).catch(console.error);

@@ -48,14 +48,10 @@ import { InputErrorComponent } from './input-error/input-error.component';
 import { FocusOnErrorDirective } from './focus-on-error.directive';
 import { CategoryRecapCardComponent } from './category-recap-card/category-recap-card.component';
 
-import { config } from 'dotenv';
-
-config();
-
 const authServiceConfig = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider(process.env.clientID)
+    provider: new GoogleLoginProvider(environment.clientID)
   }
 ]);
 

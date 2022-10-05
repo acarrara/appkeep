@@ -6,6 +6,8 @@
     "start": "node scripts/fake-server.js",
     "preserve": "node scripts/credentials.js",
     "serve": "ng serve",
+    "prebuild": "node scripts/credentials.js",
+    "build": "ng build --aot --prod",
     "preserve:prod": "npm run build",
     "serve:prod": "http-server -p 4000 --proxy http://localhost:3000 dist/appkeep",
     "test": "ng test",

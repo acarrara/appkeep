@@ -31,4 +31,5 @@ workflows:
     jobs:
       - node/run:
           npm-run: test:ci
+          version: v16
       - upload-codecov

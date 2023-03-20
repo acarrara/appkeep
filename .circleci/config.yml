@@ -21,6 +21,9 @@ jobs:
     steps:
       - checkout
       - browser-tools/install-chrome
+      - node/install-packages
+      - run:
+          command: npm run test:ci
       - codecov/upload:
           validate_url: true 
           flags: unittests 
@@ -31,9 +34,4 @@ jobs:
 workflows:
   run-tests-workflow:
     jobs:
-      - node/run:
-          npm-run: test:ci
-          version: 16.16.0
-      - upload-codecov:
-          requires: 
-            - node/run
+      - upload-codecov

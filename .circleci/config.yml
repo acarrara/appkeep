@@ -2,10 +2,15 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+orbs:
+  codecov: codecov/codecov@3.0.0
+  node: circleci/node@5.1.0
+  
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
+  run-tests:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
@@ -14,13 +19,19 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - node/install-packages:
+          pkg-manager: npm
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: Run tests
+          command: npm run test:ci
+      - codecov/upload:
+          validate_url: true 
+          flags: unittests 
+          file: coverage/appkeep/lcov.info 
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  run-tests-workflow:
     jobs:
-      - say-hello
+      - run-tests

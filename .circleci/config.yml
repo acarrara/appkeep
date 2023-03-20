@@ -34,4 +34,6 @@ workflows:
       - node/run:
           npm-run: test:ci
           version: 16.16.0
-      - upload-codecov
+      - upload-codecov:
+          requires: 
+            - node/run

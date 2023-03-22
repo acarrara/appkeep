@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Listen } from '../../redux/listen.decorator';
 import { Observable } from 'rxjs';
 import { Category } from '../models/Category';
 import { AppKeep } from '../models/AppKeep';
@@ -14,14 +13,14 @@ import { AppActions } from '../app.actions';
 })
 export class MonthlyAppkeepsCardComponent {
 
-  @Listen(['categories'])
   categories$: Observable<Category[]>;
-  @Listen(['monthlyAppKeeps'], monthlyAppkeeps => monthlyAppkeeps.reduce((partial, appKeep) => partial + appKeep.amount, 0))
   monthlyAppkeepsTotal$: Observable<number>;
-  @Listen(['monthlyAppKeeps'])
   monthlyAppKeeps$: Observable<AppKeep[]>;
 
   constructor(store: StoreService<AppKeepState>, actions: AppActions) {
+    this.categories$ = store.get(['categories']);
+    this.monthlyAppkeepsTotal$ = store.get(['monthlyAppKeeps'], monthlyAppkeeps => monthlyAppkeeps.reduce((partial, appKeep) => partial + appKeep.amount, 0));
+    this.monthlyAppKeeps$ = store.get(['monthlyAppKeeps']);
     store.dispatch(actions.loadMonthlyAppKeeps());
   }
 }

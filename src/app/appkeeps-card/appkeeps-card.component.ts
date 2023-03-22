@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { AppKeep } from '../models/AppKeep';
 import { Category } from '../models/Category';
-import { Listen } from '../../redux/listen.decorator';
 import { Observable } from 'rxjs';
 import { UserInfo } from '../models/UserInfo';
+import { StoreService } from '../../redux/store.service';
+import { AppKeepState } from '../models/AppKeepState';
 
 @Component({
   selector: 'ak-appkeeps-card',
@@ -12,10 +13,13 @@ import { UserInfo } from '../models/UserInfo';
 })
 export class AppkeepsCardComponent {
 
-  @Listen(['categories'])
   categories$: Observable<Category[]>;
-  @Listen(['users'])
   users$: Observable<UserInfo[]>;
+
+  constructor(private readonly store: StoreService<AppKeepState>) {
+    this.categories$ = this.store.get(['categories']);
+    this.users$ = this.store.get(['users']);
+  }
 
   @Input()
   appKeeps: AppKeep[];

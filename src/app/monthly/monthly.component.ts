@@ -7,7 +7,6 @@ import { StoreService } from '../../redux/store.service';
 import { Observable } from 'rxjs';
 import { UserInfo } from '../models/UserInfo';
 import { Location } from '@angular/common';
-import { Listen } from '../../redux/listen.decorator';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from '../models/Category';
 import { NgForm, NgModel } from '@angular/forms';
@@ -19,7 +18,6 @@ import { NgForm, NgModel } from '@angular/forms';
 })
 export class MonthlyComponent extends OptionableComponent implements OnInit {
 
-  @Listen(['users'], users => users.map(user => user.email))
   users$: Observable<UserInfo[]>;
   monthlyAppkeep: AppKeep;
   edit: boolean;
@@ -31,6 +29,7 @@ export class MonthlyComponent extends OptionableComponent implements OnInit {
               private location: Location,
               private route: ActivatedRoute) {
     super(store, actions);
+    this.users$ = this.store.get(['users'], users => users.map(user => user.email));
   }
 
   ngOnInit(): void {

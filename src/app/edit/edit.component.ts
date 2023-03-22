@@ -7,7 +7,6 @@ import { map } from 'rxjs/operators';
 import { AppActions } from '../app.actions';
 import { Option } from '../models/Option';
 import { OptionableComponent } from '../optionable.component';
-import { Listen } from '../../redux/listen.decorator';
 import { Observable } from 'rxjs';
 import { Category } from '../models/Category';
 import { Location } from '@angular/common';
@@ -20,7 +19,6 @@ import { NgForm } from '@angular/forms';
 })
 export class EditComponent extends OptionableComponent {
 
-  @Listen(['users'], users => users.map(user => user.email))
   public users$: Observable<string[]>;
 
   public appKeep: AppKeep;
@@ -30,6 +28,7 @@ export class EditComponent extends OptionableComponent {
               actions: AppActions,
               private location: Location) {
     super(store, actions);
+    this.users$ = store.get(['users'], users => users.map(user => user.email));
     this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('id'))).subscribe(id => {
       this.appKeep = {
         ...this.lookupAppKeep(id, ['appKeeps']) ||

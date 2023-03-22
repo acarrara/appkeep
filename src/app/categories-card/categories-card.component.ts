@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CategoryAmount } from '../models/CategoryAmount';
-import { Listen } from '../../redux/listen.decorator';
 import { Observable } from 'rxjs';
 import { Category } from '../models/Category';
+import { StoreService } from '../../redux/store.service';
+import { AppKeepState } from '../models/AppKeepState';
 
 @Component({
   selector: 'ak-categories-card',
@@ -11,7 +12,6 @@ import { Category } from '../models/Category';
 })
 export class CategoriesCardComponent implements OnChanges {
 
-  @Listen(['categories'])
   categories$: Observable<Category[]>;
 
   @Input()
@@ -29,6 +29,10 @@ export class CategoriesCardComponent implements OnChanges {
   inTotal: number;
   appKeepHighest: number;
   incomeHighest: number;
+
+  constructor(private readonly store: StoreService<AppKeepState>) {
+    this.categories$ = this.store.get(['categories']);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.outTotal = this.updateCategories(this.outCategories);

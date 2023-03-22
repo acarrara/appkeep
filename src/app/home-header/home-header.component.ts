@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Listen } from '../../redux/listen.decorator';
 import { User } from '../models/User';
+import { StoreService } from '../../redux/store.service';
+import { AppKeepState } from '../models/AppKeepState';
 
 @Component({
   selector: 'ak-home-header',
@@ -10,7 +11,10 @@ import { User } from '../models/User';
 })
 export class HomeHeaderComponent {
 
-  @Listen(['user'])
   public user$: Observable<User>;
+
+  constructor(store: StoreService<AppKeepState>) {
+    this.user$ = store.get(['user']);
+  }
 
 }

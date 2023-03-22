@@ -16,8 +16,10 @@ export class RecapCardComponent implements OnChanges {
   topTotal: number;
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.total = this.recaps.reduce((partial, currentRecap) => partial + currentRecap.inTotal + currentRecap.outTotal, 0);
-    this.topTotal = this.recaps.reduce(((partial, currentRecap) => this.biggest(partial, currentRecap)), 0);
+    if (this.recaps) {
+      this.total = this.recaps.reduce((partial, currentRecap) => partial + currentRecap.inTotal + currentRecap.outTotal, 0);
+      this.topTotal = this.recaps.reduce(((partial, currentRecap) => this.biggest(partial, currentRecap)), 0);
+    }
   }
 
   getIncomePercentage(recap: Recap) {

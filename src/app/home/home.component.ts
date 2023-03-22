@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener } from '@angular/core';
 import { AppKeep } from '../models/AppKeep';
 import { Observable } from 'rxjs';
-import { Listen } from '../../redux/listen.decorator';
 import { SwUpdate } from '@angular/service-worker';
 import { StoreService } from '../../redux/store.service';
 import { AppKeepState } from '../models/AppKeepState';
@@ -17,15 +16,10 @@ import { Details } from '../models/Details';
 })
 export class HomeComponent {
 
-  @Listen(['appKeeps'])
   appKeeps$: Observable<AppKeep[]>;
-  @Listen(['appKeeps'], sumAppKeeps)
   todayTotal$: Observable<number>;
-  @Listen(['statistics', 'thisMonth'])
   thisMonthTotal$: Observable<Details>;
-  @Listen(['statistics', 'thisYear'], statistics => statistics.ranges)
   thisYearTotal$: Observable<Recap[]>;
-  @Listen(['statistics', 'overall'], statistics => statistics.ranges)
   overallTotal$: Observable<Recap[]>;
   availableVersion: boolean;
 
@@ -33,6 +27,12 @@ export class HomeComponent {
               private cdr: ChangeDetectorRef,
               store: StoreService<AppKeepState>,
               actions: AppActions) {
+    this.appKeeps$ = store.get(['appKeeps']);
+    this.todayTotal$ = store.get(['appKeeps'], sumAppKeeps);
+    this.thisMonthTotal$ = store.get(['statistics', 'thisMonth']);
+    this.thisYearTotal$ = store.get(['statistics', 'thisYear'], statistics => statistics.ranges);
+    this.overallTotal$ = store.get(['statistics', 'overall'], statistics => statistics.ranges);
+
     this.handleUpdates();
 
     store.dispatch(actions.loadAppKeeps());

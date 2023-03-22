@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Listen } from '../../redux/listen.decorator';
 import { Observable } from 'rxjs';
 import { NotificationService } from '../notification.service';
 import { ApiAuthenticationService } from '../api-authentication.service';
@@ -17,7 +16,6 @@ import { Location } from '@angular/common';
 })
 export class ProfileComponent implements OnInit {
 
-  @Listen(['users'])
   users$: Observable<UserInfo[]>;
 
   user: UserInfo;
@@ -31,6 +29,7 @@ export class ProfileComponent implements OnInit {
               private location: Location,
               private store: StoreService<AppKeepState>,
               private actions: AppActions) {
+    this.users$ = this.store.get(['users']);
     this.lookupUser();
   }
 

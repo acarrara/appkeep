@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { first, flatMap, map } from 'rxjs/operators';
-import { AuthService, GoogleLoginProvider } from 'angularx-social-login';
+import { SocialAuthService, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { AppKeepState } from './models/AppKeepState';
 import { StoreService } from '../redux/store.service';
 import { AppActions } from './app.actions';
 import { UserInfo } from './models/UserInfo';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ApiAuthenticationService {
@@ -17,16 +18,26 @@ export class ApiAuthenticationService {
   apiToken$: Observable<string> = this.apiTokenSubject$.asObservable();
 
   constructor(private http: HttpClient,
-              private auth: AuthService,
+              private auth: SocialAuthService,
               private store: StoreService<AppKeepState>,
-              private actions: AppActions) {
+              private actions: AppActions,
+              private router: Router) {
+    this.auth.authState.subscribe(social => {
+      if (social !== null) {
+        this.getApiToken(social.idToken).subscribe(({user, apiToken}) => {
+          this.store.dispatch(this.actions.login({social, info: user}));
+          this.apiTokenSubject$.next(apiToken);
+          this.router.navigate(['/home']);
+        });
+      }
+    });
   }
 
   signIn() {
     if (this.apiTokenSubject$.getValue()) {
       return;
     }
-    this.auth.signIn(GoogleLoginProvider.PROVIDER_ID).then(social => {
+    this.auth.authState.subscribe(social => {
       if (social !== null) {
         this.getApiToken(social.idToken).subscribe(({user, apiToken}) => {
           this.store.dispatch(this.actions.login({social, info: user}));

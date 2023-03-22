@@ -5,6 +5,7 @@ const MAP_KEY = 'redux::map';
 
 export function Listen(path: string[], mappingFunction: (toTransform: any) => any = identity): PropertyDecorator {
     return (target: any, key: string) => {
+      console.log(target, key);
         const getter: () => any = () => {
             const map: any = target[MAP_KEY] || {};
             target[MAP_KEY] = map;
@@ -18,6 +19,7 @@ export function Listen(path: string[], mappingFunction: (toTransform: any) => an
                 enumerable: true,
                 configurable: true
             });
+            console.log(target[key]);
         }
     };
 }

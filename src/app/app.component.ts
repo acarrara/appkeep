@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiAuthenticationService } from './api-authentication.service';
 import { map } from 'rxjs/operators';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'ak-app',
@@ -10,7 +11,7 @@ import { map } from 'rxjs/operators';
 export class AppComponent {
   loading$: Observable<boolean>;
 
-  constructor(auth: ApiAuthenticationService) {
+  constructor(auth: ApiAuthenticationService, social: SocialAuthService) {
     this.loading$ = auth.loggedIn$.pipe(map(loggedIn => !loggedIn));
   }
 }

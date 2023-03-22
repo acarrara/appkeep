@@ -1,4 +1,3 @@
-import { Listen } from '../redux/listen.decorator';
 import { Observable } from 'rxjs';
 import { Option } from './models/Option';
 import { StoreService } from '../redux/store.service';
@@ -9,13 +8,13 @@ import { AppKeep } from './models/AppKeep';
 
 export abstract class OptionableComponent {
 
-  @Listen(['options'])
   public options$: Observable<Option[]>;
-  @Listen(['categories'])
   public categories$: Observable<Category[]>;
 
   protected constructor(protected store: StoreService<AppKeepState>,
                         protected actions: AppActions) {
+    this.options$ = store.get(['options']);
+    this.categories$ = store.get(['categories']);
   }
 
   public onChange(appKeep: AppKeep, options: Option[], categories: Category[]) {

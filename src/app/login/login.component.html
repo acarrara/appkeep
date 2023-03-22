@@ -67,7 +67,10 @@
     <div>
       <h1 style="margin-bottom: 1rem">Hello again.</h1>
       <div style="margin-bottom: 3rem">Welcome back.</div>
-      <button class="ak-button  ak-button--primary  ak-button--login" (click)="signInWithGoogle()">Login</button>
+      <div style="display: flex; justify-content: center">
+        <asl-google-signin-button type='standard' size='large'
+                                  shape="pill" theme="filled_blue" text="continue_with"></asl-google-signin-button>
+      </div>
     </div>
   </div>
 </div>

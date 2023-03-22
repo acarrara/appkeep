@@ -19,7 +19,12 @@ import { AppEpics } from './app.epics';
 import { ReduxModule } from '../redux/redux-module';
 import { AppActions } from './app.actions';
 import { EditComponent } from './edit/edit.component';
-import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  GoogleSigninButtonModule,
+  SocialAuthServiceConfig,
+  SocialLoginModule
+} from '@abacritt/angularx-social-login';
 import { LoginComponent } from './login/login.component';
 import { HomeHeaderComponent } from './home-header/home-header.component';
 import { AuthGuard } from './auth.guard';
@@ -50,12 +55,15 @@ import { CategoryRecapCardComponent } from './category-recap-card/category-recap
 
 const clientID = '848348013018-hpu1hsvl233i1bigbb73n2rsnjpk8era.apps.googleusercontent.com';
 
-const authServiceConfig = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider(clientID)
-  }
-]);
+const authServiceConfig: SocialAuthServiceConfig = {
+  autoLogin: true,
+  providers: [
+    {
+      id: GoogleLoginProvider.PROVIDER_ID,
+      provider: new GoogleLoginProvider(clientID, { oneTapEnabled: true })
+    }
+  ]
+};
 
 export function provideConfig() {
   return authServiceConfig;
@@ -99,7 +107,8 @@ export function provideConfig() {
     ServiceWorkerModule.register('sw-include.js', {enabled: environment.production}),
     RouterModule,
     ReduxModule,
-    SocialLoginModule
+    SocialLoginModule,
+    GoogleSigninButtonModule
   ],
   providers: [
     {
@@ -117,7 +126,7 @@ export function provideConfig() {
     NotificationService,
     ApiAuthenticationService,
     {
-      provide: AuthServiceConfig,
+      provide: 'SocialAuthServiceConfig',
       useFactory: provideConfig
     }
   ],

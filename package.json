@@ -1,6 +1,6 @@
 {
   "name": "appkeep",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "node scripts/server.js",

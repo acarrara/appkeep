@@ -3,14 +3,15 @@
     <div class="ak-card__title">{{title}}</div>
     <div class="ak-card__amount">
       <span>{{total | akAmount}}</span>
-      <ak-icon *ngIf="indicator" type="total" size="small" class="ak-item__indicator" mood="indifferent"></ak-icon>
+      @if (indicator) {
+        <ak-icon type="total" size="small" class="ak-item__indicator" mood="indifferent"></ak-icon>
+      }
     </div>
   </div>
-  <ng-container  *ngIf="total; else noAppkeeps">
+  @if (total) {
     <ng-content select=".ak-card__content"></ng-content>
-  </ng-container>
+  } @else {
+    <ak-empty-state></ak-empty-state>
+  }
 </section>
 
-<ng-template #noAppkeeps>
-  <ak-empty-state></ak-empty-state>
-</ng-template>

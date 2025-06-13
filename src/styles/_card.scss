@@ -1,31 +1,36 @@
-.ak-card {
-  margin: 0 $ak-size-m;
+@use "./decisions";
+@use "./mixins/shadow";
+@use "./mixins/utils";
+@use "./button";
 
-  margin-bottom: $ak-size-l;
+.ak-card {
+  margin: 0 decisions.$ak-size-m;
+
+  margin-bottom: decisions.$ak-size-l;
   min-height: 256px;
 
-  background-color: $ak-color-light;
-  border-radius: $ak-size-m;
+  background-color: decisions.$ak-color-light;
+  border-radius: decisions.$ak-size-m;
 
-  @include ak-flex-column();
+  @include utils.ak-flex-column();
 
-  @include ak-shadow-standard();
+  @include shadow.ak-shadow-standard();
 }
 
 .ak-card__header {
   display: flex;
   align-items: center;
-  padding: $ak-size-s $ak-size-l;
+  padding: decisions.$ak-size-s decisions.$ak-size-l;
 
-  color: $ak-color-light;
+  color: decisions.$ak-color-light;
 
   flex-grow: 0;
 
-  background-color: $ak-color-primary;
-  border-top-left-radius: $ak-size-m;
-  border-top-right-radius: $ak-size-m;
+  background-color: decisions.$ak-color-primary;
+  border-top-left-radius: decisions.$ak-size-m;
+  border-top-right-radius: decisions.$ak-size-m;
 
-  border-bottom: 1px solid $ak-color-border;
+  border-bottom: 1px solid decisions.$ak-color-border;
 }
 
 .ak-card__title {
@@ -42,20 +47,20 @@
 }
 
 .ak-card__content {
-  padding: $ak-size-s $ak-size-l;
+  padding: decisions.$ak-size-s decisions.$ak-size-l;
   flex-grow: 1;
 
-  @include ak-flex-column();
+  @include utils.ak-flex-column();
 }
 
 .ak-card__action {
-  padding-bottom: $ak-size-l;
-  @include ak-flex-end();
+  padding-bottom: decisions.$ak-size-l;
+  @include utils.ak-flex-end();
 
   margin-top: auto;
 
   button, a {
-    @include ak-button-tertiary();
-    @include ak-flex-center();
+    @include button.ak-button-tertiary();
+    @include utils.ak-flex-center();
   }
 }

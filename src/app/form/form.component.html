@@ -1,27 +1,29 @@
-<ng-container *ngIf="options$ | async; let options">
-  <ng-container *ngIf="categories$ | async; let categories">
+@if (options$ | async; as options) {
+  @if (categories$ | async; as categories) {
     <form class="ak-form" #form=ngForm>
       <div class="ak-form__inputs">
         <div class="ak-input  ak-input--amount">
           <label for="amount">Amount</label>
           <input name="amount" #amount id="amount"
-                 type="number" min="0" step="0.01" ngModel
-                 (keydown.enter)="$event.preventDefault(); what.focus()">
+            type="number" min="0" step="0.01" ngModel
+            (keydown.enter)="$event.preventDefault(); what.focus()">
           <div class="ak-amount  ak-amount--big" (click)="amount.focus()">{{form.value.amount || 0 | akAmount}}</div>
         </div>
         <div class="ak-input">
           <label for="what">Description</label>
           <input id="what" #what name="title" ngModel (blur)="onChange(form.value,options,categories)"
-                 placeholder="i.e. groceries"
-                 list="addwhatlist" autocomplete="off">
+            placeholder="i.e. groceries"
+            list="addwhatlist" autocomplete="off">
           <datalist id="addwhatlist">
-            <option *ngFor="let option of options" [value]="option.title"></option>
+            @for (option of options; track option) {
+              <option [value]="option.title"></option>
+            }
           </datalist>
         </div>
       </div>
       <div class="ak-form__buttons">
         <button class="ak-button  ak-button--primary" type="submit"
-                (click)="add(form.value, options, categories); form.reset();">
+          (click)="add(form.value, options, categories); form.reset();">
           <ak-icon type="add" mood="indifferent"></ak-icon>
           <span>Add</span>
         </button>
@@ -31,5 +33,5 @@
         </button>
       </div>
     </form>
-  </ng-container>
-</ng-container>
+  }
+}

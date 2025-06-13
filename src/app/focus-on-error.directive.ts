@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[akFocusOnError]'
+    selector: '[akFocusOnError]'
 })
 export class FocusOnErrorDirective {
 

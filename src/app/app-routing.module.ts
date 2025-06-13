@@ -1,19 +1,18 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { EditComponent } from './edit/edit.component';
-import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './auth.guard';
-import { CategoryComponent } from './category/category.component';
-import { ProfileComponent } from './profile/profile.component';
-import { MonthlyComponent } from './monthly/monthly.component';
-import { DetailsComponent } from './details/details.component';
-import { MonthResolveGuard } from './details/month-resolve.guard';
-import { YearResolveGuard } from './details/year-resolve.guard';
-import { OverallResolveGuard } from './details/overall-resolve.guard';
+import {Routes} from '@angular/router';
+import {HomeComponent} from './home/home.component';
+import {EditComponent} from './edit/edit.component';
+import {LoginComponent} from './login/login.component';
+import {AuthGuard} from './auth.guard';
+import {CategoryComponent} from './category/category.component';
+import {ProfileComponent} from './profile/profile.component';
+import {MonthlyComponent} from './monthly/monthly.component';
+import {DetailsComponent} from './details/details.component';
+import {MonthResolveGuard} from './details/month-resolve.guard';
+import {YearResolveGuard} from './details/year-resolve.guard';
+import {OverallResolveGuard} from './details/overall-resolve.guard';
 
 
-const routes: Routes = [
+export const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent
@@ -113,10 +112,3 @@ const routes: Routes = [
     pathMatch: 'full'
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {
-}

@@ -17,10 +17,10 @@ if (process.env.production) {
   app.use(enforce.HTTPS({trustProtoHeader: true}));
 }
 
-app.use(express.static(__dirname + '/../dist/appkeep'));
+app.use(express.static(__dirname + '/../dist/appkeep/browser'));
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname + '/../dist/appkeep/index.html'));
+  res.sendFile(path.join(__dirname + '/../dist/appkeep/browser/index.html'));
 });
 
 app.listen(process.env.PORT || 3000);

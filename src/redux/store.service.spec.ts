@@ -1,9 +1,9 @@
-import { StoreService } from './store.service';
-import { async } from '@angular/core/testing';
-import { Reducer } from './Reducer';
-import { Epic } from './Epic';
-import { filter, skip, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import {StoreService} from './store.service';
+import {waitForAsync} from '@angular/core/testing';
+import {Reducer} from './Reducer';
+import {Epic} from './Epic';
+import {filter, switchMap} from 'rxjs/operators';
+import {of} from 'rxjs';
 
 interface StubState {
   outer: { inner: string };
@@ -44,7 +44,7 @@ describe('StoreService', () => {
     expect(innerValue).toEqual('anInitialValue');
   });
 
-  it('should listen to initial state', async(() => {
+  it('should listen to initial state', waitForAsync(() => {
     const innerValue = store.get<string>(['outer', 'inner']);
 
     innerValue.subscribe(value => expect(value).toEqual('anInitialValue'));
@@ -58,7 +58,7 @@ describe('StoreService', () => {
     expect(innerValue).toEqual('aNewValue');
   });
 
-  it('should listen to new state', async(() => {
+  it('should listen to new state', waitForAsync(() => {
     store.dispatch({type: 'inner', payload: 'aNewValue'});
 
     const innerValue = store.get<string>(['outer', 'inner']);
@@ -66,7 +66,7 @@ describe('StoreService', () => {
     innerValue.subscribe(value => expect(value).toEqual('aNewValue'));
   }));
 
-  it('should listen to new state async', async(() => {
+  it('should listen to new state async', waitForAsync(() => {
     store.dispatch({type: 'innerAsync', payload: 'aNewValueAsync'});
 
     const innerValue = store.get<string>(['outer', 'inner']);

@@ -1,9 +1,11 @@
+@use "./mixins/utils";
+
 .ak-loading {
   height: 100%;
   width: 100%;
 
-  @include ak-flex-center();
   flex-direction: column;
+  @include utils.ak-flex-center();
 }
 
 .ak-loading__svg {

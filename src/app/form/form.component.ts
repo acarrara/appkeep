@@ -1,26 +1,31 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
-import { AppKeep } from '../models/AppKeep';
-import { HttpClient } from '@angular/common/http';
-import { AppActions } from '../app.actions';
-import { StoreService } from '../../redux/store.service';
-import { AppKeepState } from '../models/AppKeepState';
-import { OptionableComponent } from '../optionable.component';
-import { Option } from '../models/Option';
-import { NotificationService } from '../notification.service';
-import { Category } from '../models/Category';
+import {AfterViewInit, ChangeDetectionStrategy, Component} from '@angular/core';
+import {AppKeep} from '../models/AppKeep';
+import {AppActions} from '../app.actions';
+import {OptionableComponent} from '../optionable.component';
+import {Option} from '../models/Option';
+import {NotificationService} from '../notification.service';
+import {Category} from '../models/Category';
+import {AsyncPipe} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {AmountPipe} from '../pipes/amount.pipe';
+import {IconComponent} from '../icon/icon.component';
 
 @Component({
   selector: 'ak-form',
   templateUrl: 'form.component.html',
+  imports: [
+    AsyncPipe,
+    FormsModule,
+    AmountPipe,
+    IconComponent
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormComponent extends OptionableComponent implements AfterViewInit {
 
-  constructor(private http: HttpClient,
-              private notifications: NotificationService,
-              actions: AppActions,
-              store: StoreService<AppKeepState>) {
-    super(store, actions);
+  constructor(private notifications: NotificationService,
+              actions: AppActions) {
+    super(actions);
   }
 
   ngAfterViewInit(): void {

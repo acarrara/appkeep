@@ -74,7 +74,7 @@ export class RestReducer<T extends RestResource> {
     }
   }
 
-  private newEditedState(oldState: AppKeepState, resource: RestResource, by: string = '_id') {
+  private newEditedState(oldState: AppKeepState, resource: RestResource, by = '_id') {
     const newState = {...oldState};
     newState[`${this.name}s`] = oldState[`${this.name}s`].map(current => current[by] === resource[by] ? resource : current);
     return newState;

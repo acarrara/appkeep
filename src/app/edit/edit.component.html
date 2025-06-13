@@ -1,5 +1,5 @@
-<ng-container *ngIf="options$ | async; let options">
-  <ng-container *ngIf="categories$ | async; let categories">
+@if (options$ | async; as options) {
+  @if (categories$ | async; as categories) {
     <div class="ak-page">
       <ak-navigation-header class="ak-page__header" [hue]="appKeep.category | akCategoryHue: categories">
         <header class="ak-heading">
@@ -16,7 +16,7 @@
               <div class="ak-organizer">
                 <input name="amount" #amount id="amount" type="number" min="0" step="0.01" [(ngModel)]="appKeep.amount">
                 <div class="ak-organizer__fill  ak-amount"
-                     (click)="amount.focus()">{{appKeep.amount || 0 | akAmount}}</div>
+                (click)="amount.focus()">{{appKeep.amount || 0 | akAmount}}</div>
                 <div class="ak-options-toggle">
                   <input type="checkbox" id="income-toggle" name="income" [(ngModel)]="appKeep.income">
                   <label for="income-toggle">
@@ -32,41 +32,55 @@
             <div class="ak-input">
               <label for="what">Description</label>
               <input id="what" #what name="title" [(ngModel)]="appKeep.title"
-                     (blur)="onChange(appKeep, options, categories)"
-                     placeholder="Description" list="whatlist"
-                     autocomplete="off" #whatModel="ngModel" required>
+                (blur)="onChange(appKeep, options, categories)"
+                placeholder="Description" list="whatlist"
+                autocomplete="off" #whatModel="ngModel" required>
               <datalist id="whatlist">
-                <option *ngFor="let option of options" [value]="option.title"></option>
+                @for (option of options; track option) {
+                  <option [value]="option.title"></option>
+                }
               </datalist>
-              <ak-input-error message="Add a description."
-                              *ngIf="whatModel.invalid && (whatModel.dirty || whatModel.touched)"></ak-input-error>
+              @if (whatModel.invalid && (whatModel.dirty || whatModel.touched)) {
+                <ak-input-error message="Add a description."
+                ></ak-input-error>
+              }
             </div>
             <div class="ak-input">
               <label for="date">Date</label>
               <input id="date" #date name="date" type="date"
-                     [ngModel]="appKeep.date | date: 'yyyy-MM-dd'"
-                     (ngModelChange)="toDate($event)">
+                [ngModel]="appKeep.date | date: 'yyyy-MM-dd'"
+                (ngModelChange)="toDate($event)">
             </div>
             <div class="ak-input">
               <label for="category">Category</label>
               <input id="category" #category name="category" [(ngModel)]="appKeep.category" placeholder="Category"
-                     list="categorylist" autocomplete="off" (change)="onCategoryChange(categories)"
-                     #categoryModel="ngModel" required>
+                list="categorylist" autocomplete="off" (change)="onCategoryChange(categories)"
+                #categoryModel="ngModel" required>
               <datalist id="categorylist">
-                <option *ngFor="let category of categories" [value]="category.category"></option>
+                @for (category of categories; track category) {
+                  <option [value]="category.category"></option>
+                }
               </datalist>
-              <ak-input-error message="Choose a category."
-                              *ngIf="categoryModel.invalid && (categoryModel.dirty || categoryModel.touched)"></ak-input-error>
+              @if (categoryModel.invalid && (categoryModel.dirty || categoryModel.touched)) {
+                <ak-input-error message="Choose a category."
+                ></ak-input-error>
+              }
             </div>
             <div class="ak-input">
               <label for="payer">Payer</label>
               <input id="payer" #payer name="payer" [(ngModel)]="appKeep.user" placeholder="Payer"
-                     list="payerlist" autocomplete="off" required #payerModel="ngModel">
-              <datalist id="payerlist" *ngIf="users$ | async; let users">
-                <option *ngFor="let user of users" [value]="user"></option>
-              </datalist>
-              <ak-input-error message="Point out who paid."
-                              *ngIf="payerModel.invalid && (payerModel.dirty || payerModel.touched)"></ak-input-error>
+                list="payerlist" autocomplete="off" required #payerModel="ngModel">
+              @if (users$ | async; as users) {
+                <datalist id="payerlist">
+                  @for (user of users; track user) {
+                    <option [value]="user"></option>
+                  }
+                </datalist>
+              }
+              @if (payerModel.invalid && (payerModel.dirty || payerModel.touched)) {
+                <ak-input-error message="Point out who paid."
+                ></ak-input-error>
+              }
             </div>
           </fieldset>
           <div class="ak-form__buttons">
@@ -82,5 +96,5 @@
         </form>
       </div>
     </div>
-  </ng-container>
-</ng-container>
+  }
+}

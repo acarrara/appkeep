@@ -39,6 +39,7 @@ speed-measure-plugin*.json
 .history/*
 
 # misc
+/.angular/cache
 /.sass-cache
 /connect.lock
 /coverage
@@ -47,6 +48,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+.angular
 
 # System Files
 .DS_Store

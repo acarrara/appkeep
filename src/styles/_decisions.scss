@@ -1,11 +1,12 @@
-@import "node_modules/sass-planifolia/sass/math.scss";
-@import "node_modules/sass-planifolia/sass/color.scss";
+@use "node_modules/sass-planifolia/sass/math.scss";
+@use "node_modules/sass-planifolia/sass/color.scss";
+@use "sass:list";
 
 $ak-brand-hue: 245;
 $ak-hues: 15, 60, 105, 150, 195, 240, 285, 330;
 
 @function ak-color($l, $s, $h) {
-  @return lch($l, $s, $h, 'hsluv');
+  @return color.lch($l, $s, $h, 'hsluv');
 }
 
 @function brand-color($l, $s) {
@@ -38,7 +39,7 @@ $ak-size-xl: 2rem;
 $ak-size-xxl: 3rem;
 
 @each $_hue in $ak-hues {
-  $i: index($ak-hues, $_hue);
+  $i: list.index($ak-hues, $_hue);
   .ak-hue-#{$i} {
     background-color: ak-color(75, 90, $_hue);
   }

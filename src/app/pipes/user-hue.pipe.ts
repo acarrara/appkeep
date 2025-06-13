@@ -3,8 +3,8 @@ import { UserInfo } from '../models/UserInfo';
 import { StoreService } from '../../redux/store.service';
 
 @Pipe({
-  name: 'akUserHue',
-  pure: false
+    name: 'akUserHue',
+    pure: false
 })
 export class UserHuePipe implements PipeTransform {
 

@@ -3,7 +3,9 @@
     <header class="ak-heading">
       <small class="ak-heading__kicker">Category</small>
       <h1 class="ak-heading__title">
-        <span>{{category.category}}</span><span *ngIf="year"> ({{month | akMonthName}} {{year}})</span>
+        <span>{{ category.category }}</span>@if (year) {
+        <span> ({{ month | akMonthName }} {{ year }})</span>
+      }
       </h1>
     </header>
   </ak-navigation-header>
@@ -31,11 +33,13 @@
         <div class="ak-input">
           <div class="ak-input__title">Colour</div>
           <div class="ak-input-hues">
-            <div class="ak-input-hues__hue" *ngFor="let hue of [1,2,3,4,5,6,7,8]">
-              <input class="visually-hidden" type="radio" name="hue" id="hue_{{hue}}"
-                     [value]="hue" [(ngModel)]="category.hue">
-              <label class="ak-hue-{{hue}}" for="hue_{{hue}}"></label>
-            </div>
+            @for (hue of [1, 2, 3, 4, 5, 6, 7, 8]; track hue) {
+              <div class="ak-input-hues__hue">
+                <input class="visually-hidden" type="radio" name="hue" id="hue_{{hue}}"
+                       [value]="hue" [(ngModel)]="category.hue">
+                <label class="ak-hue-{{hue}}" for="hue_{{hue}}"></label>
+              </div>
+            }
           </div>
         </div>
       </fieldset>
@@ -56,7 +60,9 @@
                       when="this month {{year ? '(' + (month | akMonthName) + ' ' + year + ')': ''}}"
                       [showDate]="true">
     </ak-appkeeps-card>
-    <ak-category-recap-card [recaps]="thisYearStatistics$ | async" title="this year {{year ? '(' + year + ')': ''}}" [category]="category"></ak-category-recap-card>
-    <ak-category-recap-card [recaps]="overallStatistics$ | async" title="overall" [category]="category"></ak-category-recap-card>
+    <ak-category-recap-card [recaps]="thisYearStatistics$ | async" title="this year {{year ? '(' + year + ')': ''}}"
+                            [category]="category"></ak-category-recap-card>
+    <ak-category-recap-card [recaps]="overallStatistics$ | async" title="overall"
+                            [category]="category"></ak-category-recap-card>
   </div>
 </div>

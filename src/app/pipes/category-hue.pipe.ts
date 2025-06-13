@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Category } from '../models/Category';
 
 @Pipe({
-  name: 'akCategoryHue'
+    name: 'akCategoryHue'
 })
 export class CategoryHuePipe implements PipeTransform {
 

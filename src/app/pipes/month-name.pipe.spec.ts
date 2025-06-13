@@ -1,8 +1,8 @@
-import { MonthNamePipePipe } from './month-name.pipe';
+import { MonthNamePipe } from './month-name.pipe';
 
 describe('MonthNamePipe', () => {
 
-  const pipe = new MonthNamePipePipe();
+  const pipe = new MonthNamePipe();
 
   it('should return November when month is 11', () => {
     expect(pipe.transform(11)).toEqual('November');

@@ -1,4 +1,4 @@
-<ng-container *ngIf="user$ | async; let user">
+@if (user$ | async; as user) {
   <div class="ak-header">
     <div class="ak-header__logo  ak-wallet-{{user.info.hue}}">
       <svg viewBox="0 0 1 1">
@@ -15,4 +15,4 @@
       <img [src]="user.social.photoUrl" class="ak-header__image" alt="{{user.info.name}}'s avatar">
     </a>
   </div>
-</ng-container>
+}

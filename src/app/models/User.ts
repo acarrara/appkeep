@@ -1,4 +1,4 @@
-import { SocialUser } from 'angularx-social-login';
+import { SocialUser } from '@abacritt/angularx-social-login';
 import { UserInfo } from './UserInfo';
 
 export interface User {

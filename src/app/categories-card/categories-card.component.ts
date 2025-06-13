@@ -1,18 +1,35 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { CategoryAmount } from '../models/CategoryAmount';
-import { Listen } from '../../redux/listen.decorator';
-import { Observable } from 'rxjs';
-import { Category } from '../models/Category';
+import {ChangeDetectionStrategy, Component, inject, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {CategoryAmount} from '../models/CategoryAmount';
+import {Observable} from 'rxjs';
+import {Category} from '../models/Category';
+import {StoreService} from '../../redux/store.service';
+import {AppKeepState} from '../models/AppKeepState';
+import {AsyncPipe, LowerCasePipe} from '@angular/common';
+import {CardComponent} from '../card/card.component';
+import {RouterLink} from '@angular/router';
+import {CategoryHuePipe} from '../pipes/category-hue.pipe';
+import {AmountPipe} from '../pipes/amount.pipe';
+import {IncomeIndicatorComponent} from '../income-indicator/income-indicator.component';
 
 @Component({
   selector: 'ak-categories-card',
   templateUrl: 'categories-card.component.html',
+  imports: [
+    AsyncPipe,
+    CardComponent,
+    RouterLink,
+    CategoryHuePipe,
+    LowerCasePipe,
+    AmountPipe,
+    IncomeIndicatorComponent
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoriesCardComponent implements OnChanges {
 
-  @Listen(['categories'])
-  categories$: Observable<Category[]>;
+  store: StoreService<AppKeepState> = inject(StoreService);
+
+  categories$: Observable<Category[]> = this.store.get(['categories']);
 
   @Input()
   title: string;

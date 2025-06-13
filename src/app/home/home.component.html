@@ -1,42 +1,44 @@
 <div class="ak-page">
-  <footer class="ak-home__footer" *ngIf="availableVersion"><span class="ak-info">&#8505;</span> New version available.
+  @if (availableVersion) {
+    <footer class="ak-home__footer"><span class="ak-info">&#8505;</span> New version available.
     <button (click)="reload()">Update</button>
   </footer>
-  <header class="ak-page__header">
-    <ak-home-header></ak-home-header>
-  </header>
-  <section class="ak-page__content">
-    <ak-form></ak-form>
-    <ak-appkeeps-card [appKeeps]="appKeeps$ | async"
-                      [total]="todayTotal$ | async"
-                      when="today">
-    </ak-appkeeps-card>
-    <ng-container *ngIf="thisMonthTotal$ | async; let thisMonth">
-      <ak-categories-card [inCategories]="thisMonth.inCategories" [outCategories]="thisMonth.outCategories"
-                          title="this month">
-        <footer class="ak-card__action">
-          <a routerLink="/details/month">
-            <ak-icon type="more" size="small" mood="indifferent"></ak-icon>
-            <span>More</span>
-          </a>
-        </footer>
-      </ak-categories-card>
-    </ng-container>
-    <ak-recap-card [recaps]="thisYearTotal$ | async" title="this year">
+}
+<header class="ak-page__header">
+  <ak-home-header></ak-home-header>
+</header>
+<section class="ak-page__content">
+  <ak-form></ak-form>
+  <ak-appkeeps-card [appKeeps]="appKeeps$ | async"
+    [total]="todayTotal$ | async"
+    when="today">
+  </ak-appkeeps-card>
+  @if (thisMonthTotal$ | async; as thisMonth) {
+    <ak-categories-card [inCategories]="thisMonth.inCategories" [outCategories]="thisMonth.outCategories"
+      title="this month">
       <footer class="ak-card__action">
-        <a routerLink="/details/year">
+        <a routerLink="/details/month">
           <ak-icon type="more" size="small" mood="indifferent"></ak-icon>
           <span>More</span>
         </a>
       </footer>
-    </ak-recap-card>
-    <ak-recap-card [recaps]="overallTotal$ | async" title="overall">
-      <footer class="ak-card__action">
-        <a routerLink="/details/overall">
-          <ak-icon type="more" size="small" mood="indifferent"></ak-icon>
-          <span>More</span>
-        </a>
-      </footer>
-    </ak-recap-card>
-  </section>
+    </ak-categories-card>
+  }
+  <ak-recap-card [recaps]="thisYearTotal$ | async" title="this year">
+    <footer class="ak-card__action">
+      <a routerLink="/details/year">
+        <ak-icon type="more" size="small" mood="indifferent"></ak-icon>
+        <span>More</span>
+      </a>
+    </footer>
+  </ak-recap-card>
+  <ak-recap-card [recaps]="overallTotal$ | async" title="overall">
+    <footer class="ak-card__action">
+      <a routerLink="/details/overall">
+        <ak-icon type="more" size="small" mood="indifferent"></ak-icon>
+        <span>More</span>
+      </a>
+    </footer>
+  </ak-recap-card>
+</section>
 </div>

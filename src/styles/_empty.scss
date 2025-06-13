@@ -1,17 +1,20 @@
+@use "./decisions";
+@use "./mixins/utils";
+
 .ak-empty {
   flex-grow: 1;
 
   width: 100%;
-  @include ak-flex-center();
   flex-direction: column;
+  @include utils.ak-flex-center();
 
   & > .ak-empty__message {
-    color: $ak-color-shadow;
-    padding-top: $ak-size-m;
+    color: decisions.$ak-color-shadow;
+    padding-top: decisions.$ak-size-m;
   }
 
   & > .ak-empty__svg {
-    fill: $ak-color-border;
+    fill: decisions.$ak-color-border;
     width: 5rem;
     height: 5rem;
   }

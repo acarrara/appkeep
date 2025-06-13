@@ -1,24 +1,35 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Listen } from '../../redux/listen.decorator';
-import { Observable } from 'rxjs';
-import { NotificationService } from '../notification.service';
-import { ApiAuthenticationService } from '../api-authentication.service';
-import { Router } from '@angular/router';
-import { UserInfo } from '../models/UserInfo';
-import { StoreService } from '../../redux/store.service';
-import { AppKeepState } from '../models/AppKeepState';
-import { AppActions } from '../app.actions';
-import { Location } from '@angular/common';
+import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {NotificationService} from '../notification.service';
+import {ApiAuthenticationService} from '../api-authentication.service';
+import {Router} from '@angular/router';
+import {UserInfo} from '../models/UserInfo';
+import {StoreService} from '../../redux/store.service';
+import {AppKeepState} from '../models/AppKeepState';
+import {AppActions} from '../app.actions';
+import {AsyncPipe, Location} from '@angular/common';
+import {NavigationHeaderComponent} from "../navigation-header/navigation-header.component";
+import {IconComponent} from "../icon/icon.component";
+import {FormsModule} from "@angular/forms";
+import {MonthlyAppkeepsCardComponent} from "../monthly-appkeeps-card/monthly-appkeeps-card.component";
 
 @Component({
   selector: 'ak-profile',
   templateUrl: 'profile.component.html',
+  imports: [
+    NavigationHeaderComponent,
+    IconComponent,
+    AsyncPipe,
+    FormsModule,
+    MonthlyAppkeepsCardComponent
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileComponent implements OnInit {
 
-  @Listen(['users'])
-  users$: Observable<UserInfo[]>;
+  store: StoreService<AppKeepState> = inject(StoreService);
+
+  users$: Observable<UserInfo[]> = this.store.get(['users']);
 
   user: UserInfo;
 
@@ -29,7 +40,6 @@ export class ProfileComponent implements OnInit {
               private notificationService: NotificationService,
               private router: Router,
               private location: Location,
-              private store: StoreService<AppKeepState>,
               private actions: AppActions) {
     this.lookupUser();
   }

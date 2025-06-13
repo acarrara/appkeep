@@ -16,7 +16,7 @@ describe('AuthInterceptor', () => {
 
   it('should leave request as it is when requesting generic resource', () => {
     const request = new HttpRequest<any>('GET', '/generic/resource');
-    spyOn(next, 'handle');
+    vi.spyOn(next, 'handle');
 
     authInterceptor.intercept(request, next);
 
@@ -25,12 +25,12 @@ describe('AuthInterceptor', () => {
 
   it('should add bearer authorization to request when requesting api resource', () => {
     const request = new HttpRequest<any>('GET', '/api/resource');
-    const spy: Spy = spyOn(next, 'handle');
+    const spy = vi.spyOn(next, 'handle');
 
     authInterceptor.intercept(request, next);
 
     expect(next.handle).toHaveBeenCalled();
-    const actualRequest: HttpRequest<any> = spy.calls.mostRecent().args[0];
+    const actualRequest: HttpRequest<any> = spy.mock.calls[0][0];
     expect(actualRequest.headers.get('apiAuthorization')).toEqual('Bearer aToken');
   });
 });

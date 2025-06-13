@@ -1,10 +1,24 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Recap } from '../models/Recap';
 import { Category } from '../models/Category';
+import {CardComponent} from "../card/card.component";
+import {RouterLink} from "@angular/router";
+import {MonthNamePipe} from "../pipes/month-name.pipe";
+import {LowerCasePipe} from "@angular/common";
+import {AmountPipe} from "../pipes/amount.pipe";
+import {IncomeIndicatorComponent} from "../income-indicator/income-indicator.component";
 
 @Component({
   selector: 'ak-category-recap-card',
   templateUrl: 'category-recap-card.component.html',
+  imports: [
+    CardComponent,
+    RouterLink,
+    MonthNamePipe,
+    LowerCasePipe,
+    AmountPipe,
+    IncomeIndicatorComponent
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoryRecapCardComponent implements OnChanges {

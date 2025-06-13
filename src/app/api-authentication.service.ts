@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { first, flatMap, map } from 'rxjs/operators';
-import { AuthService, GoogleLoginProvider } from 'angularx-social-login';
-import { BehaviorSubject, from, Observable, of } from 'rxjs';
-import { AppKeepState } from './models/AppKeepState';
-import { StoreService } from '../redux/store.service';
-import { AppActions } from './app.actions';
-import { UserInfo } from './models/UserInfo';
+import {first, flatMap, map} from 'rxjs/operators';
+import {SocialAuthService, GoogleLoginProvider} from '@abacritt/angularx-social-login';
+import {BehaviorSubject, from, Observable, of} from 'rxjs';
+import {AppKeepState} from './models/AppKeepState';
+import {StoreService} from '../redux/store.service';
+import {AppActions} from './app.actions';
+import {UserInfo} from './models/UserInfo';
 
 @Injectable()
 export class ApiAuthenticationService {
@@ -17,7 +17,7 @@ export class ApiAuthenticationService {
   apiToken$: Observable<string> = this.apiTokenSubject$.asObservable();
 
   constructor(private http: HttpClient,
-              private auth: AuthService,
+              private auth: SocialAuthService,
               private store: StoreService<AppKeepState>,
               private actions: AppActions) {
   }

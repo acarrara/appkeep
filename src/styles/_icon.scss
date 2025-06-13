@@ -1,25 +1,28 @@
+@use "./decisions";
+@use "./mixins/utils";
+
 .ak-icon {
-  height: $ak-size-l;
-  width: $ak-size-l;
+  height: decisions.$ak-size-l;
+  width: decisions.$ak-size-l;
 
-  stroke: $ak-color-dark;
+  stroke: decisions.$ak-color-dark;
 
-  @include ak-flex-center();
+  @include utils.ak-flex-center();
 
   & > .ak-icon__svg {
-    height: $ak-size-l;
+    height: decisions.$ak-size-l;
   }
 
   &.ak-icon--positive {
-    stroke: $ak-color-positive-strong;
+    stroke: decisions.$ak-color-positive-strong;
   }
 
   &.ak-icon--negative {
-    stroke: $ak-color-negative-strong;
+    stroke: decisions.$ak-color-negative-strong;
   }
 
   &.ak-icon--indifferent {
-    stroke: $ak-color-light;
+    stroke: decisions.$ak-color-light;
   }
 
   &.ak-icon--small {
@@ -32,11 +35,11 @@
   }
 
   &.ak-icon--big {
-    height: $ak-size-xl;
-    width: $ak-size-xl;
+    height: decisions.$ak-size-xl;
+    width: decisions.$ak-size-xl;
 
     & > .ak-icon__svg {
-      height: $ak-size-xl;
+      height: decisions.$ak-size-xl;
     }
   }
 }

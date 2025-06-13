@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Details } from '../models/Details';
 import { StoreService } from '../../redux/store.service';
@@ -8,7 +8,7 @@ import { AppActions } from '../app.actions';
 import { take } from 'rxjs/operators';
 
 @Injectable()
-export class MonthResolveGuard implements Resolve<Details> {
+export class MonthResolveGuard  {
 
   constructor(private store: StoreService<AppKeepState>, private actions: AppActions) {
   }

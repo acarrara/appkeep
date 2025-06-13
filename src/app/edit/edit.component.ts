@@ -1,35 +1,47 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AppKeep } from '../models/AppKeep';
-import { ActivatedRoute } from '@angular/router';
-import { StoreService } from '../../redux/store.service';
-import { AppKeepState } from '../models/AppKeepState';
-import { map } from 'rxjs/operators';
-import { AppActions } from '../app.actions';
-import { Option } from '../models/Option';
-import { OptionableComponent } from '../optionable.component';
-import { Listen } from '../../redux/listen.decorator';
-import { Observable } from 'rxjs';
-import { Category } from '../models/Category';
-import { Location } from '@angular/common';
-import { NgForm } from '@angular/forms';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {AppKeep} from '../models/AppKeep';
+import {ActivatedRoute} from '@angular/router';
+import {map} from 'rxjs/operators';
+import {AppActions} from '../app.actions';
+import {Option} from '../models/Option';
+import {OptionableComponent} from '../optionable.component';
+import {Observable} from 'rxjs';
+import {Category} from '../models/Category';
+import {AsyncPipe, DatePipe, Location} from '@angular/common';
+import {FormsModule, NgForm} from '@angular/forms';
+import {NavigationHeaderComponent} from '../navigation-header/navigation-header.component';
+import {CategoryHuePipe} from '../pipes/category-hue.pipe';
+import {AmountPipe} from '../pipes/amount.pipe';
+import {FocusOnErrorDirective} from '../focus-on-error.directive';
+import {IconComponent} from '../icon/icon.component';
+import {InputErrorComponent} from '../input-error/input-error.component';
 
 @Component({
   selector: 'ak-edit',
   templateUrl: 'edit.component.html',
+  imports: [
+    AsyncPipe,
+    NavigationHeaderComponent,
+    CategoryHuePipe,
+    AmountPipe,
+    DatePipe,
+    FormsModule,
+    FocusOnErrorDirective,
+    IconComponent,
+    InputErrorComponent
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditComponent extends OptionableComponent {
 
-  @Listen(['users'], users => users.map(user => user.email))
-  public users$: Observable<string[]>;
+  public users$: Observable<string[]> = this.store.get(['users'], users => users.map(user => user.email));
 
   public appKeep: AppKeep;
 
   constructor(private activatedRoute: ActivatedRoute,
-              store: StoreService<AppKeepState>,
               actions: AppActions,
               private location: Location) {
-    super(store, actions);
+    super(actions);
     this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('id'))).subscribe(id => {
       this.appKeep = {
         ...this.lookupAppKeep(id, ['appKeeps']) ||

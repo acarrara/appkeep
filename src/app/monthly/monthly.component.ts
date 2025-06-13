@@ -1,36 +1,48 @@
-import { ChangeDetectionStrategy, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { OptionableComponent } from '../optionable.component';
-import { AppKeep } from '../models/AppKeep';
-import { AppKeepState } from '../models/AppKeepState';
-import { AppActions } from '../app.actions';
-import { StoreService } from '../../redux/store.service';
-import { Observable } from 'rxjs';
-import { UserInfo } from '../models/UserInfo';
-import { Location } from '@angular/common';
-import { Listen } from '../../redux/listen.decorator';
-import { ActivatedRoute } from '@angular/router';
-import { Category } from '../models/Category';
-import { NgForm, NgModel } from '@angular/forms';
+import {ChangeDetectionStrategy, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {OptionableComponent} from '../optionable.component';
+import {AppKeep} from '../models/AppKeep';
+import {AppActions} from '../app.actions';
+import {Observable} from 'rxjs';
+import {UserInfo} from '../models/UserInfo';
+import {AsyncPipe, Location} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
+import {Category} from '../models/Category';
+import {FormsModule, NgForm, NgModel} from '@angular/forms';
+import {AmountPipe} from "../pipes/amount.pipe";
+import {IconComponent} from "../icon/icon.component";
+import {NavigationHeaderComponent} from "../navigation-header/navigation-header.component";
+import {CategoryHuePipe} from "../pipes/category-hue.pipe";
+import {InputErrorComponent} from "../input-error/input-error.component";
+import {FocusOnErrorDirective} from "../focus-on-error.directive";
 
 @Component({
   selector: 'ak-monthly',
   templateUrl: 'monthly.component.html',
+  imports: [
+    FormsModule,
+    AmountPipe,
+    IconComponent,
+    NavigationHeaderComponent,
+    CategoryHuePipe,
+    InputErrorComponent,
+    AsyncPipe,
+    FocusOnErrorDirective
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MonthlyComponent extends OptionableComponent implements OnInit {
 
-  @Listen(['users'], users => users.map(user => user.email))
-  users$: Observable<UserInfo[]>;
+  users$: Observable<UserInfo[]> = this.store.get(['users'], users => users.map(user => user.email));
+
   monthlyAppkeep: AppKeep;
   edit: boolean;
 
   @ViewChildren('NgModel') models: QueryList<NgModel>;
 
-  constructor(store: StoreService<AppKeepState>,
-              actions: AppActions,
+  constructor(actions: AppActions,
               private location: Location,
               private route: ActivatedRoute) {
-    super(store, actions);
+    super(actions);
   }
 
   ngOnInit(): void {

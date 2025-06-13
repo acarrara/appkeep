@@ -1,21 +1,20 @@
-import { Listen } from '../redux/listen.decorator';
-import { Observable } from 'rxjs';
-import { Option } from './models/Option';
-import { StoreService } from '../redux/store.service';
-import { AppKeepState } from './models/AppKeepState';
-import { AppActions } from './app.actions';
-import { Category } from './models/Category';
-import { AppKeep } from './models/AppKeep';
+import {Observable} from 'rxjs';
+import {Option} from './models/Option';
+import {StoreService} from '../redux/store.service';
+import {AppKeepState} from './models/AppKeepState';
+import {AppActions} from './app.actions';
+import {Category} from './models/Category';
+import {AppKeep} from './models/AppKeep';
+import {inject} from '@angular/core';
 
 export abstract class OptionableComponent {
 
-  @Listen(['options'])
-  public options$: Observable<Option[]>;
-  @Listen(['categories'])
-  public categories$: Observable<Category[]>;
+  store: StoreService<AppKeepState> = inject(StoreService);
 
-  protected constructor(protected store: StoreService<AppKeepState>,
-                        protected actions: AppActions) {
+  public options$: Observable<Option[]> = this.store.get(['options']);
+  public categories$: Observable<Category[]> = this.store.get(['categories']);
+
+  protected constructor(protected actions: AppActions) {
   }
 
   public onChange(appKeep: AppKeep, options: Option[], categories: Category[]) {

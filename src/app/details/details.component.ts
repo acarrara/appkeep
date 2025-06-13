@@ -1,10 +1,28 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Details } from '../models/Details';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Details} from '../models/Details';
+import {NavigationHeaderComponent} from '../navigation-header/navigation-header.component';
+import {AmountPipe} from '../pipes/amount.pipe';
+import {UserHuePipe} from '../pipes/user-hue.pipe';
+import {MonthNamePipe} from '../pipes/month-name.pipe';
+import {UserNamePipe} from '../pipes/user-name.pipe';
+import {IncomeIndicatorComponent} from '../income-indicator/income-indicator.component';
+import {RecapCardComponent} from '../recap-card/recap-card.component';
+import {CategoriesCardComponent} from '../categories-card/categories-card.component';
 
 @Component({
   selector: 'ak-details',
   templateUrl: 'details.component.html',
+  imports: [
+    NavigationHeaderComponent,
+    AmountPipe,
+    UserHuePipe,
+    MonthNamePipe,
+    UserNamePipe,
+    IncomeIndicatorComponent,
+    RecapCardComponent,
+    CategoriesCardComponent
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DetailsComponent {

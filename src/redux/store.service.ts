@@ -4,7 +4,9 @@ import { Action } from './Action';
 import { StoreSetup } from './StoreSetup';
 import { Reducer } from './Reducer';
 import { Epic } from './Epic';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class StoreService<State> {
 
   public static instance: any;

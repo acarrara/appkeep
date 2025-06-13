@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { ApiAuthenticationService } from '../api-authentication.service';
 
 @Component({
-  selector: 'ak-login',
-  templateUrl: 'login.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'ak-login',
+    templateUrl: 'login.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
 

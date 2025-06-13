@@ -18,12 +18,12 @@ describe('FocusOnErrorDirective', () => {
   };
 
   beforeEach(() => {
-    spyOn(anElement, 'focus');
-    spyOn(anotherElement, 'focus');
+    vi.spyOn(anElement, 'focus');
+    vi.spyOn(anotherElement, 'focus');
   });
 
   it('focus the first element when there is one', () => {
-    spyOn(nativeElement, 'querySelectorAll').and.returnValue([anElement] as any);
+    vi.spyOn(nativeElement, 'querySelectorAll').mockReturnValue([anElement] as any);
 
     directive.onFormSubmit();
 
@@ -32,7 +32,7 @@ describe('FocusOnErrorDirective', () => {
   });
 
   it('focus the first element when there is none', () => {
-    spyOn(nativeElement, 'querySelectorAll').and.returnValue([] as any);
+    vi.spyOn(nativeElement, 'querySelectorAll').mockReturnValue([] as any);
 
     directive.onFormSubmit();
 
@@ -40,7 +40,7 @@ describe('FocusOnErrorDirective', () => {
   });
 
   it('focus the first element when there are two', () => {
-    spyOn(nativeElement, 'querySelectorAll').and.returnValue([anElement, anotherElement] as any);
+    vi.spyOn(nativeElement, 'querySelectorAll').mockReturnValue([anElement, anotherElement] as any);
 
     directive.onFormSubmit();
 

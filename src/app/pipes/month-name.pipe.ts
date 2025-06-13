@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'akMonthName'
+    name: 'akMonthName'
 })
-export class MonthNamePipePipe implements PipeTransform {
+export class MonthNamePipe implements PipeTransform {
   private monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];

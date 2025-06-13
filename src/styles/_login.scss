@@ -1,13 +1,15 @@
+@use "./mixins/utils";
+
 .ak-login {
   height: 100vh;
-  @include ak-flex-column();
+  @include utils.ak-flex-column();
   background-color: white;
 }
 
 .ak-login__form {
   flex-grow: 1;
 
-  @include ak-flex-column();
+  @include utils.ak-flex-column();
 
   text-align: center;
 }

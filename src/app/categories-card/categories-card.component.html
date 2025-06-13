@@ -1,36 +1,40 @@
-<ng-container *ngIf="categories$ | async; let categories">
+@if (categories$ | async; as categories) {
   <ak-card [total]="inTotal + outTotal" [title]="title" [indicator]="true">
     <div class="ak-card__content">
       <ol>
-        <li *ngFor="let category of outCategories; let i = index" class="ak-item">
-          <a class="ak-item__what" [routerLink]="categoryLink(category.category)">
+        @for (category of outCategories; track category; let i = $index) {
+          <li class="ak-item">
+            <a class="ak-item__what" [routerLink]="categoryLink(category.category)">
             <div class="ak-item-percentage ak-item-percentage--{{category.category | akCategoryHue: categories}}
             ak-item-percentage--border-{{category.category | akCategoryHue: categories}}"
-                 [style.width]="appKeepPercentage(category)"
-                 [attr.data-percentage]="appKeepRelativePercentage(category)">
+                [style.width]="appKeepPercentage(category)"
+                [attr.data-percentage]="appKeepRelativePercentage(category)">
+              </div>
+              <span class="ak-badge">{{category.category | lowercase}}</span>
+            </a>
+            <div class="ak-item__amount">
+              <span>{{category.total | akAmount}}</span>
+              <ak-income-indicator [income]="category.total > 0"></ak-income-indicator>
             </div>
-            <span class="ak-badge">{{category.category | lowercase}}</span>
-          </a>
-          <div class="ak-item__amount">
-            <span>{{category.total | akAmount}}</span>
-            <ak-income-indicator [income]="category.total > 0"></ak-income-indicator>
-          </div>
-        </li>
-        <li *ngFor="let category of inCategories; let i = index" class="ak-item">
-          <a class="ak-item__what" [routerLink]="categoryLink(category.category)">
+          </li>
+        }
+        @for (category of inCategories; track category; let i = $index) {
+          <li class="ak-item">
+            <a class="ak-item__what" [routerLink]="categoryLink(category.category)">
             <div class="ak-item-percentage ak-item-percentage--{{category.category | akCategoryHue: categories}}
             ak-item-percentage--border-{{category.category | akCategoryHue: categories}}"
-                 [style.width]="incomePercentage(category)"
-                 [attr.data-percentage]="incomeRelativePercentage(category)"></div>
-            <span class="ak-badge">{{category.category | lowercase}}</span>
-          </a>
-          <div class="ak-item__amount">
-            <span>{{category.total | akAmount}}</span>
-            <ak-income-indicator [income]="category.total > 0"></ak-income-indicator>
-          </div>
-        </li>
+                [style.width]="incomePercentage(category)"
+              [attr.data-percentage]="incomeRelativePercentage(category)"></div>
+              <span class="ak-badge">{{category.category | lowercase}}</span>
+            </a>
+            <div class="ak-item__amount">
+              <span>{{category.total | akAmount}}</span>
+              <ak-income-indicator [income]="category.total > 0"></ak-income-indicator>
+            </div>
+          </li>
+        }
       </ol>
       <ng-content></ng-content>
     </div>
   </ak-card>
-</ng-container>
+}

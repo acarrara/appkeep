@@ -11,7 +11,9 @@ import { Category } from './models/Category';
 import { CategoryStatistics } from './models/CategoryStatistics';
 import { User } from './models/User';
 import { Details } from './models/Details';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> {
 
   public getAppKeepReducers(): Reducer<AppKeepState, AppKeep | AppKeep[]>[] {

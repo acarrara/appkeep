@@ -8,7 +8,9 @@ import { UserInfo } from './models/UserInfo';
 import { User } from './models/User';
 import { Range } from './models/Range';
 import { Details } from './models/Details';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class AppActions {
 
   public static LOAD_APPKEEPS = 'LOAD_APPKEEPS';

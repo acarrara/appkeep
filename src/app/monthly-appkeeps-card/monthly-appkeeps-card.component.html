@@ -1,18 +1,22 @@
-<ng-container *ngIf="categories$ | async; let categories">
+@if (categories$ | async; as categories) {
   <ak-card [total]="monthlyAppkeepsTotal$ | async" title="Monthly expenses">
     <div class="ak-card__content">
       <ol>
-        <li *ngFor="let appKeep of monthlyAppKeeps$ | async" class="ak-item"
-            [ngClass]="{'ak-item--updating': appKeep._updating}">
-          <a class="ak-item__what" routerLink="/monthly/{{appKeep._id}}">
-            <div>{{appKeep.title}}</div>
-            <span class="ak-badge  ak-badge--{{appKeep.category | akCategoryHue: categories}}">
-          <span>{{appKeep.category | lowercase}}</span>
-        </span>
-          </a>
-          <div class="ak-item__editing" *ngIf="appKeep._updating">updating...</div>
-          <div class="ak-item__amount">{{appKeep.amount | akAmount}}</div>
-        </li>
+        @for (appKeep of monthlyAppKeeps$ | async; track appKeep) {
+          <li class="ak-item"
+              [ngClass]="{'ak-item--updating': appKeep._updating}">
+            <a class="ak-item__what" routerLink="/monthly/{{appKeep._id}}">
+              <div>{{ appKeep.title }}</div>
+              <span class="ak-badge  ak-badge--{{appKeep.category | akCategoryHue: categories}}">
+                <span>{{ appKeep.category | lowercase }}</span>
+              </span>
+            </a>
+            @if (appKeep._updating) {
+              <div class="ak-item__editing">updating...</div>
+            }
+            <div class="ak-item__amount">{{ appKeep.amount | akAmount }}</div>
+          </li>
+        }
       </ol>
       <div class="ak-card__action">
         <a routerLink="/monthly">
@@ -21,4 +25,4 @@
       </div>
     </div>
   </ak-card>
-</ng-container>
+}

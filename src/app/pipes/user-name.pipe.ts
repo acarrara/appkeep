@@ -3,8 +3,8 @@ import { UserInfo } from '../models/UserInfo';
 import { StoreService } from '../../redux/store.service';
 
 @Pipe({
-  name: 'akUserName',
-  pure: false
+    name: 'akUserName',
+    pure: false
 })
 export class UserNamePipe implements PipeTransform {
 

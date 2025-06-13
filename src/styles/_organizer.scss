@@ -1,3 +1,8 @@
+@use "./decisions";
+@use "./mixins/input";
+@use "./mixins/utils";
+@use "./mixins/shadow";
+
 .ak-organizer {
   display: flex;
   align-items: center;
@@ -9,7 +14,7 @@
   }
 
   & > * + * {
-    margin-left: $ak-size-m;
+    margin-left: decisions.$ak-size-m;
   }
 
   & > .ak-organizer__fill {
@@ -24,11 +29,11 @@
   justify-content: space-between;
 
   & > input {
-    @include visually-hidden();
+    @include utils.visually-hidden();
   }
 
   & > input:focus + label {
-    @include ak-input-focus();
+    @include input.ak-input-focus();
   }
 
   & > label {
@@ -37,19 +42,19 @@
     display: inline-flex;
     align-items: center;
 
-    width: $ak-size-xxl;
-    height: $ak-size-l + $ak-size-m;
+    width: decisions.$ak-size-xxl;
+    height: decisions.$ak-size-l + decisions.$ak-size-m;
 
-    border-radius: $ak-size-l;
+    border-radius: decisions.$ak-size-l;
 
-    background-color: $ak-color-negative-normal;
-    stroke: $ak-color-negative-normal;
+    background-color: decisions.$ak-color-negative-normal;
+    stroke: decisions.$ak-color-negative-normal;
 
     cursor: pointer;
 
     transition: background-color 0.2s ease-in-out, stroke 0.2s ease-in-out;
 
-    @include ak-shadow-small-inset();
+    @include shadow.ak-shadow-small-inset();
 
     & > .ak-options-toggle__background {
       position: absolute;
@@ -57,32 +62,32 @@
       align-items: center;
       justify-content: space-around;
       width: 100%;
-      stroke: $ak-color-light;
+      stroke: decisions.$ak-color-light;
     }
 
     & > .ak-options-toggle__handle {
       position: absolute;
 
-      height: $ak-size-l;
-      width: $ak-size-l;
+      height: decisions.$ak-size-l;
+      width: decisions.$ak-size-l;
 
-      margin-left: $ak-size-s;
+      margin-left: decisions.$ak-size-s;
 
       border-radius: 50%;
-      background-color: $ak-color-light;
+      background-color: decisions.$ak-color-light;
 
-      @include ak-shadow-small();
-      @include ak-transition();
+      @include shadow.ak-shadow-small();
+      @include utils.ak-transition();
     }
   }
 
   & > input:checked + label {
-    background-color: $ak-color-positive-normal;
+    background-color: decisions.$ak-color-positive-normal;
   }
 
   & > input:checked + label {
     & > .ak-options-toggle__handle {
-      transform: translateX($ak-size-l + $ak-size-m);
+      transform: translateX(decisions.$ak-size-l + decisions.$ak-size-m);
     }
   }
 }

@@ -1,37 +1,40 @@
+@use "./decisions";
+@use "sass:list";
+
 .ak-badge {
   display: inline-block;
 
-  font-size: $ak-size-m + $ak-size-s;
+  font-size: decisions.$ak-size-m + decisions.$ak-size-s;
 
-  border: 1px solid $ak-color-border;
-  border-radius: $ak-size-s;
+  border: 1px solid decisions.$ak-color-border;
+  border-radius: decisions.$ak-size-s;
 
-  padding: $ak-size-xs $ak-size-s;
+  padding: decisions.$ak-size-xs decisions.$ak-size-s;
 
-  margin-top: $ak-size-m;
+  margin-top: decisions.$ak-size-m;
 
-  border-bottom-width: $ak-size-xs;
-  border-bottom-color: $ak-color-shadow;
+  border-bottom-width: decisions.$ak-size-xs;
+  border-bottom-color: decisions.$ak-color-shadow;
 
-  @each $_hue in $ak-hues {
-    $i: index($ak-hues, $_hue);
+  @each $_hue in decisions.$ak-hues {
+    $i: list.index(decisions.$ak-hues, $_hue);
     &.ak-badge--#{$i} {
-      background-color: ak-color(95, 80, $_hue);
-      border-color: ak-color(75, 90, $_hue);
+      background-color: decisions.ak-color(95, 80, $_hue);
+      border-color: decisions.ak-color(75, 90, $_hue);
     }
   }
 
   & + .ak-badge {
-    margin-left: $ak-size-s;
+    margin-left: decisions.$ak-size-s;
   }
 
   &.ak-badge--negative {
-    background-color: $ak-color-negative-light;
-    border-color: $ak-color-negative-normal;
+    background-color: decisions.$ak-color-negative-light;
+    border-color: decisions.$ak-color-negative-normal;
   }
 
   &.ak-badge--positive {
-    background-color: $ak-color-positive-light;
-    border-color: $ak-color-positive-normal;
+    background-color: decisions.$ak-color-positive-light;
+    border-color: decisions.$ak-color-positive-normal;
   }
 }

@@ -1,31 +1,43 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { StoreService } from '../../redux/store.service';
-import { AppKeepState } from '../models/AppKeepState';
-import { Category } from '../models/Category';
-import { AppActions } from '../app.actions';
-import { Observable } from 'rxjs';
-import { Listen } from '../../redux/listen.decorator';
-import { AppKeep } from '../models/AppKeep';
-import { Location } from '@angular/common';
-import { Recap } from '../models/Recap';
-import { sumAppKeeps } from '../sumAppKeeps';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {StoreService} from '../../redux/store.service';
+import {AppKeepState} from '../models/AppKeepState';
+import {Category} from '../models/Category';
+import {AppActions} from '../app.actions';
+import {Observable} from 'rxjs';
+import {AppKeep} from '../models/AppKeep';
+import {AsyncPipe, Location} from '@angular/common';
+import {Recap} from '../models/Recap';
+import {sumAppKeeps} from '../sumAppKeeps';
+import {NavigationHeaderComponent} from '../navigation-header/navigation-header.component';
+import {MonthNamePipe} from '../pipes/month-name.pipe';
+import {FormsModule} from '@angular/forms';
+import {IconComponent} from '../icon/icon.component';
+import {AppkeepsCardComponent} from '../appkeeps-card/appkeeps-card.component';
+import {CategoryRecapCardComponent} from '../category-recap-card/category-recap-card.component';
 
 @Component({
   selector: 'ak-category',
   templateUrl: 'category.component.html',
+  imports: [
+    NavigationHeaderComponent,
+    MonthNamePipe,
+    FormsModule,
+    IconComponent,
+    AppkeepsCardComponent,
+    CategoryRecapCardComponent,
+    AsyncPipe
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoryComponent {
 
-  @Listen(['categoryStatistics', 'months'])
-  thisYearStatistics$: Observable<Recap[]>;
-  @Listen(['categoryStatistics', 'years'])
-  overallStatistics$: Observable<Recap[]>;
-  @Listen(['categoryStatistics', 'thisMonthAppKeeps'])
-  thisMonthAppKeeps$: Observable<AppKeep[]>;
-  @Listen(['categoryStatistics', 'thisMonthAppKeeps'], sumAppKeeps)
-  thisMonthTotal$: Observable<number>;
+  store: StoreService<AppKeepState> = inject(StoreService);
+
+  thisYearStatistics$: Observable<Recap[]> = this.store.get(['categoryStatistics', 'months']);
+  overallStatistics$: Observable<Recap[]> = this.store.get(['categoryStatistics', 'years']);
+  thisMonthAppKeeps$: Observable<AppKeep[]> = this.store.get(['categoryStatistics', 'thisMonthAppKeeps']);
+  thisMonthTotal$: Observable<number> = this.store.get(['categoryStatistics', 'thisMonthAppKeeps'], sumAppKeeps);
 
   category: Category;
 
@@ -35,7 +47,6 @@ export class CategoryComponent {
   private originalCategory: string;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private store: StoreService<AppKeepState>,
               private location: Location,
               private actions: AppActions) {
     this.activatedRoute.paramMap.subscribe(paramMap => {

@@ -1,14 +1,19 @@
+@use "./decisions";
+@use "./button";
+@use "./mixins/shadow";
+@use "./mixins/utils";
+
 .ak-layout {
   width: 100vw;
   height: 100vh;
 
-  background-color: $ak-color-light;
-
-  @include ak-flex-center();
+  background-color: decisions.$ak-color-light;
 
   flex-direction: column;
 
   overflow: hidden;
+
+  @include utils.ak-flex-center();
 
   & > .ak-layout__main {
     height: 100vh;
@@ -16,20 +21,20 @@
 
     max-width: 30rem;
 
-    color: $ak-color-dark;
-    background-color: $ak-color-background;
+    color: decisions.$ak-color-dark;
+    background-color: decisions.$ak-color-background;
   }
 }
 
 .ak-form {
-  border-bottom-left-radius: $ak-size-m;
-  border-bottom-right-radius: $ak-size-m;
+  border-bottom-left-radius: decisions.$ak-size-m;
+  border-bottom-right-radius: decisions.$ak-size-m;
 
-  background-color: $ak-color-light;
+  background-color: decisions.$ak-color-light;
 
-  @include ak-shadow-standard();
+  @include shadow.ak-shadow-standard();
 
-  margin: 0 $ak-size-m $ak-size-l;
+  margin: 0 decisions.$ak-size-m decisions.$ak-size-l;
 
   & .ak-form__buttons {
     display: flex;
@@ -39,27 +44,27 @@
     }
 
     & > *:first-child {
-      border-bottom-left-radius: $ak-size-m;
+      border-bottom-left-radius: decisions.$ak-size-m;
     }
 
     & > *:last-child {
-      border-bottom-right-radius: $ak-size-m;
+      border-bottom-right-radius: decisions.$ak-size-m;
     }
   }
 
   & .ak-form__inputs {
-    padding: 0 $ak-size-l $ak-size-l;
+    padding: 0 decisions.$ak-size-l decisions.$ak-size-l;
   }
 }
 
 .ak-edit {
 
   & > .ak-edit__header {
-    background-color: $ak-color-light;
+    background-color: decisions.$ak-color-light;
 
-    padding: $ak-size-s $ak-size-l;
+    padding: decisions.$ak-size-s decisions.$ak-size-l;
 
-    margin: 0 $ak-size-m;
+    margin: 0 decisions.$ak-size-m;
 
     display: flex;
     align-items: center;
@@ -70,13 +75,13 @@
 
     & > *:last-child {
       flex-grow: 0;
-      @include ak-button();
+      @include button.ak-button();
     }
   }
 }
 
 .ak-page {
-  @include ak-flex-column();
+  @include utils.ak-flex-column();
 
   height: 100vh;
 
@@ -92,25 +97,25 @@
 }
 
 .ak-home__footer {
-  background-color: $ak-color-primary;
-  color: $ak-color-light;
-  padding: $ak-size-m;
+  background-color: decisions.$ak-color-primary;
+  color: decisions.$ak-color-light;
+  padding: decisions.$ak-size-m;
 
   & > button {
-    @include ak-button();
+    @include button.ak-button();
     text-decoration: underline;
   }
 }
 
 .ak-info {
-  height: $ak-size-xl;
-  width: $ak-size-xl;
-  border: 2px solid $ak-color-light;
+  height: decisions.$ak-size-xl;
+  width: decisions.$ak-size-xl;
+  border: 2px solid decisions.$ak-color-light;
 
   border-radius: 50%;
   display: inline-flex;
   justify-content: center;
   align-items: center;
 
-  margin-right: $ak-size-m;
+  margin-right: decisions.$ak-size-m;
 }

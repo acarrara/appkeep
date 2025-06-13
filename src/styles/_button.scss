@@ -1,5 +1,10 @@
+@use "./decisions";
+@use "./mixins/shadow";
+@use "./mixins/input";
+@use "./mixins/utils";
+
 @mixin ak-button() {
-  padding: $ak-size-m;
+  padding: decisions.$ak-size-m;
 
   border: none;
   outline: 0;
@@ -9,8 +14,8 @@
     outline: 0;
   }
 
-  min-height: $ak-size-xl;
-  min-width: $ak-size-xl;
+  min-height: decisions.$ak-size-xl;
+  min-width: decisions.$ak-size-xl;
 
   background-color: inherit;
   color: inherit;
@@ -22,33 +27,33 @@
   cursor: pointer;
 
   &:focus {
-    @include ak-input-focus();
+    @include input.ak-input-focus();
   }
 }
 
 @mixin ak-button-primary() {
   border-style: solid;
   border-width: 1px;
-  border-color: $ak-color-primary;
+  border-color: decisions.$ak-color-primary;
   outline: 0;
 
-  color: $ak-color-light;
-  background-color: $ak-color-primary;
+  color: decisions.$ak-color-light;
+  background-color: decisions.$ak-color-primary;
 
-  @include ak-shadow-small();
+  @include shadow.ak-shadow-small();
 
   &:focus {
-    @include ak-input-focus();
+    @include input.ak-input-focus();
   }
 
   &:hover {
-    background-color: $ak-color-button-hover;
-    border-color: $ak-color-button-hover;
+    background-color: decisions.$ak-color-button-hover;
+    border-color: decisions.$ak-color-button-hover;
   }
 
   &:active {
-    background-color: $ak-color-button-active;
-    border-color: $ak-color-button-active;
+    background-color: decisions.$ak-color-button-active;
+    border-color: decisions.$ak-color-button-active;
   }
 }
 
@@ -58,21 +63,21 @@
   @include ak-button();
   @include ak-button-primary();
 
-  color: $ak-color-light;
-  stroke: $ak-color-light;
+  color: decisions.$ak-color-light;
+  stroke: decisions.$ak-color-light;
 
-  border-radius: $ak-size-m;
+  border-radius: decisions.$ak-size-m;
 
   * + * {
-    margin-left: $ak-size-s;
+    margin-left: decisions.$ak-size-s;
   }
 }
 
 .ak-button {
 
-  @include ak-inline-flex-center();
+  @include utils.ak-inline-flex-center();
 
-  color: $ak-color-dark;
+  color: decisions.$ak-color-dark;
   background-color: inherit;
 
   width: 100%;
@@ -81,16 +86,16 @@
 
   border-style: solid;
   border-width: 1px;
-  border-color: $ak-color-border;
+  border-color: decisions.$ak-color-border;
 
   &:hover {
-    border-color: $ak-color-button-hover;
+    border-color: decisions.$ak-color-button-hover;
   }
 
   &:active {
-    border-color: $ak-color-button-active;
+    border-color: decisions.$ak-color-button-active;
 
-    @include ak-shadow-smaller();
+    @include shadow.ak-shadow-smaller();
   }
 
   &.ak-button--primary {
@@ -98,13 +103,13 @@
   }
 
   &.ak-button--login {
-    border-radius: $ak-size-xl;
+    border-radius: decisions.$ak-size-xl;
     width: 60%;
 
-    @include ak-shadow-small();
+    @include shadow.ak-shadow-small();
   }
 
   * + * {
-    margin-left: $ak-size-s;
+    margin-left: decisions.$ak-size-s;
   }
 }

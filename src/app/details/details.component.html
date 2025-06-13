@@ -5,55 +5,61 @@
       <h1 class="ak-heading__title">{{title ? title : (month ? (month | akMonthName) + ' ' + year : year)}}</h1>
     </header>
   </ak-navigation-header>
-  <div class="ak-edit  ak-page__content" *ngIf="details">
-    <section class="ak-form">
-      <ol class="ak-card__content">
-        <li class="ak-item  ak-item--recap">
-          <div class="ak-item__what">
-            <div class="ak-item-percentage  ak-item-percentage--negative  ak-item-percentage--border-negative"
-                 [style.width]="percentage(outTotal)"></div>
-            <div class="ak-item-percentage  ak-item-percentage--positive  ak-item-percentage--border-positive"
-                 [style.width]="percentage(inTotal)"></div>
-            <span class="ak-badge">all</span>
-            <span class="ak-badge  ak-badge--{{(inTotal + outTotal) > 0 ? 'positive' : 'negative'}}">{{(inTotal + outTotal) | akAmount}}</span>
-          </div>
-          <div class="ak-item__amount">
-            <div class="ak-item__amount-unit">
-              <span>{{outTotal | akAmount}}</span>
-              <ak-income-indicator [income]="false"></ak-income-indicator>
+  @if (details) {
+    <div class="ak-edit  ak-page__content">
+      <section class="ak-form">
+        <ol class="ak-card__content">
+          <li class="ak-item  ak-item--recap">
+            <div class="ak-item__what">
+              <div class="ak-item-percentage  ak-item-percentage--negative  ak-item-percentage--border-negative"
+              [style.width]="percentage(outTotal)"></div>
+              <div class="ak-item-percentage  ak-item-percentage--positive  ak-item-percentage--border-positive"
+              [style.width]="percentage(inTotal)"></div>
+              <span class="ak-badge">all</span>
+              <span class="ak-badge  ak-badge--{{(inTotal + outTotal) > 0 ? 'positive' : 'negative'}}">{{(inTotal + outTotal) | akAmount}}</span>
             </div>
-            <div class="ak-item__amount-unit">
-              <span>{{inTotal | akAmount}}</span>
-              <ak-income-indicator [income]="true"></ak-income-indicator>
+            <div class="ak-item__amount">
+              <div class="ak-item__amount-unit">
+                <span>{{outTotal | akAmount}}</span>
+                <ak-income-indicator [income]="false"></ak-income-indicator>
+              </div>
+              <div class="ak-item__amount-unit">
+                <span>{{inTotal | akAmount}}</span>
+                <ak-income-indicator [income]="true"></ak-income-indicator>
+              </div>
             </div>
-          </div>
-        </li>
-        <li class="ak-item  ak-item--recap" *ngFor="let user of details.users">
-          <div class="ak-item__what">
-            <div
-              class="ak-item-percentage  ak-item-percentage--border-negative  ak-item-percentage--{{user.label | akUserHue}}"
-              [style.width]="percentage(user.outTotal)"></div>
-            <div
-              class="ak-item-percentage  ak-item-percentage--border-positive  ak-item-percentage--{{user.label | akUserHue}}"
-              [style.width]="percentage(user.inTotal)"></div>
-            <span class="ak-badge  ak-badge--{{user.label | akUserHue}}">{{user.label | akUserName}}</span>
-            <span class="ak-badge  ak-badge--{{(user.inTotal + user.outTotal) > 0 ? 'positive' : 'negative'}}">{{(user.inTotal + user.outTotal) | akAmount}}</span>
-          </div>
-          <div class="ak-item__amount">
-            <div class="ak-item__amount-unit">
-              <span>{{user.outTotal | akAmount}}</span>
-              <ak-income-indicator [income]="false"></ak-income-indicator>
-            </div>
-            <div class="ak-item__amount-unit">
-              <span>{{user.inTotal | akAmount}}</span>
-              <ak-income-indicator [income]="true"></ak-income-indicator>
-            </div>
-          </div>
-        </li>
-      </ol>
-    </section>
-    <ak-categories-card [inCategories]="details.inCategories"
-                        [outCategories]="details.outCategories" title="Categories" [year]="year" [month]="month"></ak-categories-card>
-    <ak-recap-card *ngIf="details.ranges" [recaps]="details.ranges" [title]="rangesTitle"></ak-recap-card>
-  </div>
+          </li>
+          @for (user of details.users; track user) {
+            <li class="ak-item  ak-item--recap">
+              <div class="ak-item__what">
+                <div
+                  class="ak-item-percentage  ak-item-percentage--border-negative  ak-item-percentage--{{user.label | akUserHue}}"
+                [style.width]="percentage(user.outTotal)"></div>
+                <div
+                  class="ak-item-percentage  ak-item-percentage--border-positive  ak-item-percentage--{{user.label | akUserHue}}"
+                [style.width]="percentage(user.inTotal)"></div>
+                <span class="ak-badge  ak-badge--{{user.label | akUserHue}}">{{user.label | akUserName}}</span>
+                <span class="ak-badge  ak-badge--{{(user.inTotal + user.outTotal) > 0 ? 'positive' : 'negative'}}">{{(user.inTotal + user.outTotal) | akAmount}}</span>
+              </div>
+              <div class="ak-item__amount">
+                <div class="ak-item__amount-unit">
+                  <span>{{user.outTotal | akAmount}}</span>
+                  <ak-income-indicator [income]="false"></ak-income-indicator>
+                </div>
+                <div class="ak-item__amount-unit">
+                  <span>{{user.inTotal | akAmount}}</span>
+                  <ak-income-indicator [income]="true"></ak-income-indicator>
+                </div>
+              </div>
+            </li>
+          }
+        </ol>
+      </section>
+      <ak-categories-card [inCategories]="details.inCategories"
+      [outCategories]="details.outCategories" title="Categories" [year]="year" [month]="month"></ak-categories-card>
+      @if (details.ranges) {
+        <ak-recap-card [recaps]="details.ranges" [title]="rangesTitle"></ak-recap-card>
+      }
+    </div>
+  }
 </div>

@@ -21,8 +21,8 @@
     "patterns": "reload -b -s patterns.html -e svg,css,html -d src/ -p 9001"
   },
   "engines": {
-    "node": "20.x",
-    "npm": "~6.9.0"
+    "node": "22.x",
+    "npm": "10.9.2"
   },
   "private": true,
   "dependencies": {

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {AppKeep} from '../models/AppKeep';
 import {ActivatedRoute} from '@angular/router';
 import {map} from 'rxjs/operators';
@@ -33,14 +33,17 @@ import {InputErrorComponent} from '../input-error/input-error.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditComponent extends OptionableComponent {
+  private activatedRoute = inject(ActivatedRoute);
+  private location = inject(Location);
+
 
   public users$: Observable<string[]> = this.store.get(['users'], users => users.map(user => user.email));
 
   public appKeep: AppKeep;
 
-  constructor(private activatedRoute: ActivatedRoute,
-              actions: AppActions,
-              private location: Location) {
+  constructor() {
+    const actions = inject(AppActions);
+
     super(actions);
     this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('id'))).subscribe(id => {
       this.appKeep = {

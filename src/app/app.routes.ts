@@ -1,7 +1,6 @@
 import {Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {EditComponent} from './edit/edit.component';
-import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './auth.guard';
 import {CategoryComponent} from './category/category.component';
 import {ProfileComponent} from './profile/profile.component';
@@ -13,10 +12,6 @@ import {OverallResolveGuard} from './details/overall-resolve.guard';
 
 
 export const appRoutes: Routes = [
-  {
-    path: 'login',
-    component: LoginComponent
-  },
   {
     path: 'home',
     component: HomeComponent,

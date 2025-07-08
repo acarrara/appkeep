@@ -1,5 +1,5 @@
 import { AppActions } from './app.actions';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Epic } from '../redux/Epic';
 import { filter, first, map, mergeMap } from 'rxjs/operators';
@@ -18,12 +18,12 @@ import { AppKeepState } from './models/AppKeepState';
 
 @Injectable()
 export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
+  private actions = inject(AppActions);
+  private http = inject(HttpClient);
+  private store = inject<StoreService<AppKeepState>>(StoreService);
+
 
   private statisticsFactory: StatisticsFactory = new StatisticsFactory();
-
-  constructor(private actions: AppActions, private http: HttpClient, private store: StoreService<AppKeepState>) {
-    super();
-  }
 
   public getOptionEpics(): Epic<any, any>[] {
     return new RestEpic<Option>(this.http, 'option', this.store, this.actions).toEpics();

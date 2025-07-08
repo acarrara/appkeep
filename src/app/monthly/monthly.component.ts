@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, QueryList, ViewChildren, inject } from '@angular/core';
 import {OptionableComponent} from '../optionable.component';
 import {AppKeep} from '../models/AppKeep';
 import {AppActions} from '../app.actions';
@@ -8,12 +8,12 @@ import {AsyncPipe, Location} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
 import {Category} from '../models/Category';
 import {FormsModule, NgForm, NgModel} from '@angular/forms';
-import {AmountPipe} from "../pipes/amount.pipe";
-import {IconComponent} from "../icon/icon.component";
-import {NavigationHeaderComponent} from "../navigation-header/navigation-header.component";
-import {CategoryHuePipe} from "../pipes/category-hue.pipe";
-import {InputErrorComponent} from "../input-error/input-error.component";
-import {FocusOnErrorDirective} from "../focus-on-error.directive";
+import {AmountPipe} from '../pipes/amount.pipe';
+import {IconComponent} from '../icon/icon.component';
+import {NavigationHeaderComponent} from '../navigation-header/navigation-header.component';
+import {CategoryHuePipe} from '../pipes/category-hue.pipe';
+import {InputErrorComponent} from '../input-error/input-error.component';
+import {FocusOnErrorDirective} from '../focus-on-error.directive';
 
 @Component({
   selector: 'ak-monthly',
@@ -31,6 +31,9 @@ import {FocusOnErrorDirective} from "../focus-on-error.directive";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MonthlyComponent extends OptionableComponent implements OnInit {
+  private location = inject(Location);
+  private route = inject(ActivatedRoute);
+
 
   users$: Observable<UserInfo[]> = this.store.get(['users'], users => users.map(user => user.email));
 
@@ -39,9 +42,9 @@ export class MonthlyComponent extends OptionableComponent implements OnInit {
 
   @ViewChildren('NgModel') models: QueryList<NgModel>;
 
-  constructor(actions: AppActions,
-              private location: Location,
-              private route: ActivatedRoute) {
+  constructor() {
+    const actions = inject(AppActions);
+
     super(actions);
   }
 

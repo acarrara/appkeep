@@ -1,19 +1,19 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Details } from '../models/Details';
-import { StoreService } from '../../redux/store.service';
-import { AppKeepState } from '../models/AppKeepState';
-import { AppActions } from '../app.actions';
-import { take } from 'rxjs/operators';
+import {inject, Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
+import {Observable} from 'rxjs';
+import {Details} from '../models/Details';
+import {StoreService} from '../../redux/store.service';
+import {AppKeepState} from '../models/AppKeepState';
+import {AppActions} from '../app.actions';
+import {take} from 'rxjs/operators';
 
 @Injectable()
-export class MonthResolveGuard  {
+export class MonthResolveGuard implements Resolve<Details> {
+  private store = inject<StoreService<AppKeepState>>(StoreService);
+  private actions = inject(AppActions);
 
-  constructor(private store: StoreService<AppKeepState>, private actions: AppActions) {
-  }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Details> | Details {
+  resolve(route: ActivatedRouteSnapshot): Observable<Details> | Details {
     const params = route.paramMap;
     if (!params.has('year') || !params.has('month')) {
       return this.store.snapshot<Details>(['statistics', 'thisMonth']);

@@ -3,8 +3,8 @@ import {Observable} from 'rxjs';
 import {User} from '../models/User';
 import {StoreService} from '../../redux/store.service';
 import {AppKeepState} from '../models/AppKeepState';
-import {AsyncPipe} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import {AsyncPipe} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'ak-home-header',

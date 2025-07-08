@@ -1,13 +1,23 @@
-import { FocusOnErrorDirective } from './focus-on-error.directive';
-import { ElementRef } from '@angular/core';
+import {FocusOnErrorDirective} from './focus-on-error.directive';
+import {ElementRef} from '@angular/core';
+import {TestBed} from '@angular/core/testing';
 
 describe('FocusOnErrorDirective', () => {
 
   const nativeElement: HTMLElement = {
-    querySelectorAll: params => {
+    querySelectorAll: params => { // eslint-disable-line @typescript-eslint/no-unused-vars
     }
   } as HTMLElement;
-  const directive = new FocusOnErrorDirective({nativeElement} as ElementRef);
+  let directive: FocusOnErrorDirective;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [{provide: ElementRef, useValue: {nativeElement} as ElementRef}]
+    });
+    TestBed.runInInjectionContext(() => {
+      directive = new FocusOnErrorDirective();
+    });
+  });
   const anElement = {
     focus: () => {
     }

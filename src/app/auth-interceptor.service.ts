@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { ApiAuthenticationService } from './api-authentication.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  private apiAuth = inject(ApiAuthenticationService);
+
 
   private apiToken: string;
 
-  constructor(private apiAuth: ApiAuthenticationService) {
+  constructor() {
     this.apiAuth.apiToken$.subscribe(apiToken => this.apiToken = apiToken);
   }
 

@@ -31,6 +31,10 @@ import {CategoryRecapCardComponent} from '../category-recap-card/category-recap-
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoryComponent {
+  private activatedRoute = inject(ActivatedRoute);
+  private location = inject(Location);
+  private actions = inject(AppActions);
+
 
   store: StoreService<AppKeepState> = inject(StoreService);
 
@@ -46,9 +50,7 @@ export class CategoryComponent {
 
   private originalCategory: string;
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private location: Location,
-              private actions: AppActions) {
+  constructor() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
       this.originalCategory = paramMap.get('category');
       this.lookupCategory();

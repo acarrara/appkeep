@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
 import {Location} from '@angular/common';
 import {IconComponent} from '../icon/icon.component';
 
@@ -11,12 +11,11 @@ import {IconComponent} from '../icon/icon.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavigationHeaderComponent {
+  private location = inject(Location);
+
 
   @Input()
   hue = 0;
-
-  constructor(private location: Location) {
-  }
 
   back() {
     this.location.back();

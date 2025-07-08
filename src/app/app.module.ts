@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
@@ -22,7 +22,11 @@ import {SocialLoginModule} from '@abacritt/angularx-social-login';
   ]
 })
 export class AppModule {
-  constructor(store: StoreService<AppKeepState>, reducers: AppReducers, epics: AppEpics) {
+  constructor() {
+    const store = inject<StoreService<AppKeepState>>(StoreService);
+    const reducers = inject(AppReducers);
+    const epics = inject(AppEpics);
+
     store.setup({
       reducers: [
         ...reducers.toArray(),

@@ -16,9 +16,9 @@ import {ApiAuthenticationService} from './app/api-authentication.service';
 import {GoogleLoginProvider, SocialAuthServiceConfig} from '@abacritt/angularx-social-login';
 import {ReduxModule} from './redux/redux-module';
 import {StoreService} from './redux/store.service';
-import {provideRouter, withRouterConfig} from '@angular/router';
-import {appRoutes} from './app/app-routing.module';
-import {provideServiceWorker} from "@angular/service-worker";
+import {provideRouter} from '@angular/router';
+import {appRoutes} from './app/app.routes';
+import {provideServiceWorker} from '@angular/service-worker';
 
 if (environment.production) {
   enableProdMode();
@@ -28,9 +28,10 @@ const clientID = '848348013018-hpu1hsvl233i1bigbb73n2rsnjpk8era.apps.googleuserc
 const authServiceConfig: SocialAuthServiceConfig = {
   providers: [{
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider(clientID)
+    provider: new GoogleLoginProvider(clientID, {oneTapEnabled: true}),
   }
-  ]
+  ],
+  autoLogin: true
 };
 
 function initStore() {

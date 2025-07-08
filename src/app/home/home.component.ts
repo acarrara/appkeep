@@ -33,6 +33,9 @@ import {RouterLink} from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
+  private swUpdate = inject(SwUpdate);
+  private cdr = inject(ChangeDetectorRef);
+
 
   store: StoreService<AppKeepState> = inject(StoreService);
 
@@ -44,10 +47,10 @@ export class HomeComponent {
 
   availableVersion: boolean;
 
-  constructor(private swUpdate: SwUpdate,
-              private cdr: ChangeDetectorRef,
-              store: StoreService<AppKeepState>,
-              actions: AppActions) {
+  constructor() {
+    const store = inject<StoreService<AppKeepState>>(StoreService);
+    const actions = inject(AppActions);
+
     this.handleUpdates();
 
     store.dispatch(actions.loadAppKeeps());

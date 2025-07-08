@@ -36,7 +36,10 @@ export class MonthlyAppkeepsCardComponent {
     ['monthlyAppKeeps'], monthlyAppkeeps => monthlyAppkeeps.reduce((partial, appKeep) => partial + appKeep.amount, 0));
   monthlyAppKeeps$: Observable<AppKeep[]> = this.store.get(['monthlyAppKeeps']);
 
-  constructor(store: StoreService<AppKeepState>, actions: AppActions) {
+  constructor() {
+    const store = inject<StoreService<AppKeepState>>(StoreService);
+    const actions = inject(AppActions);
+
     store.dispatch(actions.loadMonthlyAppKeeps());
   }
 }

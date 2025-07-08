@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Input, OnChanges} from '@angular/core';
 import {CategoryAmount} from '../models/CategoryAmount';
 import {Observable} from 'rxjs';
 import {Category} from '../models/Category';
@@ -47,7 +47,7 @@ export class CategoriesCardComponent implements OnChanges {
   appKeepHighest: number;
   incomeHighest: number;
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.outTotal = this.updateCategories(this.outCategories);
     this.inTotal = this.updateCategories(this.inCategories);
     this.appKeepHighest = this.outCategories.length ?

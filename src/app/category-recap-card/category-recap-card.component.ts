@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Recap } from '../models/Recap';
-import { Category } from '../models/Category';
-import {CardComponent} from "../card/card.component";
-import {RouterLink} from "@angular/router";
-import {MonthNamePipe} from "../pipes/month-name.pipe";
-import {LowerCasePipe} from "@angular/common";
-import {AmountPipe} from "../pipes/amount.pipe";
-import {IncomeIndicatorComponent} from "../income-indicator/income-indicator.component";
+import {ChangeDetectionStrategy, Component, Input, OnChanges} from '@angular/core';
+import {Recap} from '../models/Recap';
+import {Category} from '../models/Category';
+import {CardComponent} from '../card/card.component';
+import {RouterLink} from '@angular/router';
+import {MonthNamePipe} from '../pipes/month-name.pipe';
+import {LowerCasePipe} from '@angular/common';
+import {AmountPipe} from '../pipes/amount.pipe';
+import {IncomeIndicatorComponent} from '../income-indicator/income-indicator.component';
 
 @Component({
   selector: 'ak-category-recap-card',
@@ -32,7 +32,7 @@ export class CategoryRecapCardComponent implements OnChanges {
   total: number;
   topTotal: number;
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.total = this.recaps.reduce((partial, currentRecap) => partial + currentRecap.inTotal + currentRecap.outTotal, 0);
     this.topTotal = this.recaps.reduce(((partial, currentRecap) => this.biggest(partial, currentRecap)), 0);
   }

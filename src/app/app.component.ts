@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiAuthenticationService } from './api-authentication.service';
 import { map } from 'rxjs/operators';
@@ -16,7 +16,9 @@ import {AsyncPipe} from '@angular/common';
 export class AppComponent {
   loading$: Observable<boolean>;
 
-  constructor(auth: ApiAuthenticationService) {
+  constructor() {
+    const auth = inject(ApiAuthenticationService);
+
     this.loading$ = auth.loggedIn$.pipe(map(loggedIn => !loggedIn));
   }
 }

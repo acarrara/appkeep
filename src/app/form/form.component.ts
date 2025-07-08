@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {AppKeep} from '../models/AppKeep';
 import {AppActions} from '../app.actions';
 import {OptionableComponent} from '../optionable.component';
@@ -22,16 +22,19 @@ import {IconComponent} from '../icon/icon.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormComponent extends OptionableComponent implements AfterViewInit {
+  private notifications = inject(NotificationService);
 
-  constructor(private notifications: NotificationService,
-              actions: AppActions) {
+
+  constructor() {
+    const actions = inject(AppActions);
+
     super(actions);
   }
 
   ngAfterViewInit(): void {
     if (navigator || navigator.serviceWorker) {
-      navigator.serviceWorker.addEventListener('message', event => {
-        // this.appKeep.emit(event.data);
+      navigator.serviceWorker.addEventListener('message', () => {
+        // do nothing
       });
     }
   }

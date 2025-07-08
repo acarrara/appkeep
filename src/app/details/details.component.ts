@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Details} from '../models/Details';
 import {NavigationHeaderComponent} from '../navigation-header/navigation-header.component';
@@ -37,7 +37,10 @@ export class DetailsComponent {
 
   private highest: number;
 
-  constructor(activatedRoute: ActivatedRoute, cdr: ChangeDetectorRef) {
+  constructor() {
+    const activatedRoute = inject(ActivatedRoute);
+    const cdr = inject(ChangeDetectorRef);
+
     activatedRoute.data.subscribe(data => {
       this.details = data.details;
       this.rangesTitle = data.rangesTitle;

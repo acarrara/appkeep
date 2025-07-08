@@ -8,10 +8,10 @@ import {StoreService} from '../../redux/store.service';
 import {AppKeepState} from '../models/AppKeepState';
 import {AppActions} from '../app.actions';
 import {AsyncPipe, Location} from '@angular/common';
-import {NavigationHeaderComponent} from "../navigation-header/navigation-header.component";
-import {IconComponent} from "../icon/icon.component";
-import {FormsModule} from "@angular/forms";
-import {MonthlyAppkeepsCardComponent} from "../monthly-appkeeps-card/monthly-appkeeps-card.component";
+import {NavigationHeaderComponent} from '../navigation-header/navigation-header.component';
+import {IconComponent} from '../icon/icon.component';
+import {FormsModule} from '@angular/forms';
+import {MonthlyAppkeepsCardComponent} from '../monthly-appkeeps-card/monthly-appkeeps-card.component';
 
 @Component({
   selector: 'ak-profile',
@@ -26,6 +26,12 @@ import {MonthlyAppkeepsCardComponent} from "../monthly-appkeeps-card/monthly-app
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileComponent implements OnInit {
+  private apiAuth = inject(ApiAuthenticationService);
+  private notificationService = inject(NotificationService);
+  private router = inject(Router);
+  private location = inject(Location);
+  private actions = inject(AppActions);
+
 
   store: StoreService<AppKeepState> = inject(StoreService);
 
@@ -36,11 +42,7 @@ export class ProfileComponent implements OnInit {
   subscribed$: Observable<boolean>;
   newUser = '';
 
-  constructor(private apiAuth: ApiAuthenticationService,
-              private notificationService: NotificationService,
-              private router: Router,
-              private location: Location,
-              private actions: AppActions) {
+  constructor() {
     this.lookupUser();
   }
 
@@ -51,7 +53,7 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    this.apiAuth.signOut().subscribe(() => this.router.navigate(['/login']));
+    this.apiAuth.signOut().subscribe(() => this.router.navigate(['']));
   }
 
   subscribeToNotifications(subscribed: boolean) {

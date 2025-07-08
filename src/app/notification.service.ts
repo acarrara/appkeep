@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { first, map } from 'rxjs/operators';
 import { SwPush } from '@angular/service-worker';
@@ -10,12 +10,11 @@ const vapidKey = 'BJhuxRN4FQmXh1OCv9ESDPTzhAzz6wuriWhT_61ZmYsZN4mYSguPJkWoBjRYh6
 
 @Injectable()
 export class NotificationService {
+  private swPush = inject(SwPush);
+  private http = inject(HttpClient);
+
 
   private amountPipe: AmountPipe = new AmountPipe();
-
-  constructor(private swPush: SwPush,
-              private http: HttpClient) {
-  }
 
   sendNotification(appKeep: AppKeep) {
     const content = `${appKeep.title} - ${this.amountPipe.transform(appKeep.amount)}`;

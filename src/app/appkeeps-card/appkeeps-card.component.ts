@@ -1,17 +1,17 @@
-import {ChangeDetectionStrategy, Component, inject, Inject, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Input} from '@angular/core';
 import {AppKeep} from '../models/AppKeep';
 import {Category} from '../models/Category';
 import {Observable} from 'rxjs';
 import {StoreService} from '../../redux/store.service';
 import {AppKeepState} from '../models/AppKeepState';
 import {AsyncPipe, DatePipe, LowerCasePipe, NgClass} from '@angular/common';
-import {IncomeIndicatorComponent} from "../income-indicator/income-indicator.component";
-import {AmountPipe} from "../pipes/amount.pipe";
-import {RouterLink} from "@angular/router";
-import {CardComponent} from "../card/card.component";
-import {CategoryHuePipe} from "../pipes/category-hue.pipe";
-import {UserHuePipe} from "../pipes/user-hue.pipe";
-import {UserNamePipe} from "../pipes/user-name.pipe";
+import {IncomeIndicatorComponent} from '../income-indicator/income-indicator.component';
+import {AmountPipe} from '../pipes/amount.pipe';
+import {RouterLink} from '@angular/router';
+import {CardComponent} from '../card/card.component';
+import {CategoryHuePipe} from '../pipes/category-hue.pipe';
+import {UserHuePipe} from '../pipes/user-hue.pipe';
+import {UserNamePipe} from '../pipes/user-name.pipe';
 
 @Component({
   selector: 'ak-appkeeps-card',

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import {IconComponent} from "../icon/icon.component";
-import {EmptyStateComponent} from "./empty-state.component";
-import {AmountPipe} from "../pipes/amount.pipe";
+import {IconComponent} from '../icon/icon.component';
+import {EmptyStateComponent} from './empty-state.component';
+import {AmountPipe} from '../pipes/amount.pipe';
 
 @Component({
   selector: 'ak-card',

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges} from '@angular/core';
 import {Recap} from '../models/Recap';
 import {CardComponent} from '../card/card.component';
 import {MonthNamePipe} from '../pipes/month-name.pipe';
@@ -29,7 +29,7 @@ export class RecapCardComponent implements OnChanges {
   total: number;
   topTotal: number;
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.total = this.recaps.reduce((partial, currentRecap) => partial + currentRecap.inTotal + currentRecap.outTotal, 0);
     this.topTotal = this.recaps.reduce(((partial, currentRecap) => this.biggest(partial, currentRecap)), 0);
   }

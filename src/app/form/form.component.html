@@ -13,7 +13,9 @@
           <label for="what">Description</label>
           <input id="what" #what name="title" ngModel (blur)="onChange(form.value,options,categories)"
             placeholder="i.e. groceries"
-            list="addwhatlist" autocomplete="off">
+            list="addwhatlist" autocomplete="off"
+            (keydown.enter)="onChange(form.value,options,categories); add(form.value, options, categories); form.reset();"
+          >
           <datalist id="addwhatlist">
             @for (option of options; track option) {
               <option [value]="option.title"></option>

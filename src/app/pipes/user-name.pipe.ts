@@ -1,6 +1,6 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { UserInfo } from '../models/UserInfo';
-import { StoreService } from '../../redux/store.service';
+import {inject, Pipe, PipeTransform} from '@angular/core';
+import {UserInfo} from '../models/UserInfo';
+import {StoreService} from '../../redux/store.service';
 
 @Pipe({
     name: 'akUserName',
@@ -10,8 +10,10 @@ export class UserNamePipe implements PipeTransform {
 
   users: UserInfo[];
 
-  constructor(store: StoreService<UserInfo[]>) {
-    store.get<UserInfo[]>(['users']).subscribe(users => this.users = users);
+  store = inject<StoreService<UserInfo[]>>(StoreService);
+
+  constructor() {
+    this.store.get<UserInfo[]>(['users']).subscribe(users => this.users = users);
   }
 
   transform(userEmail: string): string {

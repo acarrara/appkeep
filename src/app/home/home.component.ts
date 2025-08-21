@@ -63,8 +63,8 @@ export class HomeComponent {
 
   private handleUpdates() {
     if (this.swUpdate.isEnabled) {
-      this.swUpdate.checkForUpdate().then(() => {
-        this.availableVersion = true;
+      this.swUpdate.checkForUpdate().then(availableVersion => {
+        this.availableVersion = availableVersion;
         this.cdr.markForCheck();
       });
     }

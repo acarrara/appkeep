@@ -11,7 +11,7 @@ import {Details} from '../models/Details';
 import {HomeHeaderComponent} from '../home-header/home-header.component';
 import {FormComponent} from '../form/form.component';
 import {AppkeepsCardComponent} from '../appkeeps-card/appkeeps-card.component';
-import {AsyncPipe} from '@angular/common';
+import {AsyncPipe, DOCUMENT} from '@angular/common';
 import {CategoriesCardComponent} from '../categories-card/categories-card.component';
 import {IconComponent} from '../icon/icon.component';
 import {RecapCardComponent} from '../recap-card/recap-card.component';
@@ -35,6 +35,7 @@ import {RouterLink} from '@angular/router';
 export class HomeComponent {
   private swUpdate = inject(SwUpdate);
   private cdr = inject(ChangeDetectorRef);
+  private document = inject(DOCUMENT);
 
 
   store: StoreService<AppKeepState> = inject(StoreService);
@@ -77,7 +78,7 @@ export class HomeComponent {
 
   reload() {
     if (this.swUpdate.isEnabled) {
-      this.swUpdate.activateUpdate().then(() => document.location.reload());
+      this.swUpdate.activateUpdate().then(() => this.document.location.reload());
     }
   }
 }

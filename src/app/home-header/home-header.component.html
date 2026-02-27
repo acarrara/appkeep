@@ -1,10 +1,8 @@
 @if (user$ | async; as user) {
   <div class="ak-header">
-    <div class="ak-header__logo  ak-wallet-{{user.info.hue}}">
-      <svg viewBox="0 0 1 1">
-        <use href="assets/symbols.svg#wallet"></use>
-      </svg>
-    </div>
+    <a class="ak-header__button" routerLink="/search">
+      <ak-icon type="search"></ak-icon>
+    </a>
     <div>
       <header class="ak-heading">
         <small class="ak-heading__kicker">Hello,</small>

@@ -24,11 +24,6 @@
     margin-left: decisions.$ak-size-m;
   }
 
-  & > .ak-header__logo {
-    height: decisions.$ak-size-xl;
-    width: decisions.$ak-size-xl;
-  }
-
   & .ak-header__image {
     border-radius: 50%;
     height: decisions.$ak-size-xl;
@@ -62,15 +57,5 @@
     color: decisions.$ak-color-shadow;
 
     font-size: decisions.$ak-size-m + decisions.$ak-size-s;
-  }
-}
-
-@each $_hue in decisions.$ak-hues {
-  $i: list.index(decisions.$ak-hues, $_hue);
-  .ak-wallet-#{$i} {
-    fill: decisions.ak-color(75, 90, $_hue);
-    stroke: decisions.ak-color(75, 90, $_hue);
-
-    color: decisions.ak-color(55, 70, $_hue);
   }
 }

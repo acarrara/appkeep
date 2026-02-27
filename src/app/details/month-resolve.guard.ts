@@ -5,7 +5,7 @@ import {Details} from '../models/Details';
 import {StoreService} from '../../redux/store.service';
 import {AppKeepState} from '../models/AppKeepState';
 import {AppActions} from '../app.actions';
-import {take} from 'rxjs/operators';
+import {distinctUntilChanged, skip, take} from 'rxjs/operators';
 
 @Injectable()
 export class MonthResolveGuard implements Resolve<Details> {
@@ -22,7 +22,9 @@ export class MonthResolveGuard implements Resolve<Details> {
       const month = params.get('month');
       this.store.dispatch(this.actions.loadMonthStatistics(year, month));
       return this.store.get<Details>(['monthStatistics']).pipe(
-        take(2)
+        distinctUntilChanged(),
+        skip(1),
+        take(1)
       );
     }
   }

@@ -53,6 +53,7 @@
   }
 
   & .ak-form__inputs {
+    overflow: hidden;
     padding: 0 decisions.$ak-size-l decisions.$ak-size-l;
   }
 }

@@ -31,6 +31,18 @@ module.exports = function (app) {
     }
   });
 
+  app.get('/api/appkeeps/search', async (request, response) => {
+    try {
+      const q = request.query.q || '';
+      const appKeeps = await AppKeep.find({
+        title: {$regex: q, $options: 'i'}
+      }).sort({date: -1}).limit(10).lean().exec();
+      response.send(appKeeps.map(a => ({...a, date: a.date ? a.date.getTime() : null})));
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
   app.get('/api/appkeeps/:id', async (request, response) => {
     try {
       const appKeep = await AppKeep.findById(request.params.id).exec();

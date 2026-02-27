@@ -1,4 +1,7 @@
-import {enableProdMode, importProvidersFrom, inject, isDevMode, provideEnvironmentInitializer} from '@angular/core';
+import {
+  enableProdMode, importProvidersFrom, inject, isDevMode, provideEnvironmentInitializer,
+  provideZonelessChangeDetection
+} from '@angular/core';
 import {environment} from './environments/environment';
 import {bootstrapApplication} from '@angular/platform-browser';
 import {AppComponent} from './app/app.component';
@@ -114,7 +117,8 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(ReduxModule),
     provideEnvironmentInitializer(() => {
       initStore();
-    })
+    }),
+    provideZonelessChangeDetection()
   ]
 })
   .catch(err => console.error(err));

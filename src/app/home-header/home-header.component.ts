@@ -5,13 +5,15 @@ import {StoreService} from '../../redux/store.service';
 import {AppKeepState} from '../models/AppKeepState';
 import {AsyncPipe} from '@angular/common';
 import {RouterLink} from '@angular/router';
+import {IconComponent} from '../icon/icon.component';
 
 @Component({
   selector: 'ak-home-header',
   templateUrl: 'home-header.component.html',
   imports: [
     AsyncPipe,
-    RouterLink
+    RouterLink,
+    IconComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

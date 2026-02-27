@@ -9,6 +9,7 @@ import {DetailsComponent} from './details/details.component';
 import {MonthResolveGuard} from './details/month-resolve.guard';
 import {YearResolveGuard} from './details/year-resolve.guard';
 import {OverallResolveGuard} from './details/overall-resolve.guard';
+import {SearchComponent} from './search/search.component';
 
 
 export const appRoutes: Routes = [
@@ -99,6 +100,11 @@ export const appRoutes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'search',
+    component: SearchComponent,
     canActivate: [AuthGuard]
   },
   {

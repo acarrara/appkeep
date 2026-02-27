@@ -162,5 +162,20 @@
       <path d="M60 40 v 35" stroke-width="10" stroke-linecap="round">
       </path>
     </symbol>
+    <symbol id="download" viewBox="0 0 100 100">
+      <path d="M50 6 v 72" stroke-width="12" stroke-linecap="round">
+      </path>
+      <path d="M82 48 l -32 30 l -32 -30" fill="transparent" stroke-width="12" stroke-linecap="round"
+            stroke-linejoin="round">
+      </path>
+      <path d="M6 94 h 88" stroke-width="12" stroke-linecap="round">
+      </path>
+    </symbol>
+    <symbol id="search" viewBox="0 0 100 100">
+      <circle cx="46" cy="46" r="40" fill="transparent" stroke-width="12" stroke-linecap="round">
+      </circle>
+      <path d="M74 74 l 20 20" stroke-width="12" stroke-linecap="round">
+      </path>
+    </symbol>
   </defs>
 </svg>

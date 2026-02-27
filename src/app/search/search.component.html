@@ -1,0 +1,73 @@
+@if (options$ | async; as options) {
+  @if (categories$ | async; as categories) {
+    <div class="ak-page">
+      <ak-navigation-header class="ak-page__header">
+        <header class="ak-heading">
+          <small class="ak-heading__kicker">Search,</small>
+          <h1 class="ak-heading__title">{{(user$ | async)?.info?.name}}</h1>
+        </header>
+      </ak-navigation-header>
+      <div class="ak-page__content">
+        <form class="ak-form" (ngSubmit)="search()" #form=ngForm>
+          <div class="ak-form__inputs">
+            <div class="ak-input">
+              <label for="search-query">Description</label>
+              <input id="search-query" name="query" [(ngModel)]="query"
+                placeholder="i.e. groceries"
+                list="searchlist" autocomplete="off"
+                (keydown.enter)="search()">
+              <datalist id="searchlist">
+                @for (option of options; track option) {
+                  <option [value]="option.title"></option>
+                }
+              </datalist>
+            </div>
+          </div>
+          <div class="ak-form__buttons">
+            <button class="ak-button  ak-button--primary" type="submit">
+              <span>Search</span>
+            </button>
+            <button class="ak-button" type="reset" (click)="form.reset();">
+              <ak-icon type="reset"></ak-icon>
+              <span>Reset</span>
+            </button>
+          </div>
+        </form>
+        @if (searched) {
+          <section class="ak-card">
+            <div class="ak-card__header">
+              <div class="ak-card__title">Results</div>
+              <div class="ak-card__amount">
+                <span>{{total | akAmount}}</span>
+              </div>
+            </div>
+            @if (results.length) {
+              <ol class="ak-card__content">
+                @for (appKeep of results; track appKeep) {
+                  <li class="ak-item">
+                    <a class="ak-item__what" routerLink="/edit/{{appKeep._id}}">
+                      <div>{{appKeep.title}}</div>
+                      <span class="ak-badge  ak-badge--{{appKeep.category | akCategoryHue: categories}}">
+                        {{appKeep.category | lowercase}}
+                      </span>
+                      <span class="ak-badge  ak-badge--{{appKeep.category | akCategoryHue: categories}}">{{appKeep.date | date: 'yyyy MMM dd'}}</span>
+                      <span class="ak-badge  ak-badge--{{appKeep.user | akUserHue}}">
+                        {{appKeep.user | akUserName}}
+                      </span>
+                    </a>
+                    <div class="ak-item__amount">
+                      <span>{{appKeep.amount * (appKeep.income ? 1 : -1) | akAmount}}</span>
+                      <ak-income-indicator [income]="appKeep.income"></ak-income-indicator>
+                    </div>
+                  </li>
+                }
+              </ol>
+            } @else {
+              <ak-empty-state></ak-empty-state>
+            }
+          </section>
+        }
+      </div>
+    </div>
+  }
+}

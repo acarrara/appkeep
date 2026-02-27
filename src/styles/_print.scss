@@ -1,0 +1,33 @@
+// Applied temporarily during html2canvas capture to reveal full scrollable content
+body.ak-exporting {
+  .ak-layout,
+  .ak-layout__main {
+    height: auto !important;
+    overflow: visible !important;
+    max-height: none !important;
+  }
+
+  .ak-page {
+    height: auto !important;
+  }
+
+  .ak-page__content {
+    overflow-y: visible !important;
+    height: auto !important;
+  }
+}
+
+@media print {
+  .ak-header__button,
+  .ak-header__right {
+    display: none !important;
+  }
+
+  .ak-page {
+    height: auto;
+  }
+
+  .ak-page__content {
+    overflow-y: visible;
+  }
+}

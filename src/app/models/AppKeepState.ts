@@ -18,4 +18,5 @@ export interface AppKeepState {
   categoryStatistics: CategoryStatistics;
   user: User;
   users: UserInfo[];
+  searchResults: AppKeep[];
 }

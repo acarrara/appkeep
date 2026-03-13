@@ -1,5 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {AppKeep} from '../models/AppKeep';
 import {AppActions} from '../app.actions';
 import {OptionableComponent} from '../optionable.component';
@@ -15,7 +14,6 @@ import {UserHuePipe} from '../pipes/user-hue.pipe';
 import {UserNamePipe} from '../pipes/user-name.pipe';
 import {RouterLink} from '@angular/router';
 import {EmptyStateComponent} from '../card/empty-state.component';
-import {first} from 'rxjs/operators';
 import {IconComponent} from '../icon/icon.component';
 
 @Component({
@@ -39,13 +37,10 @@ import {IconComponent} from '../icon/icon.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchComponent extends OptionableComponent {
-  private http = inject(HttpClient);
-  private cdr = inject(ChangeDetectorRef);
-
   user$: Observable<User> = this.store.get(['user']);
+  results$: Observable<AppKeep[]> = this.store.get(['searchResults']);
 
   query = '';
-  results: AppKeep[] | null = null;
   searched = false;
 
   constructor() {
@@ -56,18 +51,14 @@ export class SearchComponent extends OptionableComponent {
     this.store.dispatch(actions.loadUsers());
   }
 
-  get total(): number {
-    if (!this.results?.length) { return 0; }
-    return this.results.reduce((sum, a) => sum + a.amount * (a.income ? 1 : -1), 0);
+  total(results: AppKeep[]): number {
+    return results.reduce((sum, a) => sum + a.amount * (a.income ? 1 : -1), 0);
   }
 
   search() {
     const q = this.query.trim();
     if (!q) { return; }
-    this.http.get<AppKeep[]>(`/api/appkeeps/search?q=${encodeURIComponent(q)}`).pipe(first()).subscribe(results => {
-      this.results = results;
-      this.searched = true;
-      this.cdr.markForCheck();
-    });
+    this.store.dispatch(this.actions.searchAppKeeps(q));
+    this.searched = true;
   }
 }

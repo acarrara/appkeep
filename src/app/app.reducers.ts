@@ -123,4 +123,33 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
     }
   }
 
+  private searchAppKeeps: Reducer<AppKeepState, AppKeep[]> = (action, oldState) => {
+    switch (action.type) {
+      case AppActions.SEARCH_APPKEEPS_SUCCESS: {
+        return {
+          ...oldState,
+          searchResults: action.payload
+        };
+      }
+      default: {
+        return oldState;
+      }
+    }
+  }
+
+  private filterNonTodayAppKeepsAfterEdit: Reducer<AppKeepState, AppKeep> = (action, oldState) => {
+    switch (action.type) {
+      case AppActions.EDIT_APPKEEP + '_SUCCESS': {
+        const today = new Date().toDateString();
+        return {
+          ...oldState,
+          appKeeps: oldState.appKeeps.filter(appKeep => new Date(appKeep.date).toDateString() === today)
+        };
+      }
+      default: {
+        return oldState;
+      }
+    }
+  }
+
 }

@@ -1,9 +1,8 @@
 import {StoreService} from './store.service';
-import {waitForAsync} from '@angular/core/testing';
 import {Reducer} from './Reducer';
 import {Epic} from './Epic';
 import {filter, switchMap} from 'rxjs/operators';
-import {of} from 'rxjs';
+import {firstValueFrom, of} from 'rxjs';
 
 interface StubState {
   outer: { inner: string };
@@ -44,11 +43,11 @@ describe('StoreService', () => {
     expect(innerValue).toEqual('anInitialValue');
   });
 
-  it('should listen to initial state', waitForAsync(() => {
-    const innerValue = store.get<string>(['outer', 'inner']);
+  it('should listen to initial state', async () => {
+    const innerValue = await firstValueFrom(store.get<string>(['outer', 'inner']));
 
-    innerValue.subscribe(value => expect(value).toEqual('anInitialValue'));
-  }));
+    expect(innerValue).toEqual('anInitialValue');
+  });
 
   it('should return new state', () => {
     store.dispatch({type: 'inner', payload: 'aNewValue'});
@@ -58,20 +57,20 @@ describe('StoreService', () => {
     expect(innerValue).toEqual('aNewValue');
   });
 
-  it('should listen to new state', waitForAsync(() => {
+  it('should listen to new state', async () => {
     store.dispatch({type: 'inner', payload: 'aNewValue'});
 
-    const innerValue = store.get<string>(['outer', 'inner']);
+    const innerValue = await firstValueFrom(store.get<string>(['outer', 'inner']));
 
-    innerValue.subscribe(value => expect(value).toEqual('aNewValue'));
-  }));
+    expect(innerValue).toEqual('aNewValue');
+  });
 
-  it('should listen to new state async', waitForAsync(() => {
+  it('should listen to new state async', async () => {
     store.dispatch({type: 'innerAsync', payload: 'aNewValueAsync'});
 
-    const innerValue = store.get<string>(['outer', 'inner']);
+    const innerValue = await firstValueFrom(store.get<string>(['outer', 'inner']));
 
-    innerValue.subscribe(value => expect(value).toEqual('aNewValueAsync'));
-  }));
+    expect(innerValue).toEqual('aNewValueAsync');
+  });
 
 });

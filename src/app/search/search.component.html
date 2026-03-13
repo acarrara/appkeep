@@ -34,38 +34,40 @@
           </div>
         </form>
         @if (searched) {
-          <section class="ak-card">
-            <div class="ak-card__header">
-              <div class="ak-card__title">Results</div>
-              <div class="ak-card__amount">
-                <span>{{total | akAmount}}</span>
+          @if (results$ | async; as results) {
+            <section class="ak-card">
+              <div class="ak-card__header">
+                <div class="ak-card__title">Results</div>
+                <div class="ak-card__amount">
+                  <span>{{total(results) | akAmount}}</span>
+                </div>
               </div>
-            </div>
-            @if (results.length) {
-              <ol class="ak-card__content">
-                @for (appKeep of results; track appKeep) {
-                  <li class="ak-item">
-                    <a class="ak-item__what" routerLink="/edit/{{appKeep._id}}">
-                      <div>{{appKeep.title}}</div>
-                      <span class="ak-badge  ak-badge--{{appKeep.category | akCategoryHue: categories}}">
-                        {{appKeep.category | lowercase}}
-                      </span>
-                      <span class="ak-badge  ak-badge--{{appKeep.category | akCategoryHue: categories}}">{{appKeep.date | date: 'yyyy MMM dd'}}</span>
-                      <span class="ak-badge  ak-badge--{{appKeep.user | akUserHue}}">
-                        {{appKeep.user | akUserName}}
-                      </span>
-                    </a>
-                    <div class="ak-item__amount">
-                      <span>{{appKeep.amount * (appKeep.income ? 1 : -1) | akAmount}}</span>
-                      <ak-income-indicator [income]="appKeep.income"></ak-income-indicator>
-                    </div>
-                  </li>
-                }
-              </ol>
-            } @else {
-              <ak-empty-state></ak-empty-state>
-            }
-          </section>
+              @if (results.length) {
+                <ol class="ak-card__content">
+                  @for (appKeep of results; track appKeep) {
+                    <li class="ak-item">
+                      <a class="ak-item__what" routerLink="/edit/{{appKeep._id}}">
+                        <div>{{appKeep.title}}</div>
+                        <span class="ak-badge  ak-badge--{{appKeep.category | akCategoryHue: categories}}">
+                          {{appKeep.category | lowercase}}
+                        </span>
+                        <span class="ak-badge  ak-badge--{{appKeep.category | akCategoryHue: categories}}">{{appKeep.date | date: 'yyyy MMM dd'}}</span>
+                        <span class="ak-badge  ak-badge--{{appKeep.user | akUserHue}}">
+                          {{appKeep.user | akUserName}}
+                        </span>
+                      </a>
+                      <div class="ak-item__amount">
+                        <span>{{appKeep.amount * (appKeep.income ? 1 : -1) | akAmount}}</span>
+                        <ak-income-indicator [income]="appKeep.income"></ak-income-indicator>
+                      </div>
+                    </li>
+                  }
+                </ol>
+              } @else {
+                <ak-empty-state></ak-empty-state>
+              }
+            </section>
+          }
         }
       </div>
     </div>

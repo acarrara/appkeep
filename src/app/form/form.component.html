@@ -14,7 +14,7 @@
           <input id="what" #what name="title" ngModel (blur)="onChange(form.value,options,categories)"
             placeholder="i.e. groceries"
             list="addwhatlist" autocomplete="off"
-            (keydown.enter)="onChange(form.value,options,categories); add(form.value, options, categories); form.reset();"
+            (keydown.enter)="onChange(form.value,options,categories); add(form.value, options, categories); form.reset(); amount.focus();"
           >
           <datalist id="addwhatlist">
             @for (option of options; track option) {
@@ -25,7 +25,7 @@
       </div>
       <div class="ak-form__buttons">
         <button class="ak-button  ak-button--primary" type="submit"
-          (click)="add(form.value, options, categories); form.reset();">
+          (click)="add(form.value, options, categories); form.reset(); amount.focus();">
           <ak-icon type="add" mood="indifferent"></ak-icon>
           <span>Add</span>
         </button>

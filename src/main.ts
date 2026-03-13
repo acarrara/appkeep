@@ -83,7 +83,8 @@ function initStore() {
         social: undefined,
         info: undefined
       },
-      users: []
+      users: [],
+      searchResults: []
     }
   });
 }

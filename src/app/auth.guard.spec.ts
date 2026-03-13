@@ -1,7 +1,7 @@
 import {AuthGuard} from './auth.guard';
 import {ApiAuthenticationService} from './api-authentication.service';
-import {of} from 'rxjs';
-import {TestBed, waitForAsync} from '@angular/core/testing';
+import {firstValueFrom, of} from 'rxjs';
+import {TestBed} from '@angular/core/testing';
 
 describe('AuthGuard', () => {
 
@@ -21,21 +21,19 @@ describe('AuthGuard', () => {
     });
   });
 
-  it('should return truthy observable when user is logged in', waitForAsync(() => {
+  it('should return truthy observable when user is logged in', async () => {
     vi.spyOn(apiAuth, 'silentSignIn').mockReturnValue(of(true));
 
-    const authenticated = guard.canActivate();
+    const result = await firstValueFrom(guard.canActivate());
 
-    authenticated.subscribe(loggedIn => expect(loggedIn).toBeTruthy());
-  }));
+    expect(result).toBeTruthy();
+  });
 
-  it('should redirect to login when user is not logged in', waitForAsync(() => {
+  it('should redirect to login when user is not logged in', async () => {
     vi.spyOn(apiAuth, 'silentSignIn').mockReturnValue(of(false));
 
-    const authenticated = guard.canActivate();
+    const result = await firstValueFrom(guard.canActivate());
 
-    authenticated.subscribe(loggedIn => {
-      expect(loggedIn).toBeFalsy();
-    });
-  }));
+    expect(result).toBeFalsy();
+  });
 });

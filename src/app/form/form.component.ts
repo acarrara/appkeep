@@ -47,6 +47,7 @@ export class FormComponent extends OptionableComponent implements AfterViewInit 
     this.store.dispatch(this.actions.addAppKeep(appKeep));
     this.updateOptions(appKeep.title, appKeep.category, options, categories);
     this.store.dispatch(this.actions.loadStatistics());
+    this.store.dispatch(this.actions.loadMonthlyAppKeeps());
     this.notifications.sendNotification(appKeep);
   }
 }

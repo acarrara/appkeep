@@ -40,6 +40,8 @@ export class AppActions {
   public static EDIT_USER = 'EDIT_USER';
   public static DELETE_USER = 'DELETE_USER';
   public static LOGIN = 'LOGIN';
+  public static SEARCH_APPKEEPS = 'SEARCH_APPKEEPS';
+  public static SEARCH_APPKEEPS_SUCCESS = 'SEARCH_APPKEEPS_SUCCESS';
 
   public loadAppKeeps(): Action<any> {
     return {type: AppActions.LOAD_APPKEEPS};
@@ -147,5 +149,13 @@ export class AppActions {
 
   editUser(user: UserInfo) {
     return {type: AppActions.EDIT_USER, payload: user};
+  }
+
+  searchAppKeeps(query: string): Action<string> {
+    return {type: AppActions.SEARCH_APPKEEPS, payload: query};
+  }
+
+  searchAppKeepsSuccess(results: AppKeep[]): Action<AppKeep[]> {
+    return {type: AppActions.SEARCH_APPKEEPS_SUCCESS, payload: results};
   }
 }

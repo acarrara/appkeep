@@ -48,7 +48,8 @@ export class EditComponent extends OptionableComponent {
     this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('id'))).subscribe(id => {
       this.appKeep = {
         ...this.lookupAppKeep(id, ['appKeeps']) ||
-        this.lookupAppKeep(id, ['categoryStatistics', 'thisMonthAppKeeps'])
+        this.lookupAppKeep(id, ['categoryStatistics', 'thisMonthAppKeeps']) ||
+        this.lookupAppKeep(id, ['searchResults'])
       };
     });
   }
@@ -61,6 +62,7 @@ export class EditComponent extends OptionableComponent {
     const {title, category} = this.appKeep;
     this.updateOptions(title, category, options, categories);
     this.store.dispatch(this.actions.loadStatistics());
+    this.store.dispatch(this.actions.loadMonthlyAppKeeps());
     this.close();
   }
 
@@ -71,6 +73,7 @@ export class EditComponent extends OptionableComponent {
   delete() {
     this.store.dispatch(this.actions.deleteAppKeep(this.appKeep));
     this.store.dispatch(this.actions.loadStatistics());
+    this.store.dispatch(this.actions.loadMonthlyAppKeeps());
     this.close();
   }
 

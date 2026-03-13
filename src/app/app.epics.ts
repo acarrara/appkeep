@@ -2,7 +2,7 @@ import { AppActions } from './app.actions';
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Epic } from '../redux/Epic';
-import { filter, first, map, mergeMap } from 'rxjs/operators';
+import { filter, first, map, mergeMap, switchMap } from 'rxjs/operators';
 import { AppKeep } from './models/AppKeep';
 import { ArrayableFunctions } from './ArrayableFunctions';
 import { Statistics } from './models/Statistics';
@@ -77,6 +77,16 @@ export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
       ).pipe(
         first(),
         map(statistics => this.actions.loadStatisticsSuccess(this.statisticsFactory.create(statistics)))
+      ))
+    );
+  }
+
+  private searchAppKeeps: Epic<string, AppKeep[]> = actions$ => {
+    return actions$.pipe(
+      filter(action => action.type === AppActions.SEARCH_APPKEEPS),
+      switchMap(action => this.http.get<AppKeep[]>(`/api/appkeeps/search?q=${encodeURIComponent(action.payload)}`).pipe(
+        first(),
+        map(results => this.actions.searchAppKeepsSuccess(results))
       ))
     );
   }

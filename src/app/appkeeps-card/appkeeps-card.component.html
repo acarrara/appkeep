@@ -2,7 +2,7 @@
   <ak-card [total]="total" [title]="when" [indicator]="true">
     <ol class="ak-card__content">
       @for (appKeep of appKeeps; track appKeep) {
-        <li class="ak-item"
+        <li class="ak-item" data-testid="appkeep-item"
           [ngClass]="{'ak-item--updating': appKeep._updating}">
           <a class="ak-item__what" routerLink="/edit/{{appKeep._id}}">
             <div>{{appKeep.title}}</div>

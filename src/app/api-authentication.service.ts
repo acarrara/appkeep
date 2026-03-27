@@ -6,6 +6,7 @@ import {BehaviorSubject, from, Observable, of} from 'rxjs';
 import {AppKeepState} from './models/AppKeepState';
 import {StoreService} from '../redux/store.service';
 import {AppActions} from './app.actions';
+import {environment} from '../environments/environment';
 import {UserInfo} from './models/UserInfo';
 
 @Injectable()
@@ -28,6 +29,17 @@ export class ApiAuthenticationService {
   silentSignIn(): Observable<boolean> {
     if (this.apiTokenSubject$.getValue()) {
       return of(true);
+    }
+    if (!environment.production) {
+      const testToken = localStorage.getItem('__e2e_token__');
+      if (testToken) {
+        this.apiTokenSubject$.next(testToken);
+        this.store.dispatch(this.actions.login({
+          social: null,
+          info: {email: 'e2e@appkeep.test', name: 'E2E User', hue: 0}
+        }));
+        return of(true);
+      }
     }
     return this.auth.initState.pipe(
       first(),

@@ -6,7 +6,9 @@ module.exports = function (app) {
   app.get('/api/appkeeps/statistics/thismonth', async (request, response) => {
     try {
       const statistics = await AppKeep.monthStatistics(dates.currentMonth());
-      statistics[0].users = await AppKeep.userStatistics(dates.currentMonth());
+      if (statistics[0]) {
+        statistics[0].users = await AppKeep.userStatistics(dates.currentMonth());
+      }
       response.send(statistics);
     } catch (error) {
       response.status(500).send(error);
@@ -19,11 +21,13 @@ module.exports = function (app) {
       const statistics = await AppKeep.yearStatistics(range);
       const fullYear = new Date().getFullYear();
       const yearStatistics = statistics.find(current => current._id === fullYear);
-      yearStatistics.users = await AppKeep.userStatistics(range);
-      const categoryStatistics = await AppKeep.yearCategoryStatistics(range);
-      const yearCategoryStatistics = categoryStatistics.find(current => current._id === fullYear);
-      yearStatistics.categories = yearCategoryStatistics.categories;
-      response.send(yearStatistics);
+      if (yearStatistics) {
+        yearStatistics.users = await AppKeep.userStatistics(range);
+        const categoryStatistics = await AppKeep.yearCategoryStatistics(range);
+        const yearCategoryStatistics = categoryStatistics.find(current => current._id === fullYear);
+        yearStatistics.categories = yearCategoryStatistics?.categories;
+      }
+      response.send(yearStatistics || null);
     } catch (error) {
       response.status(500).send(error);
     }
@@ -46,11 +50,13 @@ module.exports = function (app) {
       const range = dates.year(request.params.year);
       const statistics = await AppKeep.yearStatistics(range);
       const yearStatistics = statistics.find(current => current._id === Number(request.params.year));
-      yearStatistics.users = await AppKeep.userStatistics(range);
-      const categoryStatistics = await AppKeep.yearCategoryStatistics(range);
-      const yearCategoryStatistics = categoryStatistics.find(current => current._id === Number(request.params.year));
-      yearStatistics.categories = yearCategoryStatistics.categories;
-      response.send(yearStatistics);
+      if (yearStatistics) {
+        yearStatistics.users = await AppKeep.userStatistics(range);
+        const categoryStatistics = await AppKeep.yearCategoryStatistics(range);
+        const yearCategoryStatistics = categoryStatistics.find(current => current._id === Number(request.params.year));
+        yearStatistics.categories = yearCategoryStatistics?.categories;
+      }
+      response.send(yearStatistics || null);
     } catch (error) {
       response.status(500).send(error);
     }
@@ -60,7 +66,9 @@ module.exports = function (app) {
     try {
       const range = dates.month(request.params.year, request.params.month);
       const statistics = await AppKeep.monthStatistics(range);
-      statistics[0].users = await AppKeep.userStatistics(range);
+      if (statistics[0]) {
+        statistics[0].users = await AppKeep.userStatistics(range);
+      }
       response.send(statistics);
     } catch (error) {
       response.status(500).send(error);
@@ -70,7 +78,7 @@ module.exports = function (app) {
   app.get('/api/categories/:category/statistics/year', async (request, response) => {
     try {
       const statistics = await AppKeep.yearStatistics(dates.currentYear(), request.params.category);
-      response.send(statistics[0]);
+      response.send(statistics[0] || null);
     } catch (error) {
       response.status(500).send(error);
     }
@@ -81,7 +89,7 @@ module.exports = function (app) {
       const range = dates.year(request.params.year);
       const statistics = await AppKeep.yearStatistics(range, request.params.category);
       const yearStatistics = statistics.find(current => current._id === Number(request.params.year));
-      response.send(yearStatistics);
+      response.send(yearStatistics || null);
     } catch (error) {
       response.status(500).send(error);
     }

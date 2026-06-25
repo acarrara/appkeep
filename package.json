@@ -40,7 +40,7 @@
     "@angular/service-worker": "^21.2.6",
     "compression": "^1.7.4",
     "cron": "^1.8.2",
-    "dexie": "^2.0.4",
+    "dexie": "^4.4.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-sslify": "^1.2.0",

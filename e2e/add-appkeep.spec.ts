@@ -1,15 +1,6 @@
 import {test, expect} from '@playwright/test';
 
-const E2E_TEST_JWT = process.env['E2E_TEST_JWT'];
-
 test.beforeEach(async ({page}) => {
-  if (!E2E_TEST_JWT) {
-    throw new Error('E2E_TEST_JWT is not set. Run scripts/gen-test-token.js and add the result to .env');
-  }
-
-  // Set the token in localStorage before Angular boots, so the auth bypass picks it up
-  await page.goto('/');
-  await page.evaluate((token) => localStorage.setItem('__e2e_token__', token), E2E_TEST_JWT);
   await page.goto('/home');
 
   // Wait for the form to be in the DOM (confirms auth passed and options/categories loaded).

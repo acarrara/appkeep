@@ -1,0 +1,37 @@
+services:
+  db:
+    image: mongo:7
+    volumes:
+      - ./mongo-init:/docker-entrypoint-initdb.d:ro
+    # tmpfs keeps data in memory — clean slate on every run
+    tmpfs:
+      - /data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      retries: 10
+
+  app:
+    build:
+      context: .
+      target: runner-e2e
+      args:
+        CLIENT_ID: ${clientID}
+        VAPID_PUBLIC_KEY: ${VAPID_PUBLIC_KEY}
+        BUILD_CONFIG: e2e
+    ports:
+      - "3000:3000"
+    environment:
+      DB_URI: mongodb://db:27017/appkeep-e2e
+      clientID: ${clientID}
+      APPKEEP_PUBLIC_KEY: ${APPKEEP_PUBLIC_KEY}
+      APPKEEP_PRIVATE_KEY: ${APPKEEP_PRIVATE_KEY}
+      VAPID_PUBLIC_KEY: ${VAPID_PUBLIC_KEY}
+      VAPID_PRIVATE_KEY: ${VAPID_PRIVATE_KEY}
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000"]
+      interval: 5s
+      retries: 12

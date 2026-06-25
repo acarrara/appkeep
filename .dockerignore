@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.env.*
+src/credentials.json
+src/vapid.json
+.git
+coverage
+e2e
+playwright-report

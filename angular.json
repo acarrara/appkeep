@@ -80,6 +80,14 @@
                 }
               ],
               "serviceWorker": "ngsw-config.json"
+            },
+            "e2e": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.e2e.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": ""

@@ -2,9 +2,14 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import {GoogleAuthStrategy} from '../app/google-auth-strategy';
+import {AuthStrategy} from '../app/auth-strategy';
+
 export const environment = {
   production: false
 };
+
+export const authStrategyProvider = {provide: AuthStrategy, useClass: GoogleAuthStrategy};
 
 /*
  * For easier debugging in development mode, you can import the following file

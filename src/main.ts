@@ -2,7 +2,7 @@ import {
   enableProdMode, importProvidersFrom, inject, isDevMode, provideEnvironmentInitializer,
   provideZonelessChangeDetection
 } from '@angular/core';
-import {environment} from './environments/environment';
+import {environment, authStrategyProvider} from './environments/environment';
 import {bootstrapApplication} from '@angular/platform-browser';
 import {AppComponent} from './app/app.component';
 import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
@@ -105,6 +105,7 @@ bootstrapApplication(AppComponent, {
     AppActions,
     NotificationService,
     ApiAuthenticationService,
+    authStrategyProvider,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: authServiceConfig

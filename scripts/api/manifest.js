@@ -14,13 +14,9 @@ module.exports = function (app) {
 
   const mongoDBUri = process.env.DB_URI;
 
-  mongoose.connect(mongoDBUri, {useNewUrlParser: true, useUnifiedTopology: true}, function (err, res) {
-    if (err) {
-      console.log('Error connecting to MongoDB server.', err);
-    } else {
-      console.log('Connected to MongoDB server.');
-    }
-  });
+  mongoose.connect(mongoDBUri)
+    .then(() => console.log('Connected to MongoDB server.'))
+    .catch(err => console.log('Error connecting to MongoDB server.', err));
 
   auth(app);
   statistics(app);

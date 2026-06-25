@@ -44,7 +44,7 @@ describe('MonthlyAppkeepsCardComponent (shallow)', () => {
     monthlyAppKeepsSubject = new BehaviorSubject<AppKeep[]>([]);
     vi.clearAllMocks();
 
-    mockStore.get.mockImplementation((path: string[], mappingFn?: (v: any) => any) => {
+    vi.mocked(mockStore.get).mockImplementation((path: string[], mappingFn?: (v: any) => any) => {
       if (path[0] === 'categories') return categoriesSubject.asObservable();
       if (mappingFn) return monthlyAppKeepsSubject.pipe(map(mappingFn));
       return monthlyAppKeepsSubject.asObservable();

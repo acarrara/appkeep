@@ -13,11 +13,11 @@
     "esModuleInterop": true,
     "target": "esNext",
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
+      "./node_modules"
     ],
-    "lib": [
-      "es2018",
-      "dom"
+    "types": [
+      "vitest/globals"
     ]
   },
   "angularCompilerOptions": {

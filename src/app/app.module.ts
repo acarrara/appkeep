@@ -68,7 +68,8 @@ export class AppModule {
           social: undefined,
           info: undefined
         },
-        users: []
+        users: [],
+        searchResults: []
       }
     });
   }

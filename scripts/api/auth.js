@@ -1,4 +1,4 @@
-const {OAuth2Client} = require('google-auth-library');
+const https = require('https');
 const jwt = require('./utils/jwt.js');
 const authMiddleware = require('./utils/auth-middleware');
 const User = require('./schemas/User');
@@ -8,20 +8,30 @@ module.exports = function (app) {
   app.use(authMiddleware);
 
   const clientID = process.env.clientID;
-  const oauthClient = new OAuth2Client(clientID, '', '');
 
   function getUserEmail(idToken) {
-    return oauthClient.verifyIdToken({idToken: idToken, audience: clientID}).then(login => {
-      const payload = login.getPayload();
-
-      const audience = payload.aud;
-      if (audience !== clientID) {
-        throw new Error("Error while authenticating google user: audience mismatch: wanted [" + clientID + "] but was [" + audience + "]")
-      }
-
-      return {id: payload.sub, email: payload.email, name: payload.given_name};
-    }).catch(err => {
-      throw new Error("Error while authenticating google user: " + JSON.stringify(err));
+    return new Promise((resolve, reject) => {
+      const url = `https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(idToken)}`;
+      https.get(url, (res) => {
+        let data = '';
+        res.on('data', chunk => data += chunk);
+        res.on('end', () => {
+          try {
+            const payload = JSON.parse(data);
+            if (payload.error) {
+              return reject(new Error("Error while authenticating google user: " + payload.error_description));
+            }
+            if (payload.aud !== clientID) {
+              return reject(new Error("Error while authenticating google user: audience mismatch: wanted [" + clientID + "] but was [" + payload.aud + "]"));
+            }
+            resolve({id: payload.sub, email: payload.email, name: payload.given_name});
+          } catch (e) {
+            reject(new Error("Error while authenticating google user: failed to parse tokeninfo response"));
+          }
+        });
+      }).on('error', (e) => {
+        reject(new Error("Error while authenticating google user: " + e.message));
+      });
     });
   }
 

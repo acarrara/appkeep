@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class AmountPipe implements PipeTransform {
 
-  transform(value: number): string {
-    return (value / 100).toFixed(2) + ' €';
+  transform(value: number | null): string {
+    return ((value ?? 0) / 100).toFixed(2) + ' €';
   }
 
 }

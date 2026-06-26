@@ -38,11 +38,11 @@ export class AppkeepsCardComponent {
   categories$: Observable<Category[]> = this.store.get(['categories']);
 
   @Input()
-  appKeeps: AppKeep[];
+  appKeeps!: AppKeep[] | null;
   @Input()
-  total: number;
+  total!: number | null;
   @Input()
-  when: string;
+  when!: string;
   @Input()
   hue = 0;
   @Input()

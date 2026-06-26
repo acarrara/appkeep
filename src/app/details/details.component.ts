@@ -31,18 +31,18 @@ import {jsPDF} from 'jspdf';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DetailsComponent {
-  @ViewChild('page', {static: true}) private pageRef: ElementRef<HTMLElement>;
+  @ViewChild('page', {static: true}) private pageRef!: ElementRef<HTMLElement>;
 
-  public details: Details;
+  public details!: Details;
 
-  public outTotal: number;
-  public inTotal: number;
-  public title: string;
-  public rangesTitle: string;
-  public month: string;
-  public year: string;
+  public outTotal!: number;
+  public inTotal!: number;
+  public title!: string;
+  public rangesTitle!: string;
+  public month!: string;
+  public year!: string;
 
-  private highest: number;
+  private highest!: number;
   private document = inject(DOCUMENT);
 
   constructor() {
@@ -56,8 +56,8 @@ export class DetailsComponent {
         this.title = data.title;
       } else {
         activatedRoute.paramMap.subscribe(params => {
-          this.year = params.get('year');
-          this.month = params.get('month');
+          this.year = params.get('year') ?? '';
+          this.month = params.get('month') ?? '';
         });
       }
       this.computeStatistics();

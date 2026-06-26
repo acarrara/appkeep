@@ -11,5 +11,5 @@ import {IconComponent} from '../icon/icon.component';
 })
 export class IncomeIndicatorComponent {
   @Input()
-  income: boolean;
+  income!: boolean;
 }

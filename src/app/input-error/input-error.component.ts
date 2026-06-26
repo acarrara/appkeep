@@ -12,6 +12,6 @@ import {IconComponent} from '../icon/icon.component';
 export class InputErrorComponent {
 
   @Input()
-  message: string;
+  message!: string;
 
 }

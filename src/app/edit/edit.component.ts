@@ -39,7 +39,7 @@ export class EditComponent extends OptionableComponent {
 
   public users$: Observable<string[]> = this.store.get(['users'], users => users.map(user => user.email));
 
-  public appKeep: AppKeep;
+  public appKeep!: AppKeep;
 
   constructor() {
     const actions = inject(AppActions);
@@ -50,7 +50,7 @@ export class EditComponent extends OptionableComponent {
         ...this.lookupAppKeep(id, ['appKeeps']) ||
         this.lookupAppKeep(id, ['categoryStatistics', 'thisMonthAppKeeps']) ||
         this.lookupAppKeep(id, ['searchResults'])
-      };
+      } as AppKeep;
     });
   }
 

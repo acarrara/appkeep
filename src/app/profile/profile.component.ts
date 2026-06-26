@@ -37,9 +37,9 @@ export class ProfileComponent implements OnInit {
 
   users$: Observable<UserInfo[]> = this.store.get(['users']);
 
-  user: UserInfo;
+  user!: UserInfo;
 
-  subscribed$: Observable<boolean>;
+  subscribed$!: Observable<boolean>;
   newUser = '';
 
   constructor() {

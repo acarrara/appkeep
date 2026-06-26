@@ -13,7 +13,7 @@ export class RestReducer<T extends RestResource> {
     switch (action.type) {
       case `LOAD_${this.name.toUpperCase()}S_SUCCESS`: {
         const newState = {...oldState};
-        newState[`${this.name}s`] = [...action.payload];
+        newState[`${this.name}s`] = [...action.payload!];
         return newState;
       }
       default: {
@@ -25,14 +25,14 @@ export class RestReducer<T extends RestResource> {
   private add: Reducer<AppKeepState, T> = (action, oldState) => {
     switch (action.type) {
       case `ADD_${this.name.toUpperCase()}`: {
-        action.payload._updating = true;
+        action.payload!._updating = true;
         const newState = {...oldState};
         newState[`${this.name}s`] = [action.payload, ...oldState[`${this.name}s`]];
         return newState;
       }
       case `ADD_${this.name.toUpperCase()}_SUCCESS`: {
-        action.payload._updating = false;
-        return this.newEditedState(oldState, action.payload, 'date');
+        action.payload!._updating = false;
+        return this.newEditedState(oldState, action.payload!, 'date');
       }
       default: {
         return oldState;
@@ -43,13 +43,13 @@ export class RestReducer<T extends RestResource> {
   private delete: Reducer<AppKeepState, T> = (action, oldState) => {
     switch (action.type) {
       case `DELETE_${this.name.toUpperCase()}`: {
-        action.payload._updating = true;
-        return this.newEditedState(oldState, action.payload);
+        action.payload!._updating = true;
+        return this.newEditedState(oldState, action.payload!);
       }
       case `DELETE_${this.name.toUpperCase()}_SUCCESS`: {
-        action.payload._updating = false;
+        action.payload!._updating = false;
         const newState = {...oldState};
-        newState[`${this.name}s`] = oldState[`${this.name}s`].filter(current => current._id !== action.payload._id);
+        newState[`${this.name}s`] = oldState[`${this.name}s`].filter(current => current._id !== action.payload!._id);
         return newState;
       }
       default: {
@@ -61,12 +61,12 @@ export class RestReducer<T extends RestResource> {
   private edit: Reducer<AppKeepState, T> = (action, oldState) => {
     switch (action.type) {
       case `EDIT_${this.name.toUpperCase()}`: {
-        action.payload._updating = true;
-        return this.newEditedState(oldState, action.payload);
+        action.payload!._updating = true;
+        return this.newEditedState(oldState, action.payload!);
       }
       case `EDIT_${this.name.toUpperCase()}_SUCCESS`: {
-        action.payload._updating = false;
-        return this.newEditedState(oldState, action.payload);
+        action.payload!._updating = false;
+        return this.newEditedState(oldState, action.payload!);
       }
       default: {
         return oldState;

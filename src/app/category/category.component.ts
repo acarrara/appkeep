@@ -43,19 +43,19 @@ export class CategoryComponent {
   thisMonthAppKeeps$: Observable<AppKeep[]> = this.store.get(['categoryStatistics', 'thisMonthAppKeeps']);
   thisMonthTotal$: Observable<number> = this.store.get(['categoryStatistics', 'thisMonthAppKeeps'], sumAppKeeps);
 
-  category: Category;
+  category!: Category;
 
   year = '';
   month = '';
 
-  private originalCategory: string;
+  private originalCategory!: string;
 
   constructor() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      this.originalCategory = paramMap.get('category');
+      this.originalCategory = paramMap.get('category')!;
       this.lookupCategory();
-      this.year = paramMap.get('year');
-      this.month = paramMap.get('month');
+      this.year = paramMap.get('year') ?? '';
+      this.month = paramMap.get('month') ?? '';
       this.store.dispatch(this.actions.loadCategoryStatistics(this.category.category, this.year, this.month));
     });
   }

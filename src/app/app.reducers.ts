@@ -41,7 +41,7 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
       case AppActions.LOGIN: {
         return {
           ...oldState,
-          user: action.payload
+          user: action.payload!
         };
       }
       default: {
@@ -55,7 +55,7 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
       case AppActions.LOAD_STATISTICS_SUCCESS: {
         return {
           ...oldState,
-          statistics: action.payload
+          statistics: action.payload!
         };
       }
       default: {
@@ -69,7 +69,7 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
       case AppActions.LOAD_MONTH_STATISTICS_SUCCESS: {
         return {
           ...oldState,
-          monthStatistics: action.payload
+          monthStatistics: action.payload!
         };
       }
       default: {
@@ -83,7 +83,7 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
       case AppActions.LOAD_YEAR_STATISTICS_SUCCESS: {
         return {
           ...oldState,
-          yearStatistics: action.payload
+          yearStatistics: action.payload!
         };
       }
       default: {
@@ -97,7 +97,7 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
       case AppActions.LOAD_CATEGORY_STATISTICS_SUCCESS: {
         return {
           ...oldState,
-          categoryStatistics: action.payload
+          categoryStatistics: action.payload!
         };
       }
       default: {
@@ -113,7 +113,7 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
           ...oldState,
           user: {
             ...oldState.user,
-            info: action.payload
+            info: action.payload!
           }
         };
       }
@@ -128,7 +128,7 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
       case AppActions.SEARCH_APPKEEPS_SUCCESS: {
         return {
           ...oldState,
-          searchResults: action.payload
+          searchResults: action.payload!
         };
       }
       default: {
@@ -143,7 +143,7 @@ export class AppReducers extends ArrayableFunctions<Reducer<AppKeepState, any>> 
         const today = new Date().toDateString();
         return {
           ...oldState,
-          appKeeps: oldState.appKeeps.filter(appKeep => new Date(appKeep.date).toDateString() === today)
+          appKeeps: oldState.appKeeps.filter(appKeep => new Date(appKeep.date!).toDateString() === today)
         };
       }
       default: {

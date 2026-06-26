@@ -11,7 +11,7 @@ export class StoreService<State> {
 
   public static instance: any;
 
-  private state$: BehaviorSubject<State>;
+  private state$!: BehaviorSubject<State>;
 
   private reducers: Reducer<State, any>[] = [];
 

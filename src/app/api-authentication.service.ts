@@ -13,10 +13,10 @@ export class ApiAuthenticationService {
   private actions = inject(AppActions);
   private authStrategy = inject(AuthStrategy);
 
-  private apiTokenSubject$: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
+  private apiTokenSubject$: BehaviorSubject<string | undefined> = new BehaviorSubject<string | undefined>(undefined);
 
   loggedIn$: Observable<boolean> = this.apiTokenSubject$.pipe(map(token => !!token));
-  apiToken$: Observable<string> = this.apiTokenSubject$.asObservable();
+  apiToken$: Observable<string | undefined> = this.apiTokenSubject$.asObservable();
 
   silentSignIn(): Observable<boolean> {
     if (this.apiTokenSubject$.getValue()) {

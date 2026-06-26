@@ -37,10 +37,10 @@ export class MonthlyComponent extends OptionableComponent implements OnInit {
 
   users$: Observable<UserInfo[]> = this.store.get(['users'], users => users.map(user => user.email));
 
-  monthlyAppkeep: AppKeep;
-  edit: boolean;
+  monthlyAppkeep!: AppKeep;
+  edit!: boolean;
 
-  @ViewChildren('NgModel') models: QueryList<NgModel>;
+  @ViewChildren('NgModel') models!: QueryList<NgModel>;
 
   constructor() {
     const actions = inject(AppActions);

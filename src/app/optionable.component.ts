@@ -18,9 +18,9 @@ export abstract class OptionableComponent {
   }
 
   public onChange(appKeep: AppKeep, options: Option[], categories: Category[]) {
-    const option: Option = this.optionFromList(appKeep.title, options);
+    const option = this.optionFromList(appKeep.title, options);
     appKeep.category = option ? option.category : appKeep.category;
-    appKeep.income = option ? this.lookupCategory(categories, option.category).income : false;
+    appKeep.income = option ? this.lookupCategory(categories, option.category)!.income : false;
   }
 
   protected updateOptions(title, category, options, categories) {
@@ -49,7 +49,7 @@ export abstract class OptionableComponent {
     return options.find(current => current.title.toLowerCase() === title.toLowerCase());
   }
 
-  protected lookupCategory(categories: Category[], optionCategory: string): Category {
+  protected lookupCategory(categories: Category[], optionCategory: string): Category | undefined {
     return categories.find(current => current.category === optionCategory);
   }
 }

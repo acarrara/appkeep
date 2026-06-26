@@ -22,16 +22,17 @@ import {RouterLink} from '@angular/router';
 })
 export class RecapCardComponent implements OnChanges {
   @Input()
-  title: string;
+  title!: string;
   @Input()
-  recaps: Recap[];
+  recaps!: Recap[] | null;
 
-  total: number;
-  topTotal: number;
+  total!: number;
+  topTotal!: number;
 
   ngOnChanges(): void {
-    this.total = this.recaps.reduce((partial, currentRecap) => partial + currentRecap.inTotal + currentRecap.outTotal, 0);
-    this.topTotal = this.recaps.reduce(((partial, currentRecap) => this.biggest(partial, currentRecap)), 0);
+    const recaps = this.recaps ?? [];
+    this.total = recaps.reduce((partial, currentRecap) => partial + currentRecap.inTotal + currentRecap.outTotal, 0);
+    this.topTotal = recaps.reduce(((partial, currentRecap) => this.biggest(partial, currentRecap)), 0);
   }
 
   getIncomePercentage(recap: Recap) {

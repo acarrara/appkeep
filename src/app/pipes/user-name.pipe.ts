@@ -8,7 +8,7 @@ import {StoreService} from '../../redux/store.service';
 })
 export class UserNamePipe implements PipeTransform {
 
-  users: UserInfo[];
+  users!: UserInfo[];
 
   store = inject<StoreService<UserInfo[]>>(StoreService);
 

@@ -84,7 +84,7 @@ export class AppEpics extends ArrayableFunctions<Epic<any, any>> {
   private searchAppKeeps: Epic<string, AppKeep[]> = actions$ => {
     return actions$.pipe(
       filter(action => action.type === AppActions.SEARCH_APPKEEPS),
-      switchMap(action => this.http.get<AppKeep[]>(`/api/appkeeps/search?q=${encodeURIComponent(action.payload)}`).pipe(
+      switchMap(action => this.http.get<AppKeep[]>(`/api/appkeeps/search?q=${encodeURIComponent(action.payload!)}`).pipe(
         first(),
         map(results => this.actions.searchAppKeepsSuccess(results))
       ))

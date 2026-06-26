@@ -7,10 +7,10 @@ export class AuthInterceptor implements HttpInterceptor {
   private apiAuth = inject(ApiAuthenticationService);
 
 
-  private apiToken: string;
+  private apiToken!: string;
 
   constructor() {
-    this.apiAuth.apiToken$.subscribe(apiToken => this.apiToken = apiToken);
+    this.apiAuth.apiToken$.subscribe(apiToken => this.apiToken = apiToken ?? '');
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {

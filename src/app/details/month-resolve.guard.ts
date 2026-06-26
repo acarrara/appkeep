@@ -18,8 +18,8 @@ export class MonthResolveGuard implements Resolve<Details> {
     if (!params.has('year') || !params.has('month')) {
       return this.store.snapshot<Details>(['statistics', 'thisMonth']);
     } else {
-      const year = params.get('year');
-      const month = params.get('month');
+      const year = params.get('year')!;
+      const month = params.get('month')!;
       this.store.dispatch(this.actions.loadMonthStatistics(year, month));
       return this.store.get<Details>(['monthStatistics']).pipe(
         distinctUntilChanged(),

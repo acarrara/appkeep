@@ -32,20 +32,20 @@ export class CategoriesCardComponent implements OnChanges {
   categories$: Observable<Category[]> = this.store.get(['categories']);
 
   @Input()
-  title: string;
+  title!: string;
   @Input()
-  year: string;
+  year!: string;
   @Input()
-  month: string;
+  month!: string;
   @Input()
-  outCategories: CategoryAmount[];
+  outCategories!: CategoryAmount[];
   @Input()
-  inCategories: CategoryAmount[];
+  inCategories!: CategoryAmount[];
 
-  outTotal: number;
-  inTotal: number;
-  appKeepHighest: number;
-  incomeHighest: number;
+  outTotal!: number;
+  inTotal!: number;
+  appKeepHighest!: number;
+  incomeHighest!: number;
 
   ngOnChanges(): void {
     this.outTotal = this.updateCategories(this.outCategories);

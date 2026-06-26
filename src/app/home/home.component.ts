@@ -46,7 +46,7 @@ export class HomeComponent {
   thisYearTotal$: Observable<Recap[]> = this.store.get(['statistics', 'thisYear'], statistics => statistics.ranges);
   overallTotal$: Observable<Recap[]> = this.store.get(['statistics', 'overall'], statistics => statistics.ranges);
 
-  availableVersion: boolean;
+  availableVersion!: boolean;
 
   constructor() {
     const store = inject<StoreService<AppKeepState>>(StoreService);
@@ -73,7 +73,7 @@ export class HomeComponent {
 
   @HostListener('window:online')
   sendMessage() {
-    navigator.serviceWorker.controller.postMessage({type: 'online'});
+    navigator.serviceWorker.controller!.postMessage({type: 'online'});
   }
 
   reload() {

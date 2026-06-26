@@ -16,9 +16,9 @@ import {AmountPipe} from '../pipes/amount.pipe';
 export class CardComponent {
 
   @Input()
-  title: string;
+  title!: string;
   @Input()
-  total: number;
+  total!: number | null;
   @Input()
   indicator = false;
 

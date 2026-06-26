@@ -25,7 +25,7 @@ export abstract class OptionableComponent {
 
   protected updateOptions(title, category, options, categories) {
     const option = this.optionFromList(title, options);
-    const updatedOption = {title, category, date: new Date().getTime()};
+    const updatedOption = {title, category, date: Date.now()};
     if (option) {
       this.store.dispatch(this.actions.editOption({_id: option._id, ...updatedOption}));
     } else {

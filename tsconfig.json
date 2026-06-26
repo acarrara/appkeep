@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -12,6 +11,9 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "target": "esNext",
+    "noImplicitAny": false,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
     "typeRoots": [
       "node_modules/@types",
       "./node_modules"

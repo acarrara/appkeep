@@ -35,7 +35,7 @@ export class RestEpic<T extends RestResource> {
   private delete: Epic<T, T> = actions$ => {
     return actions$.pipe(
       filter(action => action.type === `DELETE_${this.name.toUpperCase()}`),
-      mergeMap(action => this.http.delete<T>(`/api/${this.name}s/` + action.payload._id).pipe(
+      mergeMap(action => this.http.delete<T>(`/api/${this.name}s/` + action.payload!._id).pipe(
         first(),
         map(() => ({type: `DELETE_${this.name.toUpperCase()}_SUCCESS`, payload: action.payload})),
         tap(() => this.store.dispatch(this.actions.loadStatistics()))
@@ -46,7 +46,7 @@ export class RestEpic<T extends RestResource> {
   private edit: Epic<T, T> = actions$ => {
     return actions$.pipe(
       filter(action => action.type === `EDIT_${this.name.toUpperCase()}`),
-      mergeMap(action => this.http.put<T>(`/api/${this.name}s/` + action.payload._id, action.payload).pipe(
+      mergeMap(action => this.http.put<T>(`/api/${this.name}s/` + action.payload!._id, action.payload!).pipe(
         first(),
         map(() => ({type: `EDIT_${this.name.toUpperCase()}_SUCCESS`, payload: action.payload})),
         tap(() => this.store.dispatch(this.actions.loadStatistics()))

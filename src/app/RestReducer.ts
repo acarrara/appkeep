@@ -7,7 +7,7 @@ export class RestReducer<T extends RestResource> {
   constructor(private name: string) {
   }
 
-  public toReducers = (): Reducer<AppKeepState, T | T[]>[] => [this.add, this.load, this.edit, this.delete];
+  public toReducers = (): Reducer<AppKeepState, any>[] => [this.add, this.load, this.edit, this.delete];
 
   private load: Reducer<AppKeepState, T[]> = (action, oldState) => {
     switch (action.type) {

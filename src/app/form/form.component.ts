@@ -32,7 +32,7 @@ export class FormComponent extends OptionableComponent implements AfterViewInit 
   }
 
   ngAfterViewInit(): void {
-    if (navigator || navigator.serviceWorker) {
+    if (navigator && navigator.serviceWorker) {
       navigator.serviceWorker.addEventListener('message', () => {
         // do nothing
       });
